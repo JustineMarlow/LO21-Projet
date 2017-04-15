@@ -14,7 +14,7 @@
 
 class NoteEditeur:public QWidget
 {
-private:
+protected:
     Q_OBJECT
     Note* note;
     QVBoxLayout* layout;
@@ -26,9 +26,29 @@ private:
     QLineEdit* titre;
     QDateEdit* date_c;
     QDateEdit* date_m;
-
-public:
+ public:
     explicit NoteEditeur(Note& n, QWidget* parent=0);
+
+};
+
+class ArticleEditeur:public QWidget
+{
+protected:
+    Q_OBJECT
+    Article* article;
+    QVBoxLayout* layout;
+    QLabel* id1;
+    QLabel* titre1;
+    QLabel* date1;
+    QLabel* date2;
+    QLineEdit* id;
+    QLineEdit* titre;
+    QDateEdit* date_c;
+    QDateEdit* date_m;
+    QLabel* text1;
+    QTextEdit* text;
+public:
+    explicit ArticleEditeur(Article& a, QWidget* parent=0);
 
 };
 
