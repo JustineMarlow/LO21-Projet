@@ -1,6 +1,8 @@
 SOURCES += \
     main.cpp \
-    note.cpp
+    note.cpp \
+    noteediteur.cpp
 
 HEADERS += \
-    note.h
+    note.h \
+    noteediteur.h
