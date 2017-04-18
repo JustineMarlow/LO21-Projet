@@ -18,20 +18,26 @@ protected:
     Q_OBJECT
     Note* note;
     QVBoxLayout* layout;
-    QLabel* id1;
+    QLabel* id;
     QLabel* titre1;
-    QLabel* date1;
-    QLabel* date2;
-    QLineEdit* id;
     QLineEdit* titre;
     QLabel* date_c;
     QLabel* date_m;
     QLabel* etat;
     QLabel* version;
+    QPushButton* bouton;
 public:
     explicit NoteEditeur(Note& n, QWidget* parent=0);
     QVBoxLayout* getLayout() {return layout;} //méthode pour récupérer le layout et le modifier en fonction de la sous-classe
+    QPushButton* getButton() {return bouton;} //méthode pour récupérer le bouton et le modifier en fonction de la sous-classe
+    QLineEdit* getTitle() {return titre;} //méthode pour récupérer le titre et le modifier en fonction de la sous-classe
 
+signals:
+
+public slots:
+    void save(){/*existe mais ne fait rien*/}; //méthode virtuelle : à nécessairement définir dans les sous-classes (car enregistrement dépend de la nature de la note)
+private slots: //à usage interne
+    void activerBouton(QString str="");
 };
 
 
