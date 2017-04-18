@@ -24,9 +24,10 @@ protected:
     QLabel* date2;
     QLineEdit* id;
     QLineEdit* titre;
-    QDateEdit* date_c;
-    QDateEdit* date_m;
+    QLabel* date_c;
+    QLabel* date_m;
     QLabel* etat;
+    QLabel* version;
 public:
     explicit NoteEditeur(Note& n, QWidget* parent=0);
     QVBoxLayout* getLayout() {return layout;} //méthode pour récupérer le layout et le modifier en fonction de la sous-classe

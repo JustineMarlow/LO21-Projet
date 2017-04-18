@@ -4,6 +4,7 @@
 #include <QtXml>
 #include <QMessageBox>
 
+
 /*
 void NotesManager::addNote(Note* n)
 {
@@ -27,7 +28,7 @@ void NotesManager::addNote(Note* n)
 void NotesManager::save() const {
     QFile newfile(filename);
     if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
-        throw NotesException(QString("erreur sauvegarde notes : ouverture fichier xml"));
+        throw NotesException(QString("Erreur dans la sauvegarde : echec lors de l'ouverture du fichier xml"));
     QXmlStreamWriter stream(&newfile);
     stream.setAutoFormatting(true);
     stream.writeStartDocument();
@@ -40,7 +41,7 @@ void NotesManager::save() const {
         //stream.writeTextElement("creation",notes[i]->getCreation());
         //stream.writeTextElement("derniere modif",notes[i]->getModification());
         //stream.writeTextElement("etat",notes[i]->getEtat());
-        //stream.writeEndElement();
+        stream.writeEndElement();
     }
     stream.writeEndElement();
     stream.writeEndDocument();
@@ -49,36 +50,32 @@ void NotesManager::save() const {
 
 void NotesManager::load() {
     QFile fin(filename);
-    // If we can't open it, let's show an error message.
+    // Si l'ouverture du fichier échoue, on déclenche une NotesException
     if (!fin.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        throw NotesException("Erreur ouverture fichier notes");
+        throw NotesException("Erreur ouverture fichier");
     }
     // QXmlStreamReader takes any QIODevice.
     QXmlStreamReader xml(&fin);
     //qDebug()<<"debut fichier\n";
-    // We'll parse the XML until we reach end of it.
+    //On parcourt le fichier jusqu'à la fin
     while(!xml.atEnd() && !xml.hasError()) {
         // Read next element.
         QXmlStreamReader::TokenType token = xml.readNext();
-        // If token is just StartDocument, we'll go to next.
         if(token == QXmlStreamReader::StartDocument) continue;
-        // If token is StartElement, we'll see if we can read it.
         if(token == QXmlStreamReader::StartElement) {
-            // If it's named taches, we'll go to the next.
-            if(xml.name() == "notes") continue;
-            // If it's named tache, we'll dig the information from there.
+            if(xml.name() == "Notes") continue;
+            //article
             if(xml.name() == "article") {
-                qDebug()<<"new article\n";
+                qDebug()<<"Nouvel article\n";
                 QString identificateur;
                 QString titre;
                 QString text;
                 QXmlStreamAttributes attributes = xml.attributes();
                 xml.readNext();
-                //We're going to loop over the things because the order might change.
-                //We'll continue the loop until we hit an EndElement named article.
+                //On boucle pour parcourir tous les champs (car l'ordre des balises xml peut varier) jusqu'à parvenir à la fin de article
                 while(!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "article")) {
                     if(xml.tokenType() == QXmlStreamReader::StartElement) {
-                        // We've found identificteur.
+                        // Indentificateur
                         if(xml.name() == "id") {
                             xml.readNext(); identificateur=xml.text().toString();
                             qDebug()<<"id="<<identificateur<<"\n";
@@ -100,7 +97,7 @@ void NotesManager::load() {
                     xml.readNext();
                 }
                 qDebug()<<"ajout note "<<identificateur<<"\n";
-                addNote(identificateur,titre,text);
+                addArticle(identificateur,titre,text);
             }
         }
     }
