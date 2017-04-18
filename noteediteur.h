@@ -10,6 +10,7 @@
 #include <QVBoxLayout>
 #include <QDate>
 #include <QDateEdit>
+#include <QMessageBox>
 #include <note.h>
 
 class NoteEditeur:public QWidget
@@ -35,7 +36,7 @@ public:
 signals:
 
 public slots:
-    void save(){/*existe mais ne fait rien*/}; //méthode virtuelle : à nécessairement définir dans les sous-classes (car enregistrement dépend de la nature de la note)
+    virtual void save()=0; //méthode virtuelle : à nécessairement définir dans les sous-classes (car enregistrement dépend de la nature de la note)
 private slots: //à usage interne
     void activerBouton(QString str="");
 };
@@ -45,10 +46,13 @@ private slots: //à usage interne
 class ArticleEditeur:public NoteEditeur
 {
 protected:
+    Q_OBJECT
     QLabel* text1;
     QTextEdit* text;
 public:
     ArticleEditeur(Article& a, QWidget* parent=0);
+public slots:
+    void save();
 
 };
 

@@ -46,15 +46,16 @@ ArticleEditeur::ArticleEditeur(Article& a, QWidget* parent):NoteEditeur(a,parent
     setLayout(getLayout());
 }
 
-/*
+
 void ArticleEditeur::save()
 {
-    article->setTitle(titre->text());
-    article->setText(text->toPlainText());
+    //on appelera ici les méthodes de modifications des champs titre et texte d'article
+    //article->setTitle(titre->text());
+    //article->setText(text->toPlainText());
     QMessageBox::information(this,"Sauvegarde","Sauvegarde de l'article");
-    bouton->setDisabled(true);
+    getButton()->setDisabled(true);
 }
-*/
+
 
 void NoteEditeur::activerBouton(QString str)
 {
