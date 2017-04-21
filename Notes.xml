@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<notes>
+    <article>
+        <id>id:A1</id>
+        <title>Un premier article</title>
+        <text>Ceci est un premier article.</text>
+    </article>
+    <article>
+        <id>id:A2</id>
+        <title>Un deuxième article</title>
+        <text>Ceci est un deuxième article.</text>
+    </article>
+</notes>

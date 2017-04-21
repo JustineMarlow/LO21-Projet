@@ -42,7 +42,6 @@ private slots: //à usage interne
 };
 
 
-
 class ArticleEditeur:public NoteEditeur
 {
 protected:

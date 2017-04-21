@@ -36,7 +36,7 @@ public:
          date_Lastmodification(date_m),
          isLastVersion(last),
          version(v),
-         etat(e){};
+         etat(e){}
     QString getId() const {return identificateur;}
     QString getTitre() const {return titre;}
     QDate getCreation() const {return date_creation;}
@@ -44,6 +44,8 @@ public:
     NoteEtat getEtat() const {return etat;}
     bool IsLast() const {return isLastVersion;}
     int getVersion() const {return version;}
+    virtual void fonction_bidon()=0; //pour créer le polymorphisme, en attendant d'avoir une vraie méthode virtuelle pure
+    virtual ~Note();
 
 };
 
@@ -54,8 +56,10 @@ public:
         Article(QString id, QString t, QString text, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active)
             :Note(id,t,date_c,date_m,last,v,e),
              texte(text)
-             {};
+             {}
         QString getTexte() const {return texte;}
+        void fonction_bidon() {cout<<"Je suis un article.";}
+        virtual ~Article();
     };
 
     enum TacheStatut {attente,cours,terminee};
@@ -69,9 +73,11 @@ public:
             :Note(id,t,date_c,date_m,last,v,e),
              texte(text),
              statut(st)
-             {};
+             {}
         QString getTexte() const {return texte;}
         TacheStatut getStatut() const {return statut;}
+        void fonction_bidon() {cout<<"Je suis une tâche.";}
+        virtual ~Tache();
     };
 
         class TacheAvecPriorite:public Tache
@@ -81,8 +87,10 @@ public:
             TacheAvecPriorite(QString id, QString t, QString text, int p=0, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active, TacheStatut st=attente)
                 :Tache(id,t,text,date_c,date_m,last,v,e,st),
                  priorite(p)
-                 {};
+                 {}
             int getPriorite() const {return priorite;}
+            void fonction_bidon() {cout<<"Je suis une tâche avec priorité.";}
+            virtual ~TacheAvecPriorite();
         };
 
         class TacheAvecDeadline:public Tache
@@ -92,8 +100,10 @@ public:
             TacheAvecDeadline(QString id, QString t, QString text, QDate dead, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active, TacheStatut st=attente)
                 :Tache(id,t,text,date_c,date_m,last,v,e,st),
                  deadline(dead)
-                 {};
+                 {}
             QDate getDeadline() const {return deadline;}
+            void fonction_bidon() {cout<<"Je suis une tâche avec deadline.";}
+            virtual ~TacheAvecDeadline();
         };
 
     enum AutreType {image, audio, video};
@@ -113,10 +123,11 @@ public:
         QString getDescription() const {return description;}
         AutreType getType() const {return type;}
         QString getFilename() const {return filename;}
+        void fonction_bidon() {cout<<"Je suis un autre.";}
+        virtual ~Autre();
     };
 
 
-/*
 class NotesManager
 {
     Note** notes;
@@ -125,8 +136,8 @@ class NotesManager
     mutable QString filename;
 public:
     //constructeur unique et sans argument
-    NotesManager():notes(0),nbNotes(0),nbMaxNotes(0),filename("timp.dat"){};
-    void addNote(type_info type, Note& n);
+    NotesManager():notes(0),nbNotes(0),nbMaxNotes(0),filename("timp.dat"){}
+    void addNote(Note* n);
     //Note& NewVersionNote(const QString& id);
     //Note& getNote(const QString& id); -> permet recherche d'une Note en particulier (utile ?) -> avec iterator ?
 
@@ -137,8 +148,11 @@ public:
     //NotesManager operator=(const NotesManager& m);
     void load();
     void save() const;
+    void setFilename(const QString& f) { filename=f; }
+    Note& getNote(const QString& id); // return the note with identificator id
+    void addArticle(const QString& id, const QString& ti, const QString& te);
+                    //const QDate date_c, const QDate date_m, bool last, int v);
 };
-*/
 
 #endif // NOTE
 
