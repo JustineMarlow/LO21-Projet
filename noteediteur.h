@@ -24,6 +24,7 @@ protected:
     QLineEdit* titre;
     QLabel* date_c;
     QLabel* date_m;
+    QLabel* last;
     QLabel* etat;
     QLabel* version;
     QPushButton* bouton;

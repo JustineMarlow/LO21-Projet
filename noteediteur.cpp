@@ -14,6 +14,8 @@ NoteEditeur::NoteEditeur(Note &n, QWidget* parent):QWidget(parent),note(&n)
     else if (n.getEtat()==archivee) etat = new QLabel("Etat : Archivee");
             else etat = new QLabel("Etat : a la corbeille");
     version = new QLabel("Version : "+QString::number(n.getVersion()),this);
+    if (n.IsLast()) last = new QLabel("Derniere version : oui");
+    else last = new QLabel("Derniere version : non");
     bouton = new QPushButton("Sauver",this);
     bouton->setDisabled(true);
     layout = new QVBoxLayout(this);
@@ -24,6 +26,7 @@ NoteEditeur::NoteEditeur(Note &n, QWidget* parent):QWidget(parent),note(&n)
     layout-> addWidget(date_c);
     layout-> addWidget(date_m);
     layout-> addWidget(etat);
+    layout-> addWidget(last);
     layout-> addWidget(version);
     //setLayout(layout);
 

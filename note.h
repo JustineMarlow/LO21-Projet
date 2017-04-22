@@ -29,7 +29,7 @@ private:
     NoteEtat etat;
 
 public:
-    Note(QString id, QString t, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active)
+    Note(QString id, QString t, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, unsigned int v=1, NoteEtat e=active)
         :identificateur(id),
          titre(t),
          date_creation(date_c),
@@ -43,8 +43,7 @@ public:
     QDate getModification() const {return date_Lastmodification;}
     NoteEtat getEtat() const {return etat;}
     bool IsLast() const {return isLastVersion;}
-    int getVersion() const {return version;}
-    virtual void fonction_bidon()=0; //pour créer le polymorphisme, en attendant d'avoir une vraie méthode virtuelle pure
+    unsigned int getVersion() const {return version;}
     virtual ~Note();
 
 };
@@ -53,12 +52,11 @@ public:
     {
         QString texte;
     public:
-        Article(QString id, QString t, QString text, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active)
+        Article(QString id, QString t, QString text, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), unsigned int v=1, bool last=true, NoteEtat e=active)
             :Note(id,t,date_c,date_m,last,v,e),
              texte(text)
              {}
         QString getTexte() const {return texte;}
-        void fonction_bidon() {cout<<"Je suis un article.";}
         virtual ~Article();
     };
 
@@ -76,7 +74,6 @@ public:
              {}
         QString getTexte() const {return texte;}
         TacheStatut getStatut() const {return statut;}
-        void fonction_bidon() {cout<<"Je suis une tâche.";}
         virtual ~Tache();
     };
 
@@ -89,7 +86,6 @@ public:
                  priorite(p)
                  {}
             int getPriorite() const {return priorite;}
-            void fonction_bidon() {cout<<"Je suis une tâche avec priorité.";}
             virtual ~TacheAvecPriorite();
         };
 
@@ -102,7 +98,6 @@ public:
                  deadline(dead)
                  {}
             QDate getDeadline() const {return deadline;}
-            void fonction_bidon() {cout<<"Je suis une tâche avec deadline.";}
             virtual ~TacheAvecDeadline();
         };
 
@@ -123,7 +118,6 @@ public:
         QString getDescription() const {return description;}
         AutreType getType() const {return type;}
         QString getFilename() const {return filename;}
-        void fonction_bidon() {cout<<"Je suis un autre.";}
         virtual ~Autre();
     };
 
@@ -150,8 +144,7 @@ public:
     void save() const;
     void setFilename(const QString& f) { filename=f; }
     Note& getNote(const QString& id); // return the note with identificator id
-    void addArticle(const QString& id, const QString& ti, const QString& te);
-                    //const QDate date_c, const QDate date_m, bool last, int v);
+    void addArticle(const QString& id, const QString& ti, const QString& te,const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat);
 };
 
 #endif // NOTE
