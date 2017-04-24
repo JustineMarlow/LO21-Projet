@@ -18,6 +18,7 @@ class NoteEditeur:public QWidget
 protected:
     Q_OBJECT
     Note* note;
+    NotesManager* manager;
     QVBoxLayout* layout;
     QLabel* id;
     QLabel* titre1;
@@ -29,15 +30,18 @@ protected:
     QLabel* version;
     QPushButton* bouton;
 public:
-    explicit NoteEditeur(Note& n, QWidget* parent=0);
+    explicit NoteEditeur(Note& n, NotesManager& m, QWidget* parent=0);
     QVBoxLayout* getLayout() {return layout;} //méthode pour récupérer le layout et le modifier en fonction de la sous-classe
     QPushButton* getButton() {return bouton;} //méthode pour récupérer le bouton et le modifier en fonction de la sous-classe
     QLineEdit* getTitle() {return titre;} //méthode pour récupérer le titre et le modifier en fonction de la sous-classe
+    virtual void extensionsave()=0;
+    Note* getNote() const {return note;}
+    NotesManager* getManager() const {return manager;}
 
 signals:
 
 public slots:
-    virtual void save()=0; //méthode virtuelle : à nécessairement définir dans les sous-classes (car enregistrement dépend de la nature de la note)
+    void save();
 private slots: //à usage interne
     void activerBouton(QString str="");
 };
@@ -50,9 +54,9 @@ protected:
     QLabel* text1;
     QTextEdit* text;
 public:
-    ArticleEditeur(Article& a, QWidget* parent=0);
+    ArticleEditeur(Article& a, NotesManager& m, QWidget* parent=0);
 public slots:
-    void save();
+    void extensionsave();
 
 };
 

@@ -24,7 +24,7 @@ private:
     QDate date_creation;
     QDate date_Lastmodification;
     bool isLastVersion;
-    int version;
+    unsigned int version;
     //Note** VersionAnterieures;
     NoteEtat etat;
 
@@ -45,6 +45,7 @@ public:
     bool IsLast() const {return isLastVersion;}
     unsigned int getVersion() const {return version;}
     virtual ~Note();
+    void setLast(const bool b) {isLastVersion=b;}
 
 };
 
@@ -143,7 +144,7 @@ public:
     void load();
     void save() const;
     void setFilename(const QString& f) { filename=f; }
-    Note& getNote(const QString& id); // return the note with identificator id
+    Note& getNote(const QString& id); //retourne la dernière version de la Note identifiée id
     void addArticle(const QString& id, const QString& ti, const QString& te,const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat);
 };
 

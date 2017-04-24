@@ -4,20 +4,20 @@
         <id>id:A1</id>
         <title>Un premier article</title>
         <text>Ceci est un premier article.</text>
-	<version>3</version>
-	<last>oui</last>
-	<creation>15/02/2015</creation>
-	<modification>18/02/2015</modification>
-	<etat>Active</etat>
+        <creation>15/02/2015</creation>
+        <modification>18/02/2015</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>1</version>
     </article>
     <article>
         <id>id:A2</id>
         <title>Un deuxième article</title>
         <text>Ceci est un deuxième article.</text>
-	<version>3</version>
-	<last>oui</last>
-	<creation>15/02/2015</creation>
-	<modification>18/02/2015</modification>
-	<etat>Archivee</etat>
+        <creation>15/02/2015</creation>
+        <modification>18/02/2015</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>1</version>
     </article>
 </notes>

@@ -2,7 +2,7 @@
 #include "noteediteur.h"
 
 
-NoteEditeur::NoteEditeur(Note &n, QWidget* parent):QWidget(parent),note(&n)
+NoteEditeur::NoteEditeur(Note &n, NotesManager& m, QWidget* parent):QWidget(parent),note(&n),manager(&m)
 {
     id = new QLabel("Identificateur : "+n.getId(),this);
     titre1 = new QLabel("Titre",this);
@@ -18,6 +18,7 @@ NoteEditeur::NoteEditeur(Note &n, QWidget* parent):QWidget(parent),note(&n)
     else last = new QLabel("Derniere version : non");
     bouton = new QPushButton("Sauver",this);
     bouton->setDisabled(true);
+    QObject::connect(bouton, SIGNAL(clicked()), this, SLOT(save()));
     layout = new QVBoxLayout(this);
 
     layout-> addWidget(id);
@@ -32,7 +33,13 @@ NoteEditeur::NoteEditeur(Note &n, QWidget* parent):QWidget(parent),note(&n)
 
 }
 
-ArticleEditeur::ArticleEditeur(Article& a, QWidget* parent):NoteEditeur(a,parent)
+void NoteEditeur::save()
+{
+    getNote()->setLast(false);
+    extensionsave();
+}
+
+ArticleEditeur::ArticleEditeur(Article& a, NotesManager& m, QWidget* parent):NoteEditeur(a,m,parent)
 {
     text1 = new QLabel("Texte",this);
     text = new QTextEdit(this);
@@ -44,17 +51,16 @@ ArticleEditeur::ArticleEditeur(Article& a, QWidget* parent):NoteEditeur(a,parent
     QObject::connect(getTitle(), SIGNAL(textChanged(QString)), this, SLOT(activerBouton(QString)));
     QObject::connect(text, SIGNAL(textChanged()), this, SLOT(activerBouton()));
 
-    QObject::connect(getButton(), SIGNAL(clicked()), this, SLOT(save()));
-
     setLayout(getLayout());
 }
 
 
-void ArticleEditeur::save()
+void ArticleEditeur::extensionsave()
 {
-    //on appelera ici les méthodes de modifications des champs titre et texte d'article
-    //article->setTitle(titre->text());
-    //article->setText(text->toPlainText());
+    Article& a=dynamic_cast<Article&>(*getNote());
+    //on créé un nouvel objet de type Article, l'id et la date de création ne changent pas, la version++, la date modification = la date current
+    //incrémentation ne fonctionne pas, pourquoi ?
+    getManager()->addArticle(a.getId(), this->getTitle()->text(), text->toPlainText(), a.getCreation(), QDate::currentDate(), a.getVersion()+1, true, active);
     QMessageBox::information(this,"Sauvegarde","Sauvegarde de l'article");
     getButton()->setDisabled(true);
 }

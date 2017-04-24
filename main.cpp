@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
     m.setFilename(fichier);
     m.load();
     Article& a=dynamic_cast<Article&>(m.getNote("id:A2"));
-    ArticleEditeur fenetre(a);
+    ArticleEditeur fenetre(a,m);
     fenetre.show();
     return app.exec();
 

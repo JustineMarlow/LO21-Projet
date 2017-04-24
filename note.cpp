@@ -14,7 +14,7 @@ TacheAvecDeadline::~TacheAvecDeadline(){}
 Autre::~Autre(){}
 
 NotesManager::~NotesManager(){
-    //if (filename!="") save();
+    if (filename!="") save();
     for(unsigned int i=0; i<nbNotes; i++) delete notes[i];
     delete[] notes;
 }
@@ -22,11 +22,13 @@ NotesManager::~NotesManager(){
 //permet d'ajouter une note dans le tableau de Notes du NotesManager
 void NotesManager::addNote(Note* n)
 {
-    for(unsigned int i=0; i<nbNotes; i++)
+    /*for(unsigned int i=0; i<nbNotes; i++)
     {
         if (notes[i]->getId()==n->getId()) throw NotesException("Erreur, cet identificateur est deja utilise");
         //il faudrait en plus mettre en place une procédure pour vérifier que, si l'id se répète, c'est parce qu'il s'agit de versions différentes d'une même note
+        //pourquoi pas vérifier l'égalité des dates de création et l'existence de toutes les versions
     }
+    */
     if (nbNotes==nbMaxNotes){
         //le tableau de note nécessite un agrandissement
         Note** newNotes= new Note*[nbMaxNotes+5];
@@ -39,6 +41,7 @@ void NotesManager::addNote(Note* n)
     notes[nbNotes++]=n;
 }
 
+//permet de créer un article par l'intermédiaire du NotesManager, appelle addNote
 void NotesManager::addArticle(const QString& id, const QString& ti, const QString& te, const QDate date_c, const QDate date_m, const unsigned int v, bool last, const NoteEtat etat)
 {
     /*for(unsigned int i=0; i<nbNotes; i++){
@@ -49,15 +52,11 @@ void NotesManager::addArticle(const QString& id, const QString& ti, const QStrin
     addNote(a);
 }
 
+//permet de chercher une note via le NotesManager
 Note& NotesManager::getNote(const QString& id){
     // si la note existe déjà, on en renvoie une référence
     for(unsigned int i=0; i<nbNotes; i++)
-        //(typeid(notes[i]).name()=="article")
-        if (notes[i]->getId()==id) return *notes[i];
-
-    // sinon il est créé
-    //Article* a=new Article(id,"","");
-    //addNote(a);
+        if (notes[i]->getId()==id && notes[i]->IsLast()) return *notes[i];
 }
 
 //méthode pour la comparaison de QString et string
@@ -94,7 +93,6 @@ void NotesManager::load() {
         if(token == QXmlStreamReader::StartElement) {
             // If it's named taches, we'll go to the next.
             if(xml.name() == "notes") continue;
-            // If it's named tache, we'll dig the information from there.
             if(xml.name() == "article") {
                 qDebug()<<"new article\n";
                 QString identificateur;
@@ -184,6 +182,7 @@ void NotesManager::load() {
                 qDebug()<<"ajout article "<<identificateur<<"\n";
                 addArticle(identificateur,titre,text,date_c,date_m,version,isLast,etat);
             }
+
         }
     }
     // Error handling.
@@ -195,27 +194,36 @@ void NotesManager::load() {
     qDebug()<<"fin load\n";
 }
 
-/*
 void NotesManager::save() const {
+
     QFile newfile(filename);
     if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
         throw NotesException(QString("Erreur dans la sauvegarde : echec lors de l'ouverture du fichier xml"));
     QXmlStreamWriter stream(&newfile);
     stream.setAutoFormatting(true);
     stream.writeStartDocument();
-    stream.writeStartElement("Notes");
+    stream.writeStartElement("notes");
     for(unsigned int i=0; i<nbNotes; i++){
+        if (typeid(*notes[i])==typeid(Article))
         //adapter au type de note (article, tache, tacheAvecPriorite, tacheAvecDeadline, Autre)
-        stream.writeStartElement("article");
-        stream.writeTextElement("id",notes[i]->getId());
-        stream.writeTextElement("title",notes[i]->getTitre());
-        //stream.writeTextElement("creation",notes[i]->getCreation());
-        //stream.writeTextElement("derniere modif",notes[i]->getModification());
-        //stream.writeTextElement("etat",notes[i]->getEtat());
-        stream.writeEndElement();
+        {   Article& a=dynamic_cast<Article&>(*notes[i]);
+            stream.writeStartElement("article");
+            stream.writeTextElement("id",a.getId());
+            stream.writeTextElement("title",a.getTitre());
+            stream.writeTextElement("text",a.getTexte());
+            stream.writeTextElement("creation",a.getCreation().QDate::toString(QString("dd/MM/yyyy")));
+            stream.writeTextElement("modification",a.getModification().QDate::toString(QString("dd/MM/yyyy")));
+            if (a.IsLast()==true) stream.writeTextElement("last","oui");
+            else stream.writeTextElement("last","non");
+            if (a.getEtat()==active) stream.writeTextElement("etat","Active");
+            else if (a.getEtat()==archivee) stream.writeTextElement("etat","Archivee");
+            else stream.writeTextElement("etat","Corbeille");
+            stream.writeTextElement("version",QString::number(a.getVersion()));
+            stream.writeEndElement();
+            qDebug()<<i<<" : note mise a jour \n";
+        }
     }
     stream.writeEndElement();
     stream.writeEndDocument();
     newfile.close();
 }
-*/
