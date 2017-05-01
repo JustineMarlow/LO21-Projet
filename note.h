@@ -146,6 +146,27 @@ public:
     void setFilename(const QString& f) { filename=f; }
     Note& getNote(const QString& id); //retourne la dernière version de la Note identifiée id
     void addArticle(const QString& id, const QString& ti, const QString& te,const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat);
+    class Iterator{
+        Note** tab;
+        unsigned int nbElements;
+        unsigned int current;
+        friend class NotesManager;
+    public :
+        Iterator(Note** t, unsigned int n) : tab(t), nbElements(n){}
+        Note* GetCurrentItem() const {return tab[current];}
+        bool isDone() const {return current==nbElements;}
+        void next() {if(!isDone())current++; else throw "Erreur : tableau parcouru";}
+        void debut() {current=0;}
+    };
+    Iterator getIterator() {return Iterator(notes, nbNotes);}
+
+    //SINGLETON
+/*private:
+    static NotesManager* instance;
+public :
+    static NotesManager& getInstance(){static NotesManager instance; return *instance;}*/
+
+
 };
 
 #endif // NOTE
