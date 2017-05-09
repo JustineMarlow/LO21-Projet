@@ -4,6 +4,7 @@
 #include <QtXml>
 #include <QMessageBox>
 #include <typeinfo>
+#include <QDebug>
 using namespace std;
 
 Note::~Note(){}
@@ -17,6 +18,11 @@ NotesManager::~NotesManager(){
     if (filename!="") save();
     for(unsigned int i=0; i<nbNotes; i++) delete notes[i];
     delete[] notes;
+}
+
+NotesManager& NotesManager::getInstance(){
+    static NotesManager instance;
+    return instance;
 }
 
 //permet d'ajouter une note dans le tableau de Notes du NotesManager

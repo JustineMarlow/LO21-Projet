@@ -2,7 +2,6 @@
 #define NOTE
 #include <QString>
 #include <QDate>
-//https://qt.developpez.com/doc/4.7/qdate/
 #include <iostream>
 using namespace std;
 
@@ -129,23 +128,35 @@ class NotesManager
     unsigned int nbNotes;
     unsigned int nbMaxNotes;
     mutable QString filename;
-public:
-    //constructeur unique et sans argument
+    //implémentation Singleton -> passage des constructeurs, destructeurs, opérateur d'affectation en privé
     NotesManager():notes(0),nbNotes(0),nbMaxNotes(0),filename("timp.dat"){}
+    ~NotesManager();
+    NotesManager (const NotesManager& m);
+    NotesManager operator=(const NotesManager& m);
+public:
+    static NotesManager& getInstance(); //Singleton
     void addNote(Note* n);
     //Note& NewVersionNote(const QString& id);
-    //Note& getNote(const QString& id); -> permet recherche d'une Note en particulier (utile ?) -> avec iterator ?
-
-    //destructeur
-    ~NotesManager();
-    //constructeurs de recopie et opérateur d'affectation
-    //NotesManager (const NotesManager& m);
-    //NotesManager operator=(const NotesManager& m);
     void load();
     void save() const;
     void setFilename(const QString& f) { filename=f; }
     Note& getNote(const QString& id); //retourne la dernière version de la Note identifiée id
     void addArticle(const QString& id, const QString& ti, const QString& te,const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat);
+
+    //implémentation Iterator
+    class Iterator{
+        Note** tab;
+        unsigned int courant;
+        unsigned int taille;
+        friend class NotesManager;
+        Iterator(Note** t, unsigned int n):tab(t),courant(0),taille(n){}
+    public:
+        Note& current() const {return *tab[courant];}
+        void next() {if (courant<taille) courant++; else throw NotesException("Iterator is done");}
+        bool isDone() const {return courant==taille;}
+    };
+    Iterator getIterator() {return Iterator(notes, nbNotes);}
+
 };
 
 #endif // NOTE
