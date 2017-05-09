@@ -2,7 +2,7 @@
 #include "noteediteur.h"
 
 
-NoteEditeur::NoteEditeur(Note &n, NotesManager& m, QWidget* parent):QWidget(parent),note(&n),manager(&m)
+NoteEditeur::NoteEditeur(Note &n, QWidget* parent):QWidget(parent),note(&n)
 {
     id = new QLabel("Identificateur : "+n.getId(),this);
     titre1 = new QLabel("Titre",this);
@@ -39,7 +39,7 @@ void NoteEditeur::save()
     extensionsave();
 }
 
-ArticleEditeur::ArticleEditeur(Article& a, NotesManager& m, QWidget* parent):NoteEditeur(a,m,parent)
+ArticleEditeur::ArticleEditeur(Article& a, QWidget* parent):NoteEditeur(a,parent)
 {
     text1 = new QLabel("Texte",this);
     text = new QTextEdit(this);
@@ -59,8 +59,8 @@ void ArticleEditeur::extensionsave()
 {
     Article& a=dynamic_cast<Article&>(*getNote());
     //on créé un nouvel objet de type Article, l'id et la date de création ne changent pas, la version++, la date modification = la date current
-    //incrémentation ne fonctionne pas, pourquoi ?
-    getManager()->addArticle(a.getId(), this->getTitle()->text(), text->toPlainText(), a.getCreation(), QDate::currentDate(), a.getVersion()+1, true, active);
+    NotesManager &m=NotesManager::getInstance();
+    m.addArticle(a.getId(), this->getTitle()->text(), text->toPlainText(), a.getCreation(), QDate::currentDate(), a.getVersion()+1, true, active);
     QMessageBox::information(this,"Sauvegarde","Sauvegarde de l'article");
     getButton()->setDisabled(true);
 }

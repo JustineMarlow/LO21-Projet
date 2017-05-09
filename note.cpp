@@ -14,6 +14,31 @@ TacheAvecPriorite::~TacheAvecPriorite(){}
 TacheAvecDeadline::~TacheAvecDeadline(){}
 Autre::~Autre(){}
 
+void Relation::addCouple(Note& x, Note& y){
+    if (nbCouples==nbCouplesMax) {
+        //le tableau de couple nécessite un agrandissement
+        Note*** newTableau= new Note**[nbCouplesMax+5];
+        for(unsigned int i=0; i<nbCouplesMax+5; i++) newTableau[i] = new Note*[i];
+        for(unsigned int i=0; i<nbCouples; i++) {
+            newTableau[1][i]=tableau[1][i];
+            newTableau[2][i]=tableau[2][i];
+        }
+        Note*** oldTableau=tableau;
+        tableau=newTableau;
+        nbCouplesMax+=5;
+        if (oldTableau) delete[] oldTableau;
+    }
+    unsigned int rang=nbCouples++;
+    tableau[1][rang]=&x;
+    tableau[2][rang]=&y;
+}
+
+Relation::~Relation(){
+    for (unsigned int i=0; i<nbCouples; i++)
+        delete[] tableau[i];
+      delete[] tableau;
+}
+
 NotesManager::~NotesManager(){
     if (filename!="") save();
     for(unsigned int i=0; i<nbNotes; i++) delete notes[i];
