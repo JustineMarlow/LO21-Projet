@@ -21,23 +21,23 @@
         <version>1</version>
     </article>
     <article>
-        <id>id:A2</id>
-        <title>Un deuxième article exceptionnel</title>
-        <text>Ceci est un deuxième article.</text>
-        <creation>15/02/2015</creation>
-        <modification>25/04/2017</modification>
-        <last>non</last>
+        <id>id:A3</id>
+        <title>zbuzbu</title>
+        <text>blabla</text>
+        <creation>11/05/2017</creation>
+        <modification>11/05/2017</modification>
+        <last>oui</last>
         <etat>Active</etat>
-        <version>2</version>
+        <version>1</version>
     </article>
     <article>
         <id>id:A2</id>
-        <title>Un deuxième article exceptionnel et sublime</title>
+        <title>Un deuxième article sublime</title>
         <text>Ceci est un deuxième article.</text>
         <creation>15/02/2015</creation>
-        <modification>09/05/2017</modification>
+        <modification>11/05/2017</modification>
         <last>oui</last>
         <etat>Active</etat>
-        <version>3</version>
+        <version>2</version>
     </article>
 </notes>

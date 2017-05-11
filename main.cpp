@@ -6,18 +6,24 @@
 
 int main(int argc, char *argv[])
 {
+    try{
     QApplication app(argc, argv);
     QString fichier = QFileDialog::getOpenFileName();
     NotesManager &m=NotesManager::getInstance();
     m.setFilename(fichier);
     m.load();
-    /*Article& a=dynamic_cast<Article&>(m.getNote("id:A2"));
+    Article& a=dynamic_cast<Article&>(m.getNote("id:A2"));
     ArticleEditeur fenetre(a);
-    for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
+    /*for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
     { if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
+    */
     fenetre.show();
     return app.exec();
-    */
+    }
+    catch(NotesException e){qDebug()<<e.getInfo();}
+
+
+    /*
     Relation reference("Reference","La note x fait reference a la note y",true);
     Note& note1=m.getNote("id:A1"); //renvoie une référence sur la dernière version de la note
     Note& note2=m.getNote("id:A2");
@@ -36,4 +42,5 @@ int main(int argc, char *argv[])
     fenetre.setLayout(layout);
     fenetre.show();
     return app.exec();
+    */
 }
