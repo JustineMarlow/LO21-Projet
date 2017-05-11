@@ -182,7 +182,6 @@ public:
         void debut() {courant=0;}
     };
     Iterator getIterator() {return Iterator(notes, nbNotes);}
-
 };
 
 #endif // NOTE
