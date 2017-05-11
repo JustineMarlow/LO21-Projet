@@ -58,7 +58,7 @@ public:
              texte(text)
              {}
         QString getTexte() const {return texte;}
-        virtual ~Article();
+        ~Article();
     };
 
     enum TacheStatut {attente,cours,terminee};
@@ -75,7 +75,7 @@ public:
              {}
         QString getTexte() const {return texte;}
         TacheStatut getStatut() const {return statut;}
-        virtual ~Tache();
+        ~Tache();
     };
 
         class TacheAvecPriorite:public Tache
@@ -87,7 +87,7 @@ public:
                  priorite(p)
                  {}
             int getPriorite() const {return priorite;}
-            virtual ~TacheAvecPriorite();
+            ~TacheAvecPriorite();
         };
 
         class TacheAvecDeadline:public Tache
@@ -119,7 +119,7 @@ public:
         QString getDescription() const {return description;}
         AutreType getType() const {return type;}
         QString getFilename() const {return filename;}
-        virtual ~Autre();
+        ~Autre();
     };
 
 
