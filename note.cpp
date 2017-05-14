@@ -33,6 +33,21 @@ void Relation::addCouple(Note& x, Note& y){
     tableau[2][rang]=&y;
 }
 
+void Relation::removeCouple(Note* x, Note* y){
+    unsigned int i=0;
+    while (i<nbCouples && (tableau[1][i]!=x || tableau[2][i]!=y))
+        i++;
+   if(i==nbCouples)
+       throw NotesException("Erreur : cette relation n'existe pas");
+   else{ //on a bien trouvé le bon couple
+        for(unsigned int j=i; j<nbCouples-1; j++){
+            tableau[1][j]=tableau[1][j+1];
+            tableau[2][j]=tableau[2][j+1];
+         }
+        nbCouples--;
+   }
+}
+
 Relation::~Relation(){
     for (unsigned int i=0; i<nbCouples; i++)
         delete[] tableau[i];

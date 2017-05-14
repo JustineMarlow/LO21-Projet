@@ -141,7 +141,7 @@ public:
     const Note& getXCouple(unsigned int i) const {return *tableau[1][i];}
     const Note& getYCouple(unsigned int i) const {return *tableau[2][i];}
     void addCouple(Note& x, Note& y);
-    //void removeCouple(Note* x, Note* y);
+    void removeCouple(Note* x, Note* y);
     void set_titre(QString t){titre=t;}
     void set_description(QString d){description=d;}
     //void set_label_couple(Note* x, Note* y, QString l);
