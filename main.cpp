@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     m.load();
     Article& a=dynamic_cast<Article&>(m.getNote("id:A2"));
     ArticleEditeur fenetre(a);
-    /*for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
+    for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
     { if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
 
     fenetre.show();
@@ -22,8 +22,7 @@ int main(int argc, char *argv[])
     }
     catch(NotesException e){qDebug()<<e.getInfo();}*/
 
-
-   try{
+    try{
     QApplication app(argc, argv);
     QString fichier = QFileDialog::getOpenFileName();
     NotesManager &m=NotesManager::getInstance();
@@ -34,8 +33,9 @@ int main(int argc, char *argv[])
     Note& note2=m.getNote("id:A2");
     reference.addCouple(note1, note2);
     reference.addCouple(note2, note1);
-    reference.removeCouple(&note1, &note2);
-    reference.removeCouple(&note2, &note1);
+    //reference.removeCouple(&note1, &note2);
+    //reference.removeCouple(&note2, &note1);
+    reference.set_label_couple(&note1, &note2, "Label redéfini");
     QWidget fenetre;
     QLabel* relation_titre= new QLabel(reference.getTitre());
     QLabel* relation_description= new QLabel(reference.getDescription());
@@ -45,11 +45,11 @@ int main(int argc, char *argv[])
     for (unsigned int i=0;i<reference.getNbCouples();i++){
         QLabel* relation_couple= new QLabel(reference.getXCouple(i).getId()+"-->"+reference.getYCouple(i).getId());
         layout-> addWidget(relation_couple);
-    };
+    }
     fenetre.setLayout(layout);
     fenetre.show();
     return app.exec();
-    }
+    }//fin try
      catch(NotesException e){qDebug()<<e.getInfo();}
 
 }

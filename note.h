@@ -133,7 +133,7 @@ class Relation {
     Relation(const Relation& r);
     Relation& operator=(const Relation& r);
 public:
-    Relation(QString t, QString d, bool o):titre(t),description(d),tableau(0),nbCouples(0),nbCouplesMax(0),oriente(o){}
+    Relation(QString t, QString d, bool o):titre(t),description(d),tableau(0),label(0), nbCouples(0),nbCouplesMax(0),oriente(o){}
     ~Relation();
     QString getTitre() const {return titre;}
     QString getDescription() const {return description;}
@@ -144,7 +144,7 @@ public:
     void removeCouple(Note* x, Note* y);
     void set_titre(QString t){titre=t;}
     void set_description(QString d){description=d;}
-    //void set_label_couple(Note* x, Note* y, QString l);
+    void set_label_couple(Note* x, Note* y, QString l);
 };
 
 class NotesManager

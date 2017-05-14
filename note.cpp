@@ -18,19 +18,25 @@ void Relation::addCouple(Note& x, Note& y){
     if (nbCouples==nbCouplesMax) {
         //le tableau de couple nécessite un agrandissement
         Note*** newTableau= new Note**[nbCouplesMax+5];
+        QString* newLabel=new QString[nbCouplesMax+5];
         for(unsigned int i=0; i<nbCouplesMax+5; i++) newTableau[i] = new Note*[i];
         for(unsigned int i=0; i<nbCouples; i++) {
             newTableau[1][i]=tableau[1][i];
             newTableau[2][i]=tableau[2][i];
+            newLabel[i]=label[i];
         }
         Note*** oldTableau=tableau;
         tableau=newTableau;
+        QString* oldLabel=label;
+        label=newLabel;
         nbCouplesMax+=5;
         if (oldTableau) delete[] oldTableau;
+        if(oldLabel) delete[] oldLabel;
     }
     unsigned int rang=nbCouples++;
     tableau[1][rang]=&x;
     tableau[2][rang]=&y;
+    label[rang]="";
 }
 
 void Relation::removeCouple(Note* x, Note* y){
@@ -38,14 +44,25 @@ void Relation::removeCouple(Note* x, Note* y){
     while (i<nbCouples && (tableau[1][i]!=x || tableau[2][i]!=y))
         i++;
    if(i==nbCouples)
-       throw NotesException("Erreur : cette relation n'existe pas");
+       throw NotesException("Erreur : ce couple n'existe pas");
    else{ //on a bien trouvé le bon couple
         for(unsigned int j=i; j<nbCouples-1; j++){
             tableau[1][j]=tableau[1][j+1];
             tableau[2][j]=tableau[2][j+1];
+            label[j]=label[j+1];
          }
         nbCouples--;
    }
+}
+
+void Relation::set_label_couple(Note* x, Note* y, QString l){
+    unsigned int i=0;
+    while (i<nbCouples && (tableau[1][i]!=x || tableau[2][i]!=y))
+        i++;
+   if(i==nbCouples)
+       throw NotesException("Erreur : ce couple n'existe pas");
+   else //on a bien trouvé le bon couple
+       label[i]=l; //ça plante ici
 }
 
 Relation::~Relation(){
