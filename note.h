@@ -17,7 +17,7 @@ enum NoteEtat {active, archivee, corbeille};
 
 class Note
 {
-private:
+protected:
     QString identificateur;
     QString titre;
     QDate date_creation;
@@ -26,8 +26,7 @@ private:
     unsigned int version;
     //Note** VersionAnterieures;
     NoteEtat etat;
-
-public:
+    //passage du constructeur et du destructeur en protected pour n'autoriser la construction de tous les objets Note qu'au NotesManager
     Note(QString id, QString t, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, unsigned int v=1, NoteEtat e=active)
         :identificateur(id),
          titre(t),
@@ -36,6 +35,10 @@ public:
          isLastVersion(last),
          version(v),
          etat(e){}
+    virtual ~Note();
+    friend class NotesManager; //ajout amitié
+
+public:
     QString getId() const {return identificateur;}
     QString getTitre() const {return titre;}
     QDate getCreation() const {return date_creation;}
@@ -43,108 +46,122 @@ public:
     NoteEtat getEtat() const {return etat;}
     bool IsLast() const {return isLastVersion;}
     unsigned int getVersion() const {return version;}
-    virtual ~Note();
     void setLast(const bool b) {isLastVersion=b;}
 
 };
 
     class Article:public Note
     {
+    protected:
         QString texte;
-    public:
         Article(QString id, QString t, QString text, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), unsigned int v=1, bool last=true, NoteEtat e=active)
             :Note(id,t,date_c,date_m,last,v,e),
              texte(text)
              {}
-        QString getTexte() const {return texte;}
         ~Article();
+        friend class NotesManager;
+    public:
+        QString getTexte() const {return texte;}
     };
 
     enum TacheStatut {attente,cours,terminee};
 
     class Tache:public Note
     {
+    protected:
         QString texte;
         TacheStatut statut;
-    public:
         Tache(QString id, QString t, QString text, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active, TacheStatut st=attente)
             :Note(id,t,date_c,date_m,last,v,e),
              texte(text),
              statut(st)
              {}
+        ~Tache();
+        friend class NotesManager;
+    public:
         QString getTexte() const {return texte;}
         TacheStatut getStatut() const {return statut;}
-        ~Tache();
     };
 
         class TacheAvecPriorite:public Tache
         {
+        protected:
             int priorite;
-        public:
             TacheAvecPriorite(QString id, QString t, QString text, int p=0, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active, TacheStatut st=attente)
                 :Tache(id,t,text,date_c,date_m,last,v,e,st),
                  priorite(p)
                  {}
-            int getPriorite() const {return priorite;}
             ~TacheAvecPriorite();
+            friend class NotesManager;
+        public:
+            int getPriorite() const {return priorite;}
         };
 
         class TacheAvecDeadline:public Tache
         {
+        protected:
             QDate deadline;
-        public:
             TacheAvecDeadline(QString id, QString t, QString text, QDate dead, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active, TacheStatut st=attente)
                 :Tache(id,t,text,date_c,date_m,last,v,e,st),
                  deadline(dead)
                  {}
+            friend class NotesManager;
+            ~TacheAvecDeadline();
+        public:
             QDate getDeadline() const {return deadline;}
-            virtual ~TacheAvecDeadline();
         };
 
     enum AutreType {image, audio, video};
 
     class Autre:public Note
     {
+    protected:
         AutreType type;
         QString description;
         QString filename;
-    public:
         Autre(QString id, QString t, AutreType ty, QString descr, QString name, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active)
             :Note(id,t,date_c,date_m,last,v,e),
              type(ty),
              description(descr),
              filename(name)
              {}
+        ~Autre();
+        friend class NotesManager;
+    public:
         QString getDescription() const {return description;}
         AutreType getType() const {return type;}
         QString getFilename() const {return filename;}
-        ~Autre();
     };
 
 class Relation {
     QString titre;
     QString description;
     Note*** tableau; //tableau multidirectionnel de couples de Note
-    QString* label;
+    QString* tableau_label;
     unsigned int nbCouples;
     unsigned int nbCouplesMax;
     bool oriente;
     //on interdit la recopie et l'affectation : une relation est unique, on ne la duplique pas
     Relation(const Relation& r);
     Relation& operator=(const Relation& r);
+    void addCouple_function(Note& x, Note& y, QString label);
+    void removeCouple_function(Note& x, Note& y);
 public:
-    Relation(QString t, QString d, bool o):titre(t),description(d),tableau(0),label(0), nbCouples(0),nbCouplesMax(0),oriente(o){}
+
+    Relation(QString t, QString d, bool o=true):titre(t),description(d),tableau(0),tableau_label(0),nbCouples(0),nbCouplesMax(0),oriente(o){}
     ~Relation();
+    bool IsOriente() const {return oriente;}
     QString getTitre() const {return titre;}
     QString getDescription() const {return description;}
     unsigned int getNbCouples() const {return nbCouples;}
     const Note& getXCouple(unsigned int i) const {return *tableau[1][i];}
     const Note& getYCouple(unsigned int i) const {return *tableau[2][i];}
-    void addCouple(Note& x, Note& y);
-    void removeCouple(Note* x, Note* y);
+    const QString getLabelCouple(unsigned int i) const {return tableau_label[i];}
+    void addCouple(Note& x, Note& y, QString label);
+    void removeCouple(Note& x, Note& y);
     void set_titre(QString t){titre=t;}
     void set_description(QString d){description=d;}
-    void set_label_couple(Note* x, Note* y, QString l);
+    void set_label_couple(Note& x, Note& y, QString l);
 };
 
 class NotesManager
@@ -154,21 +171,19 @@ class NotesManager
     unsigned int nbMaxNotes;
     mutable QString filename;
     //implémentation Singleton -> passage des constructeurs, destructeurs, opérateur d'affectation en privé
-    NotesManager():notes(0),nbNotes(0),nbMaxNotes(0),filename("timp.dat"){}
+    NotesManager():notes(0),nbNotes(0),nbMaxNotes(0),filename(""){}
     ~NotesManager();
     NotesManager (const NotesManager& m);
     NotesManager operator=(const NotesManager& m);
 public:
     static NotesManager& getInstance(); //Singleton
     void addNote(Note* n);
-    //Note& NewVersionNote(const QString& id);
     void load();
     void save() const;
     void setFilename(const QString& f) { filename=f; }
     Note& getNote(const QString& id); //retourne la dernière version de la Note identifiée id
     void addArticle(const QString& id, const QString& ti, const QString& te,const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat);
 
-    //implémentation Iterator
     class Iterator{
         Note** tab;
         unsigned int courant;

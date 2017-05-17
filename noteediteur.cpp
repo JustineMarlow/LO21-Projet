@@ -44,15 +44,6 @@ NoteEditeur::NoteEditeur(QWidget *parent){
     id = new QLineEdit(this);
     titre1 = new QLabel("Titre",this);
     titre = new QLineEdit(this);
-    //date_c = new QLabel("Date de creation : "+n.getCreation().QDate::toString(QString("dd/MM/yyyy")),this);
-    //date_m = new QLabel("Date de derniere modification : "+n.getModification().QDate::toString(QString("dd/MM/yyyy")),this);
-    /*if (n.getEtat()==active) etat = new QLabel("Etat : Active");
-    else if (n.getEtat()==archivee) etat = new QLabel("Etat : Archivee");
-            else etat = new QLabel("Etat : a la corbeille");
-    version = new QLabel("Version : "+QString::number(n.getVersion()),this);
-    if (n.IsLast()) last = new QLabel("Derniere version : oui");
-    else last = new QLabel("Derniere version : non");
-    */
     bouton = new QPushButton("Sauver",this);
     bouton->setDisabled(true);
     layout = new QVBoxLayout(this);
@@ -61,11 +52,6 @@ NoteEditeur::NoteEditeur(QWidget *parent){
     layout-> addWidget(id);
     layout-> addWidget(titre1);
     layout-> addWidget(titre);
-    //layout-> addWidget(date_c);
-    //layout-> addWidget(date_m);
-    //layout-> addWidget(etat);
-    //layout-> addWidget(last);
-    //layout-> addWidget(version);
 }
 
 void NoteEditeur::save()
