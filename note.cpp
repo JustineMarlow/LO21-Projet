@@ -14,9 +14,9 @@ TacheAvecPriorite::~TacheAvecPriorite(){}
 TacheAvecDeadline::~TacheAvecDeadline(){}
 Autre::~Autre(){}
 
-void Relation::addCouple(Note& x, Note& y){
+void Relation::addCouple(Note& x, Note& y, QString label){
     if (nbCouples==nbCouplesMax) {
-        //le tableau de couple nécessite un agrandissement
+        //le tableau de couples et le tableau de labels nécessitent un agrandissement
         Note*** newTableau= new Note**[nbCouplesMax+5];
         for(unsigned int i=0; i<nbCouplesMax+5; i++) newTableau[i] = new Note*[i];
         for(unsigned int i=0; i<nbCouples; i++) {
@@ -25,18 +25,48 @@ void Relation::addCouple(Note& x, Note& y){
         }
         Note*** oldTableau=tableau;
         tableau=newTableau;
-        nbCouplesMax+=5;
         if (oldTableau) delete[] oldTableau;
+        QString* newTableau_label= new QString[nbCouplesMax+5];
+        for (unsigned int i=0;i<nbCouples;i++) newTableau_label[i] = tableau_label[i];
+        QString* oldTableau_label=tableau_label;
+        tableau_label=newTableau_label;
+        if (oldTableau_label) delete[] oldTableau_label;
+        nbCouplesMax+=5;
     }
     unsigned int rang=nbCouples++;
     tableau[1][rang]=&x;
     tableau[2][rang]=&y;
+    tableau_label[rang]=label;
 }
 
 Relation::~Relation(){
     for (unsigned int i=0; i<nbCouples; i++)
         delete[] tableau[i];
       delete[] tableau;
+}
+
+void Relation::set_label_couple(Note* x, Note* y, QString l){
+    unsigned int i=0;
+    while (i<=nbCouples && (tableau[1][i]!=x || tableau[2][i]!=y))
+        i++;
+    if (i>nbCouples) throw NotesException("Ce couple n'existe pas");
+    else tableau_label[i]=l;
+}
+
+void Relation::removeCouple(Note* x, Note* y){
+    unsigned int i=0;
+    while (i<=nbCouples && (tableau[1][i]!=x || tableau[2][i]!=y))
+        i++;
+    if (i>nbCouples) throw NotesException("Ce couple n'existe pas");
+    else {
+        for (unsigned int j=i; j<nbCouples-1; j++){
+            tableau[1][j]=tableau[1][j+1];
+            tableau[2][j]=tableau[2][j+1];
+            tableau_label[j]=tableau_label[j+1];
+        }
+        nbCouples--;
+    }
+
 }
 
 NotesManager::~NotesManager(){
@@ -60,9 +90,6 @@ void NotesManager::addNote(Note* n)
             if (notes[i]->getVersion()>=n->getVersion()) //il ne s'agit pas d'une nouvelle version
                 throw NotesException("Erreur, cet identificateur est deja utilise");
         }
-        //il faudrait en plus mettre en place une procédure pour vérifier que, si l'id se répète, c'est parce qu'il s'agit de versions différentes d'une même note
-        //pourquoi pas vérifier l'égalité des dates de création et l'existence de toutes les versions
-
     }
 
     if (nbNotes==nbMaxNotes){

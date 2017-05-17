@@ -125,7 +125,7 @@ class Relation {
     QString titre;
     QString description;
     Note*** tableau; //tableau multidirectionnel de couples de Note
-    QString* label;
+    QString* tableau_label;
     unsigned int nbCouples;
     unsigned int nbCouplesMax;
     bool oriente;
@@ -133,18 +133,19 @@ class Relation {
     Relation(const Relation& r);
     Relation& operator=(const Relation& r);
 public:
-    Relation(QString t, QString d, bool o):titre(t),description(d),tableau(0),nbCouples(0),nbCouplesMax(0),oriente(o){}
+    Relation(QString t, QString d, bool o):titre(t),description(d),tableau(0),tableau_label(0),nbCouples(0),nbCouplesMax(0),oriente(o){}
     ~Relation();
     QString getTitre() const {return titre;}
     QString getDescription() const {return description;}
     unsigned int getNbCouples() const {return nbCouples;}
     const Note& getXCouple(unsigned int i) const {return *tableau[1][i];}
     const Note& getYCouple(unsigned int i) const {return *tableau[2][i];}
-    void addCouple(Note& x, Note& y);
-    //void removeCouple(Note* x, Note* y);
+    const QString getLabelCouple(unsigned int i) const {return tableau_label[i];}
+    void addCouple(Note& x, Note& y, QString label);
+    void removeCouple(Note* x, Note* y);
     void set_titre(QString t){titre=t;}
     void set_description(QString d){description=d;}
-    //void set_label_couple(Note* x, Note* y, QString l);
+    void set_label_couple(Note* x, Note* y, QString l);
 };
 
 class NotesManager
