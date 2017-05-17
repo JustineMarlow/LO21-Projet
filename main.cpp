@@ -6,23 +6,24 @@
 
 int main(int argc, char *argv[])
 {
-    /*
     try{
     QApplication app(argc, argv);
     QString fichier = QFileDialog::getOpenFileName();
     NotesManager &m=NotesManager::getInstance();
     m.setFilename(fichier);
     m.load();
-    Article& a=dynamic_cast<Article&>(m.getNote("id:A2"));
-    ArticleEditeur fenetre(a);
+    //Article& a=dynamic_cast<Article&>(m.getNote("id:A2"));
+    ArticleEditeur fenetre;
+    /*
     for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
     { if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
+    */
     fenetre.show();
     return app.exec();
     }
     catch(NotesException e){qDebug()<<e.getInfo();}
-    */
 
+/*
     try{
     QApplication app(argc, argv);
     QString fichier = QFileDialog::getOpenFileName();
@@ -35,7 +36,7 @@ int main(int argc, char *argv[])
     Note& note1=m.getNote("id:A1"); //renvoie une référence sur la dernière version de la note
     Note& note2=m.getNote("id:A2");
     reference.addCouple(note1, note2, "label 1");
-    reference.removeCouple(note1,note2);
+    //reference.removeCouple(note1,note2);
     QWidget fenetre;
     QLabel* relation_titre= new QLabel(reference.getTitre());
     QLabel* relation_description= new QLabel(reference.getDescription());
@@ -51,5 +52,6 @@ int main(int argc, char *argv[])
     return app.exec();
 }
 catch(NotesException e){qDebug()<<e.getInfo();}
+*/
 
 }

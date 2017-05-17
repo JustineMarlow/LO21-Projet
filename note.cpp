@@ -134,6 +134,7 @@ Note& NotesManager::getNote(const QString& id){
     // si la note existe déjà, on en renvoie une référence
     for(unsigned int i=0; i<nbNotes; i++)
         if (notes[i]->getId()==id && notes[i]->IsLast()) return *notes[i];
+    throw NotesException("Note inexistante");
 }
 
 //méthode pour la comparaison de QString et string
