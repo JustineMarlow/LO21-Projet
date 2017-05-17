@@ -23,18 +23,19 @@ int main(int argc, char *argv[])
     catch(NotesException e){qDebug()<<e.getInfo();}
     */
 
+    try{
     QApplication app(argc, argv);
     QString fichier = QFileDialog::getOpenFileName();
     NotesManager &m=NotesManager::getInstance();
     m.setFilename(fichier);
     m.load();
-    Relation reference("Reference","La note x fait reference a la note y",true);
+    Relation reference("Reference","La note x fait reference a la note y",false);
+    if (reference.IsOriente()) qDebug()<<"relation orientee \n";
+    else qDebug()<<"relation non orientee \n";
     Note& note1=m.getNote("id:A1"); //renvoie une référence sur la dernière version de la note
     Note& note2=m.getNote("id:A2");
     reference.addCouple(note1, note2, "label 1");
-    reference.addCouple(note2, note1, "label 2");
-    reference.set_label_couple(&note1,&note2,"label modifie");
-    reference.removeCouple(&note1, &note2);
+    reference.removeCouple(note1,note2);
     QWidget fenetre;
     QLabel* relation_titre= new QLabel(reference.getTitre());
     QLabel* relation_description= new QLabel(reference.getDescription());
@@ -48,5 +49,7 @@ int main(int argc, char *argv[])
     fenetre.setLayout(layout);
     fenetre.show();
     return app.exec();
+}
+catch(NotesException e){qDebug()<<e.getInfo();}
 
 }

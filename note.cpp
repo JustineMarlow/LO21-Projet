@@ -14,7 +14,10 @@ TacheAvecPriorite::~TacheAvecPriorite(){}
 TacheAvecDeadline::~TacheAvecDeadline(){}
 Autre::~Autre(){}
 
-void Relation::addCouple(Note& x, Note& y, QString label){
+void Relation::addCouple_function(Note& x, Note& y, QString label){
+    if (!(tableau==0))
+        for (unsigned int i=0; i<nbCouples; i++)
+            if (tableau[1][i]->getId()==x.getId() && tableau[2][i]->getId()==y.getId()) throw NotesException("Ce couple existe déjà dans la relation");
     if (nbCouples==nbCouplesMax) {
         //le tableau de couples et le tableau de labels nécessitent un agrandissement
         Note*** newTableau= new Note**[nbCouplesMax+5];
@@ -22,7 +25,7 @@ void Relation::addCouple(Note& x, Note& y, QString label){
         for(unsigned int i=0; i<nbCouples; i++) {
             newTableau[1][i]=tableau[1][i];
             newTableau[2][i]=tableau[2][i];
-        }
+            }
         Note*** oldTableau=tableau;
         tableau=newTableau;
         if (oldTableau) delete[] oldTableau;
@@ -32,11 +35,17 @@ void Relation::addCouple(Note& x, Note& y, QString label){
         tableau_label=newTableau_label;
         if (oldTableau_label) delete[] oldTableau_label;
         nbCouplesMax+=5;
-    }
+        }
     unsigned int rang=nbCouples++;
     tableau[1][rang]=&x;
     tableau[2][rang]=&y;
     tableau_label[rang]=label;
+}
+
+void Relation::addCouple(Note &x, Note &y, QString label){
+    if (oriente) addCouple_function(x,y,label);
+    else { addCouple_function(x,y,label);
+           addCouple_function(y,x,label);}
 }
 
 Relation::~Relation(){
@@ -45,17 +54,17 @@ Relation::~Relation(){
       delete[] tableau;
 }
 
-void Relation::set_label_couple(Note* x, Note* y, QString l){
+void Relation::set_label_couple(Note& x, Note& y, QString l){
     unsigned int i=0;
-    while (i<=nbCouples && (tableau[1][i]!=x || tableau[2][i]!=y))
+    while (i<=nbCouples && (tableau[1][i]->getId()==x.getId() || tableau[2][i]->getId()==y.getId()))
         i++;
     if (i>nbCouples) throw NotesException("Ce couple n'existe pas");
     else tableau_label[i]=l;
 }
 
-void Relation::removeCouple(Note* x, Note* y){
+void Relation::removeCouple_function(Note& x, Note& y){
     unsigned int i=0;
-    while (i<=nbCouples && (tableau[1][i]!=x || tableau[2][i]!=y))
+    while (i<=nbCouples && (tableau[1][i]->getId()==x.getId() || tableau[2][i]->getId()==y.getId()))
         i++;
     if (i>nbCouples) throw NotesException("Ce couple n'existe pas");
     else {
@@ -66,7 +75,12 @@ void Relation::removeCouple(Note* x, Note* y){
         }
         nbCouples--;
     }
+}
 
+void Relation::removeCouple(Note &x, Note &y){
+    if (oriente) removeCouple_function(x,y);
+    else { removeCouple_function(x,y);
+           removeCouple_function(y,x);}
 }
 
 NotesManager::~NotesManager(){
