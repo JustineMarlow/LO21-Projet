@@ -7,8 +7,10 @@ QMAKE_LFLAGS=-std=c++11
 SOURCES += \
     main.cpp \
     note.cpp \
-    noteediteur.cpp
+    noteediteur.cpp \
+    relation.cpp
 
 HEADERS += \
     note.h \
-    noteediteur.h
+    noteediteur.h \
+    relation.h

@@ -2,8 +2,6 @@
 #define NOTE
 #include <QString>
 #include <QDate>
-#include <iostream>
-using namespace std;
 
 class NotesException{
 public:
@@ -133,37 +131,6 @@ public:
         QString getFilename() const {return filename;}
     };
 
-class Relation {
-    QString titre;
-    QString description;
-    Note*** tableau; //tableau multidirectionnel de couples de Note
-    QString* tableau_label;
-    unsigned int nbCouples;
-    unsigned int nbCouplesMax;
-    bool oriente;
-    //on interdit la recopie et l'affectation : une relation est unique, on ne la duplique pas
-    Relation(const Relation& r);
-    Relation& operator=(const Relation& r);
-    void addCouple_function(Note& x, Note& y, QString label);
-    void removeCouple_function(Note& x, Note& y);
-public:
-
-    Relation(QString t, QString d, bool o=true):titre(t),description(d),tableau(0),tableau_label(0),nbCouples(0),nbCouplesMax(0),oriente(o){}
-    ~Relation();
-    bool IsOriente() const {return oriente;}
-    QString getTitre() const {return titre;}
-    QString getDescription() const {return description;}
-    unsigned int getNbCouples() const {return nbCouples;}
-    const Note& getXCouple(unsigned int i) const {return *tableau[1][i];}
-    const Note& getYCouple(unsigned int i) const {return *tableau[2][i];}
-    const QString getLabelCouple(unsigned int i) const {return tableau_label[i];}
-    void addCouple(Note& x, Note& y, QString label);
-    void removeCouple(Note& x, Note& y);
-    void set_titre(QString t){titre=t;}
-    void set_description(QString d){description=d;}
-    void set_label_couple(Note& x, Note& y, QString l);
-};
-
 class NotesManager
 {
     Note** notes;
@@ -198,6 +165,19 @@ public:
     };
     Iterator getIterator() {return Iterator(notes, nbNotes);}
 };
+
+inline bool latinCompare(const QString& qstr, const std::string& str)
+{
+  if( qstr.length() != (int)str.size() )
+    return false;
+  const QChar* qstrData = qstr.data();
+  for( int i = 0; i < qstr.length(); ++i ) {
+    if( qstrData[i].toLatin1() != str[i] )
+      return false;
+  }
+  return true;
+}
+
 
 #endif // NOTE
 
