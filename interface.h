@@ -46,10 +46,10 @@ private:
 
 class VueSecondaire : public QWidget{
 public :
-    VueSecondaire(Article& a);
+    VueSecondaire();
 
 private :
-    Article& article;
+    //Article& article;
     QPushButton* quitter;
 
 };

@@ -8,7 +8,7 @@ VuePrincipale::VuePrincipale(Article& a) : article(a){
     QGroupBox* notesActives=new QGroupBox("Notes Actives");
     QGroupBox* affichageErgo=new QGroupBox("Tâches");
     QGroupBox* archives=new QGroupBox("Archives");
-    arborescence=new QPushButton("Masquer l'arborescence");
+    arborescence=new QPushButton("Masquer l'arborescence", this);
     leftLayout->addWidget(notesActives);
     leftLayout->addWidget(affichageErgo);
     leftLayout->addWidget(archives);
@@ -31,7 +31,7 @@ VuePrincipale::VuePrincipale(Article& a) : article(a){
     Relation reference("Reference","La note x fait reference a la note y",false);
     relation_titre= new QLabel(reference.getTitre());
     relation_description= new QLabel(reference.getDescription());
-    relation_details=new QPushButton("Plus de détails");
+    relation_details=new QPushButton("Gérer les relations", this);
     QVBoxLayout* rightLayout=new QVBoxLayout;
     rightLayout->addWidget(relation_titre);
     rightLayout-> addWidget(relation_description);
@@ -66,14 +66,17 @@ void VuePrincipale::afficageArbo(){
 }
 
 void VuePrincipale::showRelations(){
-    VueSecondaire* fenetreRelations=new VueSecondaire(article);
+    VueSecondaire* fenetreRelations=new VueSecondaire();
     fenetreRelations->show();
 }
 
-VueSecondaire::VueSecondaire(Article& a) : article(a){
+VueSecondaire::VueSecondaire(){
     //layout principal
+    quitter=new QPushButton("Quitter", this);
+    QVBoxLayout *layout=new QVBoxLayout;
+    layout->addWidget(quitter);
+    setLayout(layout);
     setWindowTitle("Gestion des relations");
     resize(350, 450);
-
-   connect(quitter, SIGNAL(clicked()), this, SLOT(accept()));
+   connect(quitter, SIGNAL(clicked()), this, SLOT(close()));
 }
