@@ -60,6 +60,7 @@ public:
              {}
         ~Article();
         friend class NotesManager;
+        friend class VuePrincipale;
     public:
         QString getTexte() const {return texte;}
     };

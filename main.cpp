@@ -3,26 +3,26 @@
 #include <QDebug>
 #include "note.h"
 #include "noteediteur.h"
+#include "interface.h"
 
 int main(int argc, char *argv[])
 {
-    /*try{
     QApplication app(argc, argv);
     QString fichier = QFileDialog::getOpenFileName();
     NotesManager &m=NotesManager::getInstance();
     m.setFilename(fichier);
     m.load();
     Article& a=dynamic_cast<Article&>(m.getNote("id:A2"));
-    ArticleEditeur fenetre(a);
-    for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
-    { if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
-
+    VuePrincipale fenetre(a);
     fenetre.show();
     return app.exec();
-    }
-    catch(NotesException e){qDebug()<<e.getInfo();}*/
+    /*ArticleEditeur fenetre(a);
+    for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
+    { if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
+    fenetre.show();
+    return app.exec();*/
 
-    try{
+    /*try{
     QApplication app(argc, argv);
     QString fichier = QFileDialog::getOpenFileName();
     NotesManager &m=NotesManager::getInstance();
@@ -50,5 +50,5 @@ int main(int argc, char *argv[])
     return app.exec();
     }//fin try
 
-    catch(NotesException e){qDebug()<<e.getInfo();}
+    catch(NotesException e){qDebug()<<e.getInfo();}*/
 }
