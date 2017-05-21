@@ -49,26 +49,27 @@ class RelationsManager {
     RelationsManager operator=(const RelationsManager& m);
 public:
     static RelationsManager& getInstance(); //Singleton //done
+    const Relation& getIRelation(unsigned int i) const {return *relations[i];}
+    Relation& createRelation(const QString& titre, const QString& description, bool isOriente);
     void addRelation(Relation* r);
     Relation& getRelation(const QString& titre); //retourne une référence sur la relation
     void load();
     void save() const;
     void setFilename(const QString& f) { filename=f; }
 
-    /*class Iterator{
-        Note** tab;
+    class Iterator{
+        Relation** tab;
         unsigned int courant;
         unsigned int taille;
-        friend class NotesManager;
-        Iterator(Note** t, unsigned int n):tab(t),courant(0),taille(n){}
+        friend class RelationsManager;
+        Iterator(Relation** t, unsigned int n):tab(t),courant(0),taille(n){}
     public:
-        Note& current() const {return *tab[courant];}
-        void next() {if (courant<taille) courant++; else throw NotesException("Iterator is done");}
+        Relation& current() const {return *tab[courant];}
+        void next() {if (courant<taille) courant++; else throw NotesException("Iterator de Relation is done");}
         bool isDone() const {return courant==taille;}
         void debut() {courant=0;}
     };
-    Iterator getIterator() {return Iterator(notes, nbNotes);}
-    */
+    Iterator getIterator() {return Iterator(relations, nbRelations);}
 
 };
 

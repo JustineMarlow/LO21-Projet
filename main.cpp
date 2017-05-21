@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
     catch(NotesException e){qDebug()<<e.getInfo();}
     */
 
+
     try{
     QApplication app(argc, argv);
     QString fichier_notes = QFileDialog::getOpenFileName();
@@ -35,7 +36,6 @@ int main(int argc, char *argv[])
     RelationsManager &manager_relations=RelationsManager::getInstance();
     manager_relations.setFilename(fichier_relations);
     manager_relations.load();
-    qDebug()<<"fin load \n";
     Relation& reference=manager_relations.getRelation("Reference");
     qDebug()<<"ref sur reference recuperee \n";
 
