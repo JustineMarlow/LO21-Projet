@@ -8,28 +8,19 @@
 
 int main(int argc, char *argv[])
 {
-<<<<<<< HEAD
-=======
-    /*
+
+
     try{
->>>>>>> 68786514e04ad872ed38120e9c1fe7e89c4644af
     QApplication app(argc, argv);
     QString fichier = QFileDialog::getOpenFileName();
     NotesManager &m=NotesManager::getInstance();
     m.setFilename(fichier);
     m.load();
     Article& a=dynamic_cast<Article&>(m.getNote("id:A2"));
-<<<<<<< HEAD
     VuePrincipale fenetre(a);
-    fenetre.show();
-    return app.exec();
-    /*ArticleEditeur fenetre(a);
-    for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
-    { if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
-    fenetre.show();
-    return app.exec();*/
-=======
-    ArticleEditeur fenetre(a);
+
+
+    //ArticleEditeur fenetre(a);
     //for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
     //{ if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
 
@@ -37,10 +28,9 @@ int main(int argc, char *argv[])
     return app.exec();
     }
     catch(NotesException e){qDebug()<<e.getInfo();}
-    */
->>>>>>> 68786514e04ad872ed38120e9c1fe7e89c4644af
 
-    /*try{
+
+   /* try{
     QApplication app(argc, argv);
     QString fichier_notes = QFileDialog::getOpenFileName();
     NotesManager &manager_notes=NotesManager::getInstance();
@@ -50,7 +40,6 @@ int main(int argc, char *argv[])
     RelationsManager &manager_relations=RelationsManager::getInstance();
     manager_relations.setFilename(fichier_relations);
     manager_relations.load();
-    qDebug()<<"fin load \n";
     Relation& reference=manager_relations.getRelation("Reference");
     qDebug()<<"ref sur reference recuperee \n";
 

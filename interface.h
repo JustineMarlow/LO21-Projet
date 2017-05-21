@@ -16,6 +16,7 @@
 #include<QGroupBox>
 #include <note.h>
 #include <noteediteur.h>
+#include<relation.h>
 
 class VuePrincipale : public QWidget{
     Q_OBJECT

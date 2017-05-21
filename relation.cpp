@@ -88,7 +88,6 @@ RelationsManager& RelationsManager::getInstance(){
 
 void RelationsManager::addRelation(Relation* r)
 {
-    qDebug()<<"entree dans addRelation \n";
     for(unsigned int i=0; i<nbRelations; i++)
         if (relations[i]->getTitre() ==r->getTitre()) throw NotesException("Erreur, ce titre est déjà utilisé");
 
@@ -102,21 +101,22 @@ void RelationsManager::addRelation(Relation* r)
         nbMaxRelations+=5;
         if (oldRelations) delete[] oldRelations;
     }
-    nbRelations++;
     relations[nbRelations]=r;
-    qDebug()<<"relation ajoutee"<<relations[nbRelations]->getTitre()<<"\n";
-    qDebug()<<"relation ajoutee"<<r->getTitre()<<"\n";
+    nbRelations++;
+}
+
+Relation& RelationsManager::createRelation(const QString& titre, const QString& description, bool isOriente)
+{
+    Relation* r=new Relation(titre,description,isOriente);
+    addRelation(r);
+    return *r;
 }
 
 Relation& RelationsManager::getRelation(const QString& titre){
-    qDebug()<<"appel de getRelation \n";
-    // si la relation existe, on en renvoie une référence
     for(unsigned int i=0; i<nbRelations; i++)
     {
-        qDebug()<<"entree for \n";
-        qDebug()<<"relation trouvee "<<relations[i]->getTitre()<<"\n"; //apparemment ça bloque ici, il ne parvient pas à avoir le titre
         if (relations[i]->getTitre()==titre) return *relations[i];
-    };
+    }
     throw NotesException("Relation inexistante");
 }
 
@@ -241,11 +241,11 @@ void RelationsManager::load() {
                     xml.readNext();
                 }
                 qDebug()<<"ajout relation "<<titre<<"\n";
-                Relation r(titre,description,isOriente);
-                addRelation(&r);
+                Relation& r=createRelation(titre,description,isOriente);
                 for (unsigned int i=0; i<nbCouples; i++) {r.addCouple(NotesManager::getInstance().getNote(idx[i]), NotesManager::getInstance().getNote(idy[i]), label[i]);
                                                           qDebug()<<"ajout couple"<<i<<"\n";}
                 qDebug()<<"nb couples"<<r.getNbCouples()<<"\n";
+
 
 
             }
@@ -259,5 +259,5 @@ void RelationsManager::load() {
     // Removes any device() or data from the reader * and resets its internal state to the initial state.=
     xml.clear();
     qDebug()<<"fin load\n";
+    //qDebug()<<"relation 0 "<<relations[0]->getTitre()<<"\n";
 }
-
