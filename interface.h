@@ -12,6 +12,8 @@
 #include <QDate>
 #include <QDateEdit>
 #include <QMessageBox>
+#include<QtGui>
+#include<QGroupBox>
 #include <note.h>
 #include <noteediteur.h>
 
@@ -21,7 +23,8 @@ public:
     VuePrincipale(Article& a);
 
 private slots:
-     //void showRelations(); //bouton d'accès à la vue secondaire (gestion & visualisation des relations)
+     void showRelations(); //bouton d'accès à la vue secondaire (gestion & visualisation des relations)
+     void afficageArbo(); //gère la partie droite (masque ou affiche)
 
 private:
     //Partie gauche
@@ -30,13 +33,24 @@ private:
     Article& article;
     ArticleEditeur note;
 
+
     //Partie droite
+    bool arboVisible;
+    QGroupBox* droite;
     QLabel* relation_titre;
     QLabel* relation_description;
     QPushButton* relation_details;
-    /*QVBoxLayout* rightLayout=new QVBoxLayout;
-    rightLayout->addWidget(relation_titre);
-    rightLayout-> addWidget(relation_description);*/ //CONSTRUCTEUR
+    QPushButton* arborescence;
+
+};
+
+class VueSecondaire : public QWidget{
+public :
+    VueSecondaire(Article& a);
+
+private :
+    Article& article;
+    QPushButton* quitter;
 
 };
 

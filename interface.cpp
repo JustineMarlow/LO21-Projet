@@ -8,11 +8,15 @@ VuePrincipale::VuePrincipale(Article& a) : article(a){
     QGroupBox* notesActives=new QGroupBox("Notes Actives");
     QGroupBox* affichageErgo=new QGroupBox("Tâches");
     QGroupBox* archives=new QGroupBox("Archives");
+    arborescence=new QPushButton("Masquer l'arborescence");
     leftLayout->addWidget(notesActives);
     leftLayout->addWidget(affichageErgo);
     leftLayout->addWidget(archives);
+    leftLayout->addWidget(arborescence);
     QGroupBox* gauche=new QGroupBox("");
     gauche->setLayout(leftLayout);
+
+    connect(arborescence, SIGNAL(clicked()), this, SLOT(afficageArbo()));
 
 
     //partie centrale
@@ -23,6 +27,7 @@ VuePrincipale::VuePrincipale(Article& a) : article(a){
     centre->setLayout(editeur);
 
     //partie droite
+    arboVisible=true;
     Relation reference("Reference","La note x fait reference a la note y",false);
     relation_titre= new QLabel(reference.getTitre());
     relation_description= new QLabel(reference.getDescription());
@@ -31,18 +36,44 @@ VuePrincipale::VuePrincipale(Article& a) : article(a){
     rightLayout->addWidget(relation_titre);
     rightLayout-> addWidget(relation_description);
     rightLayout-> addWidget(relation_details);
-    QGroupBox* droite=new QGroupBox("Arborescence des relations");
+    droite=new QGroupBox("Arborescence des relations");
     droite->setLayout(rightLayout);
+
+    connect(relation_details, SIGNAL(clicked()), this, SLOT(showRelations()));
 
     //Définition du layout principal
      QHBoxLayout* layoutPrincipal = new QHBoxLayout;
      layoutPrincipal->addWidget(gauche);
      layoutPrincipal->addWidget(centre);
      layoutPrincipal->addWidget(droite);
-
      setLayout(layoutPrincipal);
      setWindowTitle("Pluri'notes");
-     //setWindowIcon(QIcon("icone.png"));
-     resize(400, 450);
 
+
+}
+
+void VuePrincipale::afficageArbo(){
+    if(arboVisible){
+        arborescence->setText("Voir l'arborescence");
+        droite->hide();
+        arboVisible=false;
+    }
+    else{
+        arborescence->setText("Masquer l'arborescence");
+        arboVisible=true;
+        droite->show();
+    }
+}
+
+void VuePrincipale::showRelations(){
+    VueSecondaire* fenetreRelations=new VueSecondaire(article);
+    fenetreRelations->show();
+}
+
+VueSecondaire::VueSecondaire(Article& a) : article(a){
+    //layout principal
+    setWindowTitle("Gestion des relations");
+    resize(350, 450);
+
+   connect(quitter, SIGNAL(clicked()), this, SLOT(accept()));
 }
