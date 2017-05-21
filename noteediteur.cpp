@@ -1,6 +1,25 @@
 #include "note.h"
 #include "noteediteur.h"
 
+/*FenetrePrincipale::FenetrePrincipale()
+{
+        QWidget *zoneCentrale = new QWidget;
+        QLineEdit *nom = new QLineEdit;
+        QLineEdit *prenom = new QLineEdit;
+        QLineEdit *age = new QLineEdit;
+        QVBoxLayout *layout = new QVBoxLayout;
+        layout->addWidget(nom);
+        layout->addWidget(prenom);
+        layout->addWidget(age);
+
+        zoneCentrale->setLayout(layout);
+
+        setCentralWidget(zoneCentrale);
+        QMenu* fileMenu = new QMenu("&File", this);
+                QMenuBar *menuBar = new QMenuBar(0);
+                menuBar->addMenu(fileMenu);
+}
+*/
 
 //NoteEditeur d'une note existante
 NoteEditeur::NoteEditeur(Note &n, QWidget* parent):QWidget(parent),note(&n)

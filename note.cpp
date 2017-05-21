@@ -5,7 +5,6 @@
 #include <QMessageBox>
 #include <typeinfo>
 #include <QDebug>
-using namespace std;
 
 Note::~Note(){}
 Article::~Article(){}
@@ -13,75 +12,6 @@ Tache::~Tache(){}
 TacheAvecPriorite::~TacheAvecPriorite(){}
 TacheAvecDeadline::~TacheAvecDeadline(){}
 Autre::~Autre(){}
-
-void Relation::addCouple_function(Note& x, Note& y, QString l){
-    if (!(tableau==0))
-        for (unsigned int i=0; i<nbCouples; i++)
-            if (tableau[1][i]->getId()==x.getId() && tableau[2][i]->getId()==y.getId()) throw NotesException("Ce couple existe déjà dans la relation");
-    if (nbCouples==nbCouplesMax) {
-        //le tableau de couples et le tableau de labels nécessitent un agrandissement
-        Note*** newTableau= new Note**[nbCouplesMax+5];
-        QString* newLabel=new QString[nbCouplesMax+5];
-        for(unsigned int i=0; i<nbCouplesMax+5; i++) newTableau[i] = new Note*[i];
-        for(unsigned int i=0; i<nbCouples; i++) {
-            newTableau[1][i]=tableau[1][i];
-            newTableau[2][i]=tableau[2][i];
-            newLabel[i]=tableau_label[i];
-        }
-        Note*** oldTableau=tableau;
-        tableau=newTableau;
-        QString* oldLabel=tableau_label;
-        tableau_label=newLabel;
-        nbCouplesMax+=5;
-        if (oldTableau) delete[] oldTableau;
-        if(oldLabel) delete[] oldLabel;
-    }
-    unsigned int rang=nbCouples++;
-    tableau[1][rang]=&x;
-    tableau[2][rang]=&y;
-    tableau_label[rang]=l;
-}
-
-void Relation::addCouple(Note &x, Note &y, QString label){
-    if (oriente) addCouple_function(x,y,label);
-    else { addCouple_function(x,y,label);
-           addCouple_function(y,x,label);}
-}
-
-Relation::~Relation(){
-    for (unsigned int i=0; i<nbCouples; i++)
-        delete[] tableau[i];
-      delete[] tableau;
-}
-
-void Relation::set_label_couple(Note& x, Note& y, QString l){
-    unsigned int i=0;
-    while (i<=nbCouples && (tableau[1][i]->getId()==x.getId() || tableau[2][i]->getId()==y.getId()))
-        i++;
-    if (i>nbCouples) throw NotesException("Ce couple n'existe pas");
-    else tableau_label[i]=l;
-}
-
-void Relation::removeCouple_function(Note& x, Note& y){
-    unsigned int i=0;
-    while (i<=nbCouples && (tableau[1][i]->getId()==x.getId() || tableau[2][i]->getId()==y.getId()))
-        i++;
-    if (i>nbCouples) throw NotesException("Ce couple n'existe pas");
-    else {
-        for (unsigned int j=i; j<nbCouples-1; j++){
-            tableau[1][j]=tableau[1][j+1];
-            tableau[2][j]=tableau[2][j+1];
-            tableau_label[j]=tableau_label[j+1];
-        }
-        nbCouples--;
-    }
-}
-
-void Relation::removeCouple(Note &x, Note &y){
-    if (oriente) removeCouple_function(x,y);
-    else { removeCouple_function(x,y);
-           removeCouple_function(y,x);}
-}
 
 NotesManager::~NotesManager(){
     if (filename!="") save();
@@ -135,19 +65,6 @@ Note& NotesManager::getNote(const QString& id){
     for(unsigned int i=0; i<nbNotes; i++)
         if (notes[i]->getId()==id && notes[i]->IsLast()) return *notes[i];
     throw NotesException("Note inexistante");
-}
-
-//méthode pour la comparaison de QString et string
-bool latinCompare(const QString& qstr, const std::string& str)
-{
-  if( qstr.length() != (int)str.size() )
-    return false;
-  const QChar* qstrData = qstr.data();
-  for( int i = 0; i < qstr.length(); ++i ) {
-    if( qstrData[i].toLatin1() != str[i] )
-      return false;
-  }
-  return true;
 }
 
 //méthode load() et save() récupérées du TD

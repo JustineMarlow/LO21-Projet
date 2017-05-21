@@ -2,7 +2,11 @@
 #define ARTICLEEDITEUR_H
 #include <QApplication>
 #include <QFileDialog>
+#include <QMainWindow>
 #include <QWidget>
+#include <QFrame>
+#include <QMenuBar>
+#include <QMenu>
 #include <QLabel>
 #include <QLineEdit>
 #include <QTextEdit>
