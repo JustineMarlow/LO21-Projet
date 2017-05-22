@@ -22,9 +22,7 @@ protected:
     QDate date_Lastmodification;
     bool isLastVersion;
     unsigned int version;
-    //Note** VersionAnterieures;
     NoteEtat etat;
-    //passage du constructeur et du destructeur en protected pour n'autoriser la construction de tous les objets Note qu'au NotesManager
     Note(QString id, QString t, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, unsigned int v=1, NoteEtat e=active)
         :identificateur(id),
          titre(t),
@@ -34,7 +32,7 @@ protected:
          version(v),
          etat(e){}
     virtual ~Note();
-    friend class NotesManager; //ajout amitié
+    friend class NotesManager;
 
 public:
     QString getId() const {return identificateur;}
@@ -138,19 +136,20 @@ class NotesManager
     unsigned int nbNotes;
     unsigned int nbMaxNotes;
     mutable QString filename;
-    //implémentation Singleton -> passage des constructeurs, destructeurs, opérateur d'affectation en privé
     NotesManager():notes(0),nbNotes(0),nbMaxNotes(0),filename(""){}
     ~NotesManager();
     NotesManager (const NotesManager& m);
     NotesManager operator=(const NotesManager& m);
 public:
-    static NotesManager& getInstance(); //Singleton
+    static NotesManager& getInstance();
     void addNote(Note* n);
     void load();
     void save() const;
     void setFilename(const QString& f) { filename=f; }
     Note& getNote(const QString& id); //retourne la dernière version de la Note identifiée id
+    Note& getVersionNote(const QString& id, unsigned int v);
     void addArticle(const QString& id, const QString& ti, const QString& te,const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat);
+    void setAsActualArticle(Article& a);
 
     class Iterator{
         Note** tab;

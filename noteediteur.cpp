@@ -1,25 +1,6 @@
 #include "note.h"
 #include "noteediteur.h"
-
-/*FenetrePrincipale::FenetrePrincipale()
-{
-        QWidget *zoneCentrale = new QWidget;
-        QLineEdit *nom = new QLineEdit;
-        QLineEdit *prenom = new QLineEdit;
-        QLineEdit *age = new QLineEdit;
-        QVBoxLayout *layout = new QVBoxLayout;
-        layout->addWidget(nom);
-        layout->addWidget(prenom);
-        layout->addWidget(age);
-
-        zoneCentrale->setLayout(layout);
-
-        setCentralWidget(zoneCentrale);
-        QMenu* fileMenu = new QMenu("&File", this);
-                QMenuBar *menuBar = new QMenuBar(0);
-                menuBar->addMenu(fileMenu);
-}
-*/
+#include <QDebug>
 
 //NoteEditeur d'une note existante
 NoteEditeur::NoteEditeur(Note &n, QWidget* parent):QWidget(parent),note(&n)
@@ -39,11 +20,20 @@ NoteEditeur::NoteEditeur(Note &n, QWidget* parent):QWidget(parent),note(&n)
     version = new QLabel("Version : "+QString::number(n.getVersion()),this);
     if (n.IsLast()) last = new QLabel("Derniere version : oui");
     else last = new QLabel("Derniere version : non");
-    bouton = new QPushButton("Sauver",this);
-    bouton->setDisabled(true);
-    QObject::connect(bouton, SIGNAL(clicked()), this, SLOT(save()));
+    if (n.IsLast())
+    {
+        bouton = new QPushButton("Sauver",this);
+        bouton->setDisabled(true);
+        QObject::connect(bouton, SIGNAL(clicked()), this, SLOT(save()));
+    }
+    else
+    {
+        titre->setDisabled(true);
+        bouton = new QPushButton("Rétablir comme version actuelle",this);
+        bouton->setDisabled(false);
+        QObject::connect(bouton, SIGNAL(clicked()), this, SLOT(setAsActual()));
+    }
     layout = new QVBoxLayout(this);
-
     layout-> addWidget(id1);
     layout-> addWidget(id);
     layout-> addWidget(titre1);
@@ -53,8 +43,6 @@ NoteEditeur::NoteEditeur(Note &n, QWidget* parent):QWidget(parent),note(&n)
     layout-> addWidget(etat);
     layout-> addWidget(last);
     layout-> addWidget(version);
-    //setLayout(layout);
-
 }
 
 //NoteEditeur d'une nouvelle note
@@ -75,8 +63,13 @@ NoteEditeur::NoteEditeur(QWidget *parent){
 
 void NoteEditeur::save()
 {
-    getNote()->setLast(false);
+    getNote().setLast(false);
     extensionsave();
+}
+
+void NoteEditeur::setAsActual()
+{
+    extensionsetasactual();
 }
 
 //ArticleEditeur d'un article existant
@@ -89,9 +82,15 @@ ArticleEditeur::ArticleEditeur(Article& a, QWidget* parent):NoteEditeur(a,parent
     text->setText(a.getTexte());
     getLayout()->addWidget(getButton());
 
-    QObject::connect(getTitle(), SIGNAL(textChanged(QString)), this, SLOT(activerBouton(QString)));
-    QObject::connect(text, SIGNAL(textChanged()), this, SLOT(activerBouton()));
-
+    if (a.IsLast())
+    {
+        QObject::connect(getTitle(), SIGNAL(textChanged(QString)), this, SLOT(activerBouton(QString)));
+        QObject::connect(text, SIGNAL(textChanged()), this, SLOT(activerBouton()));
+    }
+    else
+    {
+        text->setDisabled(true);
+    }
     setLayout(getLayout());
 }
 
@@ -116,14 +115,14 @@ void ArticleEditeur::create()
     //on créé un nouvel objet de type Article
     NotesManager &m=NotesManager::getInstance();
     m.addArticle(this->getId()->text(), this->getTitle()->text(), this->text->toPlainText(), QDate::currentDate(), QDate::currentDate(), 1, true, active);
-    QMessageBox::information(this,"Sauvegarde","Sauvegarde de l'article");
+    QMessageBox::information(this,"Sauvegarde","Sauvegarde du nouvel article");
     getButton()->setDisabled(true);
 }
 
 
 void ArticleEditeur::extensionsave()
 {
-    Article& a=dynamic_cast<Article&>(*getNote());
+    Article& a=dynamic_cast<Article&>(getNote());
     //on créé un nouvel objet de type Article, l'id et la date de création ne changent pas, la version++, la date modification = la date current
     NotesManager &m=NotesManager::getInstance();
     m.addArticle(a.getId(), this->getTitle()->text(), text->toPlainText(), a.getCreation(), QDate::currentDate(), a.getVersion()+1, true, active);
@@ -131,6 +130,17 @@ void ArticleEditeur::extensionsave()
     getButton()->setDisabled(true);
 }
 
+void ArticleEditeur::extensionsetasactual()
+{
+    Article& a=dynamic_cast<Article&>(getNote());
+    //on appelle la méthode setAsActualArticle du NotesManager
+    NotesManager &m=NotesManager::getInstance();
+    m.addArticle(a.getId(),a.getTitre(),a.getTexte(),a.getCreation(),QDate::currentDate(),m.getNote(a.getId()).getVersion()+1,true,active);
+    m.getNote(a.getId()).setLast(false);
+
+    QMessageBox::information(this,"Mise a jour","Cette version a ete retablie comme version actuelle");
+    getButton()->setDisabled(true);
+}
 
 void NoteEditeur::activerBouton(QString str)
 {

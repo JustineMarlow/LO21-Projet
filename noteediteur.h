@@ -33,6 +33,7 @@ protected:
     QLabel* etat;
     QLabel* version;
     QPushButton* bouton;
+
 public:
     explicit NoteEditeur(Note& n, QWidget* parent=0);
     explicit NoteEditeur(QWidget* parent=0);
@@ -41,12 +42,14 @@ public:
     QLineEdit* getTitle() {return titre;} //méthode pour récupérer le titre et le modifier en fonction de la sous-classe
     QLineEdit* getId() {return id;} //méthode pour récupérer l'id et le modifier en fonction de la sous-classe
     virtual void extensionsave()=0;
-    Note* getNote() const {return note;}
+    virtual void extensionsetasactual()=0;
+    Note& getNote() const {return *note;}
 
 signals:
 
 public slots:
     void save();
+    void setAsActual();
 private slots: //à usage interne
     void activerBouton(QString str="");
 };
@@ -63,6 +66,7 @@ public:
     ArticleEditeur(QWidget* parent=0);
 public slots:
     void extensionsave();
+    void extensionsetasactual();
     void create();
 
 };

@@ -6,6 +6,7 @@
 #include <typeinfo>
 #include <QDebug>
 
+/*======================================================= Note et classes dérivées ====================================================================================*/
 Note::~Note(){}
 Article::~Article(){}
 Tache::~Tache(){}
@@ -13,6 +14,7 @@ TacheAvecPriorite::~TacheAvecPriorite(){}
 TacheAvecDeadline::~TacheAvecDeadline(){}
 Autre::~Autre(){}
 
+/*============================================================= NotesManager ==========================================================================================*/
 NotesManager::~NotesManager(){
     if (filename!="") save();
     for(unsigned int i=0; i<nbNotes; i++) delete notes[i];
@@ -48,7 +50,31 @@ void NotesManager::addNote(Note* n)
     notes[nbNotes++]=n;
 }
 
-//permet de créer un article par l'intermédiaire du NotesManager, appelle addNote
+//permet de chercher une note via le NotesManager
+Note& NotesManager::getNote(const QString& id)
+{
+    // si la note existe déjà, on en renvoie une référence
+    for(unsigned int i=0; i<nbNotes; i++)
+        if (notes[i]->getId()==id && notes[i]->IsLast()) return *notes[i];
+    throw NotesException("Note inexistante");
+}
+
+Note& NotesManager::getVersionNote(const QString& id, unsigned int v)
+{
+    // si la version de la note existe, on en renvoie une référence
+    for(unsigned int i=0; i<nbNotes; i++)
+        if (notes[i]->getId()==id && notes[i]->getVersion()==v) return *notes[i];
+    throw NotesException("Note ou version inexistante");
+}
+
+/*
+void NotesManager::setAsActualArticle(Article& a)
+{
+    addArticle(a.getId(),a.getTitre(),a.getTexte(),a.getCreation(),QDate::currentDate(),getNote(a.getId()).getVersion()+1,true,active);
+}
+*/
+
+
 void NotesManager::addArticle(const QString& id, const QString& ti, const QString& te, const QDate date_c, const QDate date_m, const unsigned int v, bool last, const NoteEtat etat)
 {
     /*for(unsigned int i=0; i<nbNotes; i++){
@@ -59,15 +85,6 @@ void NotesManager::addArticle(const QString& id, const QString& ti, const QStrin
     addNote(a);
 }
 
-//permet de chercher une note via le NotesManager
-Note& NotesManager::getNote(const QString& id){
-    // si la note existe déjà, on en renvoie une référence
-    for(unsigned int i=0; i<nbNotes; i++)
-        if (notes[i]->getId()==id && notes[i]->IsLast()) return *notes[i];
-    throw NotesException("Note inexistante");
-}
-
-//méthode load() et save() récupérées du TD
 
 void NotesManager::load() {
     QFile fin(filename);

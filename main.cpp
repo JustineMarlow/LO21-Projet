@@ -8,18 +8,18 @@
 
 int main(int argc, char *argv[])
 {
-    /*
+
     try{
     QApplication app(argc, argv);
     QString fichier = QFileDialog::getOpenFileName();
     NotesManager &m=NotesManager::getInstance();
     m.setFilename(fichier);
     m.load();
-    Article& a=dynamic_cast<Article&>(m.getNote("id:A2"));
-    VuePrincipale fenetre(a);
+    Article& a=dynamic_cast<Article&>(m.getVersionNote("id:A2",1));
+    //VuePrincipale fenetre(a);
 
 
-    //ArticleEditeur fenetre(a);
+    ArticleEditeur fenetre(a);
     //for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
     //{ if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
 
@@ -27,9 +27,9 @@ int main(int argc, char *argv[])
     return app.exec();
     }
     catch(NotesException e){qDebug()<<e.getInfo();}
-    */
 
 
+    /*
     try{
     QApplication app(argc, argv);
     QString fichier_notes = QFileDialog::getOpenFileName();
@@ -63,4 +63,5 @@ int main(int argc, char *argv[])
     }
 
     catch(NotesException e){qDebug()<<e.getInfo();}
+    */
 }

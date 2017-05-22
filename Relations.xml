@@ -15,14 +15,4 @@
             <label>label 2</label>
         </couple>
     </relation>
-    <relation>
-        <titre>relation 2</titre>
-        <description>pour tester save</description>
-        <oriente>oui</oriente>
-        <couple>
-            <idX>id:A2</idX>
-            <idY>id:A1</idY>
-            <label>new couple for new relation</label>
-        </couple>
-    </relation>
 </relations>
