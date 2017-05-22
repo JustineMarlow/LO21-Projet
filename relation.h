@@ -49,7 +49,8 @@ class RelationsManager {
     RelationsManager (const RelationsManager& m);
     RelationsManager operator=(const RelationsManager& m);
 public:
-    static RelationsManager& getInstance(); //Singleton //done
+    unsigned int getNbRelations() const {return nbRelations;}
+    static RelationsManager& getInstance(); //Singleton
     const Relation& getIRelation(unsigned int i) const {return *relations[i];}
     Relation& createRelation(const QString& titre, const QString& description, bool isOriente);
     void addRelation(Relation* r);

@@ -8,8 +8,7 @@
 
 int main(int argc, char *argv[])
 {
-
-
+    /*
     try{
     QApplication app(argc, argv);
     QString fichier = QFileDialog::getOpenFileName();
@@ -28,9 +27,10 @@ int main(int argc, char *argv[])
     return app.exec();
     }
     catch(NotesException e){qDebug()<<e.getInfo();}
+    */
 
 
-   /* try{
+    try{
     QApplication app(argc, argv);
     QString fichier_notes = QFileDialog::getOpenFileName();
     NotesManager &manager_notes=NotesManager::getInstance();
@@ -40,23 +40,27 @@ int main(int argc, char *argv[])
     RelationsManager &manager_relations=RelationsManager::getInstance();
     manager_relations.setFilename(fichier_relations);
     manager_relations.load();
-    Relation& reference=manager_relations.getRelation("Reference");
-    qDebug()<<"ref sur reference recuperee \n";
+
+    Relation & new_relation=manager_relations.createRelation("relation 2","pour tester save",true);
+    new_relation.addCouple(manager_notes.getNote("id:A2"),manager_notes.getNote("id:A1"),"new couple for new relation");
 
     QWidget fenetre;
-    QLabel* relation_titre= new QLabel(reference.getTitre());
-    QLabel* relation_description= new QLabel(reference.getDescription());
     QVBoxLayout *layout=new QVBoxLayout;
-    layout-> addWidget(relation_titre);
-    layout-> addWidget(relation_description);
-    for (unsigned int i=0;i<reference.getNbCouples();i++){
-        QLabel* relation_couple= new QLabel(reference.getXCouple(i).getId()+"-->"+reference.getYCouple(i).getId()+" (label : "+reference.getLabelCouple(i)+")");
-        layout-> addWidget(relation_couple);
+    for (RelationsManager::Iterator iterator=RelationsManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
+    {
+        QLabel* relation_titre= new QLabel(iterator.current().getTitre());
+        QLabel* relation_description= new QLabel(iterator.current().getDescription());
+        layout-> addWidget(relation_titre);
+        layout-> addWidget(relation_description);
+        for (unsigned int i=0;i<iterator.current().getNbCouples();i++){
+            QLabel* relation_couple= new QLabel(iterator.current().getXCouple(i).getId()+"-->"+iterator.current().getYCouple(i).getId()+" (label : "+iterator.current().getLabelCouple(i)+")");
+            layout-> addWidget(relation_couple);
+        }
     }
     fenetre.setLayout(layout);
     fenetre.show();
     return app.exec();
-    }//fin try
+    }
 
-    catch(NotesException e){qDebug()<<e.getInfo();}*/
+    catch(NotesException e){qDebug()<<e.getInfo();}
 }

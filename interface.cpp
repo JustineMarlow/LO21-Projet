@@ -6,7 +6,7 @@ VuePrincipale::VuePrincipale(Article& a) : article(a){
     //partie gauche
     QVBoxLayout* leftLayout=new QVBoxLayout;
     QGroupBox* notesActives=new QGroupBox("Notes Actives");
-    QGroupBox* affichageErgo=new QGroupBox("Tâches");
+    QGroupBox* affichageErgo=new QGroupBox("Taches");
     QGroupBox* archives=new QGroupBox("Archives");
     arborescence=new QPushButton("Masquer l'arborescence", this);
     leftLayout->addWidget(notesActives);
@@ -23,7 +23,7 @@ VuePrincipale::VuePrincipale(Article& a) : article(a){
     ArticleEditeur* note=new ArticleEditeur(article);
     QFormLayout* editeur=new QFormLayout;
     editeur->addRow("", note);
-    QGroupBox* centre=new QGroupBox("Visualisation de l'article");
+    QGroupBox* centre=new QGroupBox("Visualisation de la note");
     centre->setLayout(editeur);
 
     //partie droite

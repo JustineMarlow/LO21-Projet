@@ -120,10 +120,6 @@ Relation& RelationsManager::getRelation(const QString& titre){
     throw NotesException("Relation inexistante");
 }
 
-void RelationsManager::save() const {
-    qDebug()<<"methode save() du RelationsManager appelee \n";
-}
-
 void RelationsManager::load() {
     QFile fin(filename);
     // If we can't open it, let's show an error message.
@@ -240,11 +236,9 @@ void RelationsManager::load() {
                     // ...and next...
                     xml.readNext();
                 }
-                qDebug()<<"ajout relation "<<titre<<"\n";
                 Relation& r=createRelation(titre,description,isOriente);
-                for (unsigned int i=0; i<nbCouples; i++) {r.addCouple(NotesManager::getInstance().getNote(idx[i]), NotesManager::getInstance().getNote(idy[i]), label[i]);
-                                                          qDebug()<<"ajout couple"<<i<<"\n";}
-                qDebug()<<"nb couples"<<r.getNbCouples()<<"\n";
+                qDebug()<<"Relation "<<r.getTitre()<<" ajoutee \n";
+                for (unsigned int i=0; i<nbCouples; i++) r.addCouple(NotesManager::getInstance().getNote(idx[i]), NotesManager::getInstance().getNote(idy[i]), label[i]);
 
 
 
@@ -259,5 +253,35 @@ void RelationsManager::load() {
     // Removes any device() or data from the reader * and resets its internal state to the initial state.=
     xml.clear();
     qDebug()<<"fin load\n";
-    //qDebug()<<"relation 0 "<<relations[0]->getTitre()<<"\n";
+}
+
+void RelationsManager::save() const {
+
+    QFile newfile(filename);
+    if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
+        throw NotesException(QString("Erreur dans la sauvegarde : echec lors de l'ouverture du fichier xml de relations"));
+    QXmlStreamWriter stream(&newfile);
+    stream.setAutoFormatting(true);
+    stream.writeStartDocument();
+    stream.writeStartElement("relations");
+    for(unsigned int i=0; i<nbRelations; i++){
+            stream.writeStartElement("relation");
+            stream.writeTextElement("titre",relations[i]->getTitre());
+            stream.writeTextElement("description",relations[i]->getDescription());
+            if (relations[i]->IsOriente()==true) stream.writeTextElement("oriente","oui");
+            else stream.writeTextElement("oriente","non");
+            for (unsigned int c=0; c<relations[i]->getNbCouples();c++)
+            {
+                stream.writeStartElement("couple");
+                stream.writeTextElement("idX",relations[i]->getXCouple(c).getId());
+                stream.writeTextElement("idY",relations[i]->getYCouple(c).getId());
+                stream.writeTextElement("label",relations[i]->getLabelCouple(c));
+                stream.writeEndElement();
+            }
+            stream.writeEndElement();
+            qDebug()<<i<<" : relation mise a jour \n";
+        }
+    stream.writeEndElement();
+    stream.writeEndDocument();
+    newfile.close();
 }
