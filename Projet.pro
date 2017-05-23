@@ -9,10 +9,12 @@ SOURCES += \
     note.cpp \
     noteediteur.cpp \
     interface.cpp \
-    relation.cpp
+    relation.cpp \
+    relationediteur.cpp
 
 HEADERS += \
     note.h \
     noteediteur.h \
     interface.h \
-    relation.h
+    relation.h \
+    relationediteur.h

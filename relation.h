@@ -53,7 +53,8 @@ public:
     static RelationsManager& getInstance(); //Singleton
     const Relation& getIRelation(unsigned int i) const {return *relations[i];}
     Relation& createRelation(const QString& titre, const QString& description, bool isOriente);
-    void addRelation(Relation* r);
+    void addRelation(Relation& r);
+    void deleteRelation(Relation& r);
     Relation& getRelation(const QString& titre); //retourne une référence sur la relation
     void load();
     void save() const;

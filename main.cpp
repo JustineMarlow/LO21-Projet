@@ -5,10 +5,11 @@
 #include "relation.h"
 #include "noteediteur.h"
 #include "interface.h"
+#include "relationediteur.h"
 
 int main(int argc, char *argv[])
 {
-
+    /*
     try{
     QApplication app(argc, argv);
     QString fichier = QFileDialog::getOpenFileName();
@@ -27,9 +28,9 @@ int main(int argc, char *argv[])
     return app.exec();
     }
     catch(NotesException e){qDebug()<<e.getInfo();}
+    */
 
 
-    /*
     try{
     QApplication app(argc, argv);
     QString fichier_notes = QFileDialog::getOpenFileName();
@@ -41,10 +42,13 @@ int main(int argc, char *argv[])
     manager_relations.setFilename(fichier_relations);
     manager_relations.load();
 
-    Relation & new_relation=manager_relations.createRelation("relation 2","pour tester save",true);
-    new_relation.addCouple(manager_notes.getNote("id:A2"),manager_notes.getNote("id:A1"),"new couple for new relation");
+    Relation & r1=manager_relations.createRelation("New Relation", "nouvelle relation",false);
+    Relation & r2=manager_relations.createRelation("New Relation bis", "nouvelle relation bis",false);
+    Relation & r=manager_relations.getRelation("Reference");
+    RelationEditeur fenetre(r);
 
-    QWidget fenetre;
+    //idee pour afficher toutes les relations
+    /*
     QVBoxLayout *layout=new QVBoxLayout;
     for (RelationsManager::Iterator iterator=RelationsManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
     {
@@ -58,10 +62,11 @@ int main(int argc, char *argv[])
         }
     }
     fenetre.setLayout(layout);
+    */
     fenetre.show();
     return app.exec();
     }
 
     catch(NotesException e){qDebug()<<e.getInfo();}
-    */
+
 }

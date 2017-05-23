@@ -86,10 +86,10 @@ RelationsManager& RelationsManager::getInstance(){
     return instance;
 }
 
-void RelationsManager::addRelation(Relation* r)
+void RelationsManager::addRelation(Relation& r)
 {
     for(unsigned int i=0; i<nbRelations; i++)
-        if (relations[i]->getTitre() ==r->getTitre()) throw NotesException("Erreur, ce titre est déjà utilisé");
+        if (relations[i]->getTitre() ==r.getTitre()) throw NotesException("Erreur, ce titre est déjà utilisé");
 
     if (nbRelations==nbMaxRelations){
         qDebug()<<"tableaux agrandissement \n";
@@ -101,23 +101,36 @@ void RelationsManager::addRelation(Relation* r)
         nbMaxRelations+=5;
         if (oldRelations) delete[] oldRelations;
     }
-    relations[nbRelations]=r;
+    relations[nbRelations]=&r;
     nbRelations++;
 }
 
 Relation& RelationsManager::createRelation(const QString& titre, const QString& description, bool isOriente)
 {
     Relation* r=new Relation(titre,description,isOriente);
-    addRelation(r);
+    addRelation(*r);
     return *r;
 }
 
-Relation& RelationsManager::getRelation(const QString& titre){
+Relation& RelationsManager::getRelation(const QString& titre)
+{
     for(unsigned int i=0; i<nbRelations; i++)
     {
         if (relations[i]->getTitre()==titre) return *relations[i];
     }
     throw NotesException("Relation inexistante");
+}
+
+void RelationsManager::deleteRelation(Relation& r)
+{
+    unsigned int i=0;
+    while(relations[i]->getTitre()!=r.getTitre())
+        i++;
+    if(i>nbRelations) throw NotesException("Relation inexistante");
+    else delete relations[i];
+    for(i; i<nbRelations; i++)
+        relations[i]=relations[i+1];
+    nbRelations--;
 }
 
 void RelationsManager::load() {

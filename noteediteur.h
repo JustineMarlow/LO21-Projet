@@ -1,5 +1,5 @@
-#ifndef ARTICLEEDITEUR_H
-#define ARTICLEEDITEUR_H
+#ifndef NOTEEDITEUR_H
+#define NOTEEDITEUR_H
 #include <QApplication>
 #include <QFileDialog>
 #include <QMainWindow>
@@ -72,5 +72,5 @@ public slots:
 };
 
 
-#endif // ARTICLEEDITEUR_H
+#endif // NOTEEDITEUR_H
 
