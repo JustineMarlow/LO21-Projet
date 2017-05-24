@@ -14,11 +14,32 @@
 #include <QMessageBox>
 #include<QtGui>
 #include<QGroupBox>
+#include<QDockWidget>
+#include<QMainWindow>
 #include <note.h>
 #include <noteediteur.h>
 #include<relation.h>
+#include<relationediteur.h>
 
-class VuePrincipale : public QWidget{
+
+/*class FenPrincipale : public QMainWindow {
+ //partie centrale
+    Article& article;
+ //partie droite
+    bool arboVisible;
+    QGroupBox* droite;
+    QLabel* relation_titre;
+    QLabel* relation_description;
+    QPushButton* relation_details;
+    QPushButton* arborescence;
+
+public:
+    FenPrincipale(Article& a);
+
+};*/
+
+
+class VuePrincipale : public QMainWindow{
     Q_OBJECT
 public:
     VuePrincipale(Article& a);
@@ -50,7 +71,7 @@ public :
     VueSecondaire();
 
 private :
-    //Article& article;
+   // RelationEditeur relations;
     QPushButton* quitter;
 
 };

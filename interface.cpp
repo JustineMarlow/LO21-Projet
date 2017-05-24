@@ -1,9 +1,11 @@
 #include<interface.h>
 #include<QGroupBox>
 #include<QFormLayout>
-VuePrincipale::VuePrincipale(Article& a) : article(a){
 
-    //partie gauche
+VuePrincipale::VuePrincipale(Article& a) : article(a){
+    QWidget* zoneCentrale=new QWidget;
+    setCentralWidget(zoneCentrale);
+//gauche
     QVBoxLayout* leftLayout=new QVBoxLayout;
     QGroupBox* notesActives=new QGroupBox("Notes Actives");
     QGroupBox* affichageErgo=new QGroupBox("Taches");
@@ -13,17 +15,17 @@ VuePrincipale::VuePrincipale(Article& a) : article(a){
     leftLayout->addWidget(affichageErgo);
     leftLayout->addWidget(archives);
     leftLayout->addWidget(arborescence);
-    QGroupBox* gauche=new QGroupBox("");
+    QGroupBox* gauche=new QGroupBox("", zoneCentrale);
     gauche->setLayout(leftLayout);
 
     connect(arborescence, SIGNAL(clicked()), this, SLOT(afficageArbo()));
 
 
-    //partie centrale
+//centre
     ArticleEditeur* note=new ArticleEditeur(article);
     QFormLayout* editeur=new QFormLayout;
     editeur->addRow("", note);
-    QGroupBox* centre=new QGroupBox("Visualisation de la note");
+    QGroupBox* centre=new QGroupBox("Visualisation de la note", zoneCentrale);
     centre->setLayout(editeur);
 
     //partie droite
@@ -36,21 +38,21 @@ VuePrincipale::VuePrincipale(Article& a) : article(a){
     rightLayout->addWidget(relation_titre);
     rightLayout-> addWidget(relation_description);
     rightLayout-> addWidget(relation_details);
-    droite=new QGroupBox("Arborescence des relations");
+    droite=new QGroupBox("Arborescence des relations", zoneCentrale);
     droite->setLayout(rightLayout);
 
     connect(relation_details, SIGNAL(clicked()), this, SLOT(showRelations()));
 
     //Définition du layout principal
-     QHBoxLayout* layoutPrincipal = new QHBoxLayout;
+    QHBoxLayout* layoutPrincipal = new QHBoxLayout;
      layoutPrincipal->addWidget(gauche);
      layoutPrincipal->addWidget(centre);
      layoutPrincipal->addWidget(droite);
-     setLayout(layoutPrincipal);
+     zoneCentrale->setLayout(layoutPrincipal);
      setWindowTitle("Pluri'notes");
 
-
 }
+
 
 void VuePrincipale::afficageArbo(){
     if(arboVisible){
@@ -70,13 +72,22 @@ void VuePrincipale::showRelations(){
     fenetreRelations->show();
 }
 
-VueSecondaire::VueSecondaire(){
+VueSecondaire::VueSecondaire() {
     //layout principal
+    /*RelationEditeur* relations=new RelationEditeur(RelationsManager::getInstance());
+    QFormLayout* editeur=new QFormLayout;
+    editeur->addRow("", relations);
+    QGroupBox* blocPrincipal=new QGroupBox("Gestion des relations");
+    blocPrincipal->setLayout(editeur);*/
+
     quitter=new QPushButton("Quitter", this);
     QVBoxLayout *layout=new QVBoxLayout;
+    //layout->addWidget(blocPrincipal);
     layout->addWidget(quitter);
     setLayout(layout);
     setWindowTitle("Gestion des relations");
     resize(350, 450);
    connect(quitter, SIGNAL(clicked()), this, SLOT(close()));
 }
+
+
