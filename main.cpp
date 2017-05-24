@@ -9,14 +9,22 @@
 
 int main(int argc, char *argv[])
 {
-    /*
     try{
     QApplication app(argc, argv);
-    QString fichier = QFileDialog::getOpenFileName();
-    NotesManager &m=NotesManager::getInstance();
-    m.setFilename(fichier);
-    m.load();
-    Article& a=dynamic_cast<Article&>(m.getVersionNote("id:A2",1));
+    NotesManager &manager_notes=NotesManager::getInstance();
+    manager_notes.setFilename("/home/marlow/Bureau/Projet/Notes.xml");
+    manager_notes.load();
+
+    RelationsManager &manager_relations=RelationsManager::getInstance();
+    manager_relations.setFilename("/home/marlow/Bureau/Projet/Relations.xml");
+    manager_relations.load();
+
+    Relation& r1=manager_relations.createRelation("New Relation", "nouvelle relation",false);
+    Note& n1=manager_notes.getNote("id:A1");
+    Note& n2=manager_notes.getNote("id:A2");
+    r1.addCouple(n1,n2,"label");
+
+    Article& a=dynamic_cast<Article&>(manager_notes.getNote("id:A2"));
     //VuePrincipale fenetre(a);
 
 
@@ -28,24 +36,21 @@ int main(int argc, char *argv[])
     return app.exec();
     }
     catch(NotesException e){qDebug()<<e.getInfo();}
-    */
 
-
+/*
     try{
     QApplication app(argc, argv);
-    QString fichier_notes = QFileDialog::getOpenFileName();
+    //QString fichier_notes = QFileDialog::getOpenFileName();
     NotesManager &manager_notes=NotesManager::getInstance();
-    manager_notes.setFilename(fichier_notes);
+    manager_notes.setFilename("/home/marlow/Bureau/Projet/Notes.xml");
     manager_notes.load();
-    QString fichier_relations = QFileDialog::getOpenFileName();
+    //QString fichier_relations = QFileDialog::getOpenFileName();
     RelationsManager &manager_relations=RelationsManager::getInstance();
-    manager_relations.setFilename(fichier_relations);
+    manager_relations.setFilename("/home/marlow/Bureau/Projet/Relations.xml");
     manager_relations.load();
 
     Relation & r1=manager_relations.createRelation("New Relation", "nouvelle relation",false);
-    Relation & r2=manager_relations.createRelation("New Relation bis", "nouvelle relation bis",false);
-    Relation & r=manager_relations.getRelation("Reference");
-    RelationEditeur fenetre(r);
+    RelationEditeur fenetre(r1);
 
     //idee pour afficher toutes les relations
     /*
@@ -62,11 +67,12 @@ int main(int argc, char *argv[])
         }
     }
     fenetre.setLayout(layout);
-    */
+
+
     fenetre.show();
     return app.exec();
     }
 
     catch(NotesException e){qDebug()<<e.getInfo();}
-
+*/
 }

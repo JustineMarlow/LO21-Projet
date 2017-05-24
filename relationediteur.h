@@ -36,13 +36,13 @@ protected:
 
 public:
     explicit RelationEditeur(Relation& r, QWidget* parent=0);
-    //explicit RelationEditeur(QWidget* parent=0);
+    explicit RelationEditeur(QWidget* parent=0);
 
 signals:
 
 public slots:
     void save();
-    //void create();
+    void create();
     void delete_relation();
 private slots: //à usage interne
     void activerBouton(QString str="");

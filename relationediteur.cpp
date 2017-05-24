@@ -18,6 +18,7 @@ RelationEditeur::RelationEditeur(Relation& r, QWidget* parent):QWidget(parent),r
     bouton_save = new QPushButton("Sauver",this);
     bouton_save->setDisabled(true);
     bouton_delete = new QPushButton("Supprimer",this);
+    //bouton_couple = new QPushButton("Editer les couples",this);
 
     if (r.getTitre()=="Reference")
     {
@@ -42,7 +43,6 @@ RelationEditeur::RelationEditeur(Relation& r, QWidget* parent):QWidget(parent),r
     layout-> addWidget(bouton_delete);
 }
 
-/*
 //RelationEditeur d'une nouvelle relation
 RelationEditeur::RelationEditeur(QWidget *parent)
 {
@@ -50,27 +50,34 @@ RelationEditeur::RelationEditeur(QWidget *parent)
     titre = new QLineEdit(this);
     description1 = new QLabel("Description",this);
     description = new QTextEdit(this);
-    bouton = new QPushButton("Sauver",this);
-    bouton->setDisabled(true);
-    QObject::connect(bouton, SIGNAL(clicked()), this, SLOT(save()));
+    orientee = new QCheckBox("Relation orientee", this);
+    bouton_save = new QPushButton("Sauver",this);
+    bouton_save->setDisabled(true);
+
+    QObject::connect(titre, SIGNAL(textChanged(QString)), this, SLOT(activerBouton(QString)));
+    QObject::connect(description, SIGNAL(textChanged()), this, SLOT(activerBouton()));
+    QObject::connect(bouton_save, SIGNAL(clicked()), this, SLOT(create()));
+
     layout = new QVBoxLayout(this);
     layout-> addWidget(titre1);
     layout-> addWidget(titre);
     layout-> addWidget(description1);
     layout-> addWidget(description);
     layout-> addWidget(orientee);
-    layout-> addWidget(bouton);
+    layout-> addWidget(bouton_save);
 }
 
 void RelationEditeur::create()
 {
     //on créé un nouvel objet de type Relation
     RelationsManager &m=RelationsManager::getInstance();
-    m.createRelation(this->titre->text(),this->description->toPlainText(),);
-    QMessageBox::information(this,"Sauvegarde","Sauvegarde du nouvel article");
-    getButton()->setDisabled(true);
+    m.createRelation(this->titre->text(),this->description->toPlainText(),orientee->isChecked());
+    QMessageBox::information(this,"Sauvegarde","Sauvegarde de la nouvelle relation");
+    bouton_save->setDisabled(true);
+    titre->setDisabled(true);
+    description->setDisabled(true);
+    orientee->setDisabled(true);
 }
-*/
 
 void RelationEditeur::save()
 {
@@ -85,7 +92,10 @@ void RelationEditeur::delete_relation()
     RelationsManager &manager_relations=RelationsManager::getInstance();
     manager_relations.deleteRelation(*relation);
     QMessageBox::information(this,"Suppression","Suppression de la relation");
-    //rendre tout disabled ?
+    bouton_delete->setDisabled(true);
+    titre->setDisabled(true);
+    description->setDisabled(true);
+
 }
 
 void RelationEditeur::activerBouton(QString str)

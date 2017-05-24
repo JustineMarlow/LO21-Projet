@@ -4,15 +4,10 @@
         <titre>Reference</titre>
         <description>La note x fait reference a la note y.</description>
         <oriente>oui</oriente>
-        <couple>
-            <idX>id:A1</idX>
-            <idY>id:A2</idY>
-            <label>label 1</label>
-        </couple>
-        <couple>
-            <idX>id:A2</idX>
-            <idY>id:A1</idY>
-            <label>label 2</label>
-        </couple>
+    </relation>
+    <relation>
+        <titre>New Relation</titre>
+        <description>nouvelle relation</description>
+        <oriente>non</oriente>
     </relation>
 </relations>

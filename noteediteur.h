@@ -32,13 +32,15 @@ protected:
     QLabel* last;
     QLabel* etat;
     QLabel* version;
-    QPushButton* bouton;
+    QPushButton* bouton_save;
+    QPushButton* bouton_delete;
 
 public:
     explicit NoteEditeur(Note& n, QWidget* parent=0);
     explicit NoteEditeur(QWidget* parent=0);
     QVBoxLayout* getLayout() {return layout;} //méthode pour récupérer le layout et le modifier en fonction de la sous-classe
-    QPushButton* getButton() {return bouton;} //méthode pour récupérer le bouton et le modifier en fonction de la sous-classe
+    QPushButton* getButton_save() {return bouton_save;} //méthode pour récupérer le bouton et le modifier en fonction de la sous-classe
+    QPushButton* getButton_delete() {return bouton_delete;} //méthode pour récupérer le bouton et le modifier en fonction de la sous-classe
     QLineEdit* getTitle() {return titre;} //méthode pour récupérer le titre et le modifier en fonction de la sous-classe
     QLineEdit* getId() {return id;} //méthode pour récupérer l'id et le modifier en fonction de la sous-classe
     virtual void extensionsave()=0;
@@ -49,6 +51,7 @@ signals:
 
 public slots:
     void save();
+    void delete_note();
     void setAsActual();
 private slots: //à usage interne
     void activerBouton(QString str="");

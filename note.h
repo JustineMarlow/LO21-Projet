@@ -43,6 +43,7 @@ public:
     bool IsLast() const {return isLastVersion;}
     unsigned int getVersion() const {return version;}
     void setLast(const bool b) {isLastVersion=b;}
+    void setEtat(NoteEtat e){etat=e;}
 
 };
 
@@ -146,10 +147,10 @@ public:
     void load();
     void save() const;
     void setFilename(const QString& f) { filename=f; }
-    Note& getNote(const QString& id); //retourne la dernière version de la Note identifiée id
+    Note& getNote(const QString& id);
     Note& getVersionNote(const QString& id, unsigned int v);
     void addArticle(const QString& id, const QString& ti, const QString& te,const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat);
-    void setAsActualArticle(Article& a);
+    void deleteNote(Note& n);
 
     class Iterator{
         Note** tab;

@@ -26,8 +26,8 @@ public:
     QString getTitre() const {return titre;}
     QString getDescription() const {return description;}
     unsigned int getNbCouples() const {return nbCouples;}
-    const Note& getXCouple(unsigned int i) const {return *tableau[1][i];}
-    const Note& getYCouple(unsigned int i) const {return *tableau[2][i];}
+    Note& getXCouple(unsigned int i) const {return *tableau[1][i];}
+    Note& getYCouple(unsigned int i) const {return *tableau[2][i];}
     const QString getLabelCouple(unsigned int i) const {return tableau_label[i];}
     void addCouple(Note& x, Note& y, QString label);
     void removeCouple(Note& x, Note& y);
@@ -51,7 +51,7 @@ class RelationsManager {
 public:
     unsigned int getNbRelations() const {return nbRelations;}
     static RelationsManager& getInstance(); //Singleton
-    const Relation& getIRelation(unsigned int i) const {return *relations[i];}
+    Relation& getIRelation(unsigned int i) const {return *relations[i];}
     Relation& createRelation(const QString& titre, const QString& description, bool isOriente);
     void addRelation(Relation& r);
     void deleteRelation(Relation& r);
