@@ -64,7 +64,7 @@ VuePrincipale::VuePrincipale(Article& a) : article(a){
          menuFichier->addAction(actionSave);
          actionSave->setShortcut(QKeySequence("Ctrl+S"));
          QAction *actionQuitter = new QAction("&Quitter", this);
-         actionQuitter->setShortcut(tr("Ctrl+Q"));
+         actionQuitter->setShortcut(QKeySequence("Ctrl+Q"));
          connect(actionQuitter, SIGNAL(triggered()), qApp, SLOT(quit()));
          menuFichier->addAction(actionQuitter);
 
@@ -107,15 +107,15 @@ void VuePrincipale::showRelations(){
 
 VueSecondaire::VueSecondaire() {
     //layout principal
-    /*RelationEditeur* relations=new RelationEditeur(RelationsManager::getInstance());
+    //relations=new RelationEditeur();
     QFormLayout* editeur=new QFormLayout;
-    editeur->addRow("", relations);
+    editeur->addRow("", &relations);
     QGroupBox* blocPrincipal=new QGroupBox("Gestion des relations");
-    blocPrincipal->setLayout(editeur);*/
+    blocPrincipal->setLayout(editeur);
 
     quitter=new QPushButton("Quitter", this);
     QVBoxLayout *layout=new QVBoxLayout;
-    //layout->addWidget(blocPrincipal);
+    layout->addWidget(blocPrincipal);
     layout->addWidget(quitter);
     setLayout(layout);
     setWindowTitle("Gestion des relations");

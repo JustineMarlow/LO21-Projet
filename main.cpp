@@ -19,6 +19,13 @@ int main(int argc, char *argv[])
     Article& a=dynamic_cast<Article&>(m.getVersionNote("id:A2",1));
     VuePrincipale fenetre(a);
 
+    /*RelationsManager& m=RelationsManager::getInstance();
+    m.setFilename(fichier);
+    m.load();
+    RelationEditeur fenetre;*/
+
+
+
     /*RelationsManager &manager_relations=RelationsManager::getInstance();
     manager_relations.setFilename("/home/marlow/Bureau/Projet/Relations.xml");
     manager_relations.load();*/
@@ -30,9 +37,6 @@ int main(int argc, char *argv[])
     r1.addCouple(n1,n2,"label");
     */
 
-    //Article& a=dynamic_cast<Article&>(manager_notes.getNote("id:A2"));
-    //qDebug()<<"article recuperee \n";
-    //VuePrincipale fenetre(a);
 
 
    // ArticleEditeur fenetre;
