@@ -11,6 +11,7 @@ private:
     QString info;
 };
 
+/*======================================================= Note et classes dérivées ====================================================================================*/
 enum NoteEtat {active, archivee, corbeille};
 
 class Note
@@ -131,6 +132,7 @@ public:
         QString getFilename() const {return filename;}
     };
 
+/*============================================================= NotesManager ==========================================================================================*/
 class NotesManager
 {
     Note** notes;
@@ -169,6 +171,7 @@ public:
     Iterator getIterator() {return Iterator(notes, nbNotes);}
 };
 
+//méthode utile à NotesManager::load() (dans notes.cpp) et à RelationsManager::load() (dans relations.cpp), donc inline
 inline bool latinCompare(const QString& qstr, const std::string& str)
 {
   if( qstr.length() != (int)str.size() )

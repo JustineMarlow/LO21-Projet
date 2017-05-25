@@ -2,6 +2,7 @@
 #include "noteediteur.h"
 #include <QDebug>
 
+/*============================================================== NoteEditeur ==========================================================================================*/
 //NoteEditeur d'une note existante
 NoteEditeur::NoteEditeur(Note &n, QWidget* parent):QWidget(parent),note(&n)
 {
@@ -80,6 +81,12 @@ void NoteEditeur::save()
     extensionsave();
 }
 
+void NoteEditeur::activerBouton_save(QString str)
+{
+    getButton_save()->setEnabled(true);
+
+}
+
 void NoteEditeur::setAsActual()
 {
     extensionsetasactual();
@@ -110,6 +117,7 @@ void NoteEditeur::restore()
     blockall();
 }
 
+/*============================================================ ArticleEditeur =========================================================================================*/
 //ArticleEditeur d'un article existant
 ArticleEditeur::ArticleEditeur(Article& a, QWidget* parent):NoteEditeur(a,parent)
 {
@@ -197,11 +205,5 @@ void ArticleEditeur::blockall(){
     getId()->setDisabled(true);
     getTitle()->setDisabled(true);
     text->setDisabled(true);
-}
-
-void NoteEditeur::activerBouton_save(QString str)
-{
-    getButton_save()->setEnabled(true);
-
 }
 

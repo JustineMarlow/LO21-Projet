@@ -263,7 +263,6 @@ void RelationsManager::load() {
 
 //permet de sauvegarder les relations dans le fichier
 void RelationsManager::save() const {
-
     QFile newfile(filename);
     if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
         throw NotesException(QString("Erreur dans la sauvegarde : echec lors de l'ouverture du fichier xml de relations"));

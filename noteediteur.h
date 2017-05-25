@@ -2,11 +2,7 @@
 #define NOTEEDITEUR_H
 #include <QApplication>
 #include <QFileDialog>
-#include <QMainWindow>
 #include <QWidget>
-#include <QFrame>
-#include <QMenuBar>
-#include <QMenu>
 #include <QLabel>
 #include <QLineEdit>
 #include <QTextEdit>
@@ -17,6 +13,7 @@
 #include <QMessageBox>
 #include <note.h>
 
+/*============================================================== NoteEditeur ==========================================================================================*/
 class NoteEditeur:public QWidget
 {
 protected:
@@ -65,11 +62,11 @@ public slots:
     void delete_note();
     void setAsActual();
     void restore();
-private slots: //à usage interne
+private slots:
     void activerBouton_save(QString str="");
 };
 
-
+/*============================================================ ArticleEditeur =========================================================================================*/
 class ArticleEditeur:public NoteEditeur
 {
 protected:

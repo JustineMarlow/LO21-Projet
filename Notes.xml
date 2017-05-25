@@ -30,14 +30,4 @@
         <etat>Active</etat>
         <version>2</version>
     </article>
-    <article>
-        <id>id:A5</id>
-        <title>test</title>
-        <text></text>
-        <creation>25/05/2017</creation>
-        <modification>25/05/2017</modification>
-        <last>oui</last>
-        <etat>Active</etat>
-        <version>1</version>
-    </article>
 </notes>

@@ -4,10 +4,11 @@
 #include <QDate>
 #include <note.h>
 
+/*============================================================== Relation =============================================================================================*/
 class Relation {
     QString titre;
     QString description;
-    Note*** tableau; //tableau multidirectionnel de couples de Note
+    Note*** tableau;
     QString* tableau_label;
     unsigned int nbCouples;
     unsigned int nbCouplesMax;
@@ -15,7 +16,6 @@ class Relation {
     Relation(QString t, QString d, bool o=true):titre(t),description(d),tableau(0),tableau_label(0),nbCouples(0),nbCouplesMax(0),oriente(o){}
     ~Relation();
     friend class RelationsManager;
-    //on interdit la recopie et l'affectation : une relation est unique, on ne la duplique pas
     Relation(const Relation& r);
     Relation& operator=(const Relation& r);
     void addCouple_function(Note& x, Note& y, QString label);
@@ -37,25 +37,24 @@ public:
     void set_label_couple(Note& x, Note& y, QString l);
 };
 
+/*========================================================= RelationsManager ==========================================================================================*/
 class RelationsManager {
     Relation** relations;
     unsigned int nbRelations;
     unsigned int nbMaxRelations;
     mutable QString filename;
-    //implémentation Singleton -> passage des constructeurs, destructeurs, opérateur d'affectation en privé
     RelationsManager():relations(0),nbRelations(0),nbMaxRelations(0),filename(""){}
     ~RelationsManager();
-    //recopie et affectation interdites
     RelationsManager (const RelationsManager& m);
     RelationsManager operator=(const RelationsManager& m);
 public:
     unsigned int getNbRelations() const {return nbRelations;}
-    static RelationsManager& getInstance(); //Singleton
+    static RelationsManager& getInstance();
     Relation& getIRelation(unsigned int i) const {return *relations[i];}
     Relation& createRelation(const QString& titre, const QString& description, bool isOriente);
     void addRelation(Relation& r);
     void deleteRelation(Relation& r);
-    Relation& getRelation(const QString& titre); //retourne une référence sur la relation
+    Relation& getRelation(const QString& titre);
     void load();
     void save() const;
     void setFilename(const QString& f) { filename=f; }

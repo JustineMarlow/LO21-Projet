@@ -18,7 +18,7 @@ Autre::~Autre(){}
 /*============================================================= NotesManager ==========================================================================================*/
 //destructeur
 NotesManager::~NotesManager(){
-    viderCorbeille();
+    //viderCorbeille();
     if (filename!="") save();
     for(unsigned int i=0; i<nbNotes; i++) delete notes[i];
     delete[] notes;
@@ -66,7 +66,6 @@ Note& NotesManager::getNote(const QString& id)
 //permet de renvoyer une version particulière d'une note via le NotesManager
 Note& NotesManager::getVersionNote(const QString& id, unsigned int v)
 {
-    // si la version de la note existe, on en renvoie une référence
     for(unsigned int i=0; i<nbNotes; i++)
         if (notes[i]->getId()==id && notes[i]->getVersion()==v) return *notes[i];
     throw NotesException("Note ou version inexistante");
@@ -75,10 +74,6 @@ Note& NotesManager::getVersionNote(const QString& id, unsigned int v)
 //permet de créer un article et l'ajouter au NotesManager
 void NotesManager::addArticle(const QString& id, const QString& ti, const QString& te, const QDate date_c, const QDate date_m, const unsigned int v, bool last, const NoteEtat etat)
 {
-    /*for(unsigned int i=0; i<nbNotes; i++){
-        if (notes[i]->getId()==id) throw NotesException("Erreur : identificateur déjà existant");
-    }
-    */
     Article* a=new Article(id,ti,te,date_c,date_m,v,last,etat);
     addNote(a);
 }
@@ -106,12 +101,14 @@ void NotesManager::deleteNote(Note& n)
     }
 }
 
+//méthode pour rendre active une note qui avait été archivée
 void NotesManager::restoreNote(Note& n)
 {
     NotesManager &manager_notes=NotesManager::getInstance();
     for(unsigned int v=1; v<=n.getVersion(); v++) manager_notes.getVersionNote(n.getId(),v).setEtat(active);
 }
 
+//méthode pour vider la corbeille (supprimer définitivement les notes)
 void NotesManager::viderCorbeille()
 {
     for(unsigned int i=0;i<nbNotes;i++)
