@@ -5,9 +5,4 @@
         <description>La note x fait reference a la note y.</description>
         <oriente>oui</oriente>
     </relation>
-    <relation>
-        <titre>New Relation</titre>
-        <description>nouvelle relation</description>
-        <oriente>non</oriente>
-    </relation>
 </relations>

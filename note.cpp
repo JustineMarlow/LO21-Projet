@@ -105,6 +105,12 @@ void NotesManager::deleteNote(Note& n)
     }
 }
 
+void NotesManager::restoreNote(Note& n)
+{
+    NotesManager &manager_notes=NotesManager::getInstance();
+    for(unsigned int v=1; v<=n.getVersion(); v++) manager_notes.getVersionNote(n.getId(),v).setEtat(active);
+}
+
 //permet de charger un fichier de Notes
 void NotesManager::load() {
     QFile fin(filename);

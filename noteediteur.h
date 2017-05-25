@@ -34,18 +34,29 @@ protected:
     QLabel* version;
     QPushButton* bouton_save;
     QPushButton* bouton_delete;
+    QPushButton* bouton_actualize;
+    QPushButton* bouton_restore;
 
 public:
     explicit NoteEditeur(Note& n, QWidget* parent=0);
     explicit NoteEditeur(QWidget* parent=0);
     QVBoxLayout* getLayout() {return layout;} //méthode pour récupérer le layout et le modifier en fonction de la sous-classe
-    QPushButton* getButton_save() {return bouton_save;} //méthode pour récupérer le bouton et le modifier en fonction de la sous-classe
-    QPushButton* getButton_delete() {return bouton_delete;} //méthode pour récupérer le bouton et le modifier en fonction de la sous-classe
+    //méthodes pour récupérer les boutons et les modifier en fonction de la sous-classe
+    QPushButton* getButton_save() {return bouton_save;}
+    QPushButton* getButton_delete() {return bouton_delete;}
+    QPushButton* getButton_actualize() {return bouton_actualize;}
+    QPushButton* getButton_restore() {return bouton_restore;}
     QLineEdit* getTitle() {return titre;} //méthode pour récupérer le titre et le modifier en fonction de la sous-classe
     QLineEdit* getId() {return id;} //méthode pour récupérer l'id et le modifier en fonction de la sous-classe
+    QLabel* getDate_m(){return date_m;}
+    QLabel* getVersion(){return version;}
+    QLabel* getLast(){return last;}
+
     virtual void extensionsave()=0;
     virtual void extensionsetasactual()=0;
     Note& getNote() const {return *note;}
+    void setNote(Note* newnote){note=newnote;}
+    virtual void blockall()=0;
 
 signals:
 
@@ -53,8 +64,9 @@ public slots:
     void save();
     void delete_note();
     void setAsActual();
+    void restore();
 private slots: //à usage interne
-    void activerBouton(QString str="");
+    void activerBouton_save(QString str="");
 };
 
 
@@ -67,6 +79,7 @@ protected:
 public:
     ArticleEditeur(Article& a, QWidget* parent=0);
     ArticleEditeur(QWidget* parent=0);
+    void blockall();
 public slots:
     void extensionsave();
     void extensionsetasactual();

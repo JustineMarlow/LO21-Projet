@@ -151,6 +151,7 @@ public:
     Note& getVersionNote(const QString& id, unsigned int v);
     void addArticle(const QString& id, const QString& ti, const QString& te,const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat);
     void deleteNote(Note& n);
+    void restoreNote(Note& n);
 
     class Iterator{
         Note** tab;
