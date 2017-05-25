@@ -51,6 +51,39 @@ VuePrincipale::VuePrincipale(Article& a) : article(a){
      zoneCentrale->setLayout(layoutPrincipal);
      setWindowTitle("Pluri'notes");
 
+     //menu
+     QMenu *menuFichier = menuBar()->addMenu("&Fichier");
+        QMenu *nouveau = menuFichier->addMenu("&Nouvelle note");
+            QAction *actionArt=new QAction("Nouvel article", this);
+            nouveau->addAction(actionArt);
+            QAction* actionTache=new QAction("Nouvelle &tâche", this);
+            nouveau->addAction(actionTache);
+            QAction* actionImage=new QAction("Nouvelle Image", this);
+            nouveau->addAction(actionImage);
+         QAction *actionSave=new QAction("&Enregistrer", this);
+         menuFichier->addAction(actionSave);
+         actionSave->setShortcut(QKeySequence("Ctrl+S"));
+         QAction *actionQuitter = new QAction("&Quitter", this);
+         actionQuitter->setShortcut(tr("Ctrl+Q"));
+         connect(actionQuitter, SIGNAL(triggered()), qApp, SLOT(quit()));
+         menuFichier->addAction(actionQuitter);
+
+
+     QMenu *menuEdition = menuBar()->addMenu("&Edition");
+        QAction* actionAnnuler=new QAction("Annuler", this);
+        menuEdition->addAction(actionAnnuler);
+        actionAnnuler->setShortcut(QKeySequence("Ctrl+Z"));
+        QAction* actionRetablir=new QAction("Rétablir", this);
+        actionRetablir->setShortcut(QKeySequence("Ctrl+Y"));
+        menuEdition->addAction(actionRetablir);
+
+     QMenu *menuCorbeille = menuBar()->addMenu("&Corbeille");
+        QAction* actionSupp=new QAction("Supprimer automatiquement les notes archivées à la fermeture de l'application", this);
+        menuCorbeille->addAction(actionSupp);
+        actionSupp->setCheckable(true); //pour le slot : avec vérifier avec isChecked()
+        QAction* actionArchives=new QAction("Voir les notes &archivées", this);
+        menuCorbeille->addAction(actionArchives);
+
 }
 
 
