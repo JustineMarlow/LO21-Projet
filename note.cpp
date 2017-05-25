@@ -18,6 +18,7 @@ Autre::~Autre(){}
 /*============================================================= NotesManager ==========================================================================================*/
 //destructeur
 NotesManager::~NotesManager(){
+    viderCorbeille();
     if (filename!="") save();
     for(unsigned int i=0; i<nbNotes; i++) delete notes[i];
     delete[] notes;
@@ -109,6 +110,17 @@ void NotesManager::restoreNote(Note& n)
 {
     NotesManager &manager_notes=NotesManager::getInstance();
     for(unsigned int v=1; v<=n.getVersion(); v++) manager_notes.getVersionNote(n.getId(),v).setEtat(active);
+}
+
+void NotesManager::viderCorbeille()
+{
+    for(unsigned int i=0;i<nbNotes;i++)
+        if(notes[i]->getEtat()==corbeille)
+        { delete notes[i];
+          for(unsigned int j=i;j<nbNotes;j++)
+              notes[j]=notes[j+1];
+          nbNotes--;
+        }
 }
 
 //permet de charger un fichier de Notes
