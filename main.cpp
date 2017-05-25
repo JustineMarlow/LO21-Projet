@@ -12,7 +12,6 @@ int main(int argc, char *argv[])
 
     try{
     QApplication app(argc, argv);
-
     QString fichier = QFileDialog::getOpenFileName();
     NotesManager &m=NotesManager::getInstance();
     m.setFilename(fichier);
@@ -20,7 +19,24 @@ int main(int argc, char *argv[])
     Article& a=dynamic_cast<Article&>(m.getVersionNote("id:A2",1));
     VuePrincipale fenetre(a);
 
-    //ArticleEditeur fenetre(a);
+    /*RelationsManager &manager_relations=RelationsManager::getInstance();
+    manager_relations.setFilename("/home/marlow/Bureau/Projet/Relations.xml");
+    manager_relations.load();*/
+
+    /*
+    Relation& r1=manager_relations.createRelation("New Relation", "nouvelle relation",false);
+    Note& n1=manager_notes.getNote("id:A1");
+    Note& n2=manager_notes.getNote("id:A2");
+    r1.addCouple(n1,n2,"label");
+    */
+
+    //Article& a=dynamic_cast<Article&>(manager_notes.getNote("id:A2"));
+    //qDebug()<<"article recuperee \n";
+    //VuePrincipale fenetre(a);
+
+
+   // ArticleEditeur fenetre;
+    //qDebug()<<"fenetre cree \n";
     //for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
     //{ if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
 
@@ -28,7 +44,6 @@ int main(int argc, char *argv[])
     return app.exec();
     }
     catch(NotesException e){qDebug()<<e.getInfo();}
-
 
 
     /*try{
@@ -47,7 +62,7 @@ int main(int argc, char *argv[])
     Relation & r=manager_relations.getRelation("Reference");
     RelationEditeur fenetre(r);*/
 
-    //idee pour afficher toutes les relations
+
     /*
     QVBoxLayout *layout=new QVBoxLayout;
     for (RelationsManager::Iterator iterator=RelationsManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
@@ -67,6 +82,7 @@ int main(int argc, char *argv[])
     return app.exec();
     }
 
-    catch(NotesException e){qDebug()<<e.getInfo();} */
 
-}
+    catch(NotesException e){qDebug()<<e.getInfo();}*/
+
+ }

@@ -1,13 +1,8 @@
 #ifndef RELATIONEDITEUR
 #define RELATIONEDITEUR
-
 #include <QApplication>
 #include <QFileDialog>
-#include <QMainWindow>
 #include <QWidget>
-#include <QFrame>
-#include <QMenuBar>
-#include <QMenu>
 #include <QLabel>
 #include <QLineEdit>
 #include <QTextEdit>
@@ -36,13 +31,13 @@ protected:
 
 public:
     explicit RelationEditeur(Relation& r, QWidget* parent=0);
-    //explicit RelationEditeur(QWidget* parent=0);
+    explicit RelationEditeur(QWidget* parent=0);
 
 signals:
 
 public slots:
     void save();
-    //void create();
+    void create();
     void delete_relation();
 private slots: //à usage interne
     void activerBouton(QString str="");

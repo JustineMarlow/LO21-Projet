@@ -6,6 +6,15 @@
 #include <typeinfo>
 #include <QDebug>
 
+/*============================================================== Relation =============================================================================================*/
+//destructeur
+Relation::~Relation(){
+    for (unsigned int i=0; i<nbCouples; i++)
+        delete[] tableau[i];
+      delete[] tableau;
+}
+
+//méthode privée : permet d'ajouter un couple
 void Relation::addCouple_function(Note& x, Note& y, QString l){
     if (!(tableau==0))
         for (unsigned int i=0; i<nbCouples; i++)
@@ -34,18 +43,14 @@ void Relation::addCouple_function(Note& x, Note& y, QString l){
     tableau_label[rang]=l;
 }
 
+//méthode publique qui appelle la méthode privée en fonction du caractère orientée de la relation
 void Relation::addCouple(Note &x, Note &y, QString label){
     if (oriente) addCouple_function(x,y,label);
     else { addCouple_function(x,y,label);
            addCouple_function(y,x,label);}
 }
 
-Relation::~Relation(){
-    for (unsigned int i=0; i<nbCouples; i++)
-        delete[] tableau[i];
-      delete[] tableau;
-}
-
+//permet de modifier le label d'un couple
 void Relation::set_label_couple(Note& x, Note& y, QString l){
     unsigned int i=0;
     while (i<=nbCouples && (tableau[1][i]->getId()==x.getId() || tableau[2][i]->getId()==y.getId()))
@@ -54,6 +59,7 @@ void Relation::set_label_couple(Note& x, Note& y, QString l){
     else tableau_label[i]=l;
 }
 
+//méthode privée : permet de retirer un couple
 void Relation::removeCouple_function(Note& x, Note& y){
     unsigned int i=0;
     while (i<=nbCouples && (tableau[1][i]->getId()==x.getId() || tableau[2][i]->getId()==y.getId()))
@@ -69,23 +75,28 @@ void Relation::removeCouple_function(Note& x, Note& y){
     }
 }
 
+//méthode publique qui appelle la méthode privée en fonction du caractère orientée de la relation
 void Relation::removeCouple(Note &x, Note &y){
     if (oriente) removeCouple_function(x,y);
     else { removeCouple_function(x,y);
            removeCouple_function(y,x);}
 }
 
+/*========================================================= RelationsManager ==========================================================================================*/
+//destructeur
 RelationsManager::~RelationsManager(){
     if (filename!="") save();
     for(unsigned int i=0; i<nbRelations; i++) delete relations[i];
     delete[] relations;
 }
 
+//singleton
 RelationsManager& RelationsManager::getInstance(){
     static RelationsManager instance;
     return instance;
 }
 
+//permet d'ajouter une relation au RelationsManager
 void RelationsManager::addRelation(Relation& r)
 {
     for(unsigned int i=0; i<nbRelations; i++)
@@ -105,6 +116,7 @@ void RelationsManager::addRelation(Relation& r)
     nbRelations++;
 }
 
+//permet de créer une nouvelle relation et l'ajouter au RelationsManager
 Relation& RelationsManager::createRelation(const QString& titre, const QString& description, bool isOriente)
 {
     Relation* r=new Relation(titre,description,isOriente);
@@ -112,6 +124,7 @@ Relation& RelationsManager::createRelation(const QString& titre, const QString& 
     return *r;
 }
 
+//permet de récupérer une relation particulière (via son titre)
 Relation& RelationsManager::getRelation(const QString& titre)
 {
     for(unsigned int i=0; i<nbRelations; i++)
@@ -121,8 +134,10 @@ Relation& RelationsManager::getRelation(const QString& titre)
     throw NotesException("Relation inexistante");
 }
 
+//permet de supprimer une relation
 void RelationsManager::deleteRelation(Relation& r)
 {
+    if (r.getTitre()=="Reference") throw NotesException("Impossible de supprimer Reference");
     unsigned int i=0;
     while(relations[i]->getTitre()!=r.getTitre())
         i++;
@@ -133,6 +148,7 @@ void RelationsManager::deleteRelation(Relation& r)
     nbRelations--;
 }
 
+//permet de charger un fichier de Relations
 void RelationsManager::load() {
     QFile fin(filename);
     // If we can't open it, let's show an error message.
@@ -168,30 +184,22 @@ void RelationsManager::load() {
                 //We'll continue the loop until we hit an EndElement named relations.
                 while(!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "relation")) {
                     if(xml.tokenType() == QXmlStreamReader::StartElement) {
-
                         //titre
                         if(xml.name() == "titre") {
                             xml.readNext();
                             titre=xml.text().toString();
-                            qDebug()<<"titre="<<titre<<"\n";
-
-                        }
-
+                            qDebug()<<"titre="<<titre<<"\n";}
                         //description
                         if(xml.name() == "description") {
                             xml.readNext();
                             description=xml.text().toString();
-                            qDebug()<<"description="<<description<<"\n";
-                        }
-
+                            qDebug()<<"description="<<description<<"\n";}
                         if(xml.name() == "oriente") {
                             xml.readNext();
                             QString oriente_lu=xml.text().toString();
                             qDebug()<<"oriente_lu="<<oriente_lu<<"\n";
                             if (latinCompare(oriente_lu, "oui")) {isOriente=true; qDebug()<<"oriente true";}
-                            else {if (latinCompare(oriente_lu, "non")) {isOriente=false; qDebug()<<"oriente false";}}
-                        }
-
+                            else {if (latinCompare(oriente_lu, "non")) {isOriente=false; qDebug()<<"oriente false";}}}
                         if(xml.name() == "couple") {
                             if(nbCouples==nbMaxCouples) //les tableaux nécessitent des agrandissements
                             {
@@ -200,9 +208,7 @@ void RelationsManager::load() {
                                 QString* Newidy=new QString[nbMaxCouples];
                                 QString* Newlabel=new QString[nbMaxCouples];
                                 for (unsigned int i=0;i<nbCouples;i++)
-                                {
-                                    Newidx[i]=idx[i]; Newidy[i]=idy[i]; Newlabel[i]=label[i];
-                                }
+                                { Newidx[i]=idx[i]; Newidy[i]=idy[i]; Newlabel[i]=label[i];}
                                 QString* oldidx=idx;
                                 QString* oldidy=idy;
                                 QString* oldlabel=label;
@@ -217,34 +223,26 @@ void RelationsManager::load() {
                             xml.readNext();
                             while(!(xml.tokenType() == QXmlStreamReader::EndElement && xml.name() == "couple")) {
                                 if(xml.tokenType() == QXmlStreamReader::StartElement) {
-
                                     //idx
                                     if(xml.name() == "idX") {
                                         xml.readNext();
                                         idx[rang]=xml.text().toString();
-                                        qDebug()<<"idx="<<idx[rang]<<"\n";
-                                    }
+                                        qDebug()<<"idx="<<idx[rang]<<"\n";}
                                     //idy
                                     if(xml.name() == "idY") {
                                         xml.readNext();
                                         idy[rang]=xml.text().toString();
-                                        qDebug()<<"idy="<<idy[rang]<<"\n";
-                                    }
+                                        qDebug()<<"idy="<<idy[rang]<<"\n";}
                                     //label
                                     if(xml.name() == "label") {
                                         xml.readNext();
                                         label[rang]=xml.text().toString();
                                         qDebug()<<"label="<<label[rang]<<"\n";
                                     }
-
                                  }
                                 xml.readNext();
                             }
-
-
                         }
-
-
                     }
                     // ...and next...
                     xml.readNext();
@@ -252,24 +250,19 @@ void RelationsManager::load() {
                 Relation& r=createRelation(titre,description,isOriente);
                 qDebug()<<"Relation "<<r.getTitre()<<" ajoutee \n";
                 for (unsigned int i=0; i<nbCouples; i++) r.addCouple(NotesManager::getInstance().getNote(idx[i]), NotesManager::getInstance().getNote(idy[i]), label[i]);
-
-
-
             }
-
         }
     }
     // Error handling.
     if(xml.hasError()) {
-        throw NotesException("Erreur lecteur fichier relations, parser xml");
-    }
+        throw NotesException("Erreur lecteur fichier relations, parser xml");}
     // Removes any device() or data from the reader * and resets its internal state to the initial state.=
     xml.clear();
     qDebug()<<"fin load\n";
 }
 
+//permet de sauvegarder les relations dans le fichier
 void RelationsManager::save() const {
-
     QFile newfile(filename);
     if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
         throw NotesException(QString("Erreur dans la sauvegarde : echec lors de l'ouverture du fichier xml de relations"));
