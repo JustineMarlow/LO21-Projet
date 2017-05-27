@@ -13,6 +13,8 @@
 #include <QMessageBox>
 #include <QRadioButton>
 #include <QButtonGroup>
+#include <QSpinBox>
+#include <QDateEdit>
 #include <note.h>
 
 /*============================================================== NoteEditeur ==========================================================================================*/
@@ -99,6 +101,46 @@ protected:
 public:
     TacheEditeur(Tache& t, QWidget* parent=0);
     TacheEditeur(QWidget* parent=0);
+    QRadioButton* getCheck_attente() {return check_attente;}
+    QRadioButton* getCheck_cours() {return check_cours;}
+    QRadioButton* getCheck_terminee() {return check_terminee;}
+    QTextEdit* getText() {return text;}
+    void blockall();
+public slots:
+    void extensionsave();
+    void extensionsetasactual();
+    void create();
+};
+
+/*====================================================== TacheAvecPrioriteEditeur =====================================================================================*/
+class TacheAvecPrioriteEditeur:public TacheEditeur
+{
+protected:
+    Q_OBJECT
+    QLabel* priorite1;
+    QSpinBox* priorite;
+
+public:
+    TacheAvecPrioriteEditeur(TacheAvecPriorite& t, QWidget* parent=0);
+    TacheAvecPrioriteEditeur(QWidget* parent=0);
+    void blockall();
+public slots:
+    void extensionsave();
+    void extensionsetasactual();
+    void create();
+};
+
+/*====================================================== TacheAvecDeadlineEditeur =====================================================================================*/
+class TacheAvecDeadlineEditeur:public TacheEditeur
+{
+protected:
+    Q_OBJECT
+    QLabel* deadline1;
+    QDateEdit* deadline;
+
+public:
+    TacheAvecDeadlineEditeur(TacheAvecDeadline& t, QWidget* parent=0);
+    TacheAvecDeadlineEditeur(QWidget* parent=0);
     void blockall();
 public slots:
     void extensionsave();

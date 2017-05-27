@@ -85,8 +85,8 @@ public:
         class TacheAvecPriorite:public Tache
         {
         protected:
-            int priorite;
-            TacheAvecPriorite(QString id, QString t, QString text, int p=0, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active, TacheStatut st=attente)
+            unsigned int priorite;
+            TacheAvecPriorite(QString id, QString t, QString text, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active, TacheStatut st=attente,int p=0)
                 :Tache(id,t,text,date_c,date_m,last,v,e,st),
                  priorite(p)
                  {}
@@ -153,6 +153,8 @@ public:
     Note& getVersionNote(const QString& id, unsigned int v);
     void addArticle(const QString& id, const QString& ti, const QString& te,const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat);
     void addTache(const QString& id, const QString& t, const QString& text, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, TacheStatut st);
+    void addTacheAvecPriorite(const QString& id, const QString& t, const QString& text, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, TacheStatut st, unsigned int priorite);
+    void addTacheAvecDeadline(const QString& id, const QString& t, const QString& text, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, TacheStatut st, const QDate deadline);
     void deleteNote(Note& n);
     void restoreNote(Note& n);
     void viderCorbeille();

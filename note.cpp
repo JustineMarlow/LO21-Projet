@@ -85,6 +85,20 @@ void NotesManager::addTache(const QString& id, const QString& ti, const QString&
     addNote(t);
 }
 
+//permet de créer une tâche avec priorité et l'ajouter au NotesManager
+void NotesManager::addTacheAvecPriorite(const QString& id, const QString& ti, const QString& te, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, TacheStatut st,unsigned int priorite)
+{
+    TacheAvecPriorite* tp=new TacheAvecPriorite(id,ti,te,date_c,date_m,last,v,etat,st,priorite);
+    addNote(tp);
+}
+
+//permet de créer une tâche avec deadline et l'ajouter au NotesManager
+void NotesManager::addTacheAvecDeadline(const QString& id, const QString& ti, const QString& te, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, TacheStatut st, const QDate deadline)
+{
+    TacheAvecDeadline* td=new TacheAvecDeadline(id,ti,te,deadline,date_c,date_m,last,v,etat,st);
+    addNote(td);
+}
+
 //permet de supprimer une relation
 void NotesManager::deleteNote(Note& n)
 {
@@ -147,7 +161,7 @@ void NotesManager::load() {
         if(token == QXmlStreamReader::StartElement) {
             if(xml.name() == "notes") continue;
                 if(xml.name() == "article") {
-                    qDebug()<<"new article\n";
+                    qDebug()<<"nouvel article\n";
                     QString identificateur;
                     QString titre;
                     QString text;
@@ -226,6 +240,10 @@ void NotesManager::load() {
                 QString titre;
                 QString text;
                 unsigned int version;
+                bool p_trouvee=false;
+                bool d_trouvee=false;
+                unsigned int priorite;
+                QDate deadline;
                 QDate date_c;
                 QDate date_m;
                 NoteEtat etat;
@@ -296,12 +314,29 @@ void NotesManager::load() {
                             else {if (latinCompare(statut_lu, "Cours")) {statut=cours; qDebug()<<"La tache est en cours";}
                                   else {if (latinCompare(statut_lu, "Terminee")) {statut=terminee; qDebug()<<"La tache est terminee";}
                                         else throw NotesException("Erreur dans lecture statut (tache) xml");}}}
+                        //priorite
+                        if(xml.name() == "priorite") {
+                            p_trouvee=true;
+                            xml.readNext();
+                            QString priorite_lue=xml.text().toString();
+                            bool conversion;
+                            priorite = priorite_lue.toUInt(&conversion, 10);
+                            if (conversion==false) throw NotesException("Erreur dans conversion QString to Int (priorite)");
+                            qDebug()<<"priorite="<<priorite<<"\n";}
+                        //deadline
+                        if(xml.name() == "deadline") {
+                            d_trouvee=true;
+                            xml.readNext();
+                            QString deadline_lue=xml.text().toString();
+                            deadline = QDate::fromString(deadline_lue,"dd/MM/yyyy");
+                            qDebug()<<"deadline="<<deadline.QDate::toString(QString("dd/MM/yyyy"))<<"\n";}
                     }
                     // ...and next...
                     xml.readNext();
                 }
-                qDebug()<<"ajout tache "<<identificateur<<"\n";
-                addTache(identificateur,titre,text,date_c,date_m,version,isLast,etat,statut);
+                if (!(p_trouvee || d_trouvee)) {qDebug()<<"ajout tache "<<identificateur<<"\n"; addTache(identificateur,titre,text,date_c,date_m,version,isLast,etat,statut);}
+                else if (p_trouvee && !(d_trouvee)) {qDebug()<<"ajout tache avec priorite "<<identificateur<<"\n"; addTacheAvecPriorite(identificateur,titre,text,date_c,date_m,version,isLast,etat,statut,priorite);}
+                     else if (d_trouvee && !(p_trouvee)) {qDebug()<<"ajout tache avec deadline "<<identificateur<<"\n"; addTacheAvecDeadline(identificateur,titre,text,date_c,date_m,version,isLast,etat,statut,deadline);}
             }
         }
     }
@@ -315,7 +350,6 @@ void NotesManager::load() {
 
 //permet de sauvegarder les notes dans le fichier
 void NotesManager::save() const {
-
     QFile newfile(filename);
     if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
         throw NotesException(QString("Erreur dans la sauvegarde : echec lors de l'ouverture du fichier xml de notes"));
@@ -325,42 +359,48 @@ void NotesManager::save() const {
     stream.writeStartElement("notes");
     for(unsigned int i=0; i<nbNotes; i++){
         if (typeid(*notes[i])==typeid(Article))
-        {   Article& a=dynamic_cast<Article&>(*notes[i]);
+        {   qDebug()<<i<<" : mise a jour article \n";
+            Article& n=dynamic_cast<Article&>(*notes[i]);
             stream.writeStartElement("article");
-            stream.writeTextElement("id",a.getId());
-            stream.writeTextElement("title",a.getTitre());
-            stream.writeTextElement("text",a.getTexte());
-            stream.writeTextElement("creation",a.getCreation().QDate::toString(QString("dd/MM/yyyy")));
-            stream.writeTextElement("modification",a.getModification().QDate::toString(QString("dd/MM/yyyy")));
-            if (a.IsLast()==true) stream.writeTextElement("last","oui");
-            else stream.writeTextElement("last","non");
-            if (a.getEtat()==active) stream.writeTextElement("etat","Active");
-            else if (a.getEtat()==archivee) stream.writeTextElement("etat","Archivee");
-            else stream.writeTextElement("etat","Corbeille");
-            stream.writeTextElement("version",QString::number(a.getVersion()));
-            stream.writeEndElement();
-            qDebug()<<i<<" : article mis a jour \n";
+            stream.writeTextElement("text",n.getTexte());
         }
-        if (typeid(*notes[i])==typeid(Tache))
-        {   Tache& t=dynamic_cast<Tache&>(*notes[i]);
-            stream.writeStartElement("tache");
-            stream.writeTextElement("id",t.getId());
-            stream.writeTextElement("title",t.getTitre());
-            stream.writeTextElement("text",t.getTexte());
-            stream.writeTextElement("creation",t.getCreation().QDate::toString(QString("dd/MM/yyyy")));
-            stream.writeTextElement("modification",t.getModification().QDate::toString(QString("dd/MM/yyyy")));
-            if (t.IsLast()==true) stream.writeTextElement("last","oui");
-            else stream.writeTextElement("last","non");
-            if (t.getEtat()==active) stream.writeTextElement("etat","Active");
-            else if (t.getEtat()==archivee) stream.writeTextElement("etat","Archivee");
-            else stream.writeTextElement("etat","Corbeille");
-            stream.writeTextElement("version",QString::number(t.getVersion()));
-            if (t.getStatut()==attente) stream.writeTextElement("statut","Attente");
-            else if (t.getStatut()==cours) stream.writeTextElement("statut","Cours");
+        else if (typeid(*notes[i])==typeid(Tache))
+        {   qDebug()<<i<<" : mise a jour tache \n";
+            Tache& n=dynamic_cast<Tache&>(*notes[i]); stream.writeStartElement("tache");
+            stream.writeTextElement("text",n.getTexte());
+            if (n.getStatut()==attente) stream.writeTextElement("statut","Attente");
+            else if (n.getStatut()==cours) stream.writeTextElement("statut","Cours");
             else stream.writeTextElement("statut","Terminee");
-            stream.writeEndElement();
-            qDebug()<<i<<" : tache mise a jour \n";
         }
+        else if (typeid(*notes[i])==typeid(TacheAvecPriorite))
+        {   qDebug()<<i<<" : mise a jour tache avec priorite \n";
+            TacheAvecPriorite& n=dynamic_cast<TacheAvecPriorite&>(*notes[i]); stream.writeStartElement("tache");
+            stream.writeTextElement("text",n.getTexte());
+            if (n.getStatut()==attente) stream.writeTextElement("statut","Attente");
+            else if (n.getStatut()==cours) stream.writeTextElement("statut","Cours");
+            else stream.writeTextElement("statut","Terminee");
+            stream.writeTextElement("priorite",QString::number(n.getPriorite()));
+        }
+        else if (typeid(*notes[i])==typeid(TacheAvecDeadline))
+        {   qDebug()<<i<<" : mise a jour tache avec deadline \n";
+            TacheAvecDeadline& n=dynamic_cast<TacheAvecDeadline&>(*notes[i]); stream.writeStartElement("tache");
+            stream.writeTextElement("text",n.getTexte());
+            if (n.getStatut()==attente) stream.writeTextElement("statut","Attente");
+            else if (n.getStatut()==cours) stream.writeTextElement("statut","Cours");
+            else stream.writeTextElement("statut","Terminee");
+            stream.writeTextElement("deadline",n.getDeadline().QDate::toString(QString("dd/MM/yyyy")));
+        }
+            stream.writeTextElement("id",notes[i]->getId());
+            stream.writeTextElement("title",notes[i]->getTitre());
+            stream.writeTextElement("creation",notes[i]->getCreation().QDate::toString(QString("dd/MM/yyyy")));
+            stream.writeTextElement("modification",notes[i]->getModification().QDate::toString(QString("dd/MM/yyyy")));
+            if (notes[i]->IsLast()==true) stream.writeTextElement("last","oui");
+            else stream.writeTextElement("last","non");
+            if (notes[i]->getEtat()==active) stream.writeTextElement("etat","Active");
+            else if (notes[i]->getEtat()==archivee) stream.writeTextElement("etat","Archivee");
+            else stream.writeTextElement("etat","Corbeille");
+            stream.writeTextElement("version",QString::number(notes[i]->getVersion()));
+            stream.writeEndElement();
     }
     stream.writeEndElement();
     stream.writeEndDocument();
