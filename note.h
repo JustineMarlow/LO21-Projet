@@ -152,6 +152,7 @@ public:
     Note& getNote(const QString& id);
     Note& getVersionNote(const QString& id, unsigned int v);
     void addArticle(const QString& id, const QString& ti, const QString& te,const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat);
+    void addTache(const QString& id, const QString& t, const QString& text, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, TacheStatut st);
     void deleteNote(Note& n);
     void restoreNote(Note& n);
     void viderCorbeille();

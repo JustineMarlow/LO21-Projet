@@ -11,6 +11,8 @@
 #include <QDate>
 #include <QDateEdit>
 #include <QMessageBox>
+#include <QRadioButton>
+#include <QButtonGroup>
 #include <note.h>
 
 /*============================================================== NoteEditeur ==========================================================================================*/
@@ -48,7 +50,6 @@ public:
     QLabel* getDate_m(){return date_m;}
     QLabel* getVersion(){return version;}
     QLabel* getLast(){return last;}
-
     virtual void extensionsave()=0;
     virtual void extensionsetasactual()=0;
     Note& getNote() const {return *note;}
@@ -81,7 +82,28 @@ public slots:
     void extensionsave();
     void extensionsetasactual();
     void create();
+};
 
+
+/*============================================================= TacheEditeur ==========================================================================================*/
+class TacheEditeur:public NoteEditeur
+{
+protected:
+    Q_OBJECT
+    QLabel* text1;
+    QTextEdit* text;
+    QRadioButton* check_attente;
+    QRadioButton* check_cours;
+    QRadioButton* check_terminee;
+
+public:
+    TacheEditeur(Tache& t, QWidget* parent=0);
+    TacheEditeur(QWidget* parent=0);
+    void blockall();
+public slots:
+    void extensionsave();
+    void extensionsetasactual();
+    void create();
 };
 
 

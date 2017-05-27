@@ -30,4 +30,26 @@
         <etat>Active</etat>
         <version>2</version>
     </article>
+    <tache>
+        <id>id:T1</id>
+        <title>Une première tâche</title>
+        <text>Ceci est une première tâche.</text>
+        <creation>15/02/2015</creation>
+        <modification>18/02/2015</modification>
+        <last>non</last>
+        <etat>Active</etat>
+        <version>1</version>
+        <statut>Attente</statut>
+    </tache>
+    <tache>
+        <id>id:T1</id>
+        <title>Une première tâche</title>
+        <text>Ceci est une première tâche.</text>
+        <creation>15/02/2015</creation>
+        <modification>27/05/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>2</version>
+        <statut>Cours</statut>
+    </tache>
 </notes>

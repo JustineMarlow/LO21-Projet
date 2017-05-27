@@ -19,20 +19,8 @@ int main(int argc, char *argv[])
     manager_relations.setFilename("/home/marlow/Bureau/Projet/Relations.xml");
     manager_relations.load();
 
-    /*
-    Relation& r1=manager_relations.createRelation("New Relation", "nouvelle relation",false);
-    Note& n1=manager_notes.getNote("id:A1");
-    Note& n2=manager_notes.getNote("id:A2");
-    r1.addCouple(n1,n2,"label");
-    */
-
-    //Article& a=dynamic_cast<Article&>(manager_notes.getNote("id:A2"));
-    //qDebug()<<"article recuperee \n";
-    //VuePrincipale fenetre(a);
-
-
-    ArticleEditeur fenetre;
-    qDebug()<<"fenetre cree \n";
+    Tache& t=dynamic_cast<Tache&>(manager_notes.getVersionNote("id:T1",1));
+    TacheEditeur fenetre(t);
     //for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
     //{ if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
 

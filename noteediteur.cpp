@@ -207,3 +207,118 @@ void ArticleEditeur::blockall(){
     text->setDisabled(true);
 }
 
+
+/*============================================================= TacheEditeur ==========================================================================================*/
+//TacheEditeur d'une tache existante
+TacheEditeur::TacheEditeur(Tache& t, QWidget* parent):NoteEditeur(t,parent)
+{
+    text1 = new QLabel("Texte",this);
+    text = new QTextEdit(this);
+    getLayout()->addWidget(text1);
+    getLayout()->addWidget(text);
+    text->setText(t.getTexte());
+    check_attente = new QRadioButton("En attente",this);
+    check_cours = new QRadioButton("En cours",this);
+    check_terminee = new QRadioButton("Terminee",this);
+    if(t.getStatut()==attente) check_attente->setChecked(true);
+    else if(t.getStatut()==cours) check_cours->setChecked(true);
+    else check_terminee->setChecked(true);
+    getLayout()->addWidget(check_attente);
+    getLayout()->addWidget(check_cours);
+    getLayout()->addWidget(check_terminee);
+
+    if (t.getEtat()==active)
+        if (t.IsLast())
+        {
+            getLayout()->addWidget(getButton_save());
+            getLayout()->addWidget(getButton_delete());
+            QObject::connect(text, SIGNAL(textChanged()), this, SLOT(activerBouton_save()));
+            QObject::connect(check_attente, SIGNAL(clicked()), this, SLOT(activerBouton_save()));
+            QObject::connect(check_cours, SIGNAL(clicked()), this, SLOT(activerBouton_save()));
+            QObject::connect(check_terminee, SIGNAL(clicked()), this, SLOT(activerBouton_save()));
+
+        }
+        else
+        {
+            text->setDisabled(true);
+            check_attente->setDisabled(true);
+            check_cours->setDisabled(true);
+            check_terminee->setDisabled(true);
+            getLayout()->addWidget(getButton_actualize());
+        }
+    else if (t.getEtat()==archivee) {text->setDisabled(true);
+                                     check_attente->setDisabled(true);
+                                     check_cours->setDisabled(true);
+                                     check_terminee->setDisabled(true);
+                                     getLayout()->addWidget(getButton_restore());}
+
+    setLayout(getLayout());
+}
+
+//TacheEditeur d'une nouvelle tâche
+TacheEditeur::TacheEditeur(QWidget* parent):NoteEditeur(parent)
+{
+    text1 = new QLabel("Texte",this);
+    text = new QTextEdit(this);
+    getLayout()->addWidget(text1);
+    getLayout()->addWidget(text);
+    getLayout()->addWidget(getButton_save());
+    QObject::connect(getButton_save(), SIGNAL(clicked()), this, SLOT(create()));
+    QObject::connect(getId(), SIGNAL(textChanged(QString)), this, SLOT(activerBouton_save(QString)));
+    //par défaut, une tâche est en attente
+    setLayout(getLayout());
+}
+
+void TacheEditeur::create()
+{
+    //on créé un nouvel objet de type Tâche
+    NotesManager &m=NotesManager::getInstance();
+    m.addTache(this->getId()->text(),this->getTitle()->text(), this->text->toPlainText(), QDate::currentDate(), QDate::currentDate(), 1, true, active,attente);
+    QMessageBox::information(this,"Sauvegarde","Sauvegarde de la nouvellle tâche");
+    getButton_save()->setDisabled(true);
+    blockall();
+}
+
+
+void TacheEditeur::extensionsave()
+{
+    Tache& t=dynamic_cast<Tache&>(getNote());
+    //on créé un nouvel objet de type Tâche, l'id et la date de création ne changent pas, la version++, la date modification = la date current
+    NotesManager &m=NotesManager::getInstance();
+    TacheStatut st;
+    if (check_cours->isChecked()) st=cours;
+    else if (check_terminee->isChecked()) st=terminee;
+    else st=attente;
+    m.addTache(t.getId(), this->getTitle()->text(), text->toPlainText(), t.getCreation(), QDate::currentDate(), t.getVersion()+1, true, active,st);
+    QMessageBox::information(this,"Sauvegarde","Sauvegarde de l'article");
+    getButton_save()->setDisabled(true);
+    setNote(&m.getNote(t.getId()));
+    getDate_m()->setText("Date de derniere modification : "+m.getNote(t.getId()).getModification().QDate::toString(QString("dd/MM/yyyy")));
+    getVersion()->setText("Version : "+QString::number(m.getNote(t.getId()).getVersion()));
+}
+
+void TacheEditeur::extensionsetasactual()
+{
+    Tache& t=dynamic_cast<Tache&>(getNote());
+    NotesManager &m=NotesManager::getInstance();
+    unsigned int last_version=m.getNote(t.getId()).getVersion();
+    m.getNote(t.getId()).setLast(false);
+    m.addTache(t.getId(),t.getTitre(),t.getTexte(),t.getCreation(),QDate::currentDate(),last_version+1,true,active,t.getStatut());
+    QMessageBox::information(this,"Mise a jour","Cette version a ete retablie comme version actuelle");
+    getButton_actualize()->setDisabled(true);
+    getDate_m()->setText("Date de derniere modification : "+m.getNote(t.getId()).getModification().QDate::toString(QString("dd/MM/yyyy")));
+    getVersion()->setText("Version : "+QString::number(m.getNote(t.getId()).getVersion()));
+    if (m.getNote(t.getId()).IsLast()) getLast()->setText("Derniere version : oui");
+    else getLast()->setText("Derniere version : non");
+    blockall();
+}
+
+void TacheEditeur::blockall(){
+    getId()->setDisabled(true);
+    getTitle()->setDisabled(true);
+    text->setDisabled(true);
+    check_attente->setDisabled(true);
+    check_cours->setDisabled(true);
+    check_terminee->setDisabled(true);
+}
+
