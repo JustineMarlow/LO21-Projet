@@ -27,20 +27,9 @@
         <title>Une première tâche</title>
         <creation>15/02/2015</creation>
         <modification>18/02/2015</modification>
-        <last>non</last>
-        <etat>Active</etat>
-        <version>1</version>
-    </tache>
-    <tache>
-        <text>Ceci est une première tâche éditée.</text>
-        <statut>Attente</statut>
-        <id>id:T1</id>
-        <title>Une première tâche</title>
-        <creation>15/02/2015</creation>
-        <modification>18/02/2015</modification>
         <last>oui</last>
         <etat>Active</etat>
-        <version>2</version>
+        <version>1</version>
     </tache>
     <tache>
         <text>Ceci est une deuxième tâche, qui possède une priorité.</text>
@@ -50,21 +39,9 @@
         <title>Une deuxième tâche avec une priorité</title>
         <creation>15/02/2015</creation>
         <modification>27/05/2017</modification>
-        <last>non</last>
-        <etat>Active</etat>
-        <version>1</version>
-    </tache>
-    <tache>
-        <text>Ceci est une deuxième version de la deuxieme tâche, qui possède une priorité.</text>
-        <statut>Attente</statut>
-        <priorite>3</priorite>
-        <id>id:T2</id>
-        <title>Une deuxième tâche avec une priorité</title>
-        <creation>15/02/2015</creation>
-        <modification>27/05/2017</modification>
         <last>oui</last>
         <etat>Active</etat>
-        <version>2</version>
+        <version>1</version>
     </tache>
     <tache>
         <text>Ceci est une tâche avec deadline</text>
@@ -78,4 +55,40 @@
         <etat>Active</etat>
         <version>1</version>
     </tache>
+    <fichier>
+        <description>Une magnifique photo</description>
+        <type>Image</type>
+        <filename>image.jpeg</filename>
+        <id>id:F1</id>
+        <title>un fichier image</title>
+        <creation>15/02/2015</creation>
+        <modification>27/05/2017</modification>
+        <last>non</last>
+        <etat>Active</etat>
+        <version>1</version>
+    </fichier>
+    <fichier>
+        <description>Une magnifique photo</description>
+        <type>Image</type>
+        <filename>/home/marlow/Images/Capture du 2017-03-15 08-41-23.png</filename>
+        <id>id:F1</id>
+        <title>un fichier image</title>
+        <creation>15/02/2015</creation>
+        <modification>27/05/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>2</version>
+    </fichier>
+    <fichier>
+        <description>magnifique vidéo</description>
+        <type>Video</type>
+        <filename>/home/marlow/Bureau/Figure n°0.png</filename>
+        <id>id:F2</id>
+        <title>un second fichier</title>
+        <creation>27/05/2017</creation>
+        <modification>27/05/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>1</version>
+    </fichier>
 </notes>

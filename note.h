@@ -110,25 +110,25 @@ public:
             QDate getDeadline() const {return deadline;}
         };
 
-    enum AutreType {image, audio, video};
+    enum FichierType {image, audio, video};
 
-    class Autre:public Note
+    class Fichier:public Note
     {
     protected:
-        AutreType type;
+        FichierType type;
         QString description;
         QString filename;
-        Autre(QString id, QString t, AutreType ty, QString descr, QString name, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active)
+        Fichier(QString id, QString t, FichierType ty, QString descr, QString name="", QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active)
             :Note(id,t,date_c,date_m,last,v,e),
              type(ty),
              description(descr),
              filename(name)
              {}
-        ~Autre();
+        ~Fichier();
         friend class NotesManager;
     public:
         QString getDescription() const {return description;}
-        AutreType getType() const {return type;}
+        FichierType getType() const {return type;}
         QString getFilename() const {return filename;}
     };
 
@@ -155,6 +155,7 @@ public:
     void addTache(const QString& id, const QString& t, const QString& text, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, TacheStatut st);
     void addTacheAvecPriorite(const QString& id, const QString& t, const QString& text, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, TacheStatut st, unsigned int priorite);
     void addTacheAvecDeadline(const QString& id, const QString& t, const QString& text, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, TacheStatut st, const QDate deadline);
+    void addFichier(const QString& id, const QString& ti, const QString& descr, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, const QString& filename, FichierType ty);
     void deleteNote(Note& n);
     void restoreNote(Note& n);
     void viderCorbeille();

@@ -15,6 +15,7 @@
 #include <QButtonGroup>
 #include <QSpinBox>
 #include <QDateEdit>
+#include <QFileDialog>
 #include <note.h>
 
 /*============================================================== NoteEditeur ==========================================================================================*/
@@ -146,6 +147,31 @@ public slots:
     void extensionsave();
     void extensionsetasactual();
     void create();
+};
+
+/*============================================================ FichierEditeur ==========================================================================================*/
+class FichierEditeur:public NoteEditeur
+{
+protected:
+    Q_OBJECT
+    QRadioButton* type_image;
+    QRadioButton* type_audio;
+    QRadioButton* type_video;
+    QLabel* description1;
+    QTextEdit* description;
+    QPushButton* select;
+    QLabel* filename1;
+    QString filename;
+
+public:
+    FichierEditeur(Fichier& f, QWidget* parent=0);
+    FichierEditeur(QWidget* parent=0);
+    void blockall();
+public slots:
+    void extensionsave();
+    void extensionsetasactual();
+    void create();
+    void select_file();
 };
 
 

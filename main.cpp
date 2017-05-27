@@ -19,8 +19,8 @@ int main(int argc, char *argv[])
     manager_relations.setFilename("/home/marlow/Bureau/Projet/Relations.xml");
     manager_relations.load();
 
-    TacheAvecDeadline& t=dynamic_cast<TacheAvecDeadline&>(manager_notes.getVersionNote("id:T3",1));
-    TacheAvecDeadlineEditeur fenetre;
+    Fichier& f=dynamic_cast<Fichier&>(manager_notes.getNote("id:F1"));
+    FichierEditeur fenetre;
     //for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
     //{ if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
 
