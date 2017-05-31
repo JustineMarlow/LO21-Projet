@@ -33,15 +33,12 @@ NotesManager& NotesManager::getInstance(){
 //permet d'ajouter une note dans le tableau de Notes du NotesManager
 void NotesManager::addNote(Note* n)
 {
-    //ajouter verif d'existence des différentes versions
-    for(unsigned int i=0; i<nbNotes; i++)
-    {
-        if (notes[i]->getId()==n->getId()) {
-            //on vérifie qu'il s'agit bien d'une nouvelle version
-            if (notes[i]->getVersion()>=n->getVersion()) //il ne s'agit pas d'une nouvelle version
-                throw NotesException("Erreur, cet identificateur est deja utilise");
-        }
-    }
+    if (n->getVersion()==1) //il s'agit d'une nouvelle note, on vérifie que l'id n'est pas déjà utilisé
+        for(unsigned int i=0; i<nbNotes; i++)
+            if (notes[i]->getId()==n->getId()) throw NotesException("Erreur, cet identificateur est deja utilise");
+    else //il s'agit d'une nouvelle version d'une note, on vérifie que toutes les versions antérieures existent
+        for(unsigned int i=1; i<n->getVersion(); i++)
+            Note& v_i=getVersionNote(n->getId(),i); //si une version n'existe pas, une exception est déclenchée dans getVersionNote
 
     if (nbNotes==nbMaxNotes){
         //le tableau de note nécessite un agrandissement

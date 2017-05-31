@@ -618,8 +618,6 @@ FichierEditeur::FichierEditeur(QWidget* parent):NoteEditeur(parent)
     getLayout()->addWidget(filename1);
     label_visu = new QLabel(this);
     getLayout()->addWidget(label_visu);
-    setLayout(getLayout());
-
     getLayout()->addWidget(getButton_save());
     QObject::connect(getButton_save(), SIGNAL(clicked()), this, SLOT(create()));
     QObject::connect(getId(), SIGNAL(textChanged(QString)), this, SLOT(activerBouton_save(QString)));
