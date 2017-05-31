@@ -33,6 +33,7 @@ NotesManager& NotesManager::getInstance(){
 //permet d'ajouter une note dans le tableau de Notes du NotesManager
 void NotesManager::addNote(Note* n)
 {
+    //ajouter verif d'existence des différentes versions
     for(unsigned int i=0; i<nbNotes; i++)
     {
         if (notes[i]->getId()==n->getId()) {

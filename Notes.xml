@@ -63,32 +63,32 @@
         <title>un fichier image</title>
         <creation>15/02/2015</creation>
         <modification>27/05/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>1</version>
+    </fichier>
+    <fichier>
+        <description>joli camembert</description>
+        <type>Image</type>
+        <filename>/home/marlow/Bureau/MT94-Latex/diag_config3.png</filename>
+        <id>id:F2</id>
+        <title>un graphique</title>
+        <creation>31/05/2017</creation>
+        <modification>31/05/2017</modification>
         <last>non</last>
         <etat>Active</etat>
         <version>1</version>
     </fichier>
     <fichier>
-        <description>Une magnifique photo</description>
+        <description>joli camembert</description>
         <type>Image</type>
-        <filename>/home/marlow/Images/Capture du 2017-03-15 08-41-23.png</filename>
-        <id>id:F1</id>
-        <title>un fichier image</title>
-        <creation>15/02/2015</creation>
-        <modification>27/05/2017</modification>
+        <filename>/home/marlow/Bureau/MT94-Latex/sierpinski1.png</filename>
+        <id>id:F2</id>
+        <title>un graphique</title>
+        <creation>31/05/2017</creation>
+        <modification>31/05/2017</modification>
         <last>oui</last>
         <etat>Active</etat>
         <version>2</version>
-    </fichier>
-    <fichier>
-        <description>magnifique vidéo</description>
-        <type>Video</type>
-        <filename>/home/marlow/Bureau/Figure n°0.png</filename>
-        <id>id:F2</id>
-        <title>un second fichier</title>
-        <creation>27/05/2017</creation>
-        <modification>27/05/2017</modification>
-        <last>oui</last>
-        <etat>Active</etat>
-        <version>1</version>
     </fichier>
 </notes>

@@ -551,6 +551,10 @@ FichierEditeur::FichierEditeur(Fichier& f, QWidget* parent):NoteEditeur(f,parent
     if(f.getType()==image) type_image->setChecked(true);
     else if(f.getType()==audio) type_audio->setChecked(true);
     else type_video->setChecked(true);
+    //on suppose qu'il n'est pas possible de changer le type d'un fichier
+    type_image->setDisabled(true);
+    type_video->setDisabled(true);
+    type_audio->setDisabled(true);
     getLayout()->addWidget(type_image);
     getLayout()->addWidget(type_audio);
     getLayout()->addWidget(type_video);
@@ -565,6 +569,10 @@ FichierEditeur::FichierEditeur(Fichier& f, QWidget* parent):NoteEditeur(f,parent
     filename=f.getFilename();
     filename1 = new QLabel("Nom du fichier : "+filename,this);
     getLayout()->addWidget(filename1);
+    label_visu = new QLabel(this);
+    visu_image = new QPixmap(filename);
+    label_visu->setPixmap(*visu_image);
+    getLayout()->addWidget(label_visu);
 
 
     if (f.getEtat()==active)
@@ -608,6 +616,10 @@ FichierEditeur::FichierEditeur(QWidget* parent):NoteEditeur(parent)
     QObject::connect(select, SIGNAL(clicked()), this, SLOT(select_file()));
     filename1 = new QLabel("Nom du fichier : ",this);
     getLayout()->addWidget(filename1);
+    label_visu = new QLabel(this);
+    getLayout()->addWidget(label_visu);
+    setLayout(getLayout());
+
     getLayout()->addWidget(getButton_save());
     QObject::connect(getButton_save(), SIGNAL(clicked()), this, SLOT(create()));
     QObject::connect(getId(), SIGNAL(textChanged(QString)), this, SLOT(activerBouton_save(QString)));
@@ -674,6 +686,13 @@ void FichierEditeur::blockall(){
 }
 
 void FichierEditeur::select_file(){
-    filename = QFileDialog::getOpenFileName(this);
+    if (type_image->isChecked()) {
+        filename = QFileDialog::getOpenFileName(this, "Selectionner un fichier image","/home",("Images (*.png *.jpg)"));
+        visu_image = new QPixmap(filename);
+        label_visu->setPixmap(*visu_image);
+    }
+    else if (type_video->isChecked()) filename = QFileDialog::getOpenFileName(this, "Selectionner un fichier video","/home",("Vidéo (*.avi *.mp4)"));
+    else if (type_audio->isChecked()) filename = QFileDialog::getOpenFileName(this, "Selectionner un fichier audio","/home",("Audio (*.mp3)"));
     filename1->setText("Nom du fichier : "+filename);
+    setLayout(getLayout());
 }

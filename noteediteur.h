@@ -16,6 +16,7 @@
 #include <QSpinBox>
 #include <QDateEdit>
 #include <QFileDialog>
+#include <QPixmap>
 #include <note.h>
 
 /*============================================================== NoteEditeur ==========================================================================================*/
@@ -162,6 +163,8 @@ protected:
     QPushButton* select;
     QLabel* filename1;
     QString filename;
+    QLabel* label_visu;
+    QPixmap* visu_image;
 
 public:
     FichierEditeur(Fichier& f, QWidget* parent=0);

@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     manager_relations.setFilename("/home/marlow/Bureau/Projet/Relations.xml");
     manager_relations.load();
 
-    Fichier& f=dynamic_cast<Fichier&>(manager_notes.getNote("id:F1"));
+    Fichier& f=dynamic_cast<Fichier&>(manager_notes.getNote("id:F2"));
     FichierEditeur fenetre;
     //for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
     //{ if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
