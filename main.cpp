@@ -11,16 +11,25 @@ int main(int argc, char *argv[])
 {
     try{
     QApplication app(argc, argv);
+    RelationsManager &manager_relations=RelationsManager::getInstance();
+    manager_relations.createRelation("Reference","La note x fait reference a la note y",true);
+
     NotesManager &manager_notes=NotesManager::getInstance();
     manager_notes.setFilename("/home/marlow/Bureau/Projet/Notes.xml");
     manager_notes.load();
 
-    RelationsManager &manager_relations=RelationsManager::getInstance();
     manager_relations.setFilename("/home/marlow/Bureau/Projet/Relations.xml");
     manager_relations.load();
 
-    Fichier& f=dynamic_cast<Fichier&>(manager_notes.getNote("id:F2"));
-    FichierEditeur fenetre;
+    Article& a=dynamic_cast<Article&>(manager_notes.getNote("id:A1"));
+    ArticleEditeur fenetre(a);
+
+    Relation& ref=manager_relations.getRelation("Reference");
+    qDebug()<<"nb couples = "<<ref.getNbCouples()<<"\n";
+    for (unsigned int i=0; i<ref.getNbCouples(); i++)
+        qDebug()<<ref.getXCouple(i).getId()<<" -> "<<ref.getYCouple(i).getId()<<"\n";
+    //Fichier& f=dynamic_cast<Fichier&>(manager_notes.getNote("id:F2"));
+    //FichierEditeur fenetre;
     //for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
     //{ if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
 

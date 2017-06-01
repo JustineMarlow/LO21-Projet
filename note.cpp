@@ -50,6 +50,34 @@ void NotesManager::addNote(Note* n)
         if (oldNotes) delete[] oldNotes;
     }
     notes[nbNotes++]=n;
+    if (!(isLoading)) check_reference(*n);
+}
+
+void NotesManager::check_reference(Note& n)
+{
+    qDebug()<<"check_reference appelée \n";
+    search_reference(n, n.getTitre());
+    qDebug()<<"search_reference sur titre appelée \n";
+    if (typeid(n)==typeid(Article))
+    {
+        qDebug()<<"search_reference sur texte appelée \n";
+        Article& a=dynamic_cast<Article&>(n);
+        search_reference(a, a.getTexte());
+    }
+}
+
+void NotesManager::search_reference(Note& n, const QString& texte)
+{
+    qDebug()<<"dans search_reference \n";
+    qDebug()<<"avec texte ="<<texte<<"\n";
+    RelationsManager &manager_relations=RelationsManager::getInstance();
+    if (texte.contains("ref{"))
+    {
+        for (unsigned int i=0; i<nbNotes ; i++)
+        {
+            if (texte.contains("ref{"+notes[i]->getId()+"}")) {qDebug()<<"ref trouvee :"<<"ref{"+notes[i]->getId()+"}"<<"\n"; manager_relations.getRelation("Reference").addCouple(n,*notes[i],"");}
+        }
+    }
 }
 
 //permet de renvoyer la dernière version d'une note via le NotesManager
@@ -148,6 +176,7 @@ void NotesManager::viderCorbeille()
 
 //permet de charger un fichier de Notes
 void NotesManager::load() {
+    isLoading=true;
     QFile fin(filename);
     // If we can't open it, let's show an error message.
     if (!fin.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -440,6 +469,10 @@ if(xml.hasError()) throw NotesException("Erreur lecteur fichier notes, parser xm
 // Removes any device() or data from the reader * and resets its internal state to the initial state.=
 xml.clear();
 qDebug()<<"fin load\n";
+isLoading=false;
+//important que toutes les notes aient été crées en mémoire afin de détecter les relations
+for(unsigned int i=0; i<nbNotes; i++)
+    if (notes[i]->IsLast()) check_reference(*notes[i]);
 }
 
 //permet de sauvegarder les notes dans le fichier

@@ -16,31 +16,36 @@ Relation::~Relation(){
 
 //méthode privée : permet d'ajouter un couple
 void Relation::addCouple_function(Note& x, Note& y, QString l){
+    unsigned int i=0;
     if (!(tableau==0))
-        for (unsigned int i=0; i<nbCouples; i++)
-            if (tableau[1][i]->getId()==x.getId() && tableau[2][i]->getId()==y.getId()) throw NotesException("Ce couple existe déjà dans la relation");
-    if (nbCouples==nbCouplesMax) {
-        //le tableau de couples et le tableau de labels nécessitent un agrandissement
-        Note*** newTableau= new Note**[nbCouplesMax+5];
-        QString* newLabel=new QString[nbCouplesMax+5];
-        for(unsigned int i=0; i<nbCouplesMax+5; i++) newTableau[i] = new Note*[i];
-        for(unsigned int i=0; i<nbCouples; i++) {
-            newTableau[1][i]=tableau[1][i];
-            newTableau[2][i]=tableau[2][i];
-            newLabel[i]=tableau_label[i];
-        }
-        Note*** oldTableau=tableau;
-        tableau=newTableau;
-        QString* oldLabel=tableau_label;
-        tableau_label=newLabel;
-        nbCouplesMax+=5;
-        if (oldTableau) delete[] oldTableau;
-        if(oldLabel) delete[] oldLabel;
+    {
+        while(tableau[1][i]->getId()==x.getId() && tableau[2][i]->getId()==y.getId() && i<nbCouples) i++;
     }
-    unsigned int rang=nbCouples++;
-    tableau[1][rang]=&x;
-    tableau[2][rang]=&y;
-    tableau_label[rang]=l;
+    if (tableau==0 || i==nbCouples) //le tableau est vide ou ne contient pas déjà le couple à ajouter
+    {
+        if (nbCouples==nbCouplesMax) {
+            //le tableau de couples et le tableau de labels nécessitent un agrandissement
+            Note*** newTableau= new Note**[nbCouplesMax+5];
+            QString* newLabel=new QString[nbCouplesMax+5];
+            for(unsigned int i=0; i<nbCouplesMax+5; i++) newTableau[i] = new Note*[i];
+            for(unsigned int i=0; i<nbCouples; i++) {
+                newTableau[1][i]=tableau[1][i];
+                newTableau[2][i]=tableau[2][i];
+                newLabel[i]=tableau_label[i];
+            }
+            Note*** oldTableau=tableau;
+            tableau=newTableau;
+            QString* oldLabel=tableau_label;
+            tableau_label=newLabel;
+            nbCouplesMax+=5;
+            if (oldTableau) delete[] oldTableau;
+            if(oldLabel) delete[] oldLabel;
+        }
+        unsigned int rang=nbCouples++;
+        tableau[1][rang]=&x;
+        tableau[2][rang]=&y;
+        tableau_label[rang]=l;
+    }
 }
 
 //méthode publique qui appelle la méthode privée en fonction du caractère orientée de la relation
@@ -270,7 +275,10 @@ void RelationsManager::save() const {
     stream.setAutoFormatting(true);
     stream.writeStartDocument();
     stream.writeStartElement("relations");
-    for(unsigned int i=0; i<nbRelations; i++){
+    for(unsigned int i=0; i<nbRelations; i++)
+    {
+        if (!(relations[i]->getTitre()=="Reference"))
+        {
             stream.writeStartElement("relation");
             stream.writeTextElement("titre",relations[i]->getTitre());
             stream.writeTextElement("description",relations[i]->getDescription());
@@ -287,6 +295,7 @@ void RelationsManager::save() const {
             stream.writeEndElement();
             qDebug()<<i<<" : relation mise a jour \n";
         }
+    }
     stream.writeEndElement();
     stream.writeEndDocument();
     newfile.close();

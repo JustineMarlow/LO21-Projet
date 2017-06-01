@@ -139,7 +139,8 @@ class NotesManager
     unsigned int nbNotes;
     unsigned int nbMaxNotes;
     mutable QString filename;
-    NotesManager():notes(0),nbNotes(0),nbMaxNotes(0),filename(""){}
+    bool isLoading;
+    NotesManager():notes(0),nbNotes(0),nbMaxNotes(0),filename(""),isLoading(false){}
     ~NotesManager();
     NotesManager (const NotesManager& m);
     NotesManager operator=(const NotesManager& m);
@@ -159,6 +160,8 @@ public:
     void deleteNote(Note& n);
     void restoreNote(Note& n);
     void viderCorbeille();
+    void check_reference(Note& n);
+    void search_reference(Note& n, const QString& texte);
 
     class Iterator{
         Note** tab;

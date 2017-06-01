@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <relations>
     <relation>
-        <titre>Reference</titre>
-        <description>La note x fait reference a la note y.</description>
+        <titre>Exemple relation</titre>
+        <description>Exemple</description>
         <oriente>oui</oriente>
     </relation>
 </relations>
