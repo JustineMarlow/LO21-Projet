@@ -20,7 +20,6 @@ Fichier::~Fichier(){}
 NotesManager::~NotesManager(){
     //viderCorbeille();
     if (filename!="") save();
-    for(unsigned int i=0; i<nbNotes; i++) delete notes[i];
     delete[] notes;
 }
 
@@ -55,21 +54,21 @@ void NotesManager::addNote(Note* n)
 
 void NotesManager::check_reference(Note& n)
 {
-    qDebug()<<"check_reference appelée \n";
+    qDebug()<<"check reference appelée \n";
     search_reference(n, n.getTitre());
-    qDebug()<<"search_reference sur titre appelée \n";
     if (typeid(n)==typeid(Article))
-    {
-        qDebug()<<"search_reference sur texte appelée \n";
-        Article& a=dynamic_cast<Article&>(n);
-        search_reference(a, a.getTexte());
+    {   Article& a=dynamic_cast<Article&>(n); search_reference(a, a.getTexte());
+    }
+    if (typeid(n)==typeid(Tache))
+    {   Tache& t=dynamic_cast<Tache&>(n); search_reference(t, t.getTexte());
+    }
+    if (typeid(n)==typeid(Fichier))
+    {   Fichier& f=dynamic_cast<Fichier&>(n); search_reference(f, f.getDescription());
     }
 }
 
 void NotesManager::search_reference(Note& n, const QString& texte)
 {
-    qDebug()<<"dans search_reference \n";
-    qDebug()<<"avec texte ="<<texte<<"\n";
     RelationsManager &manager_relations=RelationsManager::getInstance();
     if (texte.contains("ref{"))
     {
@@ -472,7 +471,7 @@ qDebug()<<"fin load\n";
 isLoading=false;
 //important que toutes les notes aient été crées en mémoire afin de détecter les relations
 for(unsigned int i=0; i<nbNotes; i++)
-    if (notes[i]->IsLast()) check_reference(*notes[i]);
+    if (notes[i]->IsLast()) {qDebug()<<"derniere version trouvee \n"; check_reference(*notes[i]);}
 }
 
 //permet de sauvegarder les notes dans le fichier

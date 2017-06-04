@@ -31,6 +31,7 @@ public:
     const QString getLabelCouple(unsigned int i) const {return tableau_label[i];}
     void addCouple(Note& x, Note& y, QString label);
     void removeCouple(Note& x, Note& y);
+    bool findCouple(Note& x, Note& y);
     void set_titre(QString t){titre=t;}
     void set_description(QString d){description=d;}
     void set_Oriente(bool o){oriente=o;}

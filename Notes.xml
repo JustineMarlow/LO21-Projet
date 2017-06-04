@@ -21,24 +21,23 @@
         <version>1</version>
     </article>
     <article>
-        <text>Ceci est un premier article.
-Faisons référence à \ref{id:A2}</text>
-        <id>id:A1</id>
-        <title>Un premier article</title>
-        <creation>15/02/2015</creation>
-        <modification>01/06/2017</modification>
-        <last>non</last>
-        <etat>Active</etat>
-        <version>2</version>
-    </article>
-    <article>
-        <text>Ceci est un premier article.</text>
+        <text>Ceci est un premier article. Faisons référence à \ref{id:A2}</text>
         <id>id:A1</id>
         <title>Un premier article</title>
         <creation>15/02/2015</creation>
         <modification>01/06/2017</modification>
         <last>oui</last>
         <etat>Active</etat>
-        <version>3</version>
+        <version>2</version>
+    </article>
+    <article>
+        <text>Ceci est un troisième article.</text>
+        <id>id:A3</id>
+        <title>Un troisième article. Faisons référence à \ref{id:A2}</title>
+        <creation>15/02/2015</creation>
+        <modification>18/02/2015</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>1</version>
     </article>
 </notes>

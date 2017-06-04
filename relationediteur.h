@@ -12,6 +12,7 @@
 #include <QDateEdit>
 #include <QMessageBox>
 #include <QCheckBox>
+#include <QSignalMapper>
 #include <relation.h>
 
 class RelationEditeur:public QWidget
@@ -26,19 +27,32 @@ protected:
     QTextEdit* description;
     QCheckBox* orientee;
     QPushButton* bouton_save;
-    QPushButton* bouton_couple;
     QPushButton* bouton_delete;
+    QLabel* couple1;
+    QHBoxLayout** box;
+    QLabel** idX;
+    QLabel** idY;
+    QSignalMapper* mapper_label;
+    QLineEdit** edit_label;
+    QPushButton** buttons_edit;
+    QSignalMapper* mapper_remove;
+    QPushButton** buttons_remove;
+
 
 public:
     explicit RelationEditeur(Relation& r, QWidget* parent=0);
     explicit RelationEditeur(QWidget* parent=0);
+    ~RelationEditeur();
 
 signals:
+    void monSignal(int);
 
 public slots:
     void save();
     void create();
     void delete_relation();
+    void set_label(int i);
+    void remove_couple(int i);
 private slots: //à usage interne
     void activerBouton(QString str="");
 };

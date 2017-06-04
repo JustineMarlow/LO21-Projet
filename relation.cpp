@@ -14,14 +14,17 @@ Relation::~Relation(){
       delete[] tableau;
 }
 
+bool Relation::findCouple(Note& x, Note& y)
+{
+    if (tableau==0) return false;
+    for (unsigned int i=0; i<nbCouples; i++) if (tableau[1][i]->getId()==x.getId() && tableau[2][i]->getId()==y.getId()) return true;
+    return false;
+}
+
 //méthode privée : permet d'ajouter un couple
 void Relation::addCouple_function(Note& x, Note& y, QString l){
     unsigned int i=0;
-    if (!(tableau==0))
-    {
-        while(tableau[1][i]->getId()==x.getId() && tableau[2][i]->getId()==y.getId() && i<nbCouples) i++;
-    }
-    if (tableau==0 || i==nbCouples) //le tableau est vide ou ne contient pas déjà le couple à ajouter
+    if (!(findCouple(x,y))) //le tableau est vide ou ne contient pas déjà le couple à ajouter
     {
         if (nbCouples==nbCouplesMax) {
             //le tableau de couples et le tableau de labels nécessitent un agrandissement
@@ -45,11 +48,13 @@ void Relation::addCouple_function(Note& x, Note& y, QString l){
         tableau[1][rang]=&x;
         tableau[2][rang]=&y;
         tableau_label[rang]=l;
+        qDebug()<<"add couple fait sur "<<x.getId()<<" -> "<<y.getId()<<"\n";
     }
 }
 
 //méthode publique qui appelle la méthode privée en fonction du caractère orientée de la relation
 void Relation::addCouple(Note &x, Note &y, QString label){
+    qDebug()<<"add couple appelee sur "<<x.getId()<<" -> "<<y.getId()<<"\n";
     if (oriente) addCouple_function(x,y,label);
     else { addCouple_function(x,y,label);
            addCouple_function(y,x,label);}
@@ -58,18 +63,18 @@ void Relation::addCouple(Note &x, Note &y, QString label){
 //permet de modifier le label d'un couple
 void Relation::set_label_couple(Note& x, Note& y, QString l){
     unsigned int i=0;
-    while (i<=nbCouples && (tableau[1][i]->getId()==x.getId() || tableau[2][i]->getId()==y.getId()))
+    while (i<nbCouples && (tableau[1][i]->getId()!=x.getId() || tableau[2][i]->getId()!=y.getId()))
         i++;
-    if (i>nbCouples) throw NotesException("Ce couple n'existe pas");
+    if (i==nbCouples) throw NotesException("Ce couple n'existe pas");
     else tableau_label[i]=l;
 }
 
 //méthode privée : permet de retirer un couple
 void Relation::removeCouple_function(Note& x, Note& y){
     unsigned int i=0;
-    while (i<=nbCouples && (tableau[1][i]->getId()==x.getId() || tableau[2][i]->getId()==y.getId()))
+    while (i<nbCouples && (tableau[1][i]->getId()!=x.getId() || tableau[2][i]->getId()!=y.getId()))
         i++;
-    if (i>nbCouples) throw NotesException("Ce couple n'existe pas");
+    if (i==nbCouples) throw NotesException("Ce couple n'existe pas");
     else {
         for (unsigned int j=i; j<nbCouples-1; j++){
             tableau[1][j]=tableau[1][j+1];
@@ -277,17 +282,22 @@ void RelationsManager::save() const {
     stream.writeStartElement("relations");
     for(unsigned int i=0; i<nbRelations; i++)
     {
-        if (!(relations[i]->getTitre()=="Reference"))
+        if(relations[i]->getTitre()!="Reference")
         {
             stream.writeStartElement("relation");
             stream.writeTextElement("titre",relations[i]->getTitre());
             stream.writeTextElement("description",relations[i]->getDescription());
             if (relations[i]->IsOriente()==true) stream.writeTextElement("oriente","oui");
             else stream.writeTextElement("oriente","non");
+            qDebug()<<"nb couples = "<<relations[i]->getNbCouples()<<"\n";
             for (unsigned int c=0; c<relations[i]->getNbCouples();c++)
             {
+                qDebug()<<"couple : "<<c<<"\n";
+                qDebug()<<"idX : "<<relations[i]->getXCouple(c).getId()<<"\n";
+                qDebug()<<"idY : "<<relations[i]->getYCouple(c).getId()<<"\n";
+                qDebug()<<"label : "<<relations[i]->getLabelCouple(c)<<"\n";
                 stream.writeStartElement("couple");
-                stream.writeTextElement("idX",relations[i]->getXCouple(c).getId());
+                stream.writeTextElement("idX",relations[i]->getXCouple(c).getId()); //souci ici
                 stream.writeTextElement("idY",relations[i]->getYCouple(c).getId());
                 stream.writeTextElement("label",relations[i]->getLabelCouple(c));
                 stream.writeEndElement();
