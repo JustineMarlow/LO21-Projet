@@ -150,6 +150,7 @@ public:
     void load();
     void save() const;
     void setFilename(const QString& f) { filename=f; }
+    unsigned int getNbNotes() const {return nbNotes;}
     Note& getNote(const QString& id);
     Note& getVersionNote(const QString& id, unsigned int v);
     void addArticle(const QString& id, const QString& ti, const QString& te,const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat);

@@ -48,7 +48,7 @@ void Relation::addCouple_function(Note& x, Note& y, QString l){
         tableau[1][rang]=&x;
         tableau[2][rang]=&y;
         tableau_label[rang]=l;
-        qDebug()<<"add couple fait sur "<<x.getId()<<" -> "<<y.getId()<<"\n";
+        qDebug()<<"add couple fait sur "<<x.getId()<<" -> "<<y.getId()<<"(label : "<<l<<")\n";
     }
 }
 
@@ -156,6 +156,7 @@ void RelationsManager::deleteRelation(Relation& r)
     for(i; i<nbRelations; i++)
         relations[i]=relations[i+1];
     nbRelations--;
+    qDebug()<<"relation supprimee ";
 }
 
 //permet de charger un fichier de Relations
@@ -273,6 +274,7 @@ void RelationsManager::load() {
 
 //permet de sauvegarder les relations dans le fichier
 void RelationsManager::save() const {
+    qDebug()<<"methode save du RelationsManager appelee ";
     QFile newfile(filename);
     if (!newfile.open(QIODevice::WriteOnly | QIODevice::Text))
         throw NotesException(QString("Erreur dans la sauvegarde : echec lors de l'ouverture du fichier xml de relations"));
@@ -280,10 +282,13 @@ void RelationsManager::save() const {
     stream.setAutoFormatting(true);
     stream.writeStartDocument();
     stream.writeStartElement("relations");
+    qDebug()<<"nb relations = "<<nbRelations<<"\n";
     for(unsigned int i=0; i<nbRelations; i++)
     {
+        qDebug()<<"entree for avec i = "<<i<<"\n";
         if(relations[i]->getTitre()!="Reference")
         {
+            qDebug()<<"relation non reference \n";
             stream.writeStartElement("relation");
             stream.writeTextElement("titre",relations[i]->getTitre());
             stream.writeTextElement("description",relations[i]->getDescription());

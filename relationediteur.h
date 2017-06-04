@@ -13,6 +13,8 @@
 #include <QMessageBox>
 #include <QCheckBox>
 #include <QSignalMapper>
+#include <QListView>
+#include <QStringListModel>
 #include <relation.h>
 
 class RelationEditeur:public QWidget
@@ -37,12 +39,19 @@ protected:
     QPushButton** buttons_edit;
     QSignalMapper* mapper_remove;
     QPushButton** buttons_remove;
+    QHBoxLayout* new_couple;
+    QLabel* couple2;
+    QListView* liste_x;
+    QListView* liste_y;
+    QLineEdit* new_label;
+    QPushButton* add_couple;
+    QStringListModel* model_x;
+    QStringListModel* model_y;
 
 
 public:
     explicit RelationEditeur(Relation& r, QWidget* parent=0);
     explicit RelationEditeur(QWidget* parent=0);
-    ~RelationEditeur();
 
 signals:
     void monSignal(int);
@@ -51,6 +60,7 @@ public slots:
     void save();
     void create();
     void delete_relation();
+    void add_new_couple();
     void set_label(int i);
     void remove_couple(int i);
 private slots: //à usage interne
