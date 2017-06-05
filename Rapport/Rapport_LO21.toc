@@ -1,0 +1,12 @@
+\contentsline {chapter}{Table des mati\IeC {\`e}res}{1}
+\contentsline {chapter}{\numberline {1}Description de l'architecture}{2}
+\contentsline {section}{\numberline {1.1}Pr\IeC {\'e}sentation globale}{2}
+\contentsline {section}{\numberline {1.2}Pr\IeC {\'e}sentation de la classe Note et de ses classes filles}{3}
+\contentsline {subsection}{\numberline {1.2.1}Abstraction de la classe Note}{3}
+\contentsline {subsection}{\numberline {1.2.2}Regroupement des images, des enregistrements audio et vid\IeC {\'e}o dans la classe Fichier}{3}
+\contentsline {subsection}{\numberline {1.2.3}Gestion des versions}{3}
+\contentsline {subsection}{\numberline {1.2.4}Attributs protected et constructeurs}{4}
+\contentsline {section}{\numberline {1.3}Pr\IeC {\'e}sentation de la classe Relation}{4}
+\contentsline {section}{\numberline {1.4}Pr\IeC {\'e}sentation des classes NotesManager et RelationsManager}{4}
+\contentsline {section}{\numberline {1.5}Pr\IeC {\'e}sentation des classes Editeur}{5}
+\contentsline {chapter}{\numberline {2}Possibilit\IeC {\'e} d'\IeC {\'e}volution de l'architecture}{6}
