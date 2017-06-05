@@ -85,8 +85,8 @@ public:
         class TacheAvecPriorite:public Tache
         {
         protected:
-            int priorite;
-            TacheAvecPriorite(QString id, QString t, QString text, int p=0, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active, TacheStatut st=attente)
+            unsigned int priorite;
+            TacheAvecPriorite(QString id, QString t, QString text, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active, TacheStatut st=attente,int p=0)
                 :Tache(id,t,text,date_c,date_m,last,v,e,st),
                  priorite(p)
                  {}
@@ -110,25 +110,25 @@ public:
             QDate getDeadline() const {return deadline;}
         };
 
-    enum AutreType {image, audio, video};
+    enum FichierType {image, audio, video};
 
-    class Autre:public Note
+    class Fichier:public Note
     {
     protected:
-        AutreType type;
+        FichierType type;
         QString description;
         QString filename;
-        Autre(QString id, QString t, AutreType ty, QString descr, QString name, QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active)
+        Fichier(QString id, QString t, FichierType ty, QString descr, QString name="", QDate date_c=QDate::currentDate(), QDate date_m=QDate::currentDate(), bool last=true, int v=1, NoteEtat e=active)
             :Note(id,t,date_c,date_m,last,v,e),
              type(ty),
              description(descr),
              filename(name)
              {}
-        ~Autre();
+        ~Fichier();
         friend class NotesManager;
     public:
         QString getDescription() const {return description;}
-        AutreType getType() const {return type;}
+        FichierType getType() const {return type;}
         QString getFilename() const {return filename;}
     };
 
@@ -139,7 +139,8 @@ class NotesManager
     unsigned int nbNotes;
     unsigned int nbMaxNotes;
     mutable QString filename;
-    NotesManager():notes(0),nbNotes(0),nbMaxNotes(0),filename(""){}
+    bool isLoading;
+    NotesManager():notes(0),nbNotes(0),nbMaxNotes(0),filename(""),isLoading(false){}
     ~NotesManager();
     NotesManager (const NotesManager& m);
     NotesManager operator=(const NotesManager& m);
@@ -149,12 +150,19 @@ public:
     void load();
     void save() const;
     void setFilename(const QString& f) { filename=f; }
+    unsigned int getNbNotes() const {return nbNotes;}
     Note& getNote(const QString& id);
     Note& getVersionNote(const QString& id, unsigned int v);
     void addArticle(const QString& id, const QString& ti, const QString& te,const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat);
+    void addTache(const QString& id, const QString& t, const QString& text, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, TacheStatut st);
+    void addTacheAvecPriorite(const QString& id, const QString& t, const QString& text, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, TacheStatut st, unsigned int priorite);
+    void addTacheAvecDeadline(const QString& id, const QString& t, const QString& text, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, TacheStatut st, const QDate deadline);
+    void addFichier(const QString& id, const QString& ti, const QString& descr, const QDate date_c, const QDate date_m, unsigned int v, bool last, NoteEtat etat, const QString& filename, FichierType ty);
     void deleteNote(Note& n);
     void restoreNote(Note& n);
     void viderCorbeille();
+    void check_reference(Note& n);
+    void search_reference(Note& n, const QString& texte);
 
     class Iterator{
         Note** tab;

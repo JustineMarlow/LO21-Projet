@@ -24,23 +24,23 @@ int main(int argc, char *argv[])
     m.load();
     RelationEditeur fenetre;*/
 
+   // manager_relations.createRelation("Reference","La note x fait reference a la note y",true);
 
 
-    /*RelationsManager &manager_relations=RelationsManager::getInstance();
-    manager_relations.setFilename("/home/marlow/Bureau/Projet/Relations.xml");
-    manager_relations.load();*/
-
-    /*
-    Relation& r1=manager_relations.createRelation("New Relation", "nouvelle relation",false);
-    Note& n1=manager_notes.getNote("id:A1");
-    Note& n2=manager_notes.getNote("id:A2");
-    r1.addCouple(n1,n2,"label");
-    */
+    //Article& a=dynamic_cast<Article&>(manager_notes.getNote("id:A1"));
+    //ArticleEditeur fenetre(a);
 
 
+    /*Relation& relation=manager_relations.getRelation("Anteriorite");
+    Note& x=manager_notes.getNote("id:A3");
+    Note& y=manager_notes.getNote("id:A2");
+    relation.addCouple(x,y,"label 4");
+    RelationEditeur fenetre2(relation);*/
 
    // ArticleEditeur fenetre;
     //qDebug()<<"fenetre cree \n";
+    //Fichier& f=dynamic_cast<Fichier&>(manager_notes.getNote("id:F2"));
+    //FichierEditeur fenetre(f);
     //for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
     //{ if (iterator.current().getId()=="id:A2") qDebug()<<"version "<<iterator.current().getVersion()<<" trouvee"<<"\n"; }
 
@@ -48,6 +48,7 @@ int main(int argc, char *argv[])
     return app.exec();
     }
     catch(NotesException e){qDebug()<<e.getInfo();}
+
 
 
     /*try{

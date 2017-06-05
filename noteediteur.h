@@ -11,6 +11,12 @@
 #include <QDate>
 #include <QDateEdit>
 #include <QMessageBox>
+#include <QRadioButton>
+#include <QButtonGroup>
+#include <QSpinBox>
+#include <QDateEdit>
+#include <QFileDialog>
+#include <QPixmap>
 #include <note.h>
 
 /*============================================================== NoteEditeur ==========================================================================================*/
@@ -48,7 +54,6 @@ public:
     QLabel* getDate_m(){return date_m;}
     QLabel* getVersion(){return version;}
     QLabel* getLast(){return last;}
-
     virtual void extensionsave()=0;
     virtual void extensionsetasactual()=0;
     Note& getNote() const {return *note;}
@@ -81,7 +86,95 @@ public slots:
     void extensionsave();
     void extensionsetasactual();
     void create();
+};
 
+
+/*============================================================= TacheEditeur ==========================================================================================*/
+class TacheEditeur:public NoteEditeur
+{
+protected:
+    Q_OBJECT
+    QLabel* text1;
+    QTextEdit* text;
+    QRadioButton* check_attente;
+    QRadioButton* check_cours;
+    QRadioButton* check_terminee;
+
+public:
+    TacheEditeur(Tache& t, QWidget* parent=0);
+    TacheEditeur(QWidget* parent=0);
+    QRadioButton* getCheck_attente() {return check_attente;}
+    QRadioButton* getCheck_cours() {return check_cours;}
+    QRadioButton* getCheck_terminee() {return check_terminee;}
+    QTextEdit* getText() {return text;}
+    void blockall();
+public slots:
+    void extensionsave();
+    void extensionsetasactual();
+    void create();
+};
+
+/*====================================================== TacheAvecPrioriteEditeur =====================================================================================*/
+class TacheAvecPrioriteEditeur:public TacheEditeur
+{
+protected:
+    Q_OBJECT
+    QLabel* priorite1;
+    QSpinBox* priorite;
+
+public:
+    TacheAvecPrioriteEditeur(TacheAvecPriorite& t, QWidget* parent=0);
+    TacheAvecPrioriteEditeur(QWidget* parent=0);
+    void blockall();
+public slots:
+    void extensionsave();
+    void extensionsetasactual();
+    void create();
+};
+
+/*====================================================== TacheAvecDeadlineEditeur =====================================================================================*/
+class TacheAvecDeadlineEditeur:public TacheEditeur
+{
+protected:
+    Q_OBJECT
+    QLabel* deadline1;
+    QDateEdit* deadline;
+
+public:
+    TacheAvecDeadlineEditeur(TacheAvecDeadline& t, QWidget* parent=0);
+    TacheAvecDeadlineEditeur(QWidget* parent=0);
+    void blockall();
+public slots:
+    void extensionsave();
+    void extensionsetasactual();
+    void create();
+};
+
+/*============================================================ FichierEditeur ==========================================================================================*/
+class FichierEditeur:public NoteEditeur
+{
+protected:
+    Q_OBJECT
+    QRadioButton* type_image;
+    QRadioButton* type_audio;
+    QRadioButton* type_video;
+    QLabel* description1;
+    QTextEdit* description;
+    QPushButton* select;
+    QLabel* filename1;
+    QString filename;
+    QLabel* label_visu;
+    QPixmap* visu_image;
+
+public:
+    FichierEditeur(Fichier& f, QWidget* parent=0);
+    FichierEditeur(QWidget* parent=0);
+    void blockall();
+public slots:
+    void extensionsave();
+    void extensionsetasactual();
+    void create();
+    void select_file();
 };
 
 

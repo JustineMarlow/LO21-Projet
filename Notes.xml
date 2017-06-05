@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <notes>
     <article>
+        <text>Ceci est un premier article.</text>
         <id>id:A1</id>
         <title>Un premier article</title>
-        <text>Ceci est un premier article.</text>
-        <creation>15/02/2015</creation>
-        <modification>18/02/2015</modification>
-        <last>oui</last>
-        <etat>Active</etat>
-        <version>1</version>
-    </article>
-    <article>
-        <id>id:A2</id>
-        <title>Un deuxième article</title>
-        <text>Ceci est un deuxième article.</text>
         <creation>15/02/2015</creation>
         <modification>18/02/2015</modification>
         <last>non</last>
@@ -21,13 +11,33 @@
         <version>1</version>
     </article>
     <article>
-        <id>id:A2</id>
-        <title>Un deuxième article sublime</title>
         <text>Ceci est un deuxième article.</text>
+        <id>id:A2</id>
+        <title>Un deuxième article</title>
         <creation>15/02/2015</creation>
         <modification>18/02/2015</modification>
         <last>oui</last>
         <etat>Active</etat>
+        <version>1</version>
+    </article>
+    <article>
+        <text>Ceci est un premier article. Faisons référence à \ref{id:A2}</text>
+        <id>id:A1</id>
+        <title>Un premier article</title>
+        <creation>15/02/2015</creation>
+        <modification>01/06/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
         <version>2</version>
+    </article>
+    <article>
+        <text>Ceci est un troisième article.</text>
+        <id>id:A3</id>
+        <title>Un troisième article. Faisons référence à \ref{id:A2}</title>
+        <creation>15/02/2015</creation>
+        <modification>18/02/2015</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>1</version>
     </article>
 </notes>
