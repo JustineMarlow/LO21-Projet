@@ -58,6 +58,7 @@ void Relation::addCouple(Note &x, Note &y, QString label){
     if (oriente) addCouple_function(x,y,label);
     else { addCouple_function(x,y,label);
            addCouple_function(y,x,label);}
+    qDebug()<<"fin add_couple \n";
 }
 
 //permet de modifier le label d'un couple

@@ -2,22 +2,17 @@
 <relations>
     <relation>
         <titre>Anteriorite</titre>
-        <description>La note x est anterieure a la note y.</description>
+        <description>La note x est anterieure a la note y. Modif</description>
         <oriente>oui</oriente>
         <couple>
             <idX>id:A2</idX>
             <idY>id:A1</idY>
-            <label>label 2 très joli</label>
+            <label>label 1</label>
         </couple>
         <couple>
             <idX>id:A2</idX>
             <idY>id:A3</idY>
-            <label>label 3</label>
-        </couple>
-        <couple>
-            <idX>id:A1</idX>
-            <idY>id:A2</idY>
-            <label>label 1 sublime</label>
+            <label>label 2</label>
         </couple>
     </relation>
     <relation>

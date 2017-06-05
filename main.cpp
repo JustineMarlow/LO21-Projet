@@ -27,6 +27,9 @@ int main(int argc, char *argv[])
 
 
     Relation& relation=manager_relations.getRelation("Anteriorite");
+    Note& x=manager_notes.getNote("id:A3");
+    Note& y=manager_notes.getNote("id:A2");
+    relation.addCouple(x,y,"label 4");
     RelationEditeur fenetre(relation);
 
     //Fichier& f=dynamic_cast<Fichier&>(manager_notes.getNote("id:F2"));

@@ -34,7 +34,7 @@ public:
     bool findCouple(Note& x, Note& y);
     void set_titre(QString t){titre=t;}
     void set_description(QString d){description=d;}
-    void set_Oriente(bool o){oriente=o;}
+    //void set_Oriente(bool o){oriente=o;}
     void set_label_couple(Note& x, Note& y, QString l);
 };
 
