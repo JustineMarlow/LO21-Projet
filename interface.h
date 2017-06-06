@@ -28,19 +28,21 @@
 class VuePrincipale : public QMainWindow{
     Q_OBJECT
 public:
-    VuePrincipale(Article& a);
+    VuePrincipale(Note& n);
 
 private slots:
      void showRelations(); //bouton d'accès à la vue secondaire (gestion & visualisation des relations)
      void afficageArbo(); //gère la partie droite (masque ou affiche)
 
 private:
+     //QWidget* zoneCentrale;
+     //QGroupBox* gauche;
+
     //Partie gauche
 
     //Partie centrale
-    Article& article;
-    ArticleEditeur note;
-
+    Note& note;
+    NoteEditeur& noteEdit;
 
     //Partie droite
     bool arboVisible;

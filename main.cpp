@@ -25,8 +25,6 @@ int main(int argc, char *argv[])
     RelationEditeur fenetre;*/
 
    // manager_relations.createRelation("Reference","La note x fait reference a la note y",true);
-
-
     //Article& a=dynamic_cast<Article&>(manager_notes.getNote("id:A1"));
     //ArticleEditeur fenetre(a);
 
