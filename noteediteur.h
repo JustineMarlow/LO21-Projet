@@ -54,8 +54,8 @@ public:
     QLabel* getDate_m(){return date_m;}
     QLabel* getVersion(){return version;}
     QLabel* getLast(){return last;}
-    //virtual void extensionsave()=0;
-    //virtual void extensionsetasactual()=0;
+    virtual void extensionsave()=0;
+    virtual void extensionsetasactual()=0;
     Note& getNote() const {return *note;}
     void setNote(Note* newnote){note=newnote;}
     virtual void blockall()=0;

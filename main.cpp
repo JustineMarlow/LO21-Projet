@@ -9,34 +9,31 @@
 
 int main(int argc, char *argv[])
 {
-
     try{
+    //PARTIE DU MAIN A NE PAS CHANGER HORMIS LES CHEMINS VERS LES FICHIERS
     QApplication app(argc, argv);
-    QString fichier = QFileDialog::getOpenFileName();
-    NotesManager &m=NotesManager::getInstance();
-    m.setFilename(fichier);
-    m.load();
-    Article& a=dynamic_cast<Article&>(m.getVersionNote("id:A2",1));
-    VuePrincipale fenetre(a);
+    RelationsManager &manager_relations=RelationsManager::getInstance();
+    manager_relations.createRelation("Reference","La note x fait reference a la note y",true);
 
-    /*RelationsManager& m=RelationsManager::getInstance();
-    m.setFilename(fichier);
-    m.load();
-    RelationEditeur fenetre;*/
 
-   // manager_relations.createRelation("Reference","La note x fait reference a la note y",true);
+    NotesManager &manager_notes=NotesManager::getInstance();
+    manager_notes.setFilename("/home/marlow/Bureau/Projet/Notes.xml");
+    manager_notes.load();
+
+    manager_relations.setFilename("/home/marlow/Bureau/Projet/Relations.xml");
+    manager_relations.load();
+
+    //ICI ON PEUT OUVRIR UNE NOTE OU UNE RELATION
     //Article& a=dynamic_cast<Article&>(manager_notes.getNote("id:A1"));
     //ArticleEditeur fenetre(a);
 
 
-    /*Relation& relation=manager_relations.getRelation("Anteriorite");
+    Relation& relation=manager_relations.getRelation("Anteriorite");
     Note& x=manager_notes.getNote("id:A3");
     Note& y=manager_notes.getNote("id:A2");
     relation.addCouple(x,y,"label 4");
-    RelationEditeur fenetre2(relation);*/
+    RelationEditeur fenetre(relation);
 
-   // ArticleEditeur fenetre;
-    //qDebug()<<"fenetre cree \n";
     //Fichier& f=dynamic_cast<Fichier&>(manager_notes.getNote("id:F2"));
     //FichierEditeur fenetre(f);
     //for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
@@ -46,46 +43,4 @@ int main(int argc, char *argv[])
     return app.exec();
     }
     catch(NotesException e){qDebug()<<e.getInfo();}
-
-
-
-    /*try{
-    QApplication app(argc, argv);
-    QString fichier_notes = QFileDialog::getOpenFileName();
-    NotesManager& manager_notes=NotesManager::getInstance();
-    manager_notes.setFilename(fichier_notes);
-    manager_notes.load();
-    QString fichier_relations = QFileDialog::getOpenFileName();
-    RelationsManager& manager_relations=RelationsManager::getInstance();
-    manager_relations.setFilename(fichier_relations);
-    manager_relations.load();
-
-    Relation & r1=manager_relations.createRelation("New Relation", "nouvelle relation",false);
-    Relation & r2=manager_relations.createRelation("New Relation bis", "nouvelle relation bis",false);
-    Relation & r=manager_relations.getRelation("Reference");
-    RelationEditeur fenetre(r);*/
-
-
-    /*
-    QVBoxLayout *layout=new QVBoxLayout;
-    for (RelationsManager::Iterator iterator=RelationsManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
-    {
-        QLabel* relation_titre= new QLabel(iterator.current().getTitre());
-        QLabel* relation_description= new QLabel(iterator.current().getDescription());
-        layout-> addWidget(relation_titre);
-        layout-> addWidget(relation_description);
-        for (unsigned int i=0;i<iterator.current().getNbCouples();i++){
-            QLabel* relation_couple= new QLabel(iterator.current().getXCouple(i).getId()+"-->"+iterator.current().getYCouple(i).getId()+" (label : "+iterator.current().getLabelCouple(i)+")");
-            layout-> addWidget(relation_couple);
-        }
-    }
-    fenetre.setLayout(layout);
-
-    fenetre.show();
-    return app.exec();
-    }
-
-
-    catch(NotesException e){qDebug()<<e.getInfo();}*/
-
- }
+}
