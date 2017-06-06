@@ -14,14 +14,30 @@
 #include <QMessageBox>
 #include<QtGui>
 #include<QGroupBox>
+#include<QDockWidget>
+#include<QMainWindow>
+#include<QMenuBar>
+#include<QMenu>
+#include<QShortcut>
+#include<QKeySequence>
 #include <note.h>
 #include <noteediteur.h>
 #include<relation.h>
+#include<relationediteur.h>
 
-class VuePrincipale : public QWidget{
+
+class InterfaceException{
+public:
+    InterfaceException(const QString& message):info(message){}
+    QString getInfo() const { return info; }
+private:
+    QString info;
+};
+
+class VuePrincipale : public QMainWindow{
     Q_OBJECT
 public:
-    VuePrincipale(Article& a);
+    VuePrincipale(Note* n);
 
 private slots:
      void showRelations(); //bouton d'accès à la vue secondaire (gestion & visualisation des relations)
@@ -31,9 +47,8 @@ private:
     //Partie gauche
 
     //Partie centrale
-    Article& article;
-    ArticleEditeur note;
-
+    Note* note;
+    NoteEditeur* noteEdit;
 
     //Partie droite
     bool arboVisible;
@@ -50,7 +65,7 @@ public :
     VueSecondaire();
 
 private :
-    //Article& article;
+    RelationEditeur relations;
     QPushButton* quitter;
 
 };
