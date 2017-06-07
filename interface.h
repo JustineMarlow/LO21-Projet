@@ -20,6 +20,8 @@
 #include<QMenu>
 #include<QShortcut>
 #include<QKeySequence>
+#include<QTreeWidget>
+#include<QTreeWidgetItem>
 #include <note.h>
 #include <noteediteur.h>
 #include<relation.h>
@@ -37,13 +39,14 @@ private:
 class VuePrincipale : public QMainWindow{
     Q_OBJECT
 public:
-    VuePrincipale(Note* n);
+    VuePrincipale(Note* n, RelationsManager* m);
 
 private slots:
      void showRelations(); //bouton d'accès à la vue secondaire (gestion & visualisation des relations)
      void afficageArbo(); //gère la partie droite (masque ou affiche)
 
 private:
+    RelationsManager* manager;
     //Partie gauche
 
     //Partie centrale
@@ -52,6 +55,7 @@ private:
 
     //Partie droite
     bool arboVisible;
+    QTreeWidget* liste_relations;
     QGroupBox* droite;
     QLabel* relation_titre;
     QLabel* relation_description;
@@ -62,12 +66,27 @@ private:
 
 class VueSecondaire : public QWidget{
 public :
-    VueSecondaire();
+    VueSecondaire(RelationsManager* m);
 
 private :
+    RelationsManager* manager;
     RelationEditeur relations;
     QPushButton* quitter;
 
+    //colonne gauche
+    QHBoxLayout** liste_relations;
+    QPushButton** relation_titre;
+    QLabel** relation_description;
+    //QPushButton** editer;
+    //QSignalMapper** mapper_openRelation;
+};
+
+class ArbreRelations : public QTreeWidgetItem{
+    QString value;
+private :
+    QString getValue() const {return value;}
+    ArbreRelations(const QString& text, const QString& v="Undefined", int type=Type) :
+        QTreeWidgetItem(QStringList(text), type), value(v){}
 };
 
 #endif // INTERFACE_H

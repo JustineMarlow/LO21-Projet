@@ -3,7 +3,10 @@
 #include<QGroupBox>
 #include<QFormLayout>
 
-VuePrincipale::VuePrincipale(Note* n) : note(n){
+//=============================FENÊTRE PRINCIPALE======================================
+
+
+VuePrincipale::VuePrincipale(Note* n, RelationsManager* m) : note(n), manager(m){
     QWidget* zoneCentrale=new QWidget;
     setCentralWidget(zoneCentrale);
 
@@ -28,10 +31,6 @@ VuePrincipale::VuePrincipale(Note* n) : note(n){
                     Article& a=dynamic_cast<Article&>(*note);
                     noteEdit=new ArticleEditeur(a);
                 }
-                else if(typeid(*note)==typeid(Tache)){
-                    Tache& t=dynamic_cast<Tache&>(*note);
-                    noteEdit=new TacheEditeur(t);
-                }
                 else if(typeid(*note)==typeid(TacheAvecPriorite)){
                     TacheAvecPriorite& t=dynamic_cast<TacheAvecPriorite&>(*note);
                     noteEdit=new TacheAvecPrioriteEditeur(t);
@@ -39,6 +38,10 @@ VuePrincipale::VuePrincipale(Note* n) : note(n){
                 else if (typeid(*note)==typeid(TacheAvecDeadline)){
                     TacheAvecDeadline& t=dynamic_cast<TacheAvecDeadline&>(*note);
                     noteEdit=new TacheAvecDeadlineEditeur(t);
+                }
+                else if(typeid(*note)==typeid(Tache)){
+                    Tache& t=dynamic_cast<Tache&>(*note);
+                    noteEdit=new TacheEditeur(t);
                 }
                 else if(typeid(*note)==typeid(Fichier)){
                     Fichier& f=dynamic_cast<Fichier&>(*note);
@@ -53,14 +56,37 @@ VuePrincipale::VuePrincipale(Note* n) : note(n){
 
 
      //partie droite
+           QVBoxLayout* rightLayout=new QVBoxLayout;
+           liste_relations=new QTreeWidget;
+           rightLayout->addWidget(liste_relations,4,0);
+            RelationsManager::Iterator it=manager->getIterator();
+           /* QStringList list = QStringList(it.current().getTitre()+"\n"+it.current().getDescription() );
+            QTreeWidgetItem* item = new QTreeWidgetItem(list);
+            liste_relations->addTopLevelItem(item);
+            it.next();
+            QStringList list2 = QStringList(it.current().getTitre()+"\n"+it.current().getDescription() );
+            QTreeWidgetItem* item2 = new QTreeWidgetItem(list2);
+            liste_relations->addTopLevelItem(item2);
+            it.next();
+            QStringList list3 = QStringList(it.current().getTitre()+"\n"+it.current().getDescription() );
+            QTreeWidgetItem* item3 = new QTreeWidgetItem(list3);
+            liste_relations->addTopLevelItem(item3);*/
+            unsigned int i=1;
+            QStringList* list=new QStringList[manager->getNbRelations()];
+            QTreeWidgetItem* item=new QTreeWidgetItem[manager->getNbRelations()];
+            while(!it.isDone()){
+               qDebug()<<"entree dans la boucle";
+               list[i] = QStringList(it.current().getTitre()+"\n"+it.current().getDescription());
+               item[i] = QTreeWidgetItem(list[i]);
+               liste_relations->addTopLevelItem(&item[i]);
+               qDebug()<<"Ajout de la relation "<<it.current().getTitre()<<" à l'arborescence\n";
+               i++;
+               it.next();
+            }
+        qDebug()<<"Sortie de boucle maggle";
         arboVisible=true;
-        Relation reference("Reference","La note x fait reference a la note y",false);
-        relation_titre= new QLabel(reference.getTitre());
-        relation_description= new QLabel(reference.getDescription());
         relation_details=new QPushButton("Gérer les relations", this);
-        QVBoxLayout* rightLayout=new QVBoxLayout;
-        rightLayout->addWidget(relation_titre);
-        rightLayout-> addWidget(relation_description);
+        rightLayout->addWidget(liste_relations);
         rightLayout-> addWidget(relation_details);
         droite=new QGroupBox("Arborescence des relations", zoneCentrale);
         droite->setLayout(rightLayout);
@@ -126,22 +152,52 @@ void VuePrincipale::afficageArbo(){
 }
 
 void VuePrincipale::showRelations(){
-    VueSecondaire* fenetreRelations=new VueSecondaire();
+    VueSecondaire* fenetreRelations=new VueSecondaire(manager);
     fenetreRelations->show();
 }
 
-VueSecondaire::VueSecondaire() {
-    //layout principal
-    //relations=new RelationEditeur();
+
+
+
+//==========================================FENÊTRE SECONDAIRE (RELATIONS)========================================
+
+VueSecondaire::VueSecondaire(RelationsManager* m) : manager(m){
+    //colonne de gauche : liste de toutes les relations
+     quitter=new QPushButton("Quitter", this);
+    QGroupBox* gauche=new QGroupBox;
+    QVBoxLayout* leftLayout=new QVBoxLayout;
+    
+    liste_relations = new QHBoxLayout*[manager->getNbRelations()];
+    relation_titre = new QPushButton*[manager->getNbRelations()];
+    relation_description=new QLabel*[manager->getNbRelations()];
+    //editer = new QPushButton*[manager->getNbRelations()];
+    //mapper_openRelation = new QSignalMapper(this);
+   // connect(mapper_openRelation, SIGNAL(mapped(int)), this, SLOT(editRelation());
+    unsigned int i=0;
+    for(unsigned int i=0; i<manager->getNbRelations(); i++)
+    {
+        relation_titre[i]=new QPushButton(manager->getIRelation(i).getTitre(), this);
+        relation_description[i]=new QLabel(manager->getIRelation(i).getDescription(), this);
+        liste_relations[i]->addWidget(relation_titre[i]);
+        liste_relations[i]->addWidget(relation_description[i]);
+        leftLayout->addLayout(liste_relations[i]);
+    }
+    leftLayout->addWidget(quitter);
+    gauche->setLayout(leftLayout);
+
+
+    //partie principale
     QFormLayout* editeur=new QFormLayout;
     editeur->addRow("", &relations);
     QGroupBox* blocPrincipal=new QGroupBox("Gestion des relations");
     blocPrincipal->setLayout(editeur);
 
-    quitter=new QPushButton("Quitter", this);
-    QVBoxLayout *layout=new QVBoxLayout;
+
+    QVBoxLayout *principal=new QVBoxLayout;
+    principal->addWidget(blocPrincipal);
+    QHBoxLayout* layout=new QHBoxLayout;
+    layout->addWidget(gauche);
     layout->addWidget(blocPrincipal);
-    layout->addWidget(quitter);
     setLayout(layout);
     setWindowTitle("Gestion des relations");
     resize(350, 450);
