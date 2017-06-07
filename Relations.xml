@@ -5,8 +5,8 @@
         <description>La note x est anterieure a la note y.</description>
         <oriente>oui</oriente>
         <couple>
-            <idX>id:A2</idX>
-            <idY>id:A1</idY>
+            <idX>id:A1</idX>
+            <idY>id:A2</idY>
             <label>label 1</label>
         </couple>
         <couple>
@@ -16,7 +16,7 @@
         </couple>
         <couple>
             <idX>id:A3</idX>
-            <idY>id:A2</idY>
+            <idY>id:A1</idY>
             <label>label 4</label>
         </couple>
     </relation>

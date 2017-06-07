@@ -17,12 +17,12 @@ int main(int argc, char *argv[])
 
 
     NotesManager &manager_notes=NotesManager::getInstance();
-    manager_notes.setFilename("/home/camille/Documents/UTC/HU04/LO21/Projet/Projet/Notes.xml");
-    //manager_notes.setFilename("/home/marlow/Bureau/Projet/Notes.xml");
+    //manager_notes.setFilename("/home/camille/Documents/UTC/HU04/LO21/Projet/Projet/Notes.xml");
+    manager_notes.setFilename("/home/marlow/Bureau/Projet/Notes.xml");
     manager_notes.load();
 
-    manager_relations.setFilename("/home/camille/Documents/UTC/HU04/LO21/Projet/Projet/Relations.xml");
-    //manager_relations.setFilename("/home/marlow/Bureau/Projet/Relations.xml");
+    //manager_relations.setFilename("/home/camille/Documents/UTC/HU04/LO21/Projet/Projet/Relations.xml");
+    manager_relations.setFilename("/home/marlow/Bureau/Projet/Relations.xml");
     manager_relations.load();
 
     //ICI ON PEUT OUVRIR UNE NOTE OU UNE RELATION

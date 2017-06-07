@@ -39,17 +39,24 @@ private:
 class VuePrincipale : public QMainWindow{
     Q_OBJECT
 public:
-    VuePrincipale(Note* n, RelationsManager* m);
+    VuePrincipale(Note* n);
+    void affichage_central();
+    void affichage_droit();
 
 private slots:
      void showRelations(); //bouton d'accès à la vue secondaire (gestion & visualisation des relations)
-     void afficageArbo(); //gère la partie droite (masque ou affiche)
+     void afficageArbo();  //gère la partie droite (masque ou affiche l'arborescence)
+     void afficher(QTreeWidgetItem* item,int i);
 
 private:
-    RelationsManager* manager;
+    QWidget* zoneCentrale;
+    QHBoxLayout* layoutPrincipal;
+
     //Partie gauche
+    QGroupBox* gauche;
 
     //Partie centrale
+    QGroupBox* centre;
     Note* note;
     NoteEditeur* noteEdit;
 
@@ -66,7 +73,7 @@ private:
 
 class VueSecondaire : public QWidget{
 public :
-    VueSecondaire(RelationsManager* m);
+    VueSecondaire();
 
 private :
     RelationsManager* manager;

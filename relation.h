@@ -36,6 +36,21 @@ public:
     void set_description(QString d){description=d;}
     //void set_Oriente(bool o){oriente=o;}
     void set_label_couple(Note& x, Note& y, QString l);
+
+    class Iterator{
+        Note*** notes;
+        unsigned int courant;
+        unsigned int taille;
+        friend class Relation;
+        Iterator(Note*** tab, unsigned int n):notes(tab),courant(0),taille(n){}
+    public:
+        Note& current_noteX() const {return *notes[1][courant];}
+        Note& current_noteY() const {return *notes[2][courant];}
+        void next() {if (courant<taille) courant++; else throw NotesException("Iterator de Relation is done");}
+        bool isDone() const {return courant==taille;}
+        void debut() {courant=0;}
+    };
+    Iterator getIterator() {return Iterator(tableau, nbCouples);}
 };
 
 /*========================================================= RelationsManager ==========================================================================================*/
@@ -68,7 +83,7 @@ public:
         Iterator(Relation** t, unsigned int n):tab(t),courant(0),taille(n){}
     public:
         Relation& current() const {return *tab[courant];}
-        void next() {if (courant<taille) courant++; else throw NotesException("Iterator de Relation is done");}
+        void next() {if (courant<taille) courant++; else throw NotesException("Iterator de RelationsManager is done");}
         bool isDone() const {return courant==taille;}
         void debut() {courant=0;}
     };
