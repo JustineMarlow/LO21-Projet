@@ -57,10 +57,24 @@ VuePrincipale::VuePrincipale(Note* n, RelationsManager* m) : note(n), manager(m)
 
      //partie droite
            QVBoxLayout* rightLayout=new QVBoxLayout;
-           liste_relations=new QTreeWidget;
-           rightLayout->addWidget(liste_relations,4,0);
+           liste_relations=new QTreeWidget();
+           liste_relations->setHeaderLabels(QStringList("Relations"));
+
+           rightLayout->addWidget(liste_relations);
+
+
+            QTreeWidgetItem* arbreDescendants = new QTreeWidgetItem(liste_relations);
+            arbreDescendants->setText(0,"Descendants");
+            //QObject::connect(arbreDescendants,SIGNAL(),this ,SLOT()));
+            liste_relations->addTopLevelItem(arbreDescendants);
+
+            QTreeWidgetItem* arbreAscendants = new QTreeWidgetItem(liste_relations);
+            arbreAscendants->setText(0,"Ascendants");
+            //QObject::connect(arbreAscendants,SIGNAL(),this ,SLOT()));
+            liste_relations->addTopLevelItem(arbreAscendants);
+
             RelationsManager::Iterator it=manager->getIterator();
-           /* QStringList list = QStringList(it.current().getTitre()+"\n"+it.current().getDescription() );
+            /* QStringList list = QStringList(it.current().getTitre()+"\n"+it.current().getDescription() );
             QTreeWidgetItem* item = new QTreeWidgetItem(list);
             liste_relations->addTopLevelItem(item);
             it.next();
@@ -71,17 +85,23 @@ VuePrincipale::VuePrincipale(Note* n, RelationsManager* m) : note(n), manager(m)
             QStringList list3 = QStringList(it.current().getTitre()+"\n"+it.current().getDescription() );
             QTreeWidgetItem* item3 = new QTreeWidgetItem(list3);
             liste_relations->addTopLevelItem(item3);*/
-            unsigned int i=1;
-            QStringList* list=new QStringList[manager->getNbRelations()];
-            QTreeWidgetItem* item=new QTreeWidgetItem[manager->getNbRelations()];
+            unsigned int i=0;
+           // QStringList* list=new QStringList[manager->getNbRelations()];
+           // QTreeWidgetItem* item=new QTreeWidgetItem[manager->getNbRelations()];
             while(!it.isDone()){
                qDebug()<<"entree dans la boucle";
-               list[i] = QStringList(it.current().getTitre()+"\n"+it.current().getDescription());
-               item[i] = QTreeWidgetItem(list[i]);
-               liste_relations->addTopLevelItem(&item[i]);
+               QStringList* list = new QStringList(it.current().getTitre()+"\n"+it.current().getDescription());
+               QTreeWidgetItem* item = new QTreeWidgetItem(*list);
+               item->setText(0, it.current().getTitre()+"\n"+it.current().getDescription());
+               if(&(it.current().getXCouple(i))==note){
+                   arbreDescendants->addChild(item);
+               }
+               if(&(it.current().getYCouple(i))==note){
+                    arbreAscendants->addChild(item);
+               }
                qDebug()<<"Ajout de la relation "<<it.current().getTitre()<<" à l'arborescence\n";
-               i++;
                it.next();
+               i++;
             }
         qDebug()<<"Sortie de boucle maggle";
         arboVisible=true;
