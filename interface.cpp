@@ -42,9 +42,12 @@ VuePrincipale::VuePrincipale(Note* n) : note(n){
                nouveau->addAction(actionTache);
                QAction* actionImage=new QAction("Nouvelle Image", this);
                nouveau->addAction(actionImage);
-            QAction *actionSave=new QAction("&Enregistrer", this);
+            actionSave=new QAction("&Enregistrer", this);
             menuFichier->addAction(actionSave);
             actionSave->setShortcut(QKeySequence("Ctrl+S"));
+            actionSave->setDisabled(true);
+            connect(actionSave, SIGNAL(triggered()), this, SLOT(interfaceSave()));
+            QObject::connect(noteEdit->getTitle(), SIGNAL(textChanged(QString)), this, SLOT(activerMenuSave(QString)));
             QAction *actionQuitter = new QAction("&Quitter", this);
             actionQuitter->setShortcut(QKeySequence("Ctrl+Q"));
             connect(actionQuitter, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -75,7 +78,9 @@ VuePrincipale::VuePrincipale(Note* n) : note(n){
             setWindowTitle("Pluri'notes");
 }
 
-
+void VuePrincipale::activerMenuSave(QString str){
+    actionSave->setDisabled(false);
+}
 
 void VuePrincipale::afficageArbo(){
     if(arboVisible){

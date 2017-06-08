@@ -48,10 +48,13 @@ private slots:
      void showRelations(); //bouton d'accès à la vue secondaire (gestion & visualisation des relations)
      void afficageArbo();  //gère la partie droite (masque ou affiche l'arborescence)
      void afficher_note(QTreeWidgetItem* item,int i);
+     void interfaceSave(){noteEdit->save();}
+     void activerMenuSave(QString str="");
 
 private:
     QWidget* zoneCentrale;
     QHBoxLayout* layoutPrincipal;
+
 
     //Partie gauche
     QGroupBox* gauche;
@@ -60,6 +63,8 @@ private:
     QGroupBox* centre;
     Note* note;
     NoteEditeur* noteEdit;
+    QAction* actionSave;
+    bool saveActive;
 
     //Partie droite
     bool arboVisible;
