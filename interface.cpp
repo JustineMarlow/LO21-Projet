@@ -108,6 +108,23 @@ void VuePrincipale::afficher_note(QTreeWidgetItem *item,int i){
     zoneCentrale->setLayout(layoutPrincipal);
 }
 
+void VuePrincipale::afficher_version(QTreeWidgetItem *item,int i){
+    qDebug()<<"signal reçu";
+    NotesManager& manager=NotesManager::getInstance();
+    bool conversion;
+    int version=item->text(0).toUInt(&conversion, 10);
+    QString id=note->getId();
+    note = &manager.getVersionNote(id,version);
+    delete centre;
+    delete droite;
+    affichage_central();
+    affichage_droit();
+    layoutPrincipal->addWidget(centre);
+    layoutPrincipal->addWidget(droite);
+    zoneCentrale->setLayout(layoutPrincipal);
+    qDebug()<<"signal reçu";
+}
+
 void VuePrincipale::affichage_central(){
 
     if(typeid(*note)==typeid(Article)){
@@ -143,8 +160,11 @@ void VuePrincipale::affichage_droit(){
           QVBoxLayout* rightLayout=new QVBoxLayout;
           if (note->IsLast())
           {
-              liste_relations=new QTreeWidget();
-              liste_relations->setHeaderLabels(QStringList("Relations"));
+              liste_relations=new QTreeWidget(this);
+              QStringList header;
+              header<<"Relations"<<"";
+              liste_relations->setHeaderLabels(header);
+              liste_relations->setColumnCount(2);
               QObject::connect(liste_relations, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*,int)));
 
               QTreeWidgetItem* arbreAscendants = new QTreeWidgetItem(liste_relations);
@@ -157,7 +177,8 @@ void VuePrincipale::affichage_droit(){
                arbreDescendants->setExpanded(true);
                liste_relations->addTopLevelItem(arbreDescendants);
 
-               QTreeWidgetItem** item = new QTreeWidgetItem*[10];
+               nb_items_relations=2;
+               QTreeWidgetItem** item = new QTreeWidgetItem*[nb_items_relations];
                unsigned int i=0;
                RelationsManager::Iterator iterator_manager=RelationsManager::getInstance().getIterator();
                while(!iterator_manager.isDone()){ //ici on examine chaque relation
@@ -165,10 +186,21 @@ void VuePrincipale::affichage_droit(){
                   Relation::Iterator iterator_relation= iterator_manager.current().getIterator();
                   while(!iterator_relation.isDone()) //ici on examine chaque couple de la relation
                   {
+                      if(i>nb_items_relations-2) //il reste moins de 2 cases dans le tableau d'items, il faut l'agrandir
+                      {
+                          qDebug()<<"agrandissement tableau d'item\n";
+                          QTreeWidgetItem** new_item = new QTreeWidgetItem*[nb_items_relations+10];
+                          for (unsigned int k=0; k<nb_items_relations; k++)
+                              new_item[k] = item[k];
+                          QTreeWidgetItem** old_item = item;
+                          item=new_item;
+                          delete [] old_item;
+                          nb_items_relations+=10;
+                      }
                       if(&(iterator_relation.current_noteX())==note){
                           item[i] = new QTreeWidgetItem();
                           item[i]->setText(0, iterator_relation.current_noteY().getId());
-                                        //+" ("+iterator_manager.current().getTitre()+")");
+                          item[i]->setText(1,"("+iterator_manager.current().getTitre()+")");
                           arbreDescendants->addChild(item[i]);
                           i++;
                           qDebug()<<"Descendant trouve\n";
@@ -176,7 +208,7 @@ void VuePrincipale::affichage_droit(){
                       if(&(iterator_relation.current_noteY())==note){
                            item[i] = new QTreeWidgetItem();
                            item[i]->setText(0, iterator_relation.current_noteX().getId());
-                                         //+" ("+iterator_manager.current().getTitre()+")");
+                           item[i]->setText(1,"("+iterator_manager.current().getTitre()+")");
                            arbreAscendants->addChild(item[i]);
                            i++;
                            qDebug()<<"Ascendant trouve\n";
@@ -188,11 +220,23 @@ void VuePrincipale::affichage_droit(){
                 }
                rightLayout->addWidget(liste_relations);
           }
-          //if(note->getVersion()>1)
-          //{
+          NotesManager& manager=NotesManager::getInstance();
+          unsigned int nb_versions=manager.getNote(note->getId()).getVersion();
+          if(nb_versions>1)
+          {
+              liste_versions=new QTreeWidget();
+              liste_versions->setHeaderLabels(QStringList("Versions"));
+              QObject::connect(liste_versions, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_version(QTreeWidgetItem*,int)));
+              QTreeWidgetItem** item_version = new QTreeWidgetItem*[nb_versions];
+              for (unsigned int i=0; i<=nb_versions-1; i++)
+              {
+                  item_version[i] = new QTreeWidgetItem();
+                  item_version[i]->setText(0, QString::number(i+1));
+                  liste_versions->addTopLevelItem(item_version[i]);
+              }
+              rightLayout->addWidget(liste_versions);
 
-
-          //}
+          }
        arboVisible=true;
        relation_details=new QPushButton("Gerer les relations", this);
        rightLayout-> addWidget(relation_details);

@@ -26,7 +26,7 @@
         <title>Un premier article</title>
         <creation>15/02/2015</creation>
         <modification>01/06/2017</modification>
-        <last>oui</last>
+        <last>non</last>
         <etat>Active</etat>
         <version>2</version>
     </article>
@@ -39,5 +39,16 @@
         <last>oui</last>
         <etat>Active</etat>
         <version>1</version>
+    </article>
+    <article>
+        <text>Ceci est un premier article. Faisons référence à \ref{id:A2}.
+Une superbe modif qui ne sert à rien.</text>
+        <id>id:A1</id>
+        <title>Un premier article</title>
+        <creation>15/02/2015</creation>
+        <modification>08/06/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>3</version>
     </article>
 </notes>
