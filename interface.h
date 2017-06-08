@@ -42,6 +42,7 @@ public:
     VuePrincipale(Note* n);
     void affichage_central();
     void affichage_droit();
+    void affichage_gauche();
 
 private slots:
      void showRelations(); //bouton d'accès à la vue secondaire (gestion & visualisation des relations)
@@ -62,13 +63,8 @@ private:
     NoteEditeur* noteEdit;
 
     //Partie droite
-    bool arboVisible;
-    QTreeWidget* liste_relations;
-    unsigned int nb_items_relations;
-    QTreeWidget* liste_versions;
     QGroupBox* droite;
-    QLabel* relation_titre;
-    QLabel* relation_description;
+    bool arboVisible;
     QPushButton* relation_details;
     QPushButton* arborescence;
 

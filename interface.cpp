@@ -11,19 +11,7 @@ VuePrincipale::VuePrincipale(Note* n) : note(n){
     setCentralWidget(zoneCentrale);
 
     //gauche
-        QVBoxLayout* leftLayout=new QVBoxLayout;
-        QGroupBox* notesActives=new QGroupBox("Notes Actives");
-        QGroupBox* affichageErgo=new QGroupBox("Taches");
-        QGroupBox* archives=new QGroupBox("Archives");
-        arborescence=new QPushButton("Masquer l'arborescence", this);
-        leftLayout->addWidget(notesActives);
-        leftLayout->addWidget(affichageErgo);
-        leftLayout->addWidget(archives);
-        leftLayout->addWidget(arborescence);
-        gauche=new QGroupBox("", zoneCentrale);
-        gauche->setLayout(leftLayout);
-
-        connect(arborescence, SIGNAL(clicked()), this, SLOT(afficageArbo()));
+        affichage_gauche();
 
        //centre
         affichage_central();
@@ -156,11 +144,10 @@ centre->setLayout(editeur);
 }
 
 void VuePrincipale::affichage_droit(){
-    //partie droite
           QVBoxLayout* rightLayout=new QVBoxLayout;
           if (note->IsLast())
           {
-              liste_relations=new QTreeWidget(this);
+              QTreeWidget* liste_relations=new QTreeWidget(this);
               QStringList header;
               header<<"Relations"<<"";
               liste_relations->setHeaderLabels(header);
@@ -177,7 +164,7 @@ void VuePrincipale::affichage_droit(){
                arbreDescendants->setExpanded(true);
                liste_relations->addTopLevelItem(arbreDescendants);
 
-               nb_items_relations=2;
+               unsigned int nb_items_relations=2;
                QTreeWidgetItem** item = new QTreeWidgetItem*[nb_items_relations];
                unsigned int i=0;
                RelationsManager::Iterator iterator_manager=RelationsManager::getInstance().getIterator();
@@ -224,7 +211,7 @@ void VuePrincipale::affichage_droit(){
           unsigned int nb_versions=manager.getNote(note->getId()).getVersion();
           if(nb_versions>1)
           {
-              liste_versions=new QTreeWidget();
+              QTreeWidget* liste_versions=new QTreeWidget(this);
               liste_versions->setHeaderLabels(QStringList("Versions"));
               QObject::connect(liste_versions, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_version(QTreeWidgetItem*,int)));
               QTreeWidgetItem** item_version = new QTreeWidgetItem*[nb_versions];
@@ -244,6 +231,62 @@ void VuePrincipale::affichage_droit(){
        droite->setLayout(rightLayout);
 
        connect(relation_details, SIGNAL(clicked()), this, SLOT(showRelations()));
+}
+
+void VuePrincipale::affichage_gauche(){
+    NotesManager& manager=NotesManager::getInstance();
+    NotesManager::Iterator iterator=manager.getIterator();
+    QVBoxLayout* leftLayout=new QVBoxLayout;
+    QTreeWidget* notesActives=new QTreeWidget(this);
+    notesActives->setHeaderLabels(QStringList("Actives"));
+    QObject::connect(notesActives, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*,int)));
+    QTreeWidget* taches=new QTreeWidget(this);
+    taches->setHeaderLabels(QStringList("Taches"));
+    QObject::connect(taches, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*,int)));
+    QTreeWidget* archives=new QTreeWidget(this);
+    archives->setHeaderLabels(QStringList("Archives"));
+    QObject::connect(archives, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*,int)));
+    unsigned int nb_items_relations=2;
+    QTreeWidgetItem** item = new QTreeWidgetItem*[nb_items_relations];
+    unsigned int i=0;
+    for (iterator.debut(); !iterator.isDone(); iterator.next())
+    {
+        if(i=nb_items_relations)
+        {
+            qDebug()<<"agrandissement tableau d'item\n";
+            QTreeWidgetItem** new_item = new QTreeWidgetItem*[nb_items_relations+10];
+            for (unsigned int k=0; k<nb_items_relations; k++)
+                new_item[k] = item[k];
+            QTreeWidgetItem** old_item = item;
+            item=new_item;
+            delete [] old_item;
+            nb_items_relations+=10;
+        }
+
+        if (iterator.current().IsLast())
+        {
+            item[i]=new QTreeWidgetItem();
+            item[i]->setText(0, iterator.current().getId());
+            if (iterator.current().getEtat()==active)
+            {
+                notesActives->addTopLevelItem(item[i]);
+                if (typeid(iterator.current())==typeid(Tache))
+                    taches->addTopLevelItem(item[i]);
+            }
+            else if (iterator.current().getEtat()==archivee)
+                archives->addTopLevelItem(item[i]);
+        }
+    }
+
+    arborescence=new QPushButton("Masquer l'arborescence", this);
+    leftLayout->addWidget(notesActives);
+    leftLayout->addWidget(taches);
+    leftLayout->addWidget(archives);
+    leftLayout->addWidget(arborescence);
+    gauche=new QGroupBox("", zoneCentrale);
+    gauche->setLayout(leftLayout);
+
+    connect(arborescence, SIGNAL(clicked()), this, SLOT(afficageArbo()));
 }
 
 
