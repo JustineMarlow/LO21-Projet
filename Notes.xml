@@ -51,4 +51,15 @@ Une superbe modif qui ne sert à rien.</text>
         <etat>Active</etat>
         <version>3</version>
     </article>
+    <tache>
+        <text>Créée depuis l'éditeur vierge, qui plus est.</text>
+        <statut>Attente</statut>
+        <id>id:T1</id>
+        <title>Une bien belle tâche</title>
+        <creation>08/06/2017</creation>
+        <modification>08/06/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>1</version>
+    </tache>
 </notes>

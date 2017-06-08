@@ -39,7 +39,7 @@ private:
 class VuePrincipale : public QMainWindow{
     Q_OBJECT
 public:
-    VuePrincipale(Note* n);
+    VuePrincipale(Note* n=0);
     void affichage_central();
     void affichage_droit();
     void affichage_gauche();
@@ -49,8 +49,10 @@ private slots:
      void afficageArbo();  //gère la partie droite (masque ou affiche l'arborescence)
      void afficher_note(QTreeWidgetItem* item,int i);
      void afficher_version(QTreeWidgetItem* item,int i);
+     void new_note(int i);
 
 private:
+    unsigned int marqueur; //sert à identifier une demande de nouvelle note (1 pour Article, 2 pour Tache, 3 pour TacheAvecPriorite, 4 pour TacheAvecDeadline, 5 pour Fichier)
     QWidget* zoneCentrale;
     QHBoxLayout* layoutPrincipal;
 

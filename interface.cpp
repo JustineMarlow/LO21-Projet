@@ -6,20 +6,12 @@
 //=============================FENÊTRE PRINCIPALE======================================
 
 
-VuePrincipale::VuePrincipale(Note* n) : note(n){
+VuePrincipale::VuePrincipale(Note* n) : note(n),marqueur(0){
     zoneCentrale=new QWidget;
     setCentralWidget(zoneCentrale);
-
-    //gauche
-        affichage_gauche();
-
-       //centre
-        affichage_central();
-
-
-     //partie droite
-         affichage_droit();
-
+    affichage_gauche();
+    affichage_central();
+    affichage_droit();
 
     //menu
         QMenu *menuFichier = menuBar()->addMenu("&Fichier");
@@ -97,7 +89,6 @@ void VuePrincipale::afficher_note(QTreeWidgetItem *item,int i){
 }
 
 void VuePrincipale::afficher_version(QTreeWidgetItem *item,int i){
-    qDebug()<<"signal reçu";
     NotesManager& manager=NotesManager::getInstance();
     bool conversion;
     int version=item->text(0).toUInt(&conversion, 10);
@@ -110,41 +101,86 @@ void VuePrincipale::afficher_version(QTreeWidgetItem *item,int i){
     layoutPrincipal->addWidget(centre);
     layoutPrincipal->addWidget(droite);
     zoneCentrale->setLayout(layoutPrincipal);
-    qDebug()<<"signal reçu";
 }
 
-void VuePrincipale::affichage_central(){
+void VuePrincipale::affichage_central()
+{
+    if(note==0 && marqueur==0)
+    {
+        centre=new QGroupBox("Nouvelle note", zoneCentrale);
+        QVBoxLayout* button_layout=new QVBoxLayout;
+        QSignalMapper* mapper_button = new QSignalMapper(this);
+        connect(mapper_button, SIGNAL(mapped(int)), this, SLOT(new_note(int)));
 
-    if(typeid(*note)==typeid(Article)){
-        Article& a=dynamic_cast<Article&>(*note);
-        noteEdit=new ArticleEditeur(a);
+        QPushButton* article=new QPushButton("Nouvel Article", this);
+        connect(article, SIGNAL(clicked()), mapper_button, SLOT(map())); mapper_button->setMapping(article,1);
+        QPushButton* tache=new QPushButton("Nouvelle Tache", this);
+        connect(tache, SIGNAL(clicked()), mapper_button, SLOT(map())); mapper_button->setMapping(tache,2);
+        QPushButton* tache_p=new QPushButton("Nouvelle Tache avec priorite", this);
+        connect(tache_p, SIGNAL(clicked()), mapper_button, SLOT(map())); mapper_button->setMapping(tache_p,3);
+        QPushButton* tache_d=new QPushButton("Nouvelle Tache avec deadline", this);
+        connect(tache_d, SIGNAL(clicked()), mapper_button, SLOT(map())); mapper_button->setMapping(tache_d,4);
+        QPushButton* fichier=new QPushButton("Nouveau Fichier", this);
+        connect(fichier, SIGNAL(clicked()), mapper_button, SLOT(map()));mapper_button->setMapping(fichier,5);
+        button_layout->addWidget(article); button_layout->addWidget(tache); button_layout->addWidget(tache_p); button_layout->addWidget(tache_d); button_layout->addWidget(fichier);
+        centre->setLayout(button_layout);
     }
-    else if(typeid(*note)==typeid(TacheAvecPriorite)){
-        TacheAvecPriorite& t=dynamic_cast<TacheAvecPriorite&>(*note);
-        noteEdit=new TacheAvecPrioriteEditeur(t);
+    else {
+        if (marqueur==0)
+        {
+        if(typeid(*note)==typeid(Article))
+            {
+            Article& a=dynamic_cast<Article&>(*note);
+            noteEdit=new ArticleEditeur(a);
+            }
+            else if(typeid(*note)==typeid(TacheAvecPriorite))
+                {
+                TacheAvecPriorite& t=dynamic_cast<TacheAvecPriorite&>(*note);
+                noteEdit=new TacheAvecPrioriteEditeur(t);
+                }
+                else if (typeid(*note)==typeid(TacheAvecDeadline))
+                    {
+                    TacheAvecDeadline& t=dynamic_cast<TacheAvecDeadline&>(*note);
+                    noteEdit=new TacheAvecDeadlineEditeur(t);
+                    }
+                    else if(typeid(*note)==typeid(Tache))
+                        {
+                            Tache& t=dynamic_cast<Tache&>(*note);
+                            noteEdit=new TacheEditeur(t);
+                        }
+                        else if(typeid(*note)==typeid(Fichier))
+                            {
+                            Fichier& f=dynamic_cast<Fichier&>(*note);
+                            noteEdit=new FichierEditeur(f);
+                            }
+                            else throw NotesException("Ce type de note n'existe pas.");
+        }
+        else
+        {
+            qDebug()<<"marqueur = "<<marqueur<<"\n";
+            switch (marqueur)
+        {
+        case 1 : noteEdit=new ArticleEditeur; break;
+        case 2 : noteEdit=new TacheEditeur; break;
+        case 3 : noteEdit=new TacheAvecPrioriteEditeur; break;
+        case 4 : noteEdit=new TacheAvecDeadlineEditeur; break;
+        case 5 : noteEdit=new FichierEditeur; break;
+        default : throw NotesException("Valeur de marqueur invalide");
+        }
+        marqueur=0;
+        }
+        QFormLayout* editeur=new QFormLayout;
+        editeur->addRow("", noteEdit);
+        centre=new QGroupBox("Visualisation de la note", zoneCentrale);
+        centre->setLayout(editeur);
     }
-    else if (typeid(*note)==typeid(TacheAvecDeadline)){
-        TacheAvecDeadline& t=dynamic_cast<TacheAvecDeadline&>(*note);
-        noteEdit=new TacheAvecDeadlineEditeur(t);
-    }
-    else if(typeid(*note)==typeid(Tache)){
-        Tache& t=dynamic_cast<Tache&>(*note);
-        noteEdit=new TacheEditeur(t);
-    }
-    else if(typeid(*note)==typeid(Fichier)){
-        Fichier& f=dynamic_cast<Fichier&>(*note);
-        noteEdit=new FichierEditeur(f);
-     }
-    else throw InterfaceException("Ce type de note n'existe pas");
-
-QFormLayout* editeur=new QFormLayout;
-editeur->addRow("", noteEdit);
-centre=new QGroupBox("Visualisation de la note", zoneCentrale);
-centre->setLayout(editeur);
 }
 
-void VuePrincipale::affichage_droit(){
-          QVBoxLayout* rightLayout=new QVBoxLayout;
+void VuePrincipale::affichage_droit()
+{
+          if (note==0) droite=new QGroupBox("", zoneCentrale);
+          else {
+              QVBoxLayout* rightLayout=new QVBoxLayout;
           if (note->IsLast())
           {
               QTreeWidget* liste_relations=new QTreeWidget(this);
@@ -232,6 +268,7 @@ void VuePrincipale::affichage_droit(){
 
        connect(relation_details, SIGNAL(clicked()), this, SLOT(showRelations()));
 }
+}
 
 void VuePrincipale::affichage_gauche(){
     NotesManager& manager=NotesManager::getInstance();
@@ -253,7 +290,6 @@ void VuePrincipale::affichage_gauche(){
     {
         if(i=nb_items_relations)
         {
-            qDebug()<<"agrandissement tableau d'item\n";
             QTreeWidgetItem** new_item = new QTreeWidgetItem*[nb_items_relations+10];
             for (unsigned int k=0; k<nb_items_relations; k++)
                 new_item[k] = item[k];
@@ -269,9 +305,9 @@ void VuePrincipale::affichage_gauche(){
             item[i]->setText(0, iterator.current().getId());
             if (iterator.current().getEtat()==active)
             {
-                notesActives->addTopLevelItem(item[i]);
                 if (typeid(iterator.current())==typeid(Tache))
                     taches->addTopLevelItem(item[i]);
+                notesActives->addTopLevelItem(item[i]);
             }
             else if (iterator.current().getEtat()==archivee)
                 archives->addTopLevelItem(item[i]);
@@ -283,12 +319,25 @@ void VuePrincipale::affichage_gauche(){
     leftLayout->addWidget(taches);
     leftLayout->addWidget(archives);
     leftLayout->addWidget(arborescence);
-    gauche=new QGroupBox("", zoneCentrale);
+    gauche=new QGroupBox("Notes", zoneCentrale);
     gauche->setLayout(leftLayout);
 
     connect(arborescence, SIGNAL(clicked()), this, SLOT(afficageArbo()));
 }
 
+void VuePrincipale::new_note(int i)
+{
+    qDebug()<<"signal reçu avec i = "<<i<<" \n";
+    marqueur=i;
+    delete centre;
+    delete droite;
+    affichage_central();
+    affichage_droit();
+    layoutPrincipal->addWidget(centre);
+    layoutPrincipal->addWidget(droite);
+    zoneCentrale->setLayout(layoutPrincipal);
+
+}
 
 
 //==========================================FENÊTRE SECONDAIRE (RELATIONS)========================================

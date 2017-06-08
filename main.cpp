@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 
 
     Article& a=dynamic_cast<Article&>(manager_notes.getNote("id:A1"));
-    VuePrincipale fenetre(&a);
+    VuePrincipale fenetre;
     fenetre.show();
     return app.exec();
     }
