@@ -208,24 +208,27 @@ void VuePrincipale::affichage_droit(){
 
 VueSecondaire::VueSecondaire() : manager(&RelationsManager::getInstance()){
     //colonne de gauche : liste de toutes les relations
-     quitter=new QPushButton("Quitter", this);
+    quitter=new QPushButton("Quitter", this);
     QGroupBox* gauche=new QGroupBox;
     QVBoxLayout* leftLayout=new QVBoxLayout;
-    
-    liste_relations = new QHBoxLayout*[manager->getNbRelations()];
-    relation_titre = new QPushButton*[manager->getNbRelations()];
-    relation_description=new QLabel*[manager->getNbRelations()];
-    //editer = new QPushButton*[manager->getNbRelations()];
-    //mapper_openRelation = new QSignalMapper(this);
-   // connect(mapper_openRelation, SIGNAL(mapped(int)), this, SLOT(editRelation());
-    for(unsigned int i=0; i<manager->getNbRelations(); i++)
+
+    arboRelations=new QTreeWidget();
+    arboRelations->setHeaderLabels(QStringList("Relations"));
+    relation_titre = new QTreeWidgetItem*[manager->getNbRelations()];
+    RelationsManager::Iterator it=manager->getIterator();
+    unsigned int i=0;
+    while(!it.isDone())
     {
-        relation_titre[i]=new QPushButton(manager->getIRelation(i).getTitre(), this);
-        relation_description[i]=new QLabel(manager->getIRelation(i).getDescription(), this);
-        liste_relations[i]->addWidget(relation_titre[i]);
-        liste_relations[i]->addWidget(relation_description[i]);
-        leftLayout->addLayout(liste_relations[i]);
+        qDebug()<<"Entree dans la boucle";
+        relation_titre[i]=new QTreeWidgetItem;
+        relation_titre[i]->setText(0, it.current().getTitre());
+        qDebug()<<"Creation de l'affichage de la relation "<<it.current().getTitre();
+        arboRelations->addTopLevelItem(relation_titre[i]);
+        qDebug()<<"Ajout du widget a la liste";
+        it.next();
+        i++;
     }
+    leftLayout->addWidget(arboRelations);
     leftLayout->addWidget(quitter);
     gauche->setLayout(leftLayout);
 
@@ -235,10 +238,9 @@ VueSecondaire::VueSecondaire() : manager(&RelationsManager::getInstance()){
     editeur->addRow("", &relations);
     QGroupBox* blocPrincipal=new QGroupBox("Gestion des relations");
     blocPrincipal->setLayout(editeur);
-
-
     QVBoxLayout *principal=new QVBoxLayout;
     principal->addWidget(blocPrincipal);
+
     QHBoxLayout* layout=new QHBoxLayout;
     layout->addWidget(gauche);
     layout->addWidget(blocPrincipal);
@@ -248,3 +250,13 @@ VueSecondaire::VueSecondaire() : manager(&RelationsManager::getInstance()){
    connect(quitter, SIGNAL(clicked()), this, SLOT(close()));
 }
 
+
+void openRelation(Relation& r){
+    RelationEditeur* ed=new RelationEditeur(r);
+    QFormLayout* editeur=new QFormLayout;
+    editeur->addRow(ed);
+    QGroupBox* blocPrincipal=new QGroupBox("Gestion des relations");
+    blocPrincipal->setLayout(editeur);
+    QVBoxLayout *principal=new QVBoxLayout;
+    principal->addWidget(blocPrincipal);
+}

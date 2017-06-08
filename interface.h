@@ -74,6 +74,7 @@ private:
 class VueSecondaire : public QWidget{
 public :
     VueSecondaire();
+    void openRelation(Relation& r);
 
 private :
     RelationsManager* manager;
@@ -81,11 +82,10 @@ private :
     QPushButton* quitter;
 
     //colonne gauche
-    QHBoxLayout** liste_relations;
-    QPushButton** relation_titre;
+    QTreeWidget* arboRelations;
+    QTreeWidgetItem** relation_titre;
     QLabel** relation_description;
-    //QPushButton** editer;
-    //QSignalMapper** mapper_openRelation;
+    QSignalMapper* mapper_openRelation;
 };
 
 class ArbreRelations : public QTreeWidgetItem{
