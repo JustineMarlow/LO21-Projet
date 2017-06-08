@@ -16,7 +16,7 @@
         <title>Un deuxième article</title>
         <creation>15/02/2015</creation>
         <modification>18/02/2015</modification>
-        <last>oui</last>
+        <last>non</last>
         <etat>Active</etat>
         <version>1</version>
     </article>
@@ -62,4 +62,48 @@ Une superbe modif qui ne sert à rien.</text>
         <etat>Active</etat>
         <version>1</version>
     </tache>
+    <tache>
+        <text>Qui arrive très vite</text>
+        <statut>Attente</statut>
+        <deadline>08/10/2017</deadline>
+        <id>id:T2</id>
+        <title>Une tache avec une deadline</title>
+        <creation>08/06/2017</creation>
+        <modification>08/06/2017</modification>
+        <last>non</last>
+        <etat>Active</etat>
+        <version>1</version>
+    </tache>
+    <tache>
+        <text>Qui arrive très vite</text>
+        <statut>Cours</statut>
+        <deadline>08/10/2017</deadline>
+        <id>id:T2</id>
+        <title>Une tache avec une deadline</title>
+        <creation>08/06/2017</creation>
+        <modification>08/06/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>2</version>
+    </tache>
+    <article>
+        <text>Ceci est un deuxième article. Plein de surprises</text>
+        <id>id:A2</id>
+        <title>Un deuxième article</title>
+        <creation>15/02/2015</creation>
+        <modification>08/06/2017</modification>
+        <last>non</last>
+        <etat>Active</etat>
+        <version>2</version>
+    </article>
+    <article>
+        <text>Ceci est un deuxième article.</text>
+        <id>id:A2</id>
+        <title>Un deuxième article</title>
+        <creation>15/02/2015</creation>
+        <modification>08/06/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>3</version>
+    </article>
 </notes>

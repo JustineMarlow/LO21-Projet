@@ -50,11 +50,14 @@ private slots:
      void afficher_note(QTreeWidgetItem* item,int i);
      void afficher_version(QTreeWidgetItem* item,int i);
      void new_note(int i);
+     void actualiser_fenetre();
 
 private:
     unsigned int marqueur; //sert à identifier une demande de nouvelle note (1 pour Article, 2 pour Tache, 3 pour TacheAvecPriorite, 4 pour TacheAvecDeadline, 5 pour Fichier)
     QWidget* zoneCentrale;
     QHBoxLayout* layoutPrincipal;
+    QPushButton* actualiser;
+    QPushButton* arborescence;
 
     //Partie gauche
     QGroupBox* gauche;
@@ -68,7 +71,6 @@ private:
     QGroupBox* droite;
     bool arboVisible;
     QPushButton* relation_details;
-    QPushButton* arborescence;
 
 };
 

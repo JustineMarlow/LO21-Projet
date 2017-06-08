@@ -178,9 +178,13 @@ void VuePrincipale::affichage_central()
 
 void VuePrincipale::affichage_droit()
 {
-          if (note==0) droite=new QGroupBox("", zoneCentrale);
+          droite=new QGroupBox("Arborescence", zoneCentrale);
+          QVBoxLayout* rightLayout=new QVBoxLayout;
+          if (note==0) {
+              QLabel* label=new QLabel(this); label->setText("Pas d'arborescence disponible.");
+              rightLayout->addWidget(label);
+          }
           else {
-              QVBoxLayout* rightLayout=new QVBoxLayout;
           if (note->IsLast())
           {
               QTreeWidget* liste_relations=new QTreeWidget(this);
@@ -260,14 +264,12 @@ void VuePrincipale::affichage_droit()
               rightLayout->addWidget(liste_versions);
 
           }
-       arboVisible=true;
-       relation_details=new QPushButton("Gerer les relations", this);
-       rightLayout-> addWidget(relation_details);
-       droite=new QGroupBox("Arborescence", zoneCentrale);
-       droite->setLayout(rightLayout);
-
-       connect(relation_details, SIGNAL(clicked()), this, SLOT(showRelations()));
 }
+          arboVisible=true;
+          relation_details=new QPushButton("Gerer les relations", this);
+          rightLayout-> addWidget(relation_details);
+          droite->setLayout(rightLayout);
+          connect(relation_details, SIGNAL(clicked()), this, SLOT(showRelations()));
 }
 
 void VuePrincipale::affichage_gauche(){
@@ -288,7 +290,7 @@ void VuePrincipale::affichage_gauche(){
     unsigned int i=0;
     for (iterator.debut(); !iterator.isDone(); iterator.next())
     {
-        if(i=nb_items_relations)
+        if(i==nb_items_relations)
         {
             QTreeWidgetItem** new_item = new QTreeWidgetItem*[nb_items_relations+10];
             for (unsigned int k=0; k<nb_items_relations; k++)
@@ -305,9 +307,9 @@ void VuePrincipale::affichage_gauche(){
             item[i]->setText(0, iterator.current().getId());
             if (iterator.current().getEtat()==active)
             {
-                if (typeid(iterator.current())==typeid(Tache))
+                if (typeid(iterator.current())==typeid(Tache) || typeid(iterator.current())==typeid(TacheAvecPriorite) || typeid(iterator.current())==typeid(TacheAvecDeadline))
                     taches->addTopLevelItem(item[i]);
-                notesActives->addTopLevelItem(item[i]);
+                else notesActives->addTopLevelItem(item[i]);
             }
             else if (iterator.current().getEtat()==archivee)
                 archives->addTopLevelItem(item[i]);
@@ -315,14 +317,17 @@ void VuePrincipale::affichage_gauche(){
     }
 
     arborescence=new QPushButton("Masquer l'arborescence", this);
+    actualiser=new QPushButton("Actualiser", this);
     leftLayout->addWidget(notesActives);
     leftLayout->addWidget(taches);
     leftLayout->addWidget(archives);
     leftLayout->addWidget(arborescence);
+    leftLayout->addWidget(actualiser);
     gauche=new QGroupBox("Notes", zoneCentrale);
     gauche->setLayout(leftLayout);
 
     connect(arborescence, SIGNAL(clicked()), this, SLOT(afficageArbo()));
+    connect(actualiser, SIGNAL(clicked()), this, SLOT(actualiser_fenetre()));
 }
 
 void VuePrincipale::new_note(int i)
@@ -333,6 +338,22 @@ void VuePrincipale::new_note(int i)
     delete droite;
     affichage_central();
     affichage_droit();
+    layoutPrincipal->addWidget(centre);
+    layoutPrincipal->addWidget(droite);
+    zoneCentrale->setLayout(layoutPrincipal);
+
+}
+
+void VuePrincipale::actualiser_fenetre()
+{
+    qDebug()<<"signal reçu\n";
+    delete gauche;
+    delete centre;
+    delete droite;
+    affichage_gauche();
+    affichage_central();
+    affichage_droit();
+    layoutPrincipal->addWidget(gauche);
     layoutPrincipal->addWidget(centre);
     layoutPrincipal->addWidget(droite);
     zoneCentrale->setLayout(layoutPrincipal);
