@@ -214,6 +214,9 @@ VueSecondaire::VueSecondaire() : manager(&RelationsManager::getInstance()){
 
     arboRelations=new QTreeWidget();
     arboRelations->setHeaderLabels(QStringList("Relations"));
+
+    QObject::connect(arboRelations, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(openRelation(QTreeWidgetItem,int)));
+
     relation_titre = new QTreeWidgetItem*[manager->getNbRelations()];
     RelationsManager::Iterator it=manager->getIterator();
     unsigned int i=0;
@@ -251,8 +254,9 @@ VueSecondaire::VueSecondaire() : manager(&RelationsManager::getInstance()){
 }
 
 
-void openRelation(Relation& r){
-    RelationEditeur* ed=new RelationEditeur(r);
+void openRelation(Relation* r){
+    qDebug()<<"Entree dans OpenRelation";
+    RelationEditeur* ed=new RelationEditeur(*r);
     QFormLayout* editeur=new QFormLayout;
     editeur->addRow(ed);
     QGroupBox* blocPrincipal=new QGroupBox("Gestion des relations");

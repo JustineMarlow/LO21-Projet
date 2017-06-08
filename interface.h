@@ -74,7 +74,7 @@ private:
 class VueSecondaire : public QWidget{
 public :
     VueSecondaire();
-    void openRelation(Relation& r);
+    void openRelation(Relation* r);
 
 private :
     RelationsManager* manager;
