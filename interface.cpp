@@ -26,91 +26,11 @@ VuePrincipale::VuePrincipale(Note* n) : note(n){
         connect(arborescence, SIGNAL(clicked()), this, SLOT(afficageArbo()));
 
        //centre
-
-                if(typeid(*note)==typeid(Article)){
-                    Article& a=dynamic_cast<Article&>(*note);
-                    noteEdit=new ArticleEditeur(a);
-                }
-                else if(typeid(*note)==typeid(TacheAvecPriorite)){
-                    TacheAvecPriorite& t=dynamic_cast<TacheAvecPriorite&>(*note);
-                    noteEdit=new TacheAvecPrioriteEditeur(t);
-                }
-                else if (typeid(*note)==typeid(TacheAvecDeadline)){
-                    TacheAvecDeadline& t=dynamic_cast<TacheAvecDeadline&>(*note);
-                    noteEdit=new TacheAvecDeadlineEditeur(t);
-                }
-                else if(typeid(*note)==typeid(Tache)){
-                    Tache& t=dynamic_cast<Tache&>(*note);
-                    noteEdit=new TacheEditeur(t);
-                }
-                else if(typeid(*note)==typeid(Fichier)){
-                    Fichier& f=dynamic_cast<Fichier&>(*note);
-                    noteEdit=new FichierEditeur(f);
-                 }
-                else throw InterfaceException("Ce type de note n'existe pas");
-
-            QFormLayout* editeur=new QFormLayout;
-            editeur->addRow("", noteEdit);
-            centre=new QGroupBox("Visualisation de la note", zoneCentrale);
-            centre->setLayout(editeur);
+        affichage_central();
 
 
      //partie droite
-           QVBoxLayout* rightLayout=new QVBoxLayout;
-           liste_relations=new QTreeWidget();
-           liste_relations->setHeaderLabels(QStringList("Relations"));
-           QObject::connect(liste_relations, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher(QTreeWidgetItem*,int)));
-           rightLayout->addWidget(liste_relations);
-
-
-           QTreeWidgetItem* arbreAscendants = new QTreeWidgetItem(liste_relations);
-           arbreAscendants->setText(0,"Ascendants");
-           arbreAscendants->setExpanded(true);
-           liste_relations->addTopLevelItem(arbreAscendants);
-
-            QTreeWidgetItem* arbreDescendants = new QTreeWidgetItem(liste_relations);
-            arbreDescendants->setText(0,"Descendants");
-            arbreDescendants->setExpanded(true);
-            liste_relations->addTopLevelItem(arbreDescendants);
-
-            QTreeWidgetItem** item = new QTreeWidgetItem*[10];
-            unsigned int i=0;
-            RelationsManager::Iterator iterator_manager=RelationsManager::getInstance().getIterator();
-            while(!iterator_manager.isDone()){ //ici on examine chaque relation
-               qDebug()<<"entree dans la boucle";
-               Relation::Iterator iterator_relation= iterator_manager.current().getIterator();
-               while(!iterator_relation.isDone()) //ici on examine chaque couple de la relation
-               {
-                   if(&(iterator_relation.current_noteX())==note){
-                       item[i] = new QTreeWidgetItem();
-                       item[i]->setText(0, iterator_relation.current_noteY().getId());
-                                     //+" ("+iterator_manager.current().getTitre()+")");
-                       arbreDescendants->addChild(item[i]);
-                       i++;
-                       qDebug()<<"Descendant trouve\n";
-                   }
-                   if(&(iterator_relation.current_noteY())==note){
-                        item[i] = new QTreeWidgetItem();
-                        item[i]->setText(0, iterator_relation.current_noteX().getId());
-                                      //+" ("+iterator_manager.current().getTitre()+")");
-                        arbreAscendants->addChild(item[i]);
-                        i++;
-                        qDebug()<<"Ascendant trouve\n";
-                   }
-                   iterator_relation.next();
-               }
-               qDebug()<<"Ajout de la relation "<<iterator_manager.current().getTitre()<<" à l'arborescence\n";
-               iterator_manager.next();
-            }
-        qDebug()<<"Sortie de boucle maggle";
-        arboVisible=true;
-        relation_details=new QPushButton("Gerer les relations", this);
-        rightLayout->addWidget(liste_relations);
-        rightLayout-> addWidget(relation_details);
-        droite=new QGroupBox("Arborescence des relations", zoneCentrale);
-        droite->setLayout(rightLayout);
-
-        connect(relation_details, SIGNAL(clicked()), this, SLOT(showRelations()));
+         affichage_droit();
 
 
     //menu
@@ -175,10 +95,10 @@ void VuePrincipale::showRelations(){
     fenetreRelations->show();
 }
 
-void VuePrincipale::afficher(QTreeWidgetItem *item,int i){
+void VuePrincipale::afficher_note(QTreeWidgetItem *item,int i){
     qDebug()<<"signal reçu";
     NotesManager& manager=NotesManager::getInstance();
-    note = &manager.getNote(item->text(i));
+    note = &manager.getNote(item->text(0));
     delete centre;
     delete droite;
     affichage_central();
@@ -221,57 +141,62 @@ centre->setLayout(editeur);
 void VuePrincipale::affichage_droit(){
     //partie droite
           QVBoxLayout* rightLayout=new QVBoxLayout;
-          liste_relations=new QTreeWidget();
-          liste_relations->setHeaderLabels(QStringList("Relations"));
-          QObject::connect(liste_relations, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher(QTreeWidgetItem*,int)));
-          rightLayout->addWidget(liste_relations);
+          if (note->IsLast())
+          {
+              liste_relations=new QTreeWidget();
+              liste_relations->setHeaderLabels(QStringList("Relations"));
+              QObject::connect(liste_relations, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*,int)));
 
+              QTreeWidgetItem* arbreAscendants = new QTreeWidgetItem(liste_relations);
+              arbreAscendants->setText(0,"Ascendants");
+              arbreAscendants->setExpanded(true);
+              liste_relations->addTopLevelItem(arbreAscendants);
 
-          QTreeWidgetItem* arbreAscendants = new QTreeWidgetItem(liste_relations);
-          arbreAscendants->setText(0,"Ascendants");
-          arbreAscendants->setExpanded(true);
-          liste_relations->addTopLevelItem(arbreAscendants);
+               QTreeWidgetItem* arbreDescendants = new QTreeWidgetItem(liste_relations);
+               arbreDescendants->setText(0,"Descendants");
+               arbreDescendants->setExpanded(true);
+               liste_relations->addTopLevelItem(arbreDescendants);
 
-           QTreeWidgetItem* arbreDescendants = new QTreeWidgetItem(liste_relations);
-           arbreDescendants->setText(0,"Descendants");
-           arbreDescendants->setExpanded(true);
-           liste_relations->addTopLevelItem(arbreDescendants);
-
-           QTreeWidgetItem** item = new QTreeWidgetItem*[10];
-           unsigned int i=0;
-           RelationsManager::Iterator iterator_manager=RelationsManager::getInstance().getIterator();
-           while(!iterator_manager.isDone()){ //ici on examine chaque relation
-              qDebug()<<"entree dans la boucle";
-              Relation::Iterator iterator_relation= iterator_manager.current().getIterator();
-              while(!iterator_relation.isDone()) //ici on examine chaque couple de la relation
-              {
-                  if(&(iterator_relation.current_noteX())==note){
-                      item[i] = new QTreeWidgetItem();
-                      item[i]->setText(0, iterator_relation.current_noteY().getId());
-                                    //+" ("+iterator_manager.current().getTitre()+")");
-                      arbreDescendants->addChild(item[i]);
-                      i++;
-                      qDebug()<<"Descendant trouve\n";
+               QTreeWidgetItem** item = new QTreeWidgetItem*[10];
+               unsigned int i=0;
+               RelationsManager::Iterator iterator_manager=RelationsManager::getInstance().getIterator();
+               while(!iterator_manager.isDone()){ //ici on examine chaque relation
+                  qDebug()<<"entree dans la boucle";
+                  Relation::Iterator iterator_relation= iterator_manager.current().getIterator();
+                  while(!iterator_relation.isDone()) //ici on examine chaque couple de la relation
+                  {
+                      if(&(iterator_relation.current_noteX())==note){
+                          item[i] = new QTreeWidgetItem();
+                          item[i]->setText(0, iterator_relation.current_noteY().getId());
+                                        //+" ("+iterator_manager.current().getTitre()+")");
+                          arbreDescendants->addChild(item[i]);
+                          i++;
+                          qDebug()<<"Descendant trouve\n";
+                      }
+                      if(&(iterator_relation.current_noteY())==note){
+                           item[i] = new QTreeWidgetItem();
+                           item[i]->setText(0, iterator_relation.current_noteX().getId());
+                                         //+" ("+iterator_manager.current().getTitre()+")");
+                           arbreAscendants->addChild(item[i]);
+                           i++;
+                           qDebug()<<"Ascendant trouve\n";
+                      }
+                      iterator_relation.next();
                   }
-                  if(&(iterator_relation.current_noteY())==note){
-                       item[i] = new QTreeWidgetItem();
-                       item[i]->setText(0, iterator_relation.current_noteX().getId());
-                                     //+" ("+iterator_manager.current().getTitre()+")");
-                       arbreAscendants->addChild(item[i]);
-                       i++;
-                       qDebug()<<"Ascendant trouve\n";
-                  }
-                  iterator_relation.next();
-              }
-              qDebug()<<"Ajout de la relation "<<iterator_manager.current().getTitre()<<" à l'arborescence\n";
-              iterator_manager.next();
-           }
-       qDebug()<<"Sortie de boucle maggle";
+                  qDebug()<<"Ajout de la relation "<<iterator_manager.current().getTitre()<<" à l'arborescence\n";
+                  iterator_manager.next();
+                }
+               rightLayout->addWidget(liste_relations);
+          }
+          //if(note->getVersion()>1)
+          //{
+
+
+          //}
        arboVisible=true;
        relation_details=new QPushButton("Gerer les relations", this);
-       rightLayout->addWidget(liste_relations);
        rightLayout-> addWidget(relation_details);
-       droite=new QGroupBox("Arborescence des relations", zoneCentrale);
+       droite=new QGroupBox("Arborescence", zoneCentrale);
        droite->setLayout(rightLayout);
 
        connect(relation_details, SIGNAL(clicked()), this, SLOT(showRelations()));

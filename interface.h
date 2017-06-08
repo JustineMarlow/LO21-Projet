@@ -46,7 +46,7 @@ public:
 private slots:
      void showRelations(); //bouton d'accès à la vue secondaire (gestion & visualisation des relations)
      void afficageArbo();  //gère la partie droite (masque ou affiche l'arborescence)
-     void afficher(QTreeWidgetItem* item,int i);
+     void afficher_note(QTreeWidgetItem* item,int i);
 
 private:
     QWidget* zoneCentrale;
