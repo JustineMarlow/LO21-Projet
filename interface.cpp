@@ -109,33 +109,32 @@ void VuePrincipale::afficher_note(QTreeWidgetItem *item,int i){
 }
 
 void VuePrincipale::affichage_central(){
+        if(typeid(*note)==typeid(Article)){
+            Article& a=dynamic_cast<Article&>(*note);
+            noteEdit=new ArticleEditeur(a);
+        }
+        else if(typeid(*note)==typeid(TacheAvecPriorite)){
+            TacheAvecPriorite& t=dynamic_cast<TacheAvecPriorite&>(*note);
+            noteEdit=new TacheAvecPrioriteEditeur(t);
+        }
+        else if (typeid(*note)==typeid(TacheAvecDeadline)){
+            TacheAvecDeadline& t=dynamic_cast<TacheAvecDeadline&>(*note);
+            noteEdit=new TacheAvecDeadlineEditeur(t);
+        }
+        else if(typeid(*note)==typeid(Tache)){
+            Tache& t=dynamic_cast<Tache&>(*note);
+            noteEdit=new TacheEditeur(t);
+        }
+        else if(typeid(*note)==typeid(Fichier)){
+            Fichier& f=dynamic_cast<Fichier&>(*note);
+            noteEdit=new FichierEditeur(f);
+         }
+        else throw InterfaceException("Ce type de note n'existe pas");
 
-    if(typeid(*note)==typeid(Article)){
-        Article& a=dynamic_cast<Article&>(*note);
-        noteEdit=new ArticleEditeur(a);
-    }
-    else if(typeid(*note)==typeid(TacheAvecPriorite)){
-        TacheAvecPriorite& t=dynamic_cast<TacheAvecPriorite&>(*note);
-        noteEdit=new TacheAvecPrioriteEditeur(t);
-    }
-    else if (typeid(*note)==typeid(TacheAvecDeadline)){
-        TacheAvecDeadline& t=dynamic_cast<TacheAvecDeadline&>(*note);
-        noteEdit=new TacheAvecDeadlineEditeur(t);
-    }
-    else if(typeid(*note)==typeid(Tache)){
-        Tache& t=dynamic_cast<Tache&>(*note);
-        noteEdit=new TacheEditeur(t);
-    }
-    else if(typeid(*note)==typeid(Fichier)){
-        Fichier& f=dynamic_cast<Fichier&>(*note);
-        noteEdit=new FichierEditeur(f);
-     }
-    else throw InterfaceException("Ce type de note n'existe pas");
-
-QFormLayout* editeur=new QFormLayout;
-editeur->addRow("", noteEdit);
-centre=new QGroupBox("Visualisation de la note", zoneCentrale);
-centre->setLayout(editeur);
+    QFormLayout* editeur=new QFormLayout;
+    editeur->addRow("", noteEdit);
+    centre=new QGroupBox("Visualisation de la note", zoneCentrale);
+    centre->setLayout(editeur);
 }
 
 void VuePrincipale::affichage_droit(){
@@ -209,13 +208,13 @@ void VuePrincipale::affichage_droit(){
 VueSecondaire::VueSecondaire() : manager(&RelationsManager::getInstance()){
     //colonne de gauche : liste de toutes les relations
     quitter=new QPushButton("Quitter", this);
-    QGroupBox* gauche=new QGroupBox;
-    QVBoxLayout* leftLayout=new QVBoxLayout;
+    gauche=new QGroupBox;
+    leftLayout=new QVBoxLayout;
 
     arboRelations=new QTreeWidget();
     arboRelations->setHeaderLabels(QStringList("Relations"));
 
-    QObject::connect(arboRelations, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(openRelation(QTreeWidgetItem,int)));
+    QObject::connect(arboRelations, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(openRelation(QTreeWidgetItem*, int)));
 
     relation_titre = new QTreeWidgetItem*[manager->getNbRelations()];
     RelationsManager::Iterator it=manager->getIterator();
@@ -237,14 +236,15 @@ VueSecondaire::VueSecondaire() : manager(&RelationsManager::getInstance()){
 
 
     //partie principale
-    QFormLayout* editeur=new QFormLayout;
+    editeur=new QFormLayout;
     editeur->addRow("", &relations);
-    QGroupBox* blocPrincipal=new QGroupBox("Gestion des relations");
+    blocPrincipal=new QGroupBox("Gestion des relations");
+    qDebug()<<"Bloc principal créé";
     blocPrincipal->setLayout(editeur);
-    QVBoxLayout *principal=new QVBoxLayout;
+    principal=new QVBoxLayout;
     principal->addWidget(blocPrincipal);
 
-    QHBoxLayout* layout=new QHBoxLayout;
+    layout=new QHBoxLayout;
     layout->addWidget(gauche);
     layout->addWidget(blocPrincipal);
     setLayout(layout);
@@ -254,13 +254,24 @@ VueSecondaire::VueSecondaire() : manager(&RelationsManager::getInstance()){
 }
 
 
-void openRelation(Relation* r){
+void VueSecondaire::openRelation(QTreeWidgetItem* item, int i){
     qDebug()<<"Entree dans OpenRelation";
-    RelationEditeur* ed=new RelationEditeur(*r);
-    QFormLayout* editeur=new QFormLayout;
-    editeur->addRow(ed);
-    QGroupBox* blocPrincipal=new QGroupBox("Gestion des relations");
+    delete editeur;
+   // delete blocPrincipal;
+    RelationsManager::Iterator it=manager->getIterator();
+    while(!it.isDone() && it.current().getTitre()!=item->text(0)) it.next();
+    if (it.isDone() && it.current().getTitre()!=item->text(0)) throw InterfaceException("Erreur, cette relation n'existe pas");
+    qDebug()<<"On a trouve la bonne relation";
+    RelationEditeur* ed=new RelationEditeur(it.current());
+    qDebug()<<"RelationEditeur créé";
+    editeur=new QFormLayout;
+    editeur->addRow("", ed);
     blocPrincipal->setLayout(editeur);
-    QVBoxLayout *principal=new QVBoxLayout;
-    principal->addWidget(blocPrincipal);
+    layout->addWidget(blocPrincipal);
+
 }
+
+/*QFormLayout* editeur=new QFormLayout;
+editeur->addRow("", noteEdit);
+centre=new QGroupBox("Visualisation de la note", zoneCentrale);
+centre->setLayout(editeur);*/

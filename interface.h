@@ -22,6 +22,7 @@
 #include<QKeySequence>
 #include<QTreeWidget>
 #include<QTreeWidgetItem>
+#include<QFormLayout>
 #include <note.h>
 #include <noteediteur.h>
 #include<relation.h>
@@ -72,20 +73,29 @@ private:
 };
 
 class VueSecondaire : public QWidget{
+    Q_OBJECT
 public :
     VueSecondaire();
-    void openRelation(Relation* r);
+private slots:
+    void openRelation(QTreeWidgetItem* item, int i);
 
 private :
     RelationsManager* manager;
     RelationEditeur relations;
     QPushButton* quitter;
+    QHBoxLayout* layout;
+    QVBoxLayout* principal;
+
+    //bloc principal
+    QFormLayout* editeur;
+    QGroupBox* blocPrincipal;
 
     //colonne gauche
+    QGroupBox* gauche=new QGroupBox;
+    QVBoxLayout* leftLayout=new QVBoxLayout;
     QTreeWidget* arboRelations;
     QTreeWidgetItem** relation_titre;
     QLabel** relation_description;
-    QSignalMapper* mapper_openRelation;
 };
 
 class ArbreRelations : public QTreeWidgetItem{
