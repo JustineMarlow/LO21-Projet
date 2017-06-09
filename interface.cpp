@@ -350,9 +350,11 @@ void VuePrincipale::actualiser_fenetre()
     delete gauche;
     delete centre;
     delete droite;
+    qDebug()<<"arrivee 1\n";
     affichage_gauche();
     affichage_central();
     affichage_droit();
+    qDebug()<<"arrivee 2\n";
     layoutPrincipal->addWidget(gauche);
     layoutPrincipal->addWidget(centre);
     layoutPrincipal->addWidget(droite);

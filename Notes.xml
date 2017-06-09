@@ -58,7 +58,7 @@ Une superbe modif qui ne sert à rien.</text>
         <title>Une bien belle tâche</title>
         <creation>08/06/2017</creation>
         <modification>08/06/2017</modification>
-        <last>oui</last>
+        <last>non</last>
         <etat>Active</etat>
         <version>1</version>
     </tache>
@@ -106,4 +106,16 @@ Une superbe modif qui ne sert à rien.</text>
         <etat>Active</etat>
         <version>3</version>
     </article>
+    <tache>
+        <text>Créée depuis l'éditeur vierge, qui plus est.
+On va faire référence à ref{id:T2}.</text>
+        <statut>Attente</statut>
+        <id>id:T1</id>
+        <title>Une bien belle tâche</title>
+        <creation>08/06/2017</creation>
+        <modification>08/06/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>2</version>
+    </tache>
 </notes>
