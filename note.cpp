@@ -18,6 +18,7 @@ Fichier::~Fichier(){}
 /*============================================================= NotesManager ==========================================================================================*/
 //destructeur
 NotesManager::~NotesManager(){
+    nettoyer_archives();
     if (vidage_corbeille) viderCorbeille();
     if (filename!="") save();
     delete[] notes;
@@ -50,13 +51,45 @@ void NotesManager::addNote(Note* n)
     }
     notes[nbNotes++]=n;
     if (!(isLoading)) {
-        RelationsManager &manager_relations=RelationsManager::getInstance();
-        Relation& ref=manager_relations.getRelation("Reference");
-        Relation::Iterator it=ref.getIterator();
-        for(it.debut(); !(it.isDone()); it.next())
-            if (&it.current_noteX()==n) ref.removeCouple(it.current_noteX(),it.current_noteY());
-        check_reference(*n);
+        RelationsManager::Iterator iterator_manager=RelationsManager::getInstance().getIterator();
+        iterator_manager.debut();
+        while(!iterator_manager.isDone()){ //ici on examine chaque relation
+           qDebug()<<"entree dans la boucle";
+           Relation::Iterator iterator_relation= iterator_manager.current().getIterator();
+           iterator_relation.debut();
+           if (iterator_manager.current().getTitre()=="Reference") //alors on enlève tous les couples tels que noteX.id=n.id
+           {
+                while(!iterator_relation.isDone()) //ici on examine chaque couple de la relation
+                {
+                    if (iterator_relation.current_noteX().getId()==n->getId()) iterator_manager.current().removeCouple(iterator_relation.current_noteX(),iterator_relation.current_noteY());
+                    iterator_relation.next();
+                }
+                check_reference(*n);
+           }
+           else
+           {
+               while(!iterator_relation.isDone()) //ici on examine chaque couple de la relation
+               {
+                   if (iterator_relation.current_noteX().getId()==n->getId())
+                   {
+                       Note& y=iterator_relation.current_noteY();
+                       QString label=iterator_relation.current_label();
+                       iterator_manager.current().removeCouple(iterator_relation.current_noteX(),y);
+                       iterator_manager.current().addCouple(*n,y,label);
+                   }
+                   if (iterator_relation.current_noteY().getId()==n->getId())
+                   {
+                       Note& x=iterator_relation.current_noteX();
+                       QString label=iterator_relation.current_label();
+                       iterator_manager.current().removeCouple(x,iterator_relation.current_noteY());
+                       iterator_manager.current().addCouple(x,*n,label);
+                   }
+                   iterator_relation.next();
+               }
+           }
+           iterator_manager.next();
     }
+}
 }
 
 void NotesManager::check_reference(Note& n)
@@ -138,11 +171,10 @@ void NotesManager::addFichier(const QString& id, const QString& ti, const QStrin
     addNote(f);
 }
 
-//permet de supprimer une relation
+//permet de supprimer une note
 void NotesManager::deleteNote(Note& n)
 {
     //on regarde d'abord si la note est en relation via Reference
-    NotesManager &manager_notes=NotesManager::getInstance();
     RelationsManager &manager_relations=RelationsManager::getInstance();
     Relation& reference=manager_relations.getRelation("Reference");
     unsigned int i=0;
@@ -150,11 +182,11 @@ void NotesManager::deleteNote(Note& n)
         i++;
     if(i<reference.getNbCouples()) //la note apparait dans la relation reference -> on ne peut pas la supprimer -> on l'archive
        { n.setEtat(archivee);
-         for(unsigned int v=1; v<n.getVersion(); v++) manager_notes.getVersionNote(n.getId(),v).setEtat(archivee);
+         for(unsigned int v=1; v<n.getVersion(); v++) getVersionNote(n.getId(),v).setEtat(archivee);
     }
     else { //la note n'apparait pas dans la relation reference -> on peut la supprimer -> mise à la corbeille et suppression des couples où n est impliquée
         n.setEtat(corbeille);
-        for(unsigned int v=1; v<n.getVersion(); v++) manager_notes.getVersionNote(n.getId(),v).setEtat(corbeille);
+        for(unsigned int v=1; v<n.getVersion(); v++) getVersionNote(n.getId(),v).setEtat(corbeille);
         for(unsigned int i=0; i<manager_relations.getNbRelations(); i++)
             for(unsigned int j=0; j<manager_relations.getIRelation(i).getNbCouples();j++)
                 if (manager_relations.getIRelation(i).getXCouple(j).getId()==n.getId() || manager_relations.getIRelation(i).getYCouple(j).getId()==n.getId())
@@ -165,8 +197,7 @@ void NotesManager::deleteNote(Note& n)
 //méthode pour rendre active une note qui avait été archivée
 void NotesManager::restoreNote(Note& n)
 {
-    NotesManager &manager_notes=NotesManager::getInstance();
-    for(unsigned int v=1; v<=n.getVersion(); v++) manager_notes.getVersionNote(n.getId(),v).setEtat(active);
+    for(unsigned int v=1; v<=n.getVersion(); v++) getVersionNote(n.getId(),v).setEtat(active);
 }
 
 //méthode pour vider la corbeille (supprimer définitivement les notes)
@@ -178,6 +209,26 @@ void NotesManager::viderCorbeille()
           for(unsigned int j=i;j<nbNotes;j++)
               notes[j]=notes[j+1];
           nbNotes--;
+        }
+}
+
+//méthode pour nettoyer les archives
+void NotesManager::nettoyer_archives()
+{
+    RelationsManager &manager_relations=RelationsManager::getInstance();
+    Relation& reference=manager_relations.getRelation("Reference");
+    for (unsigned int k=0; k<nbNotes; k++)
+        if (notes[k]->getEtat()==archivee && notes[k]->IsLast())
+        {
+            qDebug()<<"note archivee et last trouvee \n";
+            unsigned int i=0;
+            while(i<reference.getNbCouples() && reference.getYCouple(i).getId()!=notes[k]->getId())
+                i++;
+            if(i>=reference.getNbCouples()) //la note n'apparait plus dans la relation reference -> on la place à la corbeille
+               { qDebug()<<"la note n'apparait plus \n";
+                 notes[k]->setEtat(corbeille);
+                 for(unsigned int v=1; v<notes[k]->getVersion(); v++) getVersionNote(notes[k]->getId(),v).setEtat(corbeille);
+               }
         }
 }
 

@@ -4,11 +4,6 @@
         <titre>Anteriorite</titre>
         <description>La note x est anterieure a la note y.</description>
         <oriente>oui</oriente>
-        <couple>
-            <idX>id:A3</idX>
-            <idY>id:A1</idY>
-            <label>label 4</label>
-        </couple>
     </relation>
     <relation>
         <titre>Meme sujet</titre>

@@ -39,18 +39,20 @@ public:
 
     class Iterator{
         Note*** notes;
+        QString* labels;
         unsigned int courant;
         unsigned int taille;
         friend class Relation;
-        Iterator(Note*** tab, unsigned int n):notes(tab),courant(0),taille(n){}
+        Iterator(Note*** tab, QString* label, unsigned int n):notes(tab),labels(label),courant(0),taille(n){}
     public:
         Note& current_noteX() const {return *notes[1][courant];}
         Note& current_noteY() const {return *notes[2][courant];}
+        QString current_label() const {return labels[courant];}
         void next() {if (courant<taille) courant++; else throw NotesException("Iterator de Relation is done");}
         bool isDone() const {return courant==taille;}
         void debut() {courant=0;}
     };
-    Iterator getIterator() {return Iterator(tableau, nbCouples);}
+    Iterator getIterator() {return Iterator(tableau, tableau_label, nbCouples);}
 };
 
 /*========================================================= RelationsManager ==========================================================================================*/

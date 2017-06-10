@@ -163,6 +163,7 @@ public:
     void deleteNote(Note& n);
     void restoreNote(Note& n);
     void viderCorbeille();
+    void nettoyer_archives();
     void check_reference(Note& n);
     void search_reference(Note& n, const QString& texte);
 

@@ -40,10 +40,11 @@ private:
 class VuePrincipale : public QMainWindow{
     Q_OBJECT
 public:
-    VuePrincipale(Note* n=0);
+    VuePrincipale();
     void affichage_central();
     void affichage_droit();
     void affichage_gauche();
+    void creerMenu();
 
 private slots:
      void showRelations(); //bouton d'accès à la vue secondaire (gestion & visualisation des relations)
@@ -69,6 +70,7 @@ private:
 
     //Menu
     QAction* actionSupp;
+    QMenu* menuFichier;
 
 
     //Partie gauche
@@ -93,8 +95,10 @@ protected:
 
 class VueSecondaire : public QWidget{
     Q_OBJECT
-public :
+private:
     VueSecondaire();
+public :
+    static VueSecondaire& getInstance();
     void affichage_central();
     void affichage_gauche();
 private slots:

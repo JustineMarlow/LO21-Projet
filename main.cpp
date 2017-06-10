@@ -1,6 +1,9 @@
 #include <QApplication>
 #include <QString>
 #include <QDebug>
+#include <QTranslator>
+#include <QLocale>
+#include <QLibraryInfo>
 #include "note.h"
 #include "relation.h"
 #include "noteediteur.h"
@@ -12,9 +15,14 @@ int main(int argc, char *argv[])
     try{
     //PARTIE DU MAIN A NE PAS CHANGER HORMIS LES CHEMINS VERS LES FICHIERS
     QApplication app(argc, argv);
+    //permet la francisation de la boîte de dialogue
+    QString locale = QLocale::system().name().section('_', 0, 0);
+    QTranslator translator;
+    translator.load(QString("qt_") + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    app.installTranslator(&translator);
+
     RelationsManager &manager_relations=RelationsManager::getInstance();
     manager_relations.createRelation("Reference","La note x fait reference a la note y",true);
-
 
     NotesManager &manager_notes=NotesManager::getInstance();
     //manager_notes.setFilename("/home/camille/Documents/UTC/HU04/LO21/Projet/Projet/Notes.xml");
