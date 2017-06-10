@@ -88,7 +88,7 @@ void VuePrincipale::showRelations(){
     fenetreRelations->show();
 }
 
-void VuePrincipale::afficher_note(QTreeWidgetItem *item,int i){
+void VuePrincipale::afficher_note(QTreeWidgetItem *item){
     qDebug()<<"signal reçu";
     NotesManager& manager=NotesManager::getInstance();
     note = &manager.getNote(item->text(0));
@@ -159,7 +159,7 @@ void VuePrincipale::creerFichier(){
 }
 
 
-void VuePrincipale::afficher_version(QTreeWidgetItem *item,int i){
+void VuePrincipale::afficher_version(QTreeWidgetItem *item){
     NotesManager& manager=NotesManager::getInstance();
     bool conversion;
     int version=item->text(0).toUInt(&conversion, 10);
@@ -263,7 +263,7 @@ void VuePrincipale::affichage_droit()
               header<<"Relations"<<"";
               liste_relations->setHeaderLabels(header);
               liste_relations->setColumnCount(2);
-              QObject::connect(liste_relations, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*,int)));
+              QObject::connect(liste_relations, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*)));
 
               QTreeWidgetItem* arbreAscendants = new QTreeWidgetItem(liste_relations);
               arbreAscendants->setText(0,"Ascendants");
@@ -324,7 +324,7 @@ void VuePrincipale::affichage_droit()
           {
               QTreeWidget* liste_versions=new QTreeWidget(this);
               liste_versions->setHeaderLabels(QStringList("Versions"));
-              QObject::connect(liste_versions, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_version(QTreeWidgetItem*,int)));
+              QObject::connect(liste_versions, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_version(QTreeWidgetItem*)));
               QTreeWidgetItem** item_version = new QTreeWidgetItem*[nb_versions];
               for (unsigned int i=0; i<=nb_versions-1; i++)
               {
@@ -349,13 +349,13 @@ void VuePrincipale::affichage_gauche(){
     QVBoxLayout* leftLayout=new QVBoxLayout;
     QTreeWidget* notesActives=new QTreeWidget(this);
     notesActives->setHeaderLabels(QStringList("Actives"));
-    QObject::connect(notesActives, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*,int)));
+    QObject::connect(notesActives, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*)));
     QTreeWidget* taches=new QTreeWidget(this);
     taches->setHeaderLabels(QStringList("Taches"));
-    QObject::connect(taches, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*,int)));
+    QObject::connect(taches, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*)));
     QTreeWidget* archives=new QTreeWidget(this);
     archives->setHeaderLabels(QStringList("Archives"));
-    QObject::connect(archives, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*,int)));
+    QObject::connect(archives, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*)));
     unsigned int nb_items_relations=2;
     QTreeWidgetItem** item = new QTreeWidgetItem*[nb_items_relations];
     unsigned int i=0;
@@ -418,6 +418,7 @@ void VuePrincipale::new_note(int i)
 void VuePrincipale::actualiser_fenetre()
 {
     qDebug()<<"signal reçu\n";
+    note=0;
     delete gauche;
     delete centre;
     delete droite;
@@ -436,69 +437,100 @@ void VuePrincipale::actualiser_fenetre()
 
 //==========================================FENÊTRE SECONDAIRE (RELATIONS)========================================
 
-VueSecondaire::VueSecondaire() : manager(&RelationsManager::getInstance()){
-    //colonne de gauche : liste de toutes les relations
-    quitter=new QPushButton("Quitter", this);
-    gauche=new QGroupBox;
-    leftLayout=new QVBoxLayout;
-
-    arboRelations=new QTreeWidget();
-    arboRelations->setHeaderLabels(QStringList("Relations"));
-
-    QObject::connect(arboRelations, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(openRelation(QTreeWidgetItem*, int)));
-
-    relation_titre = new QTreeWidgetItem*[manager->getNbRelations()];
-    RelationsManager::Iterator it=manager->getIterator();
-    unsigned int i=0;
-    while(!it.isDone())
-    {
-        qDebug()<<"Entree dans la boucle";
-        relation_titre[i]=new QTreeWidgetItem;
-        relation_titre[i]->setText(0, it.current().getTitre());
-        qDebug()<<"Creation de l'affichage de la relation "<<it.current().getTitre();
-        arboRelations->addTopLevelItem(relation_titre[i]);
-        qDebug()<<"Ajout du widget a la liste";
-        it.next();
-        i++;
-    }
-    leftLayout->addWidget(arboRelations);
-    leftLayout->addWidget(quitter);
-    gauche->setLayout(leftLayout);
-
-
-    //partie principale
-    editeur=new QFormLayout;
-    editeur->addRow("", &relations);
-    blocPrincipal=new QGroupBox("Gestion des relations");
-    qDebug()<<"Bloc principal créé";
-    blocPrincipal->setLayout(editeur);
-    principal=new QVBoxLayout;
-    principal->addWidget(blocPrincipal);
-
-    layout=new QHBoxLayout;
-    layout->addWidget(gauche);
-    layout->addWidget(blocPrincipal);
-    setLayout(layout);
+VueSecondaire::VueSecondaire():relation(0){
+    layoutPrincipal=new QHBoxLayout;
+    affichage_gauche();
+    affichage_central();
+    layoutPrincipal->addWidget(gauche);
+    layoutPrincipal->addWidget(centre);
+    setLayout(layoutPrincipal);
     setWindowTitle("Gestion des relations");
     resize(350, 450);
-   connect(quitter, SIGNAL(clicked()), this, SLOT(close()));
+
 }
 
+void VueSecondaire::affichage_gauche(){
+    RelationsManager& manager=RelationsManager::getInstance();
+    RelationsManager::Iterator iterator=manager.getIterator();
+    QVBoxLayout* leftLayout=new QVBoxLayout;
+    QTreeWidget* relations=new QTreeWidget(this);
+    relations->setHeaderLabels(QStringList("Relations"));
+    QObject::connect(relations, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(openRelation(QTreeWidgetItem*)));
+    unsigned int nb_items_relations=0;
+    QTreeWidgetItem** item = new QTreeWidgetItem*[nb_items_relations];
+    unsigned int i=0;
+    for (iterator.debut(); !iterator.isDone(); iterator.next())
+    {
+        if(i==nb_items_relations)
+        {
+            QTreeWidgetItem** new_item = new QTreeWidgetItem*[nb_items_relations+10];
+            for (unsigned int k=0; k<nb_items_relations; k++)
+                new_item[k] = item[k];
+            QTreeWidgetItem** old_item = item;
+            item=new_item;
+            delete [] old_item;
+            nb_items_relations+=10;
+        }
+        item[i]=new QTreeWidgetItem();
+        item[i]->setText(0, iterator.current().getTitre());
+        relations->addTopLevelItem(item[i]);
+    }
 
-void VueSecondaire::openRelation(QTreeWidgetItem* item, int i){
+    quitter=new QPushButton("Quitter", this);
+    connect(quitter, SIGNAL(clicked()), this, SLOT(close()));
+    actualiser=new QPushButton("Actualiser", this);
+    connect(actualiser, SIGNAL(clicked()), this, SLOT(actualiser_fenetre()));
+    leftLayout->addWidget(quitter);
+    leftLayout->addWidget(relations);
+    leftLayout->addWidget(actualiser);
+    gauche=new QGroupBox;
+    gauche->setLayout(leftLayout);
+
+}
+
+void VueSecondaire::affichage_central()
+{
+    if(relation==0)
+    {
+        QFormLayout* editeur=new QFormLayout;
+        relationEdit=new RelationEditeur;
+        editeur->addRow("", relationEdit);
+        centre=new QGroupBox;
+        centre->setLayout(editeur);
+    }
+    else {
+        QFormLayout* editeur=new QFormLayout;
+        relationEdit=new RelationEditeur(*relation);
+        editeur->addRow("", relationEdit);
+        centre=new QGroupBox;
+        centre->setLayout(editeur);
+    }
+}
+
+void VueSecondaire::openRelation(QTreeWidgetItem* item){
     qDebug()<<"Entree dans OpenRelation";
-    delete editeur;
-    delete blocPrincipal;
-    RelationsManager::Iterator it=manager->getIterator();
+    RelationsManager& manager=RelationsManager::getInstance();
+    RelationsManager::Iterator it=manager.getIterator();
     while(!it.isDone() && it.current().getTitre()!=item->text(0)) it.next();
     if (it.isDone() && it.current().getTitre()!=item->text(0)) throw InterfaceException("Erreur, cette relation n'existe pas");
-    qDebug()<<"On a trouve la bonne relation";
-    editeur=new QFormLayout;
-    editeur->addRow("", new RelationEditeur(it.current()));
-    qDebug()<<"RelationEditeur créé";
-    blocPrincipal=new QGroupBox;
-    blocPrincipal->setLayout(editeur);
-    layout->addWidget(blocPrincipal);
+    relation = &it.current();
+    delete centre;
+    affichage_central();
+    layoutPrincipal->addWidget(centre);
+    setLayout(layoutPrincipal);
+}
+
+void VueSecondaire::actualiser_fenetre()
+{
+    qDebug()<<"signal reçu\n";
+    relation=0;
+    delete gauche;
+    delete centre;
+    affichage_gauche();
+    affichage_central();
+    layoutPrincipal->addWidget(gauche);
+    layoutPrincipal->addWidget(centre);
+    setLayout(layoutPrincipal);
 
 }
 

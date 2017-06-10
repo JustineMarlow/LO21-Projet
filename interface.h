@@ -48,10 +48,10 @@ public:
 private slots:
      void showRelations(); //bouton d'accès à la vue secondaire (gestion & visualisation des relations)
      void afficageArbo();  //gère la partie droite (masque ou affiche l'arborescence)
-     void afficher_note(QTreeWidgetItem* item,int i);
+     void afficher_note(QTreeWidgetItem* item);
      void interfaceSave(){noteEdit->save();}
      //void activerMenuSave(QString str="");
-     void afficher_version(QTreeWidgetItem* item,int i);
+     void afficher_version(QTreeWidgetItem* item);
      void new_note(int i);
      void actualiser_fenetre();
      void creerArticle();
@@ -89,28 +89,29 @@ class VueSecondaire : public QWidget{
     Q_OBJECT
 public :
     VueSecondaire();
+    void affichage_central();
+    void affichage_gauche();
 private slots:
-    void openRelation(QTreeWidgetItem* item, int i);
+    void openRelation(QTreeWidgetItem* item);
+    void actualiser_fenetre();
 
 private :
-    RelationsManager* manager;
-    RelationEditeur relations;
-    QPushButton* quitter;
-    QHBoxLayout* layout;
+
+    QHBoxLayout* layoutPrincipal;
     QVBoxLayout* principal;
 
-    //bloc principal
-    QFormLayout* editeur;
-    QGroupBox* blocPrincipal;
+    //Partie centrale
+    QGroupBox* centre;
+    Relation* relation;
+    RelationEditeur* relationEdit;
 
-    //colonne gauche
-    QGroupBox* gauche=new QGroupBox;
-    QVBoxLayout* leftLayout=new QVBoxLayout;
-    QTreeWidget* arboRelations;
-    QTreeWidgetItem** relation_titre;
-    QLabel** relation_description;
+    //Partie gauche
+    QGroupBox* gauche;
+    QPushButton* quitter;
+    QPushButton* actualiser;
 };
 
+/*
 class ArbreRelations : public QTreeWidgetItem{
     QString value;
 private :
@@ -118,5 +119,6 @@ private :
     ArbreRelations(const QString& text, const QString& v="Undefined", int type=Type) :
         QTreeWidgetItem(QStringList(text), type), value(v){}
 };
+*/
 
 #endif // INTERFACE_H
