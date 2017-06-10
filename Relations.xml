@@ -5,16 +5,6 @@
         <description>La note x est anterieure a la note y.</description>
         <oriente>oui</oriente>
         <couple>
-            <idX>id:A1</idX>
-            <idY>id:A2</idY>
-            <label>label 1</label>
-        </couple>
-        <couple>
-            <idX>id:A2</idX>
-            <idY>id:A3</idY>
-            <label>label 2</label>
-        </couple>
-        <couple>
             <idX>id:A3</idX>
             <idY>id:A1</idY>
             <label>label 4</label>
@@ -25,14 +15,14 @@
         <description>Les notes x et y portent sur le meme sujet.</description>
         <oriente>non</oriente>
         <couple>
-            <idX>id:A1</idX>
-            <idY>id:A2</idY>
-            <label>sujet : cuisine</label>
-        </couple>
-        <couple>
             <idX>id:A2</idX>
             <idY>id:A1</idY>
-            <label>sujet : cuisine</label>
+            <label>cuisine</label>
+        </couple>
+        <couple>
+            <idX>id:A1</idX>
+            <idY>id:A2</idY>
+            <label>cuisine</label>
         </couple>
     </relation>
 </relations>

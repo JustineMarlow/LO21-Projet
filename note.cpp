@@ -49,7 +49,14 @@ void NotesManager::addNote(Note* n)
         if (oldNotes) delete[] oldNotes;
     }
     notes[nbNotes++]=n;
-    if (!(isLoading)) check_reference(*n);
+    if (!(isLoading)) {
+        RelationsManager &manager_relations=RelationsManager::getInstance();
+        Relation& ref=manager_relations.getRelation("Reference");
+        Relation::Iterator it=ref.getIterator();
+        for(it.debut(); !(it.isDone()); it.next())
+            if (&it.current_noteX()==n) ref.removeCouple(it.current_noteX(),it.current_noteY());
+        check_reference(*n);
+    }
 }
 
 void NotesManager::check_reference(Note& n)
@@ -139,11 +146,12 @@ void NotesManager::deleteNote(Note& n)
     RelationsManager &manager_relations=RelationsManager::getInstance();
     Relation& reference=manager_relations.getRelation("Reference");
     unsigned int i=0;
-    while(i<reference.getNbCouples() && reference.getXCouple(i).getId()!=n.getId() && reference.getYCouple(i).getId()!=n.getId())
+    while(i<reference.getNbCouples() && reference.getYCouple(i).getId()!=n.getId())
         i++;
     if(i<reference.getNbCouples()) //la note apparait dans la relation reference -> on ne peut pas la supprimer -> on l'archive
        { n.setEtat(archivee);
-         for(unsigned int v=1; v<n.getVersion(); v++) manager_notes.getVersionNote(n.getId(),v).setEtat(archivee);}
+         for(unsigned int v=1; v<n.getVersion(); v++) manager_notes.getVersionNote(n.getId(),v).setEtat(archivee);
+    }
     else { //la note n'apparait pas dans la relation reference -> on peut la supprimer -> mise à la corbeille et suppression des couples où n est impliquée
         n.setEtat(corbeille);
         for(unsigned int v=1; v<n.getVersion(); v++) manager_notes.getVersionNote(n.getId(),v).setEtat(corbeille);

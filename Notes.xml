@@ -36,8 +36,8 @@
         <title>Un troisième article. Faisons référence à \ref{id:A2}</title>
         <creation>15/02/2015</creation>
         <modification>18/02/2015</modification>
-        <last>oui</last>
-        <etat>Active</etat>
+        <last>non</last>
+        <etat>Archivee</etat>
         <version>1</version>
     </article>
     <article>
@@ -102,7 +102,7 @@ Vraiment à rien</text>
         <title>Un premier article</title>
         <creation>15/02/2015</creation>
         <modification>10/06/2017</modification>
-        <last>oui</last>
+        <last>non</last>
         <etat>Active</etat>
         <version>4</version>
     </article>
@@ -129,4 +129,67 @@ Vraiment à rien</text>
         <etat>Active</etat>
         <version>1</version>
     </tache>
+    <article>
+        <text>Ceci est un troisième article.</text>
+        <id>id:A3</id>
+        <title>Un troisième article.</title>
+        <creation>15/02/2015</creation>
+        <modification>10/06/2017</modification>
+        <last>non</last>
+        <etat>Archivee</etat>
+        <version>2</version>
+    </article>
+    <article>
+        <text>Ceci est un troisième article.
+Faisons référence à ref{id:A2}</text>
+        <id>id:A3</id>
+        <title>Un troisième article.</title>
+        <creation>15/02/2015</creation>
+        <modification>10/06/2017</modification>
+        <last>non</last>
+        <etat>Archivee</etat>
+        <version>3</version>
+    </article>
+    <article>
+        <text>Ceci est un troisième article.</text>
+        <id>id:A3</id>
+        <title>Un troisième article.</title>
+        <creation>15/02/2015</creation>
+        <modification>10/06/2017</modification>
+        <last>non</last>
+        <etat>Archivee</etat>
+        <version>4</version>
+    </article>
+    <article>
+        <text>Ceci est un premier article. Faisons référence à \ref{id:A2}.
+Faisons référence à \ref{id:A3}</text>
+        <id>id:A1</id>
+        <title>Un premier article</title>
+        <creation>15/02/2015</creation>
+        <modification>10/06/2017</modification>
+        <last>non</last>
+        <etat>Active</etat>
+        <version>5</version>
+    </article>
+    <article>
+        <text>Ceci est un premier article. Faisons référence à \ref{id:A2}.</text>
+        <id>id:A1</id>
+        <title>Un premier article</title>
+        <creation>15/02/2015</creation>
+        <modification>10/06/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>6</version>
+    </article>
+    <article>
+        <text>Ceci est un troisième article.
+Faisons référence à \ref{id:A1}</text>
+        <id>id:A3</id>
+        <title>Un troisième article.</title>
+        <creation>15/02/2015</creation>
+        <modification>10/06/2017</modification>
+        <last>oui</last>
+        <etat>Archivee</etat>
+        <version>5</version>
+    </article>
 </notes>
