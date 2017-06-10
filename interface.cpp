@@ -117,22 +117,27 @@ void VuePrincipale::affichage_central(){
         if(typeid(*note)==typeid(Article)){
             Article& a=dynamic_cast<Article&>(*note);
             noteEdit=new ArticleEditeur(a);
+            //QObject::connect(a.getTexte(), SIGNAL(textChanged(QString)), this, SLOT(activerMenuSave(QString)));
         }
         else if(typeid(*note)==typeid(TacheAvecPriorite)){
             TacheAvecPriorite& t=dynamic_cast<TacheAvecPriorite&>(*note);
             noteEdit=new TacheAvecPrioriteEditeur(t);
+           // QObject::connect(t.getTexte(), SIGNAL(textChanged(QString)), this, SLOT(activerMenuSave(QString)));
         }
         else if (typeid(*note)==typeid(TacheAvecDeadline)){
             TacheAvecDeadline& t=dynamic_cast<TacheAvecDeadline&>(*note);
             noteEdit=new TacheAvecDeadlineEditeur(t);
+          //  QObject::connect(t.getTexte(), SIGNAL(textChanged(QString)), this, SLOT(activerMenuSave(QString)));
         }
         else if(typeid(*note)==typeid(Tache)){
             Tache& t=dynamic_cast<Tache&>(*note);
             noteEdit=new TacheEditeur(t);
+          // QObject::connect(t.getTexte(), SIGNAL(textChanged(QString)), this, SLOT(activerMenuSave(QString)));
         }
         else if(typeid(*note)==typeid(Fichier)){
             Fichier& f=dynamic_cast<Fichier&>(*note);
             noteEdit=new FichierEditeur(f);
+           // QObject::connect(f.getDescription(), SIGNAL(textChanged(QString)), this, SLOT(activerMenuSave(QString)));
          }
         else throw InterfaceException("Ce type de note n'existe pas");
 
@@ -262,15 +267,15 @@ VueSecondaire::VueSecondaire() : manager(&RelationsManager::getInstance()){
 void VueSecondaire::openRelation(QTreeWidgetItem* item, int i){
     qDebug()<<"Entree dans OpenRelation";
     delete editeur;
-   // delete blocPrincipal;
+    delete blocPrincipal;
     RelationsManager::Iterator it=manager->getIterator();
     while(!it.isDone() && it.current().getTitre()!=item->text(0)) it.next();
     if (it.isDone() && it.current().getTitre()!=item->text(0)) throw InterfaceException("Erreur, cette relation n'existe pas");
     qDebug()<<"On a trouve la bonne relation";
-    RelationEditeur* ed=new RelationEditeur(it.current());
-    qDebug()<<"RelationEditeur créé";
     editeur=new QFormLayout;
-    editeur->addRow("", ed);
+    editeur->addRow("", new RelationEditeur(it.current()));
+    qDebug()<<"RelationEditeur créé";
+    blocPrincipal=new QGroupBox;
     blocPrincipal->setLayout(editeur);
     layout->addWidget(blocPrincipal);
 
