@@ -1,0 +1,112 @@
+\hypertarget{class_tache_avec_priorite}{\section{Référence de la classe Tache\-Avec\-Priorite}
+\label{class_tache_avec_priorite}\index{Tache\-Avec\-Priorite@{Tache\-Avec\-Priorite}}
+}
+
+
+Représente une tâche avec priorité  
+
+
+
+
+{\ttfamily \#include $<$note.\-h$>$}
+
+Graphe d'héritage de Tache\-Avec\-Priorite\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_tache_avec_priorite}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{class_tache_avec_priorite_ab932dc1d71765a1e124d2a398248ee6c}{get\-Priorite} () const 
+\begin{DoxyCompactList}\small\item\em get\-Priorite \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tache_avec_priorite_a4ef6dcacb0c6837227fae4e96718a40b}{Tache\-Avec\-Priorite} (Q\-String id, Q\-String t, Q\-String text, Q\-Date date\-\_\-c=Q\-Date\-::current\-Date(), Q\-Date date\-\_\-m=Q\-Date\-::current\-Date(), bool last=true, int v=1, Note\-Etat e=active, Tache\-Statut st=attente, int p=0)
+\begin{DoxyCompactList}\small\item\em Constructeur d'une tâche avec priorité \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_avec_priorite_a812663c068df76d7a8f4c1d486b25262}{unsigned int {\bfseries priorite}}\label{class_tache_avec_priorite_a812663c068df76d7a8f4c1d486b25262}
+
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_avec_priorite_a017a5144e8cfa6087305055ab968ef41}{class {\bfseries Notes\-Manager}}\label{class_tache_avec_priorite_a017a5144e8cfa6087305055ab968ef41}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Représente une tâche avec priorité 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_tache_avec_priorite_a4ef6dcacb0c6837227fae4e96718a40b}{\index{Tache\-Avec\-Priorite@{Tache\-Avec\-Priorite}!Tache\-Avec\-Priorite@{Tache\-Avec\-Priorite}}
+\index{Tache\-Avec\-Priorite@{Tache\-Avec\-Priorite}!TacheAvecPriorite@{Tache\-Avec\-Priorite}}
+\subsubsection[{Tache\-Avec\-Priorite}]{\setlength{\rightskip}{0pt plus 5cm}Tache\-Avec\-Priorite\-::\-Tache\-Avec\-Priorite (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{id, }
+\item[{Q\-String}]{t, }
+\item[{Q\-String}]{text, }
+\item[{Q\-Date}]{date\-\_\-c = {\ttfamily QDate\-:\-:currentDate()}, }
+\item[{Q\-Date}]{date\-\_\-m = {\ttfamily QDate\-:\-:currentDate()}, }
+\item[{bool}]{last = {\ttfamily true}, }
+\item[{int}]{v = {\ttfamily 1}, }
+\item[{Note\-Etat}]{e = {\ttfamily active}, }
+\item[{Tache\-Statut}]{st = {\ttfamily attente}, }
+\item[{int}]{p = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_tache_avec_priorite_a4ef6dcacb0c6837227fae4e96718a40b}
+
+
+Constructeur d'une tâche avec priorité 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id} & L'identificateur de la note \\
+\hline
+{\em t} & Le titre de la note \\
+\hline
+{\em date\-\_\-c} & La date de création \\
+\hline
+{\em date\-\_\-m} & La date de dernière modification \\
+\hline
+{\em last} & Indique si c'est la dernière version de la note ou pas \\
+\hline
+{\em v} & Version de la note \\
+\hline
+{\em e} & Etat de la note (active, archivée ou corbeille). \\
+\hline
+{\em text} & Contenu de la tâche \\
+\hline
+{\em st} & Le statut (attente, cours, terminee) \\
+\hline
+{\em p} & La priorité \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_tache_avec_priorite_ab932dc1d71765a1e124d2a398248ee6c}{\index{Tache\-Avec\-Priorite@{Tache\-Avec\-Priorite}!get\-Priorite@{get\-Priorite}}
+\index{get\-Priorite@{get\-Priorite}!TacheAvecPriorite@{Tache\-Avec\-Priorite}}
+\subsubsection[{get\-Priorite}]{\setlength{\rightskip}{0pt plus 5cm}int Tache\-Avec\-Priorite\-::get\-Priorite (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_tache_avec_priorite_ab932dc1d71765a1e124d2a398248ee6c}
+
+
+get\-Priorite 
+
+\begin{DoxyReturn}{Renvoie}
+La priorité 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8h}{note.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8cpp}{note.\-cpp}\end{DoxyCompactItemize}

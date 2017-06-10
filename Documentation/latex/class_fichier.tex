@@ -1,0 +1,150 @@
+\hypertarget{class_fichier}{\section{Référence de la classe Fichier}
+\label{class_fichier}\index{Fichier@{Fichier}}
+}
+
+
+Représente un fichier (image, audio ou vidéo).  
+
+
+
+
+{\ttfamily \#include $<$note.\-h$>$}
+
+Graphe d'héritage de Fichier\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_fichier}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+Q\-String \hyperlink{class_fichier_ae8a21cbcf691006c9bf5d1a9cf3c039c}{get\-Description} () const 
+\begin{DoxyCompactList}\small\item\em get\-Description \end{DoxyCompactList}\item 
+Fichier\-Type \hyperlink{class_fichier_aea8a0b2ea4bf243166ee3b62214d3d3b}{get\-Type} () const 
+\begin{DoxyCompactList}\small\item\em get\-Type \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_fichier_ab1f7b30f9fc66ff24c97f65a2956609f}{get\-Filename} () const 
+\begin{DoxyCompactList}\small\item\em get\-Filename \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_fichier_a7c16ae9e09cd4a3087b084e3328fbb06}{Fichier} (Q\-String id, Q\-String t, Fichier\-Type ty, Q\-String descr, Q\-String name=\char`\"{}\char`\"{}, Q\-Date date\-\_\-c=Q\-Date\-::current\-Date(), Q\-Date date\-\_\-m=Q\-Date\-::current\-Date(), bool last=true, int v=1, Note\-Etat e=active)
+\begin{DoxyCompactList}\small\item\em Constructeur d'une note. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_fichier_af114aab83c1ffc271f2eeb91b8947b15}{Fichier\-Type {\bfseries type}}\label{class_fichier_af114aab83c1ffc271f2eeb91b8947b15}
+
+\item 
+\hypertarget{class_fichier_a6d157ead0d4cde6d7cf1f8723dc52d46}{Q\-String {\bfseries description}}\label{class_fichier_a6d157ead0d4cde6d7cf1f8723dc52d46}
+
+\item 
+\hypertarget{class_fichier_adf194796fa81d9d971a6b2ab793c8b29}{Q\-String {\bfseries filename}}\label{class_fichier_adf194796fa81d9d971a6b2ab793c8b29}
+
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_fichier_a017a5144e8cfa6087305055ab968ef41}{class {\bfseries Notes\-Manager}}\label{class_fichier_a017a5144e8cfa6087305055ab968ef41}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Représente un fichier (image, audio ou vidéo). 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_fichier_a7c16ae9e09cd4a3087b084e3328fbb06}{\index{Fichier@{Fichier}!Fichier@{Fichier}}
+\index{Fichier@{Fichier}!Fichier@{Fichier}}
+\subsubsection[{Fichier}]{\setlength{\rightskip}{0pt plus 5cm}Fichier\-::\-Fichier (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{id, }
+\item[{Q\-String}]{t, }
+\item[{Fichier\-Type}]{ty, }
+\item[{Q\-String}]{descr, }
+\item[{Q\-String}]{name = {\ttfamily \char`\"{}\char`\"{}}, }
+\item[{Q\-Date}]{date\-\_\-c = {\ttfamily QDate\-:\-:currentDate()}, }
+\item[{Q\-Date}]{date\-\_\-m = {\ttfamily QDate\-:\-:currentDate()}, }
+\item[{bool}]{last = {\ttfamily true}, }
+\item[{int}]{v = {\ttfamily 1}, }
+\item[{Note\-Etat}]{e = {\ttfamily active}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_fichier_a7c16ae9e09cd4a3087b084e3328fbb06}
+
+
+Constructeur d'une note. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id} & L'identificateur de la note \\
+\hline
+{\em t} & Le titre de la note \\
+\hline
+{\em date\-\_\-c} & La date de création \\
+\hline
+{\em date\-\_\-m} & La date de dernière modification \\
+\hline
+{\em last} & Indique si c'est la dernière version de la note ou pas \\
+\hline
+{\em v} & Version de la note \\
+\hline
+{\em e} & Etat de la note (active, archivée ou corbeille). \\
+\hline
+{\em ty} & Type de la note (image, audio, video) \\
+\hline
+{\em descr} & Description \\
+\hline
+{\em name} & Nom du fichier. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_fichier_ae8a21cbcf691006c9bf5d1a9cf3c039c}{\index{Fichier@{Fichier}!get\-Description@{get\-Description}}
+\index{get\-Description@{get\-Description}!Fichier@{Fichier}}
+\subsubsection[{get\-Description}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Fichier\-::get\-Description (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_fichier_ae8a21cbcf691006c9bf5d1a9cf3c039c}
+
+
+get\-Description 
+
+\begin{DoxyReturn}{Renvoie}
+La description 
+\end{DoxyReturn}
+\hypertarget{class_fichier_ab1f7b30f9fc66ff24c97f65a2956609f}{\index{Fichier@{Fichier}!get\-Filename@{get\-Filename}}
+\index{get\-Filename@{get\-Filename}!Fichier@{Fichier}}
+\subsubsection[{get\-Filename}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Fichier\-::get\-Filename (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_fichier_ab1f7b30f9fc66ff24c97f65a2956609f}
+
+
+get\-Filename 
+
+\begin{DoxyReturn}{Renvoie}
+Le nom du fichier. 
+\end{DoxyReturn}
+\hypertarget{class_fichier_aea8a0b2ea4bf243166ee3b62214d3d3b}{\index{Fichier@{Fichier}!get\-Type@{get\-Type}}
+\index{get\-Type@{get\-Type}!Fichier@{Fichier}}
+\subsubsection[{get\-Type}]{\setlength{\rightskip}{0pt plus 5cm}Fichier\-Type Fichier\-::get\-Type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_fichier_aea8a0b2ea4bf243166ee3b62214d3d3b}
+
+
+get\-Type 
+
+\begin{DoxyReturn}{Renvoie}
+Le type (image, audio, video) 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8h}{note.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8cpp}{note.\-cpp}\end{DoxyCompactItemize}

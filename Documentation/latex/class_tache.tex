@@ -1,0 +1,128 @@
+\hypertarget{class_tache}{\section{Référence de la classe Tache}
+\label{class_tache}\index{Tache@{Tache}}
+}
+
+
+Représente une tâche, sans deadline ni priorité.  
+
+
+
+
+{\ttfamily \#include $<$note.\-h$>$}
+
+Graphe d'héritage de Tache\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_tache}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+Q\-String \hyperlink{class_tache_add34adcc7d4fb26078afaae3b92bdd76}{get\-Texte} () const 
+\begin{DoxyCompactList}\small\item\em get\-Texte \end{DoxyCompactList}\item 
+Tache\-Statut \hyperlink{class_tache_a9507985ede212921bdc47c722d2e56b1}{get\-Statut} () const 
+\begin{DoxyCompactList}\small\item\em get\-Statut \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tache_a2c7f6baff58554458a0cf3edb28a24c4}{Tache} (Q\-String id, Q\-String t, Q\-String text, Q\-Date date\-\_\-c=Q\-Date\-::current\-Date(), Q\-Date date\-\_\-m=Q\-Date\-::current\-Date(), bool last=true, int v=1, Note\-Etat e=active, Tache\-Statut st=attente)
+\begin{DoxyCompactList}\small\item\em Constructeur d'une tâche sans deadline ni priorité \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_a0854b4630c361484c1d4f0b154de5168}{Q\-String {\bfseries texte}}\label{class_tache_a0854b4630c361484c1d4f0b154de5168}
+
+\item 
+\hypertarget{class_tache_a270d72fa7d91f115cca5d5cb14e8eea6}{Tache\-Statut {\bfseries statut}}\label{class_tache_a270d72fa7d91f115cca5d5cb14e8eea6}
+
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_a017a5144e8cfa6087305055ab968ef41}{class {\bfseries Notes\-Manager}}\label{class_tache_a017a5144e8cfa6087305055ab968ef41}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Représente une tâche, sans deadline ni priorité. 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_tache_a2c7f6baff58554458a0cf3edb28a24c4}{\index{Tache@{Tache}!Tache@{Tache}}
+\index{Tache@{Tache}!Tache@{Tache}}
+\subsubsection[{Tache}]{\setlength{\rightskip}{0pt plus 5cm}Tache\-::\-Tache (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{id, }
+\item[{Q\-String}]{t, }
+\item[{Q\-String}]{text, }
+\item[{Q\-Date}]{date\-\_\-c = {\ttfamily QDate\-:\-:currentDate()}, }
+\item[{Q\-Date}]{date\-\_\-m = {\ttfamily QDate\-:\-:currentDate()}, }
+\item[{bool}]{last = {\ttfamily true}, }
+\item[{int}]{v = {\ttfamily 1}, }
+\item[{Note\-Etat}]{e = {\ttfamily active}, }
+\item[{Tache\-Statut}]{st = {\ttfamily attente}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_tache_a2c7f6baff58554458a0cf3edb28a24c4}
+
+
+Constructeur d'une tâche sans deadline ni priorité 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id} & L'identificateur de la note \\
+\hline
+{\em t} & Le titre de la note \\
+\hline
+{\em date\-\_\-c} & La date de création \\
+\hline
+{\em date\-\_\-m} & La date de dernière modification \\
+\hline
+{\em last} & Indique si c'est la dernière version de la note ou pas \\
+\hline
+{\em v} & Version de la note \\
+\hline
+{\em e} & Etat de la note (active, archivée ou corbeille). \\
+\hline
+{\em text} & Contenu de la tâche \\
+\hline
+{\em st} & Le statut (attente, cours, terminee) \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_tache_a9507985ede212921bdc47c722d2e56b1}{\index{Tache@{Tache}!get\-Statut@{get\-Statut}}
+\index{get\-Statut@{get\-Statut}!Tache@{Tache}}
+\subsubsection[{get\-Statut}]{\setlength{\rightskip}{0pt plus 5cm}Tache\-Statut Tache\-::get\-Statut (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_tache_a9507985ede212921bdc47c722d2e56b1}
+
+
+get\-Statut 
+
+\begin{DoxyReturn}{Renvoie}
+Retourne le statut de la tâche. 
+\end{DoxyReturn}
+\hypertarget{class_tache_add34adcc7d4fb26078afaae3b92bdd76}{\index{Tache@{Tache}!get\-Texte@{get\-Texte}}
+\index{get\-Texte@{get\-Texte}!Tache@{Tache}}
+\subsubsection[{get\-Texte}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Tache\-::get\-Texte (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_tache_add34adcc7d4fb26078afaae3b92bdd76}
+
+
+get\-Texte 
+
+\begin{DoxyReturn}{Renvoie}
+Retourne le contenu de la tâche. 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8h}{note.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8cpp}{note.\-cpp}\end{DoxyCompactItemize}

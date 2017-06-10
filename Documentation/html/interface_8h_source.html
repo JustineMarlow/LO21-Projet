@@ -1,0 +1,283 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>PluriNotes:  Fichier source de /home/camille/Documents/UTC/HU04/LO21/Projet/Projet/interface.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">PluriNotes
+   &#160;<span id="projectnumber">1</span>
+   </div>
+   <div id="projectbrief">Projet LO21 - Edition &amp; gestion de notes.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Membres&#160;de&#160;fichier</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">/home/camille/Documents/UTC/HU04/LO21/Projet/Projet/interface.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="interface_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef INTERFACE_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define INTERFACE_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QApplication&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;QFileDialog&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;QWidget&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;QLabel&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;QLineEdit&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;QTextEdit&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;QPushButton&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;QVBoxLayout&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;QDate&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;QDateEdit&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;QMessageBox&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include&lt;QtGui&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include&lt;QGroupBox&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include&lt;QDockWidget&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include&lt;QMainWindow&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include&lt;QMenuBar&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include&lt;QMenu&gt;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include&lt;QShortcut&gt;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include&lt;QKeySequence&gt;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include&lt;QTreeWidget&gt;</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include&lt;QTreeWidgetItem&gt;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include&lt;QFormLayout&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="note_8h.html">note.h</a>&gt;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="noteediteur_8h.html">noteediteur.h</a>&gt;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include&lt;<a class="code" href="relation_8h.html">relation.h</a>&gt;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include&lt;<a class="code" href="relationediteur_8h.html">relationediteur.h</a>&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="class_interface_exception.html">   41</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_interface_exception.html">InterfaceException</a>{</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_interface_exception.html">InterfaceException</a>(<span class="keyword">const</span> QString&amp; message):info(message){}</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    QString getInfo()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> info; }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    QString info;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_vue_principale.html">   56</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_vue_principale.html">VuePrincipale</a> : <span class="keyword">public</span> QMainWindow{</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vue_principale.html">VuePrincipale</a>&amp; <a class="code" href="class_vue_principale.html#ac475702859be52ac07b329663c24a56b">getInstance</a>(<a class="code" href="class_note.html">Note</a>* n=0);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#a38a2850977156eaee637de1be6b9991a">affichage_central</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#a2ed333250733915a381e15042df3bd35">affichage_droit</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#ab85635081670f7072008344d28b5b603">affichage_gauche</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#ae06449e378e3a1426bd81a0d00447c8b">creerMenu</a>();</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">private</span> slots:</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#a242a1a9732b6c7997fa5998c25678a81">showRelations</a>();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#a726c780ade730bd88e15cfc6e63bb6a4">afficageArbo</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#a487dbd07f0f5f81327606cc8c5235cef">afficher_note</a>(QTreeWidgetItem* item);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;     <span class="comment">//void interfaceSave(){noteEdit-&gt;save();}</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;     <span class="comment">//void activerMenuSave(QString str=&quot;&quot;);</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#ad72391d3e8bc1f37cd664657570c6518">afficher_version</a>(QTreeWidgetItem* item);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#a61cad396c2c3ed664bb8b45cfdd2e188">new_note</a>(<span class="keywordtype">int</span> i);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#a205e5f51dbbe6d0d648ec52e629d2e6c">actualiser_fenetre</a>();</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#a2f77ec0647f3ac52ffedc0ad668f1646">creerArticle</a>();</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#a61157e05ff0f5e01ba286ab5cd374fd2">creerTache</a>();</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#a97ebca7d1567e54e1105b8fea1c1ca51">creerTacheDeadline</a>();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#aee6a12d4a49be4d8282421ad4de5d50f">creerFichier</a>();</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#a7d75be5c40167a67b69a91944210e299">creerTachePriorite</a>();</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vue_principale.html">VuePrincipale</a>* instance;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <a class="code" href="class_vue_principale.html#aa956c73fa9b92d2031058a42923b58cb">VuePrincipale</a>(<a class="code" href="class_note.html">Note</a>* n=0);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> marqueur; <span class="comment">//sert à identifier une demande de nouvelle note (1 pour Article, 2 pour Tache, 3 pour TacheAvecPriorite, 4 pour TacheAvecDeadline, 5 pour Fichier)</span></div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    QWidget* zoneCentrale;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    QHBoxLayout* layoutPrincipal;</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    QPushButton* actualiser;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    QPushButton* arborescence;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <span class="comment">//Menu</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    QAction* actionSupp;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    QMenu* menuFichier;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="comment">//Partie gauche</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    QGroupBox* gauche;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="comment">//Partie centrale</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    QGroupBox* centre;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    <a class="code" href="class_note.html">Note</a>* note;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    <a class="code" href="class_note_editeur.html">NoteEditeur</a>* noteEdit;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    QAction* actionSave;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordtype">bool</span> saveActive;</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    <span class="comment">//Partie droite</span></div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    QGroupBox* droite;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    <span class="keywordtype">bool</span> arboVisible;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    QPushButton* relation_details;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;     <span class="keywordtype">void</span> <a class="code" href="class_vue_principale.html#aac7af04920ca134b4fdf10f0e2693724">closeEvent</a>(QCloseEvent* event);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;};</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
+<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="class_vue_secondaire.html">  206</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_vue_secondaire.html">VueSecondaire</a> : <span class="keyword">public</span> QWidget{</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="keyword">public</span> :</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vue_secondaire.html">VueSecondaire</a>&amp; <a class="code" href="class_vue_secondaire.html#a455f8674109c95488ca12c8ee6b5861e">getInstance</a>();</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vue_secondaire.html#a79707eb0d8aaddb12d1e1da5b89da844">affichage_central</a>();</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vue_secondaire.html#a8af89508ca4dfc46c7474e7fed627400">affichage_gauche</a>();</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="keyword">private</span> slots:</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vue_secondaire.html#af939340a1323aa49d52333b7f49d8e64">openRelation</a>(QTreeWidgetItem* item);</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vue_secondaire.html#a18dd8554d253c1c2c17a03c416c45d92">actualiser_fenetre</a>();</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="keyword">private</span> :</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    <a class="code" href="class_vue_secondaire.html">VueSecondaire</a>();</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vue_secondaire.html">VueSecondaire</a>* instance;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    QHBoxLayout* layoutPrincipal;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    QVBoxLayout* principal;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="comment">//Partie centrale</span></div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    QGroupBox* centre;</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <a class="code" href="class_relation.html">Relation</a>* relation;</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <a class="code" href="class_relation_editeur.html">RelationEditeur</a>* relationEdit;</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;    <span class="comment">//Partie gauche</span></div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    QGroupBox* gauche;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    QPushButton* quitter;</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    QPushButton* actualiser;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;};</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="comment">class ArbreRelations : public QTreeWidgetItem{</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="comment">    QString value;</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="comment">private :</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="comment">    QString getValue() const {return value;}</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="comment">    ArbreRelations(const QString&amp; text, const QString&amp; v=&quot;Undefined&quot;, int type=Type) :</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="comment">        QTreeWidgetItem(QStringList(text), type), value(v){}</span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="comment">};</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="preprocessor">#endif // INTERFACE_H</span></div>
+<div class="ttc" id="class_vue_principale_html_aee6a12d4a49be4d8282421ad4de5d50f"><div class="ttname"><a href="class_vue_principale.html#aee6a12d4a49be4d8282421ad4de5d50f">VuePrincipale::creerFichier</a></div><div class="ttdeci">void creerFichier()</div><div class="ttdoc">Permet de créer un nouveau fichier via la barre de menu. </div><div class="ttdef"><b>Definition:</b> interface.cpp:177</div></div>
+<div class="ttc" id="class_note_html"><div class="ttname"><a href="class_note.html">Note</a></div><div class="ttdoc">Classe abstraite représentant une note. </div><div class="ttdef"><b>Definition:</b> note.h:39</div></div>
+<div class="ttc" id="class_vue_principale_html_ac475702859be52ac07b329663c24a56b"><div class="ttname"><a href="class_vue_principale.html#ac475702859be52ac07b329663c24a56b">VuePrincipale::getInstance</a></div><div class="ttdeci">static VuePrincipale &amp; getInstance(Note *n=0)</div><div class="ttdoc">Permet d&#39;accéder au seul objet de la classe VuePrincipale (DP Singleton). </div><div class="ttdef"><b>Definition:</b> interface.cpp:16</div></div>
+<div class="ttc" id="class_vue_secondaire_html_af939340a1323aa49d52333b7f49d8e64"><div class="ttname"><a href="class_vue_secondaire.html#af939340a1323aa49d52333b7f49d8e64">VueSecondaire::openRelation</a></div><div class="ttdeci">void openRelation(QTreeWidgetItem *item)</div><div class="ttdoc">Ouvre le relationEditeur d&#39;une relation sélectionnée par l&#39;utilisateur. </div><div class="ttdef"><b>Definition:</b> interface.cpp:552</div></div>
+<div class="ttc" id="class_relation_html"><div class="ttname"><a href="class_relation.html">Relation</a></div><div class="ttdoc">Représente les relations entre notes. </div><div class="ttdef"><b>Definition:</b> relation.h:19</div></div>
+<div class="ttc" id="class_vue_principale_html_aac7af04920ca134b4fdf10f0e2693724"><div class="ttname"><a href="class_vue_principale.html#aac7af04920ca134b4fdf10f0e2693724">VuePrincipale::closeEvent</a></div><div class="ttdeci">void closeEvent(QCloseEvent *event)</div><div class="ttdoc">Permet de gérer le vidage automatique de la corbeille. </div><div class="ttdef"><b>Definition:</b> interface.cpp:82</div></div>
+<div class="ttc" id="class_vue_principale_html_ab85635081670f7072008344d28b5b603"><div class="ttname"><a href="class_vue_principale.html#ab85635081670f7072008344d28b5b603">VuePrincipale::affichage_gauche</a></div><div class="ttdeci">void affichage_gauche()</div><div class="ttdoc">Permet la création &amp; l&#39;affichage de la partie gauche de la fenêtre. </div><div class="ttdef"><b>Definition:</b> interface.cpp:373</div></div>
+<div class="ttc" id="class_vue_secondaire_html_a79707eb0d8aaddb12d1e1da5b89da844"><div class="ttname"><a href="class_vue_secondaire.html#a79707eb0d8aaddb12d1e1da5b89da844">VueSecondaire::affichage_central</a></div><div class="ttdeci">void affichage_central()</div><div class="ttdoc">Permet la création &amp; l&#39;affichage de la partie centrale de la fenêtre. </div><div class="ttdef"><b>Definition:</b> interface.cpp:533</div></div>
+<div class="ttc" id="class_vue_secondaire_html_a455f8674109c95488ca12c8ee6b5861e"><div class="ttname"><a href="class_vue_secondaire.html#a455f8674109c95488ca12c8ee6b5861e">VueSecondaire::getInstance</a></div><div class="ttdeci">static VueSecondaire &amp; getInstance()</div><div class="ttdoc">Permet d&#39;accéder au seul objet de la classe VueSecondaire (DP Singleton). </div><div class="ttdef"><b>Definition:</b> interface.cpp:476</div></div>
+<div class="ttc" id="class_vue_principale_html_a242a1a9732b6c7997fa5998c25678a81"><div class="ttname"><a href="class_vue_principale.html#a242a1a9732b6c7997fa5998c25678a81">VuePrincipale::showRelations</a></div><div class="ttdeci">void showRelations()</div><div class="ttdoc">Appelle le constructeur de la fenêtre secondaire (gestion &amp; visualisation des relations) ...</div><div class="ttdef"><b>Definition:</b> interface.cpp:113</div></div>
+<div class="ttc" id="class_relation_editeur_html"><div class="ttname"><a href="class_relation_editeur.html">RelationEditeur</a></div><div class="ttdoc">Permet la visualisation, modification, suppression des relations (interface). </div><div class="ttdef"><b>Definition:</b> relationediteur.h:31</div></div>
+<div class="ttc" id="class_note_editeur_html"><div class="ttname"><a href="class_note_editeur.html">NoteEditeur</a></div><div class="ttdoc">Classe abstraite, permet de visualiser et modifier les notes (interface). </div><div class="ttdef"><b>Definition:</b> noteediteur.h:38</div></div>
+<div class="ttc" id="class_vue_principale_html"><div class="ttname"><a href="class_vue_principale.html">VuePrincipale</a></div><div class="ttdoc">Représente la fenêtre principale de l&#39;application. </div><div class="ttdef"><b>Definition:</b> interface.h:56</div></div>
+<div class="ttc" id="class_vue_principale_html_a726c780ade730bd88e15cfc6e63bb6a4"><div class="ttname"><a href="class_vue_principale.html#a726c780ade730bd88e15cfc6e63bb6a4">VuePrincipale::afficageArbo</a></div><div class="ttdeci">void afficageArbo()</div><div class="ttdoc">gère la partie droite (masque ou affiche l&#39;arborescence) </div><div class="ttdef"><b>Definition:</b> interface.cpp:100</div></div>
+<div class="ttc" id="class_vue_principale_html_a2f77ec0647f3ac52ffedc0ad668f1646"><div class="ttname"><a href="class_vue_principale.html#a2f77ec0647f3ac52ffedc0ad668f1646">VuePrincipale::creerArticle</a></div><div class="ttdeci">void creerArticle()</div><div class="ttdoc">Permet de créer un nouvel article via la barre de menu. </div><div class="ttdef"><b>Definition:</b> interface.cpp:132</div></div>
+<div class="ttc" id="class_vue_principale_html_a2ed333250733915a381e15042df3bd35"><div class="ttname"><a href="class_vue_principale.html#a2ed333250733915a381e15042df3bd35">VuePrincipale::affichage_droit</a></div><div class="ttdeci">void affichage_droit()</div><div class="ttdoc">Permet la création &amp; l&#39;affichage de la partie droite de la fenêtre. </div><div class="ttdef"><b>Definition:</b> interface.cpp:277</div></div>
+<div class="ttc" id="class_vue_principale_html_ad72391d3e8bc1f37cd664657570c6518"><div class="ttname"><a href="class_vue_principale.html#ad72391d3e8bc1f37cd664657570c6518">VuePrincipale::afficher_version</a></div><div class="ttdeci">void afficher_version(QTreeWidgetItem *item)</div><div class="ttdoc">Permet l&#39;affichage d&#39;une autre version de la note. </div><div class="ttdef"><b>Definition:</b> interface.cpp:189</div></div>
+<div class="ttc" id="relation_8h_html"><div class="ttname"><a href="relation_8h.html">relation.h</a></div><div class="ttdoc">Définit les classes Relation &amp; RelationsManager. </div></div>
+<div class="ttc" id="relationediteur_8h_html"><div class="ttname"><a href="relationediteur_8h.html">relationediteur.h</a></div><div class="ttdoc">Définit la classe RelationEditeur. </div></div>
+<div class="ttc" id="class_interface_exception_html"><div class="ttname"><a href="class_interface_exception.html">InterfaceException</a></div><div class="ttdoc">Permet de gérer les exceptions liées à l&#39;interface. </div><div class="ttdef"><b>Definition:</b> interface.h:41</div></div>
+<div class="ttc" id="class_vue_principale_html_ae06449e378e3a1426bd81a0d00447c8b"><div class="ttname"><a href="class_vue_principale.html#ae06449e378e3a1426bd81a0d00447c8b">VuePrincipale::creerMenu</a></div><div class="ttdeci">void creerMenu()</div><div class="ttdoc">Permet la création &amp; l&#39;affichage du menu. </div><div class="ttdef"><b>Definition:</b> interface.cpp:37</div></div>
+<div class="ttc" id="class_vue_principale_html_a205e5f51dbbe6d0d648ec52e629d2e6c"><div class="ttname"><a href="class_vue_principale.html#a205e5f51dbbe6d0d648ec52e629d2e6c">VuePrincipale::actualiser_fenetre</a></div><div class="ttdeci">void actualiser_fenetre()</div><div class="ttdoc">Permet d&#39;actualiser l&#39;affichage si une note/relation a été modifiée/créée/supprimée. </div><div class="ttdef"><b>Definition:</b> interface.cpp:454</div></div>
+<div class="ttc" id="class_vue_secondaire_html_a18dd8554d253c1c2c17a03c416c45d92"><div class="ttname"><a href="class_vue_secondaire.html#a18dd8554d253c1c2c17a03c416c45d92">VueSecondaire::actualiser_fenetre</a></div><div class="ttdeci">void actualiser_fenetre()</div><div class="ttdoc">Permet d&#39;actualiser l&#39;affichage si une relation a été modifiée/créée/supprimée. </div><div class="ttdef"><b>Definition:</b> interface.cpp:565</div></div>
+<div class="ttc" id="class_vue_principale_html_a97ebca7d1567e54e1105b8fea1c1ca51"><div class="ttname"><a href="class_vue_principale.html#a97ebca7d1567e54e1105b8fea1c1ca51">VuePrincipale::creerTacheDeadline</a></div><div class="ttdeci">void creerTacheDeadline()</div><div class="ttdoc">Permet de créer une nouvelle tâche avec deadline via la barre de menu. </div><div class="ttdef"><b>Definition:</b> interface.cpp:155</div></div>
+<div class="ttc" id="note_8h_html"><div class="ttname"><a href="note_8h.html">note.h</a></div><div class="ttdoc">Définit les classes Note &amp; ses descendant (articles, tâches, tâches avec deadline/priorité, fichier) et le NotesManager. </div></div>
+<div class="ttc" id="class_vue_principale_html_a61cad396c2c3ed664bb8b45cfdd2e188"><div class="ttname"><a href="class_vue_principale.html#a61cad396c2c3ed664bb8b45cfdd2e188">VuePrincipale::new_note</a></div><div class="ttdeci">void new_note(int i)</div><div class="ttdoc">Permet la création d&#39;une nouvelle note. </div><div class="ttdef"><b>Definition:</b> interface.cpp:440</div></div>
+<div class="ttc" id="noteediteur_8h_html"><div class="ttname"><a href="noteediteur_8h.html">noteediteur.h</a></div><div class="ttdoc">Définit la classe NoteEditeur et ses dérivées (pour les articles, tâches et fichiers). </div></div>
+<div class="ttc" id="class_vue_principale_html_a61157e05ff0f5e01ba286ab5cd374fd2"><div class="ttname"><a href="class_vue_principale.html#a61157e05ff0f5e01ba286ab5cd374fd2">VuePrincipale::creerTache</a></div><div class="ttdeci">void creerTache()</div><div class="ttdoc">Permet de créer une nouvelle tâche sans deadline/priorité via la barre de menu. </div><div class="ttdef"><b>Definition:</b> interface.cpp:144</div></div>
+<div class="ttc" id="class_vue_principale_html_a38a2850977156eaee637de1be6b9991a"><div class="ttname"><a href="class_vue_principale.html#a38a2850977156eaee637de1be6b9991a">VuePrincipale::affichage_central</a></div><div class="ttdeci">void affichage_central()</div><div class="ttdoc">Permet la création &amp; l&#39;affichage de la partie centrale de la fenêtre. </div><div class="ttdef"><b>Definition:</b> interface.cpp:204</div></div>
+<div class="ttc" id="class_vue_principale_html_aa956c73fa9b92d2031058a42923b58cb"><div class="ttname"><a href="class_vue_principale.html#aa956c73fa9b92d2031058a42923b58cb">VuePrincipale::VuePrincipale</a></div><div class="ttdeci">VuePrincipale(Note *n=0)</div><div class="ttdoc">Constructeur de la fenêtre. </div><div class="ttdef"><b>Definition:</b> interface.cpp:21</div></div>
+<div class="ttc" id="class_vue_principale_html_a7d75be5c40167a67b69a91944210e299"><div class="ttname"><a href="class_vue_principale.html#a7d75be5c40167a67b69a91944210e299">VuePrincipale::creerTachePriorite</a></div><div class="ttdeci">void creerTachePriorite()</div><div class="ttdoc">Permet de créer une nouvelle tâche avec priorité via la barre de menu. </div><div class="ttdef"><b>Definition:</b> interface.cpp:166</div></div>
+<div class="ttc" id="class_vue_principale_html_a487dbd07f0f5f81327606cc8c5235cef"><div class="ttname"><a href="class_vue_principale.html#a487dbd07f0f5f81327606cc8c5235cef">VuePrincipale::afficher_note</a></div><div class="ttdeci">void afficher_note(QTreeWidgetItem *item)</div><div class="ttdoc">Permet l&#39;affichage d&#39;une nouvelle note. </div><div class="ttdef"><b>Definition:</b> interface.cpp:118</div></div>
+<div class="ttc" id="class_vue_secondaire_html_a8af89508ca4dfc46c7474e7fed627400"><div class="ttname"><a href="class_vue_secondaire.html#a8af89508ca4dfc46c7474e7fed627400">VueSecondaire::affichage_gauche</a></div><div class="ttdeci">void affichage_gauche()</div><div class="ttdoc">Permet la création &amp; l&#39;affichage de la partie gauche de la fenêtre. </div><div class="ttdef"><b>Definition:</b> interface.cpp:494</div></div>
+<div class="ttc" id="class_vue_secondaire_html"><div class="ttname"><a href="class_vue_secondaire.html">VueSecondaire</a></div><div class="ttdoc">Représente la fenêtre secondaire de l&#39;application (gestion des relations). </div><div class="ttdef"><b>Definition:</b> interface.h:206</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Dimanche 11 Juin 2017 01:08:14 pour PluriNotes par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

@@ -7,6 +7,11 @@
 #include <typeinfo>
 #include <QDebug>
 
+/**
+ * \file      note.cpp
+ * \brief     Définit les méthodes relatives aux classes note, ses dérivées et NotesManager.
+ */
+
 /*======================================================= Note et classes dérivées ====================================================================================*/
 Note::~Note(){}
 Article::~Article(){}

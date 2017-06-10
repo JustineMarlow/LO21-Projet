@@ -1,0 +1,284 @@
+\hypertarget{class_vue_principale}{\section{Référence de la classe Vue\-Principale}
+\label{class_vue_principale}\index{Vue\-Principale@{Vue\-Principale}}
+}
+
+
+Représente la fenêtre principale de l'application.  
+
+
+
+
+{\ttfamily \#include $<$interface.\-h$>$}
+
+Graphe d'héritage de Vue\-Principale\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_vue_principale}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_vue_principale_a38a2850977156eaee637de1be6b9991a}{affichage\-\_\-central} ()
+\begin{DoxyCompactList}\small\item\em Permet la création \& l'affichage de la partie centrale de la fenêtre. \end{DoxyCompactList}\item 
+void \hyperlink{class_vue_principale_a2ed333250733915a381e15042df3bd35}{affichage\-\_\-droit} ()
+\begin{DoxyCompactList}\small\item\em Permet la création \& l'affichage de la partie droite de la fenêtre. \end{DoxyCompactList}\item 
+void \hyperlink{class_vue_principale_ab85635081670f7072008344d28b5b603}{affichage\-\_\-gauche} ()
+\begin{DoxyCompactList}\small\item\em Permet la création \& l'affichage de la partie gauche de la fenêtre. \end{DoxyCompactList}\item 
+void \hyperlink{class_vue_principale_ae06449e378e3a1426bd81a0d00447c8b}{creer\-Menu} ()
+\begin{DoxyCompactList}\small\item\em Permet la création \& l'affichage du menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_vue_principale}{Vue\-Principale} \& \hyperlink{class_vue_principale_ac475702859be52ac07b329663c24a56b}{get\-Instance} (\hyperlink{class_note}{Note} $\ast$n=0)
+\begin{DoxyCompactList}\small\item\em Permet d'accéder au seul objet de la classe \hyperlink{class_vue_principale}{Vue\-Principale} (D\-P Singleton). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_vue_principale_aac7af04920ca134b4fdf10f0e2693724}{close\-Event} (Q\-Close\-Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em Permet de gérer le vidage automatique de la corbeille. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Connecteurs privés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_vue_principale_a242a1a9732b6c7997fa5998c25678a81}{void \hyperlink{class_vue_principale_a242a1a9732b6c7997fa5998c25678a81}{show\-Relations} ()}\label{class_vue_principale_a242a1a9732b6c7997fa5998c25678a81}
+
+\begin{DoxyCompactList}\small\item\em Appelle le constructeur de la fenêtre secondaire (gestion \& visualisation des relations) \end{DoxyCompactList}\item 
+\hypertarget{class_vue_principale_a726c780ade730bd88e15cfc6e63bb6a4}{void \hyperlink{class_vue_principale_a726c780ade730bd88e15cfc6e63bb6a4}{afficage\-Arbo} ()}\label{class_vue_principale_a726c780ade730bd88e15cfc6e63bb6a4}
+
+\begin{DoxyCompactList}\small\item\em gère la partie droite (masque ou affiche l'arborescence) \end{DoxyCompactList}\item 
+void \hyperlink{class_vue_principale_a487dbd07f0f5f81327606cc8c5235cef}{afficher\-\_\-note} (Q\-Tree\-Widget\-Item $\ast$item)
+\begin{DoxyCompactList}\small\item\em Permet l'affichage d'une nouvelle note. \end{DoxyCompactList}\item 
+void \hyperlink{class_vue_principale_ad72391d3e8bc1f37cd664657570c6518}{afficher\-\_\-version} (Q\-Tree\-Widget\-Item $\ast$item)
+\begin{DoxyCompactList}\small\item\em Permet l'affichage d'une autre version de la note. \end{DoxyCompactList}\item 
+void \hyperlink{class_vue_principale_a61cad396c2c3ed664bb8b45cfdd2e188}{new\-\_\-note} (int i)
+\begin{DoxyCompactList}\small\item\em Permet la création d'une nouvelle note. \end{DoxyCompactList}\item 
+\hypertarget{class_vue_principale_a205e5f51dbbe6d0d648ec52e629d2e6c}{void \hyperlink{class_vue_principale_a205e5f51dbbe6d0d648ec52e629d2e6c}{actualiser\-\_\-fenetre} ()}\label{class_vue_principale_a205e5f51dbbe6d0d648ec52e629d2e6c}
+
+\begin{DoxyCompactList}\small\item\em Permet d'actualiser l'affichage si une note/relation a été modifiée/créée/supprimée. \end{DoxyCompactList}\item 
+\hypertarget{class_vue_principale_a2f77ec0647f3ac52ffedc0ad668f1646}{void \hyperlink{class_vue_principale_a2f77ec0647f3ac52ffedc0ad668f1646}{creer\-Article} ()}\label{class_vue_principale_a2f77ec0647f3ac52ffedc0ad668f1646}
+
+\begin{DoxyCompactList}\small\item\em Permet de créer un nouvel article via la barre de menu. \end{DoxyCompactList}\item 
+\hypertarget{class_vue_principale_a61157e05ff0f5e01ba286ab5cd374fd2}{void \hyperlink{class_vue_principale_a61157e05ff0f5e01ba286ab5cd374fd2}{creer\-Tache} ()}\label{class_vue_principale_a61157e05ff0f5e01ba286ab5cd374fd2}
+
+\begin{DoxyCompactList}\small\item\em Permet de créer une nouvelle tâche sans deadline/priorité via la barre de menu. \end{DoxyCompactList}\item 
+\hypertarget{class_vue_principale_a97ebca7d1567e54e1105b8fea1c1ca51}{void \hyperlink{class_vue_principale_a97ebca7d1567e54e1105b8fea1c1ca51}{creer\-Tache\-Deadline} ()}\label{class_vue_principale_a97ebca7d1567e54e1105b8fea1c1ca51}
+
+\begin{DoxyCompactList}\small\item\em Permet de créer une nouvelle tâche avec deadline via la barre de menu. \end{DoxyCompactList}\item 
+\hypertarget{class_vue_principale_aee6a12d4a49be4d8282421ad4de5d50f}{void \hyperlink{class_vue_principale_aee6a12d4a49be4d8282421ad4de5d50f}{creer\-Fichier} ()}\label{class_vue_principale_aee6a12d4a49be4d8282421ad4de5d50f}
+
+\begin{DoxyCompactList}\small\item\em Permet de créer un nouveau fichier via la barre de menu. \end{DoxyCompactList}\item 
+\hypertarget{class_vue_principale_a7d75be5c40167a67b69a91944210e299}{void \hyperlink{class_vue_principale_a7d75be5c40167a67b69a91944210e299}{creer\-Tache\-Priorite} ()}\label{class_vue_principale_a7d75be5c40167a67b69a91944210e299}
+
+\begin{DoxyCompactList}\small\item\em Permet de créer une nouvelle tâche avec priorité via la barre de menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_vue_principale_aa956c73fa9b92d2031058a42923b58cb}{Vue\-Principale} (\hyperlink{class_note}{Note} $\ast$n=0)
+\begin{DoxyCompactList}\small\item\em Constructeur de la fenêtre. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_vue_principale_a19079699098c0c8846f360f81caa9562}{unsigned int {\bfseries marqueur}}\label{class_vue_principale_a19079699098c0c8846f360f81caa9562}
+
+\item 
+\hypertarget{class_vue_principale_a77071012fcd0ab3c5b917cf9cf3932b6}{Q\-Widget $\ast$ {\bfseries zone\-Centrale}}\label{class_vue_principale_a77071012fcd0ab3c5b917cf9cf3932b6}
+
+\item 
+\hypertarget{class_vue_principale_a733fa80891be7be01dd2a494338011c2}{Q\-H\-Box\-Layout $\ast$ {\bfseries layout\-Principal}}\label{class_vue_principale_a733fa80891be7be01dd2a494338011c2}
+
+\item 
+\hypertarget{class_vue_principale_aa10cc91367ac162477a61d61bc3983d6}{Q\-Push\-Button $\ast$ {\bfseries actualiser}}\label{class_vue_principale_aa10cc91367ac162477a61d61bc3983d6}
+
+\item 
+\hypertarget{class_vue_principale_a21ca0b616e1b8573996bacd0788a4d5f}{Q\-Push\-Button $\ast$ {\bfseries arborescence}}\label{class_vue_principale_a21ca0b616e1b8573996bacd0788a4d5f}
+
+\item 
+\hypertarget{class_vue_principale_aa5c8a23312070df19df91b4a11a0f0f9}{Q\-Action $\ast$ {\bfseries action\-Supp}}\label{class_vue_principale_aa5c8a23312070df19df91b4a11a0f0f9}
+
+\item 
+\hypertarget{class_vue_principale_ad488b8bbb081be458ea8e6bc91855643}{Q\-Menu $\ast$ {\bfseries menu\-Fichier}}\label{class_vue_principale_ad488b8bbb081be458ea8e6bc91855643}
+
+\item 
+\hypertarget{class_vue_principale_a71889c8911ea8e048f7929ee018762da}{Q\-Group\-Box $\ast$ {\bfseries gauche}}\label{class_vue_principale_a71889c8911ea8e048f7929ee018762da}
+
+\item 
+\hypertarget{class_vue_principale_a4e6033054ca0180b87c473ac62355614}{Q\-Group\-Box $\ast$ {\bfseries centre}}\label{class_vue_principale_a4e6033054ca0180b87c473ac62355614}
+
+\item 
+\hypertarget{class_vue_principale_ae504dae6ea9c3c76f1bb7d3497b60b1f}{\hyperlink{class_note}{Note} $\ast$ {\bfseries note}}\label{class_vue_principale_ae504dae6ea9c3c76f1bb7d3497b60b1f}
+
+\item 
+\hypertarget{class_vue_principale_ac887b69330a47fc775a85a45fca3247e}{\hyperlink{class_note_editeur}{Note\-Editeur} $\ast$ {\bfseries note\-Edit}}\label{class_vue_principale_ac887b69330a47fc775a85a45fca3247e}
+
+\item 
+\hypertarget{class_vue_principale_a786106f1c4637d79748040b21e81876e}{Q\-Action $\ast$ {\bfseries action\-Save}}\label{class_vue_principale_a786106f1c4637d79748040b21e81876e}
+
+\item 
+\hypertarget{class_vue_principale_ae1ec36e06063e6097ce4e4c956142c6e}{bool {\bfseries save\-Active}}\label{class_vue_principale_ae1ec36e06063e6097ce4e4c956142c6e}
+
+\item 
+\hypertarget{class_vue_principale_a89b04596c58cd9ff7fa1a8526ed29289}{Q\-Group\-Box $\ast$ {\bfseries droite}}\label{class_vue_principale_a89b04596c58cd9ff7fa1a8526ed29289}
+
+\item 
+\hypertarget{class_vue_principale_aa0248272de083bb9cd0cb6a496daceb4}{bool {\bfseries arbo\-Visible}}\label{class_vue_principale_aa0248272de083bb9cd0cb6a496daceb4}
+
+\item 
+\hypertarget{class_vue_principale_a7c6eb51ba5b96ac5dca69fc3ffd65784}{Q\-Push\-Button $\ast$ {\bfseries relation\-\_\-details}}\label{class_vue_principale_a7c6eb51ba5b96ac5dca69fc3ffd65784}
+
+\end{DoxyCompactItemize}
+\subsection*{Attributs privés statiques}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_vue_principale_ac6d04800f0fbda43d2ec1127815c07de}{static \hyperlink{class_vue_principale}{Vue\-Principale} $\ast$ {\bfseries instance}}\label{class_vue_principale_ac6d04800f0fbda43d2ec1127815c07de}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Représente la fenêtre principale de l'application. 
+
+Permet la visualisation/modification d'une note \& de l'arborescence de ses relations, la visualisation des notes actives, des tâches et des notes archivées. Permet aussi la création d'une nouvelle note. 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_vue_principale_aa956c73fa9b92d2031058a42923b58cb}{\index{Vue\-Principale@{Vue\-Principale}!Vue\-Principale@{Vue\-Principale}}
+\index{Vue\-Principale@{Vue\-Principale}!VuePrincipale@{Vue\-Principale}}
+\subsubsection[{Vue\-Principale}]{\setlength{\rightskip}{0pt plus 5cm}Vue\-Principale\-::\-Vue\-Principale (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} $\ast$}]{n = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{class_vue_principale_aa956c73fa9b92d2031058a42923b58cb}
+
+
+Constructeur de la fenêtre. 
+
+En privé pour le D\-P singleton. 
+\begin{DoxyParams}{Paramètres}
+{\em n} & \hyperlink{class_note}{Note} à afficher (par défaut, on n'affiche aucune note). \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_vue_principale_a38a2850977156eaee637de1be6b9991a}{\index{Vue\-Principale@{Vue\-Principale}!affichage\-\_\-central@{affichage\-\_\-central}}
+\index{affichage\-\_\-central@{affichage\-\_\-central}!VuePrincipale@{Vue\-Principale}}
+\subsubsection[{affichage\-\_\-central}]{\setlength{\rightskip}{0pt plus 5cm}void Vue\-Principale\-::affichage\-\_\-central (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_vue_principale_a38a2850977156eaee637de1be6b9991a}
+
+
+Permet la création \& l'affichage de la partie centrale de la fenêtre. 
+
+Utilisée dans le constructeur. \hypertarget{class_vue_principale_a2ed333250733915a381e15042df3bd35}{\index{Vue\-Principale@{Vue\-Principale}!affichage\-\_\-droit@{affichage\-\_\-droit}}
+\index{affichage\-\_\-droit@{affichage\-\_\-droit}!VuePrincipale@{Vue\-Principale}}
+\subsubsection[{affichage\-\_\-droit}]{\setlength{\rightskip}{0pt plus 5cm}void Vue\-Principale\-::affichage\-\_\-droit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_vue_principale_a2ed333250733915a381e15042df3bd35}
+
+
+Permet la création \& l'affichage de la partie droite de la fenêtre. 
+
+Utilisée dans le constructeur. \hypertarget{class_vue_principale_ab85635081670f7072008344d28b5b603}{\index{Vue\-Principale@{Vue\-Principale}!affichage\-\_\-gauche@{affichage\-\_\-gauche}}
+\index{affichage\-\_\-gauche@{affichage\-\_\-gauche}!VuePrincipale@{Vue\-Principale}}
+\subsubsection[{affichage\-\_\-gauche}]{\setlength{\rightskip}{0pt plus 5cm}void Vue\-Principale\-::affichage\-\_\-gauche (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_vue_principale_ab85635081670f7072008344d28b5b603}
+
+
+Permet la création \& l'affichage de la partie gauche de la fenêtre. 
+
+Utilisée dans le constructeur. \hypertarget{class_vue_principale_a487dbd07f0f5f81327606cc8c5235cef}{\index{Vue\-Principale@{Vue\-Principale}!afficher\-\_\-note@{afficher\-\_\-note}}
+\index{afficher\-\_\-note@{afficher\-\_\-note}!VuePrincipale@{Vue\-Principale}}
+\subsubsection[{afficher\-\_\-note}]{\setlength{\rightskip}{0pt plus 5cm}void Vue\-Principale\-::afficher\-\_\-note (
+\begin{DoxyParamCaption}
+\item[{Q\-Tree\-Widget\-Item $\ast$}]{item}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}}\label{class_vue_principale_a487dbd07f0f5f81327606cc8c5235cef}
+
+
+Permet l'affichage d'une nouvelle note. 
+
+Slot appelé lorsque l'utilisateur sélectionne une note dans l'arborescence ou dans la colonne de gauche \hypertarget{class_vue_principale_ad72391d3e8bc1f37cd664657570c6518}{\index{Vue\-Principale@{Vue\-Principale}!afficher\-\_\-version@{afficher\-\_\-version}}
+\index{afficher\-\_\-version@{afficher\-\_\-version}!VuePrincipale@{Vue\-Principale}}
+\subsubsection[{afficher\-\_\-version}]{\setlength{\rightskip}{0pt plus 5cm}void Vue\-Principale\-::afficher\-\_\-version (
+\begin{DoxyParamCaption}
+\item[{Q\-Tree\-Widget\-Item $\ast$}]{item}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}}\label{class_vue_principale_ad72391d3e8bc1f37cd664657570c6518}
+
+
+Permet l'affichage d'une autre version de la note. 
+
+Slot appelé lorsque l'utilisateur sélectionne une autre version de la note visualisée (colonne de droite). \hypertarget{class_vue_principale_aac7af04920ca134b4fdf10f0e2693724}{\index{Vue\-Principale@{Vue\-Principale}!close\-Event@{close\-Event}}
+\index{close\-Event@{close\-Event}!VuePrincipale@{Vue\-Principale}}
+\subsubsection[{close\-Event}]{\setlength{\rightskip}{0pt plus 5cm}void Vue\-Principale\-::close\-Event (
+\begin{DoxyParamCaption}
+\item[{Q\-Close\-Event $\ast$}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{class_vue_principale_aac7af04920ca134b4fdf10f0e2693724}
+
+
+Permet de gérer le vidage automatique de la corbeille. 
+
+Si l'option de vidage automatique est activée dans le menu, on ferme la fenetre et on vide la corbeille. Sinon, on affiche une boîte de dialogue demandant à l'utilisateur s'il désire supprimer le contenu de la corbeille au moment de la fermeture de l'application. 
+\begin{DoxyParams}{Paramètres}
+{\em event} & Si l'option de vidage automatique est activée ou non. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_vue_principale_ae06449e378e3a1426bd81a0d00447c8b}{\index{Vue\-Principale@{Vue\-Principale}!creer\-Menu@{creer\-Menu}}
+\index{creer\-Menu@{creer\-Menu}!VuePrincipale@{Vue\-Principale}}
+\subsubsection[{creer\-Menu}]{\setlength{\rightskip}{0pt plus 5cm}void Vue\-Principale\-::creer\-Menu (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_vue_principale_ae06449e378e3a1426bd81a0d00447c8b}
+
+
+Permet la création \& l'affichage du menu. 
+
+Utilisée dans le constructeur. \hypertarget{class_vue_principale_ac475702859be52ac07b329663c24a56b}{\index{Vue\-Principale@{Vue\-Principale}!get\-Instance@{get\-Instance}}
+\index{get\-Instance@{get\-Instance}!VuePrincipale@{Vue\-Principale}}
+\subsubsection[{get\-Instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vue\-Principale} \& Vue\-Principale\-::get\-Instance (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} $\ast$}]{n = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_vue_principale_ac475702859be52ac07b329663c24a56b}
+
+
+Permet d'accéder au seul objet de la classe \hyperlink{class_vue_principale}{Vue\-Principale} (D\-P Singleton). 
+
+Crée une instance s'il n'en existe pas, retourne l'instance déjà existante sinon. 
+\begin{DoxyParams}{Paramètres}
+{\em n} & La note que l'on souhaite afficher (par défaut, on n'affiche aucune note). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Une référence sur la seule instance de la fenêtre. 
+\end{DoxyReturn}
+\hypertarget{class_vue_principale_a61cad396c2c3ed664bb8b45cfdd2e188}{\index{Vue\-Principale@{Vue\-Principale}!new\-\_\-note@{new\-\_\-note}}
+\index{new\-\_\-note@{new\-\_\-note}!VuePrincipale@{Vue\-Principale}}
+\subsubsection[{new\-\_\-note}]{\setlength{\rightskip}{0pt plus 5cm}void Vue\-Principale\-::new\-\_\-note (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}}\label{class_vue_principale_a61cad396c2c3ed664bb8b45cfdd2e188}
+
+
+Permet la création d'une nouvelle note. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em i} & Marqueur, indique le type de note à créer (1 pour \hyperlink{class_article}{Article}, 2 pour \hyperlink{class_tache}{Tache}, 3 pour \hyperlink{class_tache_avec_priorite}{Tache\-Avec\-Priorite}, 4 pour \hyperlink{class_tache_avec_deadline}{Tache\-Avec\-Deadline}, 5 pour \hyperlink{class_fichier}{Fichier}) \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{interface_8h}{interface.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{interface_8cpp}{interface.\-cpp}\end{DoxyCompactItemize}

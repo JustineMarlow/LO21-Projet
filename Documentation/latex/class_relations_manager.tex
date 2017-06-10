@@ -1,0 +1,206 @@
+\hypertarget{class_relations_manager}{\section{Référence de la classe Relations\-Manager}
+\label{class_relations_manager}\index{Relations\-Manager@{Relations\-Manager}}
+}
+
+
+Permet la gestion de l'ensemble des relations.  
+
+
+
+
+{\ttfamily \#include $<$relation.\-h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_relations_manager_1_1_iterator}{Iterator}
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_relations_manager_aad6d18cfe0018bc3c84cd67cc28e02e3}{unsigned int \hyperlink{class_relations_manager_aad6d18cfe0018bc3c84cd67cc28e02e3}{get\-Nb\-Relations} () const }\label{class_relations_manager_aad6d18cfe0018bc3c84cd67cc28e02e3}
+
+\begin{DoxyCompactList}\small\item\em Retourne le nombre de relations du \hyperlink{class_relations_manager}{Relations\-Manager}. \end{DoxyCompactList}\item 
+\hyperlink{class_relation}{Relation} \& \hyperlink{class_relations_manager_af3f2992fb1dc52df403ab0213232329d}{get\-I\-Relation} (unsigned int i) const 
+\begin{DoxyCompactList}\small\item\em Retourne une relation selon son indice. \end{DoxyCompactList}\item 
+\hyperlink{class_relation}{Relation} \& \hyperlink{class_relations_manager_a99ba92089cbce8ab93a1dd16380ead6c}{create\-Relation} (const Q\-String \&titre, const Q\-String \&description, bool is\-Oriente)
+\begin{DoxyCompactList}\small\item\em Création d'une nouvelle relation \& ajout au \hyperlink{class_relations_manager}{Relations\-Manager}. \end{DoxyCompactList}\item 
+void \hyperlink{class_relations_manager_a48e772342fa842c1832802e6e5e4ee4a}{add\-Relation} (\hyperlink{class_relation}{Relation} \&r)
+\begin{DoxyCompactList}\small\item\em Ajout d'une relation existante au \hyperlink{class_relations_manager}{Relations\-Manager}. \end{DoxyCompactList}\item 
+void \hyperlink{class_relations_manager_a5929bed08e90a52ec60f3a8cec09766d}{delete\-Relation} (\hyperlink{class_relation}{Relation} \&r)
+\begin{DoxyCompactList}\small\item\em Supprime une relation. \end{DoxyCompactList}\item 
+\hyperlink{class_relation}{Relation} \& \hyperlink{class_relations_manager_a5d8c2e75d674da855d3b018e2a5ae342}{get\-Relation} (const Q\-String \&titre)
+\begin{DoxyCompactList}\small\item\em Permet d'obtenir une relation via son titre. \end{DoxyCompactList}\item 
+\hypertarget{class_relations_manager_a6190c96cadd6b056cf94bfb75b5d56d1}{void \hyperlink{class_relations_manager_a6190c96cadd6b056cf94bfb75b5d56d1}{load} ()}\label{class_relations_manager_a6190c96cadd6b056cf94bfb75b5d56d1}
+
+\begin{DoxyCompactList}\small\item\em Permet de charger un fichier de relations. \end{DoxyCompactList}\item 
+\hypertarget{class_relations_manager_a8bb101094b5941f53e6d7abe5784ad6e}{void \hyperlink{class_relations_manager_a8bb101094b5941f53e6d7abe5784ad6e}{save} () const }\label{class_relations_manager_a8bb101094b5941f53e6d7abe5784ad6e}
+
+\begin{DoxyCompactList}\small\item\em Permet d'enregistrer les relations dans un fichier. \end{DoxyCompactList}\item 
+void \hyperlink{class_relations_manager_a846d7b926b24c57bb3523b582f5a0ea3}{set\-Filename} (const Q\-String \&f)
+\begin{DoxyCompactList}\small\item\em Modifie le fichier à ouvrir. \end{DoxyCompactList}\item 
+\hypertarget{class_relations_manager_a89cf8af20310718e9608672489683779}{\hyperlink{class_relations_manager_1_1_iterator}{Iterator} \hyperlink{class_relations_manager_a89cf8af20310718e9608672489683779}{get\-Iterator} ()}\label{class_relations_manager_a89cf8af20310718e9608672489683779}
+
+\begin{DoxyCompactList}\small\item\em Permet d'obtenir un iterateur d'un \hyperlink{class_relations_manager}{Relations\-Manager} (D\-P \hyperlink{class_relations_manager_1_1_iterator}{Iterator}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_relations_manager}{Relations\-Manager} \& \hyperlink{class_relations_manager_adde192ed5510fc9c4e79a345c42175bc}{get\-Instance} ()
+\begin{DoxyCompactList}\small\item\em Retourne l'unique objet \hyperlink{class_relations_manager}{Relations\-Manager} (D\-P Singleton) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_relations_manager_a7b9f5d9cd55fa4f51c2c8203f555008a}{\hyperlink{class_relations_manager_a7b9f5d9cd55fa4f51c2c8203f555008a}{Relations\-Manager} ()}\label{class_relations_manager_a7b9f5d9cd55fa4f51c2c8203f555008a}
+
+\begin{DoxyCompactList}\small\item\em Constructeur en privé (D\-P Singleton) \end{DoxyCompactList}\item 
+\hypertarget{class_relations_manager_aab9a1490ef70148084c376f94bfca48e}{{\bfseries Relations\-Manager} (const \hyperlink{class_relations_manager}{Relations\-Manager} \&m)}\label{class_relations_manager_aab9a1490ef70148084c376f94bfca48e}
+
+\item 
+\hypertarget{class_relations_manager_a44e5d296957404b4553923c3442cfe1b}{\hyperlink{class_relations_manager}{Relations\-Manager} {\bfseries operator=} (const \hyperlink{class_relations_manager}{Relations\-Manager} \&m)}\label{class_relations_manager_a44e5d296957404b4553923c3442cfe1b}
+
+\end{DoxyCompactItemize}
+\subsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_relations_manager_a99f1b33218d73172bf695c2aec4bec48}{\hyperlink{class_relation}{Relation} $\ast$$\ast$ {\bfseries relations}}\label{class_relations_manager_a99f1b33218d73172bf695c2aec4bec48}
+
+\item 
+\hypertarget{class_relations_manager_a2211b0cf547d0ee57bdf0d4bf4fff544}{unsigned int {\bfseries nb\-Relations}}\label{class_relations_manager_a2211b0cf547d0ee57bdf0d4bf4fff544}
+
+\item 
+\hypertarget{class_relations_manager_ae710ae31d4f38dac104f52507553fe6c}{unsigned int {\bfseries nb\-Max\-Relations}}\label{class_relations_manager_ae710ae31d4f38dac104f52507553fe6c}
+
+\item 
+\hypertarget{class_relations_manager_a3e2c0ce3c9ff25349175dcda0e8623b3}{Q\-String {\bfseries filename}}\label{class_relations_manager_a3e2c0ce3c9ff25349175dcda0e8623b3}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Permet la gestion de l'ensemble des relations. 
+
+La classe stocke l'ensemble des relations, permet leur modification, suppression, ainsi que la création de nouvelles relations. Toute modification/suppression/création de relation doit obligatoirement passer par le \hyperlink{class_relations_manager}{Relations\-Manager}. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_relations_manager_a48e772342fa842c1832802e6e5e4ee4a}{\index{Relations\-Manager@{Relations\-Manager}!add\-Relation@{add\-Relation}}
+\index{add\-Relation@{add\-Relation}!RelationsManager@{Relations\-Manager}}
+\subsubsection[{add\-Relation}]{\setlength{\rightskip}{0pt plus 5cm}void Relations\-Manager\-::add\-Relation (
+\begin{DoxyParamCaption}
+\item[{{\bf Relation} \&}]{r}
+\end{DoxyParamCaption}
+)}}\label{class_relations_manager_a48e772342fa842c1832802e6e5e4ee4a}
+
+
+Ajout d'une relation existante au \hyperlink{class_relations_manager}{Relations\-Manager}. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em r} & \hyperlink{class_relation}{Relation} à ajouter \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_relations_manager_a99ba92089cbce8ab93a1dd16380ead6c}{\index{Relations\-Manager@{Relations\-Manager}!create\-Relation@{create\-Relation}}
+\index{create\-Relation@{create\-Relation}!RelationsManager@{Relations\-Manager}}
+\subsubsection[{create\-Relation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Relation} \& Relations\-Manager\-::create\-Relation (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{titre, }
+\item[{const Q\-String \&}]{description, }
+\item[{bool}]{is\-Oriente}
+\end{DoxyParamCaption}
+)}}\label{class_relations_manager_a99ba92089cbce8ab93a1dd16380ead6c}
+
+
+Création d'une nouvelle relation \& ajout au \hyperlink{class_relations_manager}{Relations\-Manager}. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em titre} & Titre \\
+\hline
+{\em description} & Description \\
+\hline
+{\em is\-Oriente} & True si la relation est orientée, false sinon \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_relations_manager_a5929bed08e90a52ec60f3a8cec09766d}{\index{Relations\-Manager@{Relations\-Manager}!delete\-Relation@{delete\-Relation}}
+\index{delete\-Relation@{delete\-Relation}!RelationsManager@{Relations\-Manager}}
+\subsubsection[{delete\-Relation}]{\setlength{\rightskip}{0pt plus 5cm}void Relations\-Manager\-::delete\-Relation (
+\begin{DoxyParamCaption}
+\item[{{\bf Relation} \&}]{r}
+\end{DoxyParamCaption}
+)}}\label{class_relations_manager_a5929bed08e90a52ec60f3a8cec09766d}
+
+
+Supprime une relation. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em r} & \hyperlink{class_relation}{Relation} à supprimer \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_relations_manager_adde192ed5510fc9c4e79a345c42175bc}{\index{Relations\-Manager@{Relations\-Manager}!get\-Instance@{get\-Instance}}
+\index{get\-Instance@{get\-Instance}!RelationsManager@{Relations\-Manager}}
+\subsubsection[{get\-Instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Relations\-Manager} \& Relations\-Manager\-::get\-Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_relations_manager_adde192ed5510fc9c4e79a345c42175bc}
+
+
+Retourne l'unique objet \hyperlink{class_relations_manager}{Relations\-Manager} (D\-P Singleton) 
+
+Crée un \hyperlink{class_relations_manager}{Relations\-Manager} s'il n'en existe pas, renvoie son unique instance sinon. \hypertarget{class_relations_manager_af3f2992fb1dc52df403ab0213232329d}{\index{Relations\-Manager@{Relations\-Manager}!get\-I\-Relation@{get\-I\-Relation}}
+\index{get\-I\-Relation@{get\-I\-Relation}!RelationsManager@{Relations\-Manager}}
+\subsubsection[{get\-I\-Relation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Relation}\& Relations\-Manager\-::get\-I\-Relation (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_relations_manager_af3f2992fb1dc52df403ab0213232329d}
+
+
+Retourne une relation selon son indice. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em i} & indice de la relation \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_relations_manager_a5d8c2e75d674da855d3b018e2a5ae342}{\index{Relations\-Manager@{Relations\-Manager}!get\-Relation@{get\-Relation}}
+\index{get\-Relation@{get\-Relation}!RelationsManager@{Relations\-Manager}}
+\subsubsection[{get\-Relation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Relation} \& Relations\-Manager\-::get\-Relation (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{titre}
+\end{DoxyParamCaption}
+)}}\label{class_relations_manager_a5d8c2e75d674da855d3b018e2a5ae342}
+
+
+Permet d'obtenir une relation via son titre. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em titre} & Titre de la relation recherchée \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Une relation 
+\end{DoxyReturn}
+\hypertarget{class_relations_manager_a846d7b926b24c57bb3523b582f5a0ea3}{\index{Relations\-Manager@{Relations\-Manager}!set\-Filename@{set\-Filename}}
+\index{set\-Filename@{set\-Filename}!RelationsManager@{Relations\-Manager}}
+\subsubsection[{set\-Filename}]{\setlength{\rightskip}{0pt plus 5cm}void Relations\-Manager\-::set\-Filename (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_relations_manager_a846d7b926b24c57bb3523b582f5a0ea3}
+
+
+Modifie le fichier à ouvrir. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em f} & Chemin du fichier à ouvrir \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{relation_8h}{relation.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{relation_8cpp}{relation.\-cpp}\end{DoxyCompactItemize}

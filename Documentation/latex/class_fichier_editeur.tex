@@ -1,0 +1,121 @@
+\hypertarget{class_fichier_editeur}{\section{Référence de la classe Fichier\-Editeur}
+\label{class_fichier_editeur}\index{Fichier\-Editeur@{Fichier\-Editeur}}
+}
+
+
+Permet de visualiser et modifier les images, vidéos et fichiers audios (interface).  
+
+
+
+
+{\ttfamily \#include $<$noteediteur.\-h$>$}
+
+Graphe d'héritage de Fichier\-Editeur\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_fichier_editeur}
+\end{center}
+\end{figure}
+\subsection*{Connecteurs publics}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_fichier_editeur_a1ab7b70f3f0cad780738c7307153a6da}{void \hyperlink{class_fichier_editeur_a1ab7b70f3f0cad780738c7307153a6da}{extensionsave} ()}\label{class_fichier_editeur_a1ab7b70f3f0cad780738c7307153a6da}
+
+\begin{DoxyCompactList}\small\item\em Définit la sauvegarde selon la sous-\/classe de note (appelée par \hyperlink{class_note_editeur_a605b1bca885c25460cb7d8863d1f3d03}{save()}) \end{DoxyCompactList}\item 
+\hypertarget{class_fichier_editeur_aff752c846d91e0b368b2fa6c90ad7bd0}{void \hyperlink{class_fichier_editeur_aff752c846d91e0b368b2fa6c90ad7bd0}{extensionsetasactual} ()}\label{class_fichier_editeur_aff752c846d91e0b368b2fa6c90ad7bd0}
+
+\begin{DoxyCompactList}\small\item\em Définit l'actualisation selon la sous-\/classe de la note (appelée par \hyperlink{class_note_editeur_a857f285628a0b7dcb6a69b18c977aa71}{set\-As\-Actual()}) \end{DoxyCompactList}\item 
+\hypertarget{class_fichier_editeur_adba804d5e299736d749696e0f7d554a9}{void \hyperlink{class_fichier_editeur_adba804d5e299736d749696e0f7d554a9}{create} ()}\label{class_fichier_editeur_adba804d5e299736d749696e0f7d554a9}
+
+\begin{DoxyCompactList}\small\item\em Création d'un nouvel objet fichier depuis le fichier\-Editeur. \end{DoxyCompactList}\item 
+void \hyperlink{class_fichier_editeur_a1cab6a95ce1ba94430b990cf5b5151ff}{select\-\_\-file} ()
+\begin{DoxyCompactList}\small\item\em Permet d'ouvrir une fenêtre de dialogue d'ouverture de fihcier. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_fichier_editeur_a21dd5dd8fdb8564a3015956226339102}{Fichier\-Editeur} (\hyperlink{class_fichier}{Fichier} \&f, Q\-Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\hypertarget{class_fichier_editeur_aee157b3bd8cea8a662a9c4a9c6a8d321}{\hyperlink{class_fichier_editeur_aee157b3bd8cea8a662a9c4a9c6a8d321}{Fichier\-Editeur} (Q\-Widget $\ast$parent=0)}\label{class_fichier_editeur_aee157b3bd8cea8a662a9c4a9c6a8d321}
+
+\begin{DoxyCompactList}\small\item\em Surcharge de constructeur si on n'a pas de fichier à afficher. \end{DoxyCompactList}\item 
+\hypertarget{class_fichier_editeur_a510e47495af4999ccbe2a40f05ff0db7}{void \hyperlink{class_fichier_editeur_a510e47495af4999ccbe2a40f05ff0db7}{blockall} ()}\label{class_fichier_editeur_a510e47495af4999ccbe2a40f05ff0db7}
+
+\begin{DoxyCompactList}\small\item\em Permet d'interdire toute action à l'utilisateur (désactive tous les boutons) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_fichier_editeur_a29d2d5135bb48badab92e03fdfffc9a5}{Q\-Radio\-Button $\ast$ {\bfseries type\-\_\-image}}\label{class_fichier_editeur_a29d2d5135bb48badab92e03fdfffc9a5}
+
+\item 
+\hypertarget{class_fichier_editeur_a68a59aa71966220c2c6c16622b972130}{Q\-Radio\-Button $\ast$ {\bfseries type\-\_\-audio}}\label{class_fichier_editeur_a68a59aa71966220c2c6c16622b972130}
+
+\item 
+\hypertarget{class_fichier_editeur_a79c110c29a393c010cc679035b5f8d3f}{Q\-Radio\-Button $\ast$ {\bfseries type\-\_\-video}}\label{class_fichier_editeur_a79c110c29a393c010cc679035b5f8d3f}
+
+\item 
+\hypertarget{class_fichier_editeur_a3520056824eb29126803983bfbdc129c}{Q\-Label $\ast$ {\bfseries description1}}\label{class_fichier_editeur_a3520056824eb29126803983bfbdc129c}
+
+\item 
+\hypertarget{class_fichier_editeur_a6185e187b00202c2dc295968051d0bf6}{Q\-Text\-Edit $\ast$ {\bfseries description}}\label{class_fichier_editeur_a6185e187b00202c2dc295968051d0bf6}
+
+\item 
+\hypertarget{class_fichier_editeur_a87fa51b2a2735aea2ecc10ead7147f05}{Q\-Push\-Button $\ast$ {\bfseries select}}\label{class_fichier_editeur_a87fa51b2a2735aea2ecc10ead7147f05}
+
+\item 
+\hypertarget{class_fichier_editeur_a07ef317838283ad412ed4d3e8490bc14}{Q\-Label $\ast$ {\bfseries filename1}}\label{class_fichier_editeur_a07ef317838283ad412ed4d3e8490bc14}
+
+\item 
+\hypertarget{class_fichier_editeur_adae6b25e1ff532a32f527feb0ffc1bf6}{Q\-String {\bfseries filename}}\label{class_fichier_editeur_adae6b25e1ff532a32f527feb0ffc1bf6}
+
+\item 
+\hypertarget{class_fichier_editeur_a0d5b61a262009db6d9fb4321adf0906a}{Q\-Label $\ast$ {\bfseries label\-\_\-visu}}\label{class_fichier_editeur_a0d5b61a262009db6d9fb4321adf0906a}
+
+\item 
+\hypertarget{class_fichier_editeur_a6a32481f4a945ed6ddaeb463b74f5fbe}{Q\-Pixmap $\ast$ {\bfseries visu\-\_\-image}}\label{class_fichier_editeur_a6a32481f4a945ed6ddaeb463b74f5fbe}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Permet de visualiser et modifier les images, vidéos et fichiers audios (interface). 
+
+Classe qui est par la suite utilisée pour réaliser l'ensemble de l'interface graphiue (\hyperlink{interface_8h}{interface.\-h}). 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_fichier_editeur_a21dd5dd8fdb8564a3015956226339102}{\index{Fichier\-Editeur@{Fichier\-Editeur}!Fichier\-Editeur@{Fichier\-Editeur}}
+\index{Fichier\-Editeur@{Fichier\-Editeur}!FichierEditeur@{Fichier\-Editeur}}
+\subsubsection[{Fichier\-Editeur}]{\setlength{\rightskip}{0pt plus 5cm}Fichier\-Editeur\-::\-Fichier\-Editeur (
+\begin{DoxyParamCaption}
+\item[{{\bf Fichier} \&}]{f, }
+\item[{Q\-Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{class_fichier_editeur_a21dd5dd8fdb8564a3015956226339102}
+
+
+Constructeur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em f} & \hyperlink{class_fichier}{Fichier} à afficer \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_fichier_editeur_a1cab6a95ce1ba94430b990cf5b5151ff}{\index{Fichier\-Editeur@{Fichier\-Editeur}!select\-\_\-file@{select\-\_\-file}}
+\index{select\-\_\-file@{select\-\_\-file}!FichierEditeur@{Fichier\-Editeur}}
+\subsubsection[{select\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}void Fichier\-Editeur\-::select\-\_\-file (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_fichier_editeur_a1cab6a95ce1ba94430b990cf5b5151ff}
+
+
+Permet d'ouvrir une fenêtre de dialogue d'ouverture de fihcier. 
+
+Gère les différents types de fichiers (fenêtre de dialogue différente selon le type). 
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{noteediteur_8h}{noteediteur.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/noteediteur.\-cpp\end{DoxyCompactItemize}

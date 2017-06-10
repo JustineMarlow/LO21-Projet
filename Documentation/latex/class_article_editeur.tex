@@ -1,0 +1,96 @@
+\hypertarget{class_article_editeur}{\section{Référence de la classe Article\-Editeur}
+\label{class_article_editeur}\index{Article\-Editeur@{Article\-Editeur}}
+}
+
+
+Permet de visualiser et modifier les articles (interface).  
+
+
+
+
+{\ttfamily \#include $<$noteediteur.\-h$>$}
+
+Graphe d'héritage de Article\-Editeur\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_article_editeur}
+\end{center}
+\end{figure}
+\subsection*{Connecteurs publics}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_article_editeur_aa4898bacb77aeedde71e42e913fe2ef1}{void \hyperlink{class_article_editeur_aa4898bacb77aeedde71e42e913fe2ef1}{extensionsave} ()}\label{class_article_editeur_aa4898bacb77aeedde71e42e913fe2ef1}
+
+\begin{DoxyCompactList}\small\item\em Définit la sauvegarde selon la sous-\/classe de note (appelée par \hyperlink{class_note_editeur_a605b1bca885c25460cb7d8863d1f3d03}{save()}) \end{DoxyCompactList}\item 
+\hypertarget{class_article_editeur_ad7a90d03ed2b3b68821922d163572164}{void \hyperlink{class_article_editeur_ad7a90d03ed2b3b68821922d163572164}{extensionsetasactual} ()}\label{class_article_editeur_ad7a90d03ed2b3b68821922d163572164}
+
+\begin{DoxyCompactList}\small\item\em Définit l'actualisation selon la sous-\/classe de la note (appelée par \hyperlink{class_note_editeur_a857f285628a0b7dcb6a69b18c977aa71}{set\-As\-Actual()}) \end{DoxyCompactList}\item 
+\hypertarget{class_article_editeur_aeef410ab65c43484e0a39a71c65f7883}{void \hyperlink{class_article_editeur_aeef410ab65c43484e0a39a71c65f7883}{create} ()}\label{class_article_editeur_aeef410ab65c43484e0a39a71c65f7883}
+
+\begin{DoxyCompactList}\small\item\em Création d'un nouvel objet article depuis l'article\-Editeur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_article_editeur_abe5a564e7ba1af7d18a8787cd5936138}{Article\-Editeur} (\hyperlink{class_article}{Article} \&a, Q\-Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\hyperlink{class_article_editeur_ae6fa307a670850f56cb20a96999f9a14}{Article\-Editeur} (Q\-Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Surcharge de constructeur. \end{DoxyCompactList}\item 
+\hypertarget{class_article_editeur_ade4f5d8bb85d0f1bfad9535f33174446}{void \hyperlink{class_article_editeur_ade4f5d8bb85d0f1bfad9535f33174446}{blockall} ()}\label{class_article_editeur_ade4f5d8bb85d0f1bfad9535f33174446}
+
+\begin{DoxyCompactList}\small\item\em Permet d'interdire toute action à l'utilisateur (désactive tous les boutons) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_article_editeur_a035b1dc25ffe1ac4bea73834d50f81b8}{Q\-Label $\ast$ {\bfseries text1}}\label{class_article_editeur_a035b1dc25ffe1ac4bea73834d50f81b8}
+
+\item 
+\hypertarget{class_article_editeur_a3af526051de08d1540ca694e672a5979}{Q\-Text\-Edit $\ast$ {\bfseries text}}\label{class_article_editeur_a3af526051de08d1540ca694e672a5979}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Permet de visualiser et modifier les articles (interface). 
+
+Classe qui est par la suite utilisée pour réaliser l'ensemble de l'interface graphiue (\hyperlink{interface_8h}{interface.\-h}). 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_article_editeur_abe5a564e7ba1af7d18a8787cd5936138}{\index{Article\-Editeur@{Article\-Editeur}!Article\-Editeur@{Article\-Editeur}}
+\index{Article\-Editeur@{Article\-Editeur}!ArticleEditeur@{Article\-Editeur}}
+\subsubsection[{Article\-Editeur}]{\setlength{\rightskip}{0pt plus 5cm}Article\-Editeur\-::\-Article\-Editeur (
+\begin{DoxyParamCaption}
+\item[{{\bf Article} \&}]{a, }
+\item[{Q\-Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{class_article_editeur_abe5a564e7ba1af7d18a8787cd5936138}
+
+
+Constructeur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em a} & \hyperlink{class_article}{Article} à afficher \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_article_editeur_ae6fa307a670850f56cb20a96999f9a14}{\index{Article\-Editeur@{Article\-Editeur}!Article\-Editeur@{Article\-Editeur}}
+\index{Article\-Editeur@{Article\-Editeur}!ArticleEditeur@{Article\-Editeur}}
+\subsubsection[{Article\-Editeur}]{\setlength{\rightskip}{0pt plus 5cm}Article\-Editeur\-::\-Article\-Editeur (
+\begin{DoxyParamCaption}
+\item[{Q\-Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{class_article_editeur_ae6fa307a670850f56cb20a96999f9a14}
+
+
+Surcharge de constructeur. 
+
+Si l'on n'a pas d'article à afficher (éditeur par défaut, vide). 
+\begin{DoxyParams}{Paramètres}
+{\em a} & \hyperlink{class_article}{Article} à afficher \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{noteediteur_8h}{noteediteur.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/noteediteur.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,171 @@
+\hypertarget{class_note_editeur}{\section{Référence de la classe Note\-Editeur}
+\label{class_note_editeur}\index{Note\-Editeur@{Note\-Editeur}}
+}
+
+
+Classe abstraite, permet de visualiser et modifier les notes (interface).  
+
+
+
+
+{\ttfamily \#include $<$noteediteur.\-h$>$}
+
+Graphe d'héritage de Note\-Editeur\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.200000cm]{class_note_editeur}
+\end{center}
+\end{figure}
+\subsection*{Connecteurs publics}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_note_editeur_a605b1bca885c25460cb7d8863d1f3d03}{void \hyperlink{class_note_editeur_a605b1bca885c25460cb7d8863d1f3d03}{save} ()}\label{class_note_editeur_a605b1bca885c25460cb7d8863d1f3d03}
+
+\begin{DoxyCompactList}\small\item\em Enregistre la note \& ses modifications. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_a2918e7a3ddc7dfac7e2ce13589d00288}{void \hyperlink{class_note_editeur_a2918e7a3ddc7dfac7e2ce13589d00288}{delete\-\_\-note} ()}\label{class_note_editeur_a2918e7a3ddc7dfac7e2ce13589d00288}
+
+\begin{DoxyCompactList}\small\item\em Supprime la note. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_a857f285628a0b7dcb6a69b18c977aa71}{void \hyperlink{class_note_editeur_a857f285628a0b7dcb6a69b18c977aa71}{set\-As\-Actual} ()}\label{class_note_editeur_a857f285628a0b7dcb6a69b18c977aa71}
+
+\begin{DoxyCompactList}\small\item\em Actualise la note. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_a090e4299bb4ef113bb93d23d50d83bab}{void \hyperlink{class_note_editeur_a090e4299bb4ef113bb93d23d50d83bab}{restore} ()}\label{class_note_editeur_a090e4299bb4ef113bb93d23d50d83bab}
+
+\begin{DoxyCompactList}\small\item\em Restaure une note. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_note_editeur_a83821d2de318dfa13a0cbbb321765101}{Note\-Editeur} (\hyperlink{class_note}{Note} \&n, Q\-Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_a10b76711bf2e20d67fb7508a9dead555}{\hyperlink{class_note_editeur_a10b76711bf2e20d67fb7508a9dead555}{Note\-Editeur} (Q\-Widget $\ast$parent=0)}\label{class_note_editeur_a10b76711bf2e20d67fb7508a9dead555}
+
+\begin{DoxyCompactList}\small\item\em Surcharge du constructeur si on souhaite l'afficher \char`\"{}vide\char`\"{} (sans note) \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_a1a47bd58dd1331be327a6693941970de}{Q\-V\-Box\-Layout $\ast$ \hyperlink{class_note_editeur_a1a47bd58dd1331be327a6693941970de}{get\-Layout} ()}\label{class_note_editeur_a1a47bd58dd1331be327a6693941970de}
+
+\begin{DoxyCompactList}\small\item\em méthode pour récupérer le layout et le modifier en fonction de la sous-\/classe \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_a3244691035875af789abf64034e0c02a}{Q\-Push\-Button $\ast$ \hyperlink{class_note_editeur_a3244691035875af789abf64034e0c02a}{get\-Button\-\_\-save} ()}\label{class_note_editeur_a3244691035875af789abf64034e0c02a}
+
+\begin{DoxyCompactList}\small\item\em Récupère le bouton save pour le modifier en fonction de la sous-\/classe. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_ae5048eb415f3984cbb0c030a7f56d0fc}{Q\-Push\-Button $\ast$ \hyperlink{class_note_editeur_ae5048eb415f3984cbb0c030a7f56d0fc}{get\-Button\-\_\-delete} ()}\label{class_note_editeur_ae5048eb415f3984cbb0c030a7f56d0fc}
+
+\begin{DoxyCompactList}\small\item\em Récupère le bouton delete pour le modifier en fonction de la sous-\/classe. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_aed0e7526363691449376eab2beca1a00}{Q\-Push\-Button $\ast$ \hyperlink{class_note_editeur_aed0e7526363691449376eab2beca1a00}{get\-Button\-\_\-actualize} ()}\label{class_note_editeur_aed0e7526363691449376eab2beca1a00}
+
+\begin{DoxyCompactList}\small\item\em Récupère le bouton actualiser pour le modifier en fonction de la sous-\/classe. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_af781dd4dc8266aba4c1f462bd07f04b9}{Q\-Push\-Button $\ast$ \hyperlink{class_note_editeur_af781dd4dc8266aba4c1f462bd07f04b9}{get\-Button\-\_\-restore} ()}\label{class_note_editeur_af781dd4dc8266aba4c1f462bd07f04b9}
+
+\begin{DoxyCompactList}\small\item\em Récupère le bouton restaurer pour le modifier en fonction de la sous-\/classe. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_a33711732b03990dfa5333f1522625cdf}{Q\-Line\-Edit $\ast$ \hyperlink{class_note_editeur_a33711732b03990dfa5333f1522625cdf}{get\-Title} ()}\label{class_note_editeur_a33711732b03990dfa5333f1522625cdf}
+
+\begin{DoxyCompactList}\small\item\em Récupère le titre pour le modifier en fonction de la sous-\/classe. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_af10fb0bcfdf1ea508dd8e10a1ae9067b}{Q\-Line\-Edit $\ast$ \hyperlink{class_note_editeur_af10fb0bcfdf1ea508dd8e10a1ae9067b}{get\-Id} ()}\label{class_note_editeur_af10fb0bcfdf1ea508dd8e10a1ae9067b}
+
+\begin{DoxyCompactList}\small\item\em Récupère l'id pour le modifier en fonction de la sous-\/classe. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_a76120d7a97c881fc46e6874c3431ba32}{Q\-Label $\ast$ \hyperlink{class_note_editeur_a76120d7a97c881fc46e6874c3431ba32}{get\-Date\-\_\-m} ()}\label{class_note_editeur_a76120d7a97c881fc46e6874c3431ba32}
+
+\begin{DoxyCompactList}\small\item\em Récupère la date de dernière modification. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_ab8faf02aaffcb1290c9129b865e84180}{Q\-Label $\ast$ \hyperlink{class_note_editeur_ab8faf02aaffcb1290c9129b865e84180}{get\-Version} ()}\label{class_note_editeur_ab8faf02aaffcb1290c9129b865e84180}
+
+\begin{DoxyCompactList}\small\item\em Récupère le numéro de version. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_a1e1cee521fbbfb134f5b07b80996108d}{Q\-Label $\ast$ \hyperlink{class_note_editeur_a1e1cee521fbbfb134f5b07b80996108d}{get\-Last} ()}\label{class_note_editeur_a1e1cee521fbbfb134f5b07b80996108d}
+
+\begin{DoxyCompactList}\small\item\em Vérifie si il s'agit de la dernière version de la note. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_a35df5a555f5852f50ad8ca19f2e81bd1}{virtual void \hyperlink{class_note_editeur_a35df5a555f5852f50ad8ca19f2e81bd1}{extensionsave} ()=0}\label{class_note_editeur_a35df5a555f5852f50ad8ca19f2e81bd1}
+
+\begin{DoxyCompactList}\small\item\em Définit la sauvegarde selon la sous-\/classe de note (appelée par \hyperlink{class_note_editeur_a605b1bca885c25460cb7d8863d1f3d03}{save()}) \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_a30bc10104ce0faac9d1261fcddd22589}{virtual void \hyperlink{class_note_editeur_a30bc10104ce0faac9d1261fcddd22589}{extensionsetasactual} ()=0}\label{class_note_editeur_a30bc10104ce0faac9d1261fcddd22589}
+
+\begin{DoxyCompactList}\small\item\em Définit l'actualisation selon la sous-\/classe de la note (appelée par \hyperlink{class_note_editeur_a857f285628a0b7dcb6a69b18c977aa71}{set\-As\-Actual()}) \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_ad22efc99d3eb21b040332271af95c39e}{\hyperlink{class_note}{Note} \& \hyperlink{class_note_editeur_ad22efc99d3eb21b040332271af95c39e}{get\-Note} () const }\label{class_note_editeur_ad22efc99d3eb21b040332271af95c39e}
+
+\begin{DoxyCompactList}\small\item\em Récupère la note affichée. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_a45a7b7dcc21f9fdd05c7b0f3ccf9c65c}{void \hyperlink{class_note_editeur_a45a7b7dcc21f9fdd05c7b0f3ccf9c65c}{set\-Note} (\hyperlink{class_note}{Note} $\ast$newnote)}\label{class_note_editeur_a45a7b7dcc21f9fdd05c7b0f3ccf9c65c}
+
+\begin{DoxyCompactList}\small\item\em Permet de modifier la note à afficher. \end{DoxyCompactList}\item 
+\hypertarget{class_note_editeur_aed73fd62ef4e6ea1b5db698f4a521354}{virtual void \hyperlink{class_note_editeur_aed73fd62ef4e6ea1b5db698f4a521354}{blockall} ()=0}\label{class_note_editeur_aed73fd62ef4e6ea1b5db698f4a521354}
+
+\begin{DoxyCompactList}\small\item\em Permet d'interdire toute action à l'utilisateur (désactive tous les boutons) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_note_editeur_a7d9581e0d070999782cfb4eef9add534}{\hyperlink{class_note}{Note} $\ast$ {\bfseries note}}\label{class_note_editeur_a7d9581e0d070999782cfb4eef9add534}
+
+\item 
+\hypertarget{class_note_editeur_a38cee84a5d192ba08968c1d9f0c3e9d6}{Q\-V\-Box\-Layout $\ast$ {\bfseries layout}}\label{class_note_editeur_a38cee84a5d192ba08968c1d9f0c3e9d6}
+
+\item 
+\hypertarget{class_note_editeur_a37bdf35a392c5d32843fa56e22f09837}{Q\-Label $\ast$ {\bfseries id1}}\label{class_note_editeur_a37bdf35a392c5d32843fa56e22f09837}
+
+\item 
+\hypertarget{class_note_editeur_a0b2e74e3c0fd3522d3341c14916e3f9a}{Q\-Line\-Edit $\ast$ {\bfseries id}}\label{class_note_editeur_a0b2e74e3c0fd3522d3341c14916e3f9a}
+
+\item 
+\hypertarget{class_note_editeur_a94278f38152e7e22f9f4091b1cad87db}{Q\-Label $\ast$ {\bfseries titre1}}\label{class_note_editeur_a94278f38152e7e22f9f4091b1cad87db}
+
+\item 
+\hypertarget{class_note_editeur_a01f6854411341b7db73511a9fb4915f1}{Q\-Line\-Edit $\ast$ {\bfseries titre}}\label{class_note_editeur_a01f6854411341b7db73511a9fb4915f1}
+
+\item 
+\hypertarget{class_note_editeur_ab60e6bda86f0da5b2ec5aae00f6cd200}{Q\-Label $\ast$ {\bfseries date\-\_\-c}}\label{class_note_editeur_ab60e6bda86f0da5b2ec5aae00f6cd200}
+
+\item 
+\hypertarget{class_note_editeur_a9f9bb769a79f2e446b75a8fc51988e68}{Q\-Label $\ast$ {\bfseries date\-\_\-m}}\label{class_note_editeur_a9f9bb769a79f2e446b75a8fc51988e68}
+
+\item 
+\hypertarget{class_note_editeur_a2ad56c1eb6b9846c7624de6c4b610866}{Q\-Label $\ast$ {\bfseries last}}\label{class_note_editeur_a2ad56c1eb6b9846c7624de6c4b610866}
+
+\item 
+\hypertarget{class_note_editeur_a1ef0a115343b4005d5ec896da15cd6af}{Q\-Label $\ast$ {\bfseries etat}}\label{class_note_editeur_a1ef0a115343b4005d5ec896da15cd6af}
+
+\item 
+\hypertarget{class_note_editeur_ac75b01a38244fb14c7698b54d47f8a8a}{Q\-Label $\ast$ {\bfseries version}}\label{class_note_editeur_ac75b01a38244fb14c7698b54d47f8a8a}
+
+\item 
+\hypertarget{class_note_editeur_a3015f12d14b3b625ee2f29198424a9d4}{Q\-Push\-Button $\ast$ {\bfseries bouton\-\_\-save}}\label{class_note_editeur_a3015f12d14b3b625ee2f29198424a9d4}
+
+\item 
+\hypertarget{class_note_editeur_a6fe2cfb5a9f5696cdacf642d2c1f09fa}{Q\-Push\-Button $\ast$ {\bfseries bouton\-\_\-delete}}\label{class_note_editeur_a6fe2cfb5a9f5696cdacf642d2c1f09fa}
+
+\item 
+\hypertarget{class_note_editeur_ae87a8477d85f55756face5df29284afd}{Q\-Push\-Button $\ast$ {\bfseries bouton\-\_\-actualize}}\label{class_note_editeur_ae87a8477d85f55756face5df29284afd}
+
+\item 
+\hypertarget{class_note_editeur_a286afb4660579ad82083d10ac9f862c7}{Q\-Push\-Button $\ast$ {\bfseries bouton\-\_\-restore}}\label{class_note_editeur_a286afb4660579ad82083d10ac9f862c7}
+
+\end{DoxyCompactItemize}
+\subsection*{Connecteurs privés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_note_editeur_a445f7ca9fad98fc4a3d0de3ba546e4f0}{void {\bfseries activer\-Bouton\-\_\-save} (Q\-String str=\char`\"{}\char`\"{})}\label{class_note_editeur_a445f7ca9fad98fc4a3d0de3ba546e4f0}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Classe abstraite, permet de visualiser et modifier les notes (interface). 
+
+Classe qui est par la suite utilisée pour réaliser l'ensemble de l'interface graphiue (\hyperlink{interface_8h}{interface.\-h}). 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_note_editeur_a83821d2de318dfa13a0cbbb321765101}{\index{Note\-Editeur@{Note\-Editeur}!Note\-Editeur@{Note\-Editeur}}
+\index{Note\-Editeur@{Note\-Editeur}!NoteEditeur@{Note\-Editeur}}
+\subsubsection[{Note\-Editeur}]{\setlength{\rightskip}{0pt plus 5cm}Note\-Editeur\-::\-Note\-Editeur (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} \&}]{n, }
+\item[{Q\-Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_note_editeur_a83821d2de318dfa13a0cbbb321765101}
+
+
+Constructeur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em n} & \hyperlink{class_note}{Note} à afficher \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{noteediteur_8h}{noteediteur.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/noteediteur.\-cpp\end{DoxyCompactItemize}

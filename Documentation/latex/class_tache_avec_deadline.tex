@@ -1,0 +1,112 @@
+\hypertarget{class_tache_avec_deadline}{\section{Référence de la classe Tache\-Avec\-Deadline}
+\label{class_tache_avec_deadline}\index{Tache\-Avec\-Deadline@{Tache\-Avec\-Deadline}}
+}
+
+
+Représente une tâche avec deadline.  
+
+
+
+
+{\ttfamily \#include $<$note.\-h$>$}
+
+Graphe d'héritage de Tache\-Avec\-Deadline\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_tache_avec_deadline}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+Q\-Date \hyperlink{class_tache_avec_deadline_a108926cb0f3aeb527f952faa34a5a81a}{get\-Deadline} () const 
+\begin{DoxyCompactList}\small\item\em get\-Deadline \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tache_avec_deadline_aa8b2ac4efce7571174313a6396e4d4bd}{Tache\-Avec\-Deadline} (Q\-String id, Q\-String t, Q\-String text, Q\-Date dead, Q\-Date date\-\_\-c=Q\-Date\-::current\-Date(), Q\-Date date\-\_\-m=Q\-Date\-::current\-Date(), bool last=true, int v=1, Note\-Etat e=active, Tache\-Statut st=attente)
+\begin{DoxyCompactList}\small\item\em Constructeur d'une tâche avec deadline. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_avec_deadline_a87c17be01a41bc30d625a68faecd25b2}{Q\-Date {\bfseries deadline}}\label{class_tache_avec_deadline_a87c17be01a41bc30d625a68faecd25b2}
+
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_avec_deadline_a017a5144e8cfa6087305055ab968ef41}{class {\bfseries Notes\-Manager}}\label{class_tache_avec_deadline_a017a5144e8cfa6087305055ab968ef41}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Représente une tâche avec deadline. 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_tache_avec_deadline_aa8b2ac4efce7571174313a6396e4d4bd}{\index{Tache\-Avec\-Deadline@{Tache\-Avec\-Deadline}!Tache\-Avec\-Deadline@{Tache\-Avec\-Deadline}}
+\index{Tache\-Avec\-Deadline@{Tache\-Avec\-Deadline}!TacheAvecDeadline@{Tache\-Avec\-Deadline}}
+\subsubsection[{Tache\-Avec\-Deadline}]{\setlength{\rightskip}{0pt plus 5cm}Tache\-Avec\-Deadline\-::\-Tache\-Avec\-Deadline (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{id, }
+\item[{Q\-String}]{t, }
+\item[{Q\-String}]{text, }
+\item[{Q\-Date}]{dead, }
+\item[{Q\-Date}]{date\-\_\-c = {\ttfamily QDate\-:\-:currentDate()}, }
+\item[{Q\-Date}]{date\-\_\-m = {\ttfamily QDate\-:\-:currentDate()}, }
+\item[{bool}]{last = {\ttfamily true}, }
+\item[{int}]{v = {\ttfamily 1}, }
+\item[{Note\-Etat}]{e = {\ttfamily active}, }
+\item[{Tache\-Statut}]{st = {\ttfamily attente}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_tache_avec_deadline_aa8b2ac4efce7571174313a6396e4d4bd}
+
+
+Constructeur d'une tâche avec deadline. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id} & L'identificateur de la note \\
+\hline
+{\em t} & Le titre de la note \\
+\hline
+{\em date\-\_\-c} & La date de création \\
+\hline
+{\em date\-\_\-m} & La date de dernière modification \\
+\hline
+{\em last} & Indique si c'est la dernière version de la note ou pas \\
+\hline
+{\em v} & Version de la note \\
+\hline
+{\em e} & Etat de la note (active, archivée ou corbeille). \\
+\hline
+{\em text} & Contenu de la tâche \\
+\hline
+{\em st} & Le statut (attente, cours, terminee) \\
+\hline
+{\em dead} & La deadline \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_tache_avec_deadline_a108926cb0f3aeb527f952faa34a5a81a}{\index{Tache\-Avec\-Deadline@{Tache\-Avec\-Deadline}!get\-Deadline@{get\-Deadline}}
+\index{get\-Deadline@{get\-Deadline}!TacheAvecDeadline@{Tache\-Avec\-Deadline}}
+\subsubsection[{get\-Deadline}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Date Tache\-Avec\-Deadline\-::get\-Deadline (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_tache_avec_deadline_a108926cb0f3aeb527f952faa34a5a81a}
+
+
+get\-Deadline 
+
+\begin{DoxyReturn}{Renvoie}
+La deadline de la tâche. 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8h}{note.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8cpp}{note.\-cpp}\end{DoxyCompactItemize}

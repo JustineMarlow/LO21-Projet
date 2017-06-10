@@ -1,0 +1,137 @@
+\hypertarget{class_vue_secondaire}{\section{Référence de la classe Vue\-Secondaire}
+\label{class_vue_secondaire}\index{Vue\-Secondaire@{Vue\-Secondaire}}
+}
+
+
+Représente la fenêtre secondaire de l'application (gestion des relations).  
+
+
+
+
+{\ttfamily \#include $<$interface.\-h$>$}
+
+Graphe d'héritage de Vue\-Secondaire\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_vue_secondaire}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_vue_secondaire_a79707eb0d8aaddb12d1e1da5b89da844}{affichage\-\_\-central} ()
+\begin{DoxyCompactList}\small\item\em Permet la création \& l'affichage de la partie centrale de la fenêtre. \end{DoxyCompactList}\item 
+void \hyperlink{class_vue_secondaire_a8af89508ca4dfc46c7474e7fed627400}{affichage\-\_\-gauche} ()
+\begin{DoxyCompactList}\small\item\em Permet la création \& l'affichage de la partie gauche de la fenêtre. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_vue_secondaire}{Vue\-Secondaire} \& \hyperlink{class_vue_secondaire_a455f8674109c95488ca12c8ee6b5861e}{get\-Instance} ()
+\begin{DoxyCompactList}\small\item\em Permet d'accéder au seul objet de la classe \hyperlink{class_vue_secondaire}{Vue\-Secondaire} (D\-P Singleton). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Connecteurs privés}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_vue_secondaire_af939340a1323aa49d52333b7f49d8e64}{open\-Relation} (Q\-Tree\-Widget\-Item $\ast$item)
+\begin{DoxyCompactList}\small\item\em Ouvre le relation\-Editeur d'une relation sélectionnée par l'utilisateur. \end{DoxyCompactList}\item 
+\hypertarget{class_vue_secondaire_a18dd8554d253c1c2c17a03c416c45d92}{void \hyperlink{class_vue_secondaire_a18dd8554d253c1c2c17a03c416c45d92}{actualiser\-\_\-fenetre} ()}\label{class_vue_secondaire_a18dd8554d253c1c2c17a03c416c45d92}
+
+\begin{DoxyCompactList}\small\item\em Permet d'actualiser l'affichage si une relation a été modifiée/créée/supprimée. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_vue_secondaire_ae67763136ea85968932d26f3c2363e23}{Q\-H\-Box\-Layout $\ast$ {\bfseries layout\-Principal}}\label{class_vue_secondaire_ae67763136ea85968932d26f3c2363e23}
+
+\item 
+\hypertarget{class_vue_secondaire_a2e69be7e1a13dc9918e7611ba2ef9394}{Q\-V\-Box\-Layout $\ast$ {\bfseries principal}}\label{class_vue_secondaire_a2e69be7e1a13dc9918e7611ba2ef9394}
+
+\item 
+\hypertarget{class_vue_secondaire_a0f151bf36e1bb0c9915eb90b82fb00d5}{Q\-Group\-Box $\ast$ {\bfseries centre}}\label{class_vue_secondaire_a0f151bf36e1bb0c9915eb90b82fb00d5}
+
+\item 
+\hypertarget{class_vue_secondaire_a3bcb066271a0b3183f9c34736fbe0f0c}{\hyperlink{class_relation}{Relation} $\ast$ {\bfseries relation}}\label{class_vue_secondaire_a3bcb066271a0b3183f9c34736fbe0f0c}
+
+\item 
+\hypertarget{class_vue_secondaire_a789d5ea9121cda385d58070fa34e4dc8}{\hyperlink{class_relation_editeur}{Relation\-Editeur} $\ast$ {\bfseries relation\-Edit}}\label{class_vue_secondaire_a789d5ea9121cda385d58070fa34e4dc8}
+
+\item 
+\hypertarget{class_vue_secondaire_af97140ff4a8a511ddb0e7e285666618d}{Q\-Group\-Box $\ast$ {\bfseries gauche}}\label{class_vue_secondaire_af97140ff4a8a511ddb0e7e285666618d}
+
+\item 
+\hypertarget{class_vue_secondaire_a79901bbe5834dee7a8014f10eb70d6c7}{Q\-Push\-Button $\ast$ {\bfseries quitter}}\label{class_vue_secondaire_a79901bbe5834dee7a8014f10eb70d6c7}
+
+\item 
+\hypertarget{class_vue_secondaire_a6a5663f223ae025eae5bef144e26ad0b}{Q\-Push\-Button $\ast$ {\bfseries actualiser}}\label{class_vue_secondaire_a6a5663f223ae025eae5bef144e26ad0b}
+
+\end{DoxyCompactItemize}
+\subsection*{Attributs privés statiques}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_vue_secondaire_a5cbd56d7df3b44772b5196f76788b215}{static \hyperlink{class_vue_secondaire}{Vue\-Secondaire} $\ast$ {\bfseries instance}}\label{class_vue_secondaire_a5cbd56d7df3b44772b5196f76788b215}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Représente la fenêtre secondaire de l'application (gestion des relations). 
+
+Permet la visualisation/modification de l'ensemble des relations. La partie droite affiche les relations existantes, la partie principale permet la visualisation \& modification d'une relation en particulier. 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_vue_secondaire_a79707eb0d8aaddb12d1e1da5b89da844}{\index{Vue\-Secondaire@{Vue\-Secondaire}!affichage\-\_\-central@{affichage\-\_\-central}}
+\index{affichage\-\_\-central@{affichage\-\_\-central}!VueSecondaire@{Vue\-Secondaire}}
+\subsubsection[{affichage\-\_\-central}]{\setlength{\rightskip}{0pt plus 5cm}void Vue\-Secondaire\-::affichage\-\_\-central (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_vue_secondaire_a79707eb0d8aaddb12d1e1da5b89da844}
+
+
+Permet la création \& l'affichage de la partie centrale de la fenêtre. 
+
+Utilisée dans le constructeur. \hypertarget{class_vue_secondaire_a8af89508ca4dfc46c7474e7fed627400}{\index{Vue\-Secondaire@{Vue\-Secondaire}!affichage\-\_\-gauche@{affichage\-\_\-gauche}}
+\index{affichage\-\_\-gauche@{affichage\-\_\-gauche}!VueSecondaire@{Vue\-Secondaire}}
+\subsubsection[{affichage\-\_\-gauche}]{\setlength{\rightskip}{0pt plus 5cm}void Vue\-Secondaire\-::affichage\-\_\-gauche (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_vue_secondaire_a8af89508ca4dfc46c7474e7fed627400}
+
+
+Permet la création \& l'affichage de la partie gauche de la fenêtre. 
+
+Utilisée dans le constructeur. \hypertarget{class_vue_secondaire_a455f8674109c95488ca12c8ee6b5861e}{\index{Vue\-Secondaire@{Vue\-Secondaire}!get\-Instance@{get\-Instance}}
+\index{get\-Instance@{get\-Instance}!VueSecondaire@{Vue\-Secondaire}}
+\subsubsection[{get\-Instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vue\-Secondaire} \& Vue\-Secondaire\-::get\-Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_vue_secondaire_a455f8674109c95488ca12c8ee6b5861e}
+
+
+Permet d'accéder au seul objet de la classe \hyperlink{class_vue_secondaire}{Vue\-Secondaire} (D\-P Singleton). 
+
+Crée une instance s'il n'en existe pas, retourne l'instance déjà existante sinon. \begin{DoxyReturn}{Renvoie}
+Une référence sur la seule instance de la fenêtre. 
+\end{DoxyReturn}
+\hypertarget{class_vue_secondaire_af939340a1323aa49d52333b7f49d8e64}{\index{Vue\-Secondaire@{Vue\-Secondaire}!open\-Relation@{open\-Relation}}
+\index{open\-Relation@{open\-Relation}!VueSecondaire@{Vue\-Secondaire}}
+\subsubsection[{open\-Relation}]{\setlength{\rightskip}{0pt plus 5cm}void Vue\-Secondaire\-::open\-Relation (
+\begin{DoxyParamCaption}
+\item[{Q\-Tree\-Widget\-Item $\ast$}]{item}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [slot]}}}\label{class_vue_secondaire_af939340a1323aa49d52333b7f49d8e64}
+
+
+Ouvre le relation\-Editeur d'une relation sélectionnée par l'utilisateur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em item} & Une relation présente dans l'arborescence. \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{interface_8h}{interface.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{interface_8cpp}{interface.\-cpp}\end{DoxyCompactItemize}

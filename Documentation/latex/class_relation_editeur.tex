@@ -1,0 +1,204 @@
+\hypertarget{class_relation_editeur}{\section{Référence de la classe Relation\-Editeur}
+\label{class_relation_editeur}\index{Relation\-Editeur@{Relation\-Editeur}}
+}
+
+
+Permet la visualisation, modification, suppression des relations (interface).  
+
+
+
+
+{\ttfamily \#include $<$relationediteur.\-h$>$}
+
+Graphe d'héritage de Relation\-Editeur\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_relation_editeur}
+\end{center}
+\end{figure}
+\subsection*{Connecteurs publics}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_relation_editeur_a8c46b381f05903282a86411990058b3f}{void \hyperlink{class_relation_editeur_a8c46b381f05903282a86411990058b3f}{save} ()}\label{class_relation_editeur_a8c46b381f05903282a86411990058b3f}
+
+\begin{DoxyCompactList}\small\item\em Enregistre les modifications. \end{DoxyCompactList}\item 
+\hypertarget{class_relation_editeur_a0d760d64345d96a887b3002839b79528}{void \hyperlink{class_relation_editeur_a0d760d64345d96a887b3002839b79528}{create} ()}\label{class_relation_editeur_a0d760d64345d96a887b3002839b79528}
+
+\begin{DoxyCompactList}\small\item\em Crée une relation depuis le \hyperlink{class_relation_editeur}{Relation\-Editeur}. \end{DoxyCompactList}\item 
+\hypertarget{class_relation_editeur_a4b7de6390f8006db0b0f5b9f50e90ed6}{void \hyperlink{class_relation_editeur_a4b7de6390f8006db0b0f5b9f50e90ed6}{delete\-\_\-relation} ()}\label{class_relation_editeur_a4b7de6390f8006db0b0f5b9f50e90ed6}
+
+\begin{DoxyCompactList}\small\item\em Supprime une relation depuis le \hyperlink{class_relation_editeur}{Relation\-Editeur}. \end{DoxyCompactList}\item 
+\hypertarget{class_relation_editeur_aa94f1bdb568c4d7765bead126581e195}{void \hyperlink{class_relation_editeur_aa94f1bdb568c4d7765bead126581e195}{add\-\_\-new\-\_\-couple} ()}\label{class_relation_editeur_aa94f1bdb568c4d7765bead126581e195}
+
+\begin{DoxyCompactList}\small\item\em Création d'un nouveau couple depuis le \hyperlink{class_relation_editeur}{Relation\-Editeur}. \end{DoxyCompactList}\item 
+void \hyperlink{class_relation_editeur_a06db7a2ef1338a2aee64c05f4711578c}{set\-\_\-label} (int i)
+\begin{DoxyCompactList}\small\item\em Modifie le label d'un couple de la relation. \end{DoxyCompactList}\item 
+void \hyperlink{class_relation_editeur_a8af114d6d5e36e71d8ae3f6685ce746a}{remove\-\_\-couple} (int i)
+\begin{DoxyCompactList}\small\item\em Supprime un couple de la relation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Signaux}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_relation_editeur_aa4a4cc9b587d9898ddefa6e7f522f904}{void {\bfseries mon\-Signal} (int)}\label{class_relation_editeur_aa4a4cc9b587d9898ddefa6e7f522f904}
+
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_relation_editeur_abd28cab2327f3638a00d4e93dcec89fe}{Relation\-Editeur} (\hyperlink{class_relation}{Relation} \&r, Q\-Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructeur (relation existante) \end{DoxyCompactList}\item 
+\hypertarget{class_relation_editeur_a18f183e49135d7cf1ecbd809b49d60fc}{\hyperlink{class_relation_editeur_a18f183e49135d7cf1ecbd809b49d60fc}{Relation\-Editeur} (Q\-Widget $\ast$parent=0)}\label{class_relation_editeur_a18f183e49135d7cf1ecbd809b49d60fc}
+
+\begin{DoxyCompactList}\small\item\em Surcharge du constructeur si on souhaite l'afficher \char`\"{}vide\char`\"{} (pour créer une relation) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_relation_editeur_ad3b12fd3a902e575324fbc2485ea0a32}{\hyperlink{class_relation}{Relation} $\ast$ {\bfseries relation}}\label{class_relation_editeur_ad3b12fd3a902e575324fbc2485ea0a32}
+
+\item 
+\hypertarget{class_relation_editeur_a84972f3238364a9180f960b69499eabc}{Q\-V\-Box\-Layout $\ast$ {\bfseries layout}}\label{class_relation_editeur_a84972f3238364a9180f960b69499eabc}
+
+\item 
+\hypertarget{class_relation_editeur_a386bbf993f724f778c5f2c9a71df0c72}{Q\-Label $\ast$ {\bfseries titre1}}\label{class_relation_editeur_a386bbf993f724f778c5f2c9a71df0c72}
+
+\item 
+\hypertarget{class_relation_editeur_a39b2d17ccbc2f9a305f8794fadfbaa31}{Q\-Line\-Edit $\ast$ {\bfseries titre}}\label{class_relation_editeur_a39b2d17ccbc2f9a305f8794fadfbaa31}
+
+\item 
+\hypertarget{class_relation_editeur_adf527f7913ba121a81972a895c437e22}{Q\-Label $\ast$ {\bfseries description1}}\label{class_relation_editeur_adf527f7913ba121a81972a895c437e22}
+
+\item 
+\hypertarget{class_relation_editeur_a665a987ebabd389767a3224f19194e24}{Q\-Text\-Edit $\ast$ {\bfseries description}}\label{class_relation_editeur_a665a987ebabd389767a3224f19194e24}
+
+\item 
+\hypertarget{class_relation_editeur_a66d6d73840a097316b68fb2a0c2f8662}{Q\-Check\-Box $\ast$ {\bfseries orientee}}\label{class_relation_editeur_a66d6d73840a097316b68fb2a0c2f8662}
+
+\item 
+\hypertarget{class_relation_editeur_a61a9bd0248797c1be50633743409ebca}{Q\-Push\-Button $\ast$ {\bfseries bouton\-\_\-save}}\label{class_relation_editeur_a61a9bd0248797c1be50633743409ebca}
+
+\item 
+\hypertarget{class_relation_editeur_a604e78b34ae17ca57772803044333903}{Q\-Push\-Button $\ast$ {\bfseries bouton\-\_\-delete}}\label{class_relation_editeur_a604e78b34ae17ca57772803044333903}
+
+\item 
+\hypertarget{class_relation_editeur_a33cc2dbce2feeab5a6e5b63c1a2fa17e}{Q\-Label $\ast$ {\bfseries couple1}}\label{class_relation_editeur_a33cc2dbce2feeab5a6e5b63c1a2fa17e}
+
+\item 
+\hypertarget{class_relation_editeur_a0501d9f22aa7112e0a4c22b20c11ef8a}{Q\-H\-Box\-Layout $\ast$$\ast$ {\bfseries box}}\label{class_relation_editeur_a0501d9f22aa7112e0a4c22b20c11ef8a}
+
+\item 
+\hypertarget{class_relation_editeur_a29321b33cf4bd4497997718837586f14}{Q\-Label $\ast$$\ast$ {\bfseries id\-X}}\label{class_relation_editeur_a29321b33cf4bd4497997718837586f14}
+
+\item 
+\hypertarget{class_relation_editeur_aea71a6d832c5a279c0fddf344bf3c5fa}{Q\-Label $\ast$$\ast$ {\bfseries id\-Y}}\label{class_relation_editeur_aea71a6d832c5a279c0fddf344bf3c5fa}
+
+\item 
+\hypertarget{class_relation_editeur_a90a36570309b063263920e2956dd5530}{Q\-Signal\-Mapper $\ast$ {\bfseries mapper\-\_\-label}}\label{class_relation_editeur_a90a36570309b063263920e2956dd5530}
+
+\item 
+\hypertarget{class_relation_editeur_a6bf9deace0be99ee01d29eee5daa4425}{Q\-Line\-Edit $\ast$$\ast$ {\bfseries edit\-\_\-label}}\label{class_relation_editeur_a6bf9deace0be99ee01d29eee5daa4425}
+
+\item 
+\hypertarget{class_relation_editeur_aa391b51e4fed9dfee5e1f29ebf7b78b0}{Q\-Push\-Button $\ast$$\ast$ {\bfseries buttons\-\_\-edit}}\label{class_relation_editeur_aa391b51e4fed9dfee5e1f29ebf7b78b0}
+
+\item 
+\hypertarget{class_relation_editeur_ad4e996b646c9b4ac74442730fc89b22f}{Q\-Signal\-Mapper $\ast$ {\bfseries mapper\-\_\-remove}}\label{class_relation_editeur_ad4e996b646c9b4ac74442730fc89b22f}
+
+\item 
+\hypertarget{class_relation_editeur_ad9856ff6e4193d11ad2b8d6cace478af}{Q\-Push\-Button $\ast$$\ast$ {\bfseries buttons\-\_\-remove}}\label{class_relation_editeur_ad9856ff6e4193d11ad2b8d6cace478af}
+
+\item 
+\hypertarget{class_relation_editeur_a51dc2dd05c20a73465ecc69db5355e28}{Q\-H\-Box\-Layout $\ast$ {\bfseries new\-\_\-couple}}\label{class_relation_editeur_a51dc2dd05c20a73465ecc69db5355e28}
+
+\item 
+\hypertarget{class_relation_editeur_a7c1d15a6dbf4d0ec867b6a4f9cde7db0}{Q\-Label $\ast$ {\bfseries couple2}}\label{class_relation_editeur_a7c1d15a6dbf4d0ec867b6a4f9cde7db0}
+
+\item 
+\hypertarget{class_relation_editeur_a0b925426401fa901808f7720dad0fe35}{Q\-List\-View $\ast$ {\bfseries liste\-\_\-x}}\label{class_relation_editeur_a0b925426401fa901808f7720dad0fe35}
+
+\item 
+\hypertarget{class_relation_editeur_ab443cf68744c2b367ea565cc034be39c}{Q\-List\-View $\ast$ {\bfseries liste\-\_\-y}}\label{class_relation_editeur_ab443cf68744c2b367ea565cc034be39c}
+
+\item 
+\hypertarget{class_relation_editeur_a3c336e8c1bae8bfd513e1639569cfb19}{Q\-Line\-Edit $\ast$ {\bfseries new\-\_\-label}}\label{class_relation_editeur_a3c336e8c1bae8bfd513e1639569cfb19}
+
+\item 
+\hypertarget{class_relation_editeur_ab0c50e29c276fc03fa2a3c5b9fcaa619}{Q\-Push\-Button $\ast$ {\bfseries add\-\_\-couple}}\label{class_relation_editeur_ab0c50e29c276fc03fa2a3c5b9fcaa619}
+
+\item 
+\hypertarget{class_relation_editeur_a9b7aad295e2bc9b8c85ec56381914b9f}{Q\-String\-List\-Model $\ast$ {\bfseries model\-\_\-x}}\label{class_relation_editeur_a9b7aad295e2bc9b8c85ec56381914b9f}
+
+\item 
+\hypertarget{class_relation_editeur_a747219e4e7bfbe79564ff002bbc81b77}{Q\-String\-List\-Model $\ast$ {\bfseries model\-\_\-y}}\label{class_relation_editeur_a747219e4e7bfbe79564ff002bbc81b77}
+
+\end{DoxyCompactItemize}
+\subsection*{Connecteurs privés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_relation_editeur_a08f290984e9a90f643f6938a8e1808ff}{void \hyperlink{class_relation_editeur_a08f290984e9a90f643f6938a8e1808ff}{activer\-Bouton} (Q\-String str=\char`\"{}\char`\"{})}\label{class_relation_editeur_a08f290984e9a90f643f6938a8e1808ff}
+
+\begin{DoxyCompactList}\small\item\em Active le bouton \char`\"{}\-Save\char`\"{} quand du texte est modifié. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Permet la visualisation, modification, suppression des relations (interface). 
+
+Classe qui sera par la suite utilisée pour l'ensemble de l'interface (\hyperlink{interface_8h}{interface.\-h}). 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_relation_editeur_abd28cab2327f3638a00d4e93dcec89fe}{\index{Relation\-Editeur@{Relation\-Editeur}!Relation\-Editeur@{Relation\-Editeur}}
+\index{Relation\-Editeur@{Relation\-Editeur}!RelationEditeur@{Relation\-Editeur}}
+\subsubsection[{Relation\-Editeur}]{\setlength{\rightskip}{0pt plus 5cm}Relation\-Editeur\-::\-Relation\-Editeur (
+\begin{DoxyParamCaption}
+\item[{{\bf Relation} \&}]{r, }
+\item[{Q\-Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [explicit]}}}\label{class_relation_editeur_abd28cab2327f3638a00d4e93dcec89fe}
+
+
+Constructeur (relation existante) 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em r} & \hyperlink{class_relation}{Relation} à ouvrir \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_relation_editeur_a8af114d6d5e36e71d8ae3f6685ce746a}{\index{Relation\-Editeur@{Relation\-Editeur}!remove\-\_\-couple@{remove\-\_\-couple}}
+\index{remove\-\_\-couple@{remove\-\_\-couple}!RelationEditeur@{Relation\-Editeur}}
+\subsubsection[{remove\-\_\-couple}]{\setlength{\rightskip}{0pt plus 5cm}void Relation\-Editeur\-::remove\-\_\-couple (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_relation_editeur_a8af114d6d5e36e71d8ae3f6685ce746a}
+
+
+Supprime un couple de la relation. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em i} & indice du couple \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_relation_editeur_a06db7a2ef1338a2aee64c05f4711578c}{\index{Relation\-Editeur@{Relation\-Editeur}!set\-\_\-label@{set\-\_\-label}}
+\index{set\-\_\-label@{set\-\_\-label}!RelationEditeur@{Relation\-Editeur}}
+\subsubsection[{set\-\_\-label}]{\setlength{\rightskip}{0pt plus 5cm}void Relation\-Editeur\-::set\-\_\-label (
+\begin{DoxyParamCaption}
+\item[{int}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [slot]}}}\label{class_relation_editeur_a06db7a2ef1338a2aee64c05f4711578c}
+
+
+Modifie le label d'un couple de la relation. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em i} & indice du couple \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{relationediteur_8h}{relationediteur.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/relationediteur.\-cpp\end{DoxyCompactItemize}

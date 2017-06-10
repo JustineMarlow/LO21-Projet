@@ -1,0 +1,109 @@
+\hypertarget{class_article}{\section{Référence de la classe Article}
+\label{class_article}\index{Article@{Article}}
+}
+
+
+Représente un article.  
+
+
+
+
+{\ttfamily \#include $<$note.\-h$>$}
+
+Graphe d'héritage de Article\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_article}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+Q\-String \hyperlink{class_article_a5aca02545dd453381abba632d7e05402}{get\-Texte} () const 
+\begin{DoxyCompactList}\small\item\em get\-Texte \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_article_ac7e17d78ceb14b64c0781a5caa83ef0a}{Article} (Q\-String id, Q\-String t, Q\-String text, Q\-Date date\-\_\-c=Q\-Date\-::current\-Date(), Q\-Date date\-\_\-m=Q\-Date\-::current\-Date(), unsigned int v=1, bool last=true, Note\-Etat e=active)
+\begin{DoxyCompactList}\small\item\em Constructeur d'un article. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_article_ab75a1cc11324d419d62e3114a462d31d}{Q\-String {\bfseries texte}}\label{class_article_ab75a1cc11324d419d62e3114a462d31d}
+
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_article_a017a5144e8cfa6087305055ab968ef41}{class {\bfseries Notes\-Manager}}\label{class_article_a017a5144e8cfa6087305055ab968ef41}
+
+\item 
+\hypertarget{class_article_a7c44822b658a328771753fe0aaa8b7ae}{class {\bfseries Vue\-Principale}}\label{class_article_a7c44822b658a328771753fe0aaa8b7ae}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Représente un article. 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_article_ac7e17d78ceb14b64c0781a5caa83ef0a}{\index{Article@{Article}!Article@{Article}}
+\index{Article@{Article}!Article@{Article}}
+\subsubsection[{Article}]{\setlength{\rightskip}{0pt plus 5cm}Article\-::\-Article (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{id, }
+\item[{Q\-String}]{t, }
+\item[{Q\-String}]{text, }
+\item[{Q\-Date}]{date\-\_\-c = {\ttfamily QDate\-:\-:currentDate()}, }
+\item[{Q\-Date}]{date\-\_\-m = {\ttfamily QDate\-:\-:currentDate()}, }
+\item[{unsigned int}]{v = {\ttfamily 1}, }
+\item[{bool}]{last = {\ttfamily true}, }
+\item[{Note\-Etat}]{e = {\ttfamily active}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_article_ac7e17d78ceb14b64c0781a5caa83ef0a}
+
+
+Constructeur d'un article. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id} & L'identificateur de la note \\
+\hline
+{\em t} & Le titre de la note \\
+\hline
+{\em date\-\_\-c} & La date de création \\
+\hline
+{\em date\-\_\-m} & La date de dernière modification \\
+\hline
+{\em last} & Indique si c'est la dernière version de la note ou pas \\
+\hline
+{\em v} & Version de la note \\
+\hline
+{\em e} & Etat de la note (active, archivée ou corbeille). \\
+\hline
+{\em text} & Le contenu de l'article. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_article_a5aca02545dd453381abba632d7e05402}{\index{Article@{Article}!get\-Texte@{get\-Texte}}
+\index{get\-Texte@{get\-Texte}!Article@{Article}}
+\subsubsection[{get\-Texte}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Article\-::get\-Texte (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_article_a5aca02545dd453381abba632d7e05402}
+
+
+get\-Texte 
+
+\begin{DoxyReturn}{Renvoie}
+Retourne le contenu de l'article 
+\end{DoxyReturn}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8h}{note.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8cpp}{note.\-cpp}\end{DoxyCompactItemize}

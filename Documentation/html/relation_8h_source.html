@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>PluriNotes:  Fichier source de /home/camille/Documents/UTC/HU04/LO21/Projet/Projet/relation.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">PluriNotes
+   &#160;<span id="projectnumber">1</span>
+   </div>
+   <div id="projectbrief">Projet LO21 - Edition &amp; gestion de notes.</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
+      <li><a href="annotated.html"><span>Classes</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Membres&#160;de&#160;fichier</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Tout</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Fichiers</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Fonctions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">/home/camille/Documents/UTC/HU04/LO21/Projet/Projet/relation.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="relation_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef RELATION_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define RELATION_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#include &lt;QString&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;QDate&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="note_8h.html">note.h</a>&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">/*============================================================== Relation =============================================================================================*/</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_relation.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_relation.html">Relation</a> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    QString titre;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    QString description;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_note.html">Note</a>*** tableau;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    QString* tableau_label;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nbCouples;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nbCouplesMax;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">bool</span> oriente;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_relation.html#ae9c1a5709a34f4103fc82e35c22586fd">   33</a></span>&#160;    <a class="code" href="class_relation.html#ae9c1a5709a34f4103fc82e35c22586fd">Relation</a>(QString t, QString d, <span class="keywordtype">bool</span> o=<span class="keyword">true</span>):titre(t),description(d),tableau(0),tableau_label(0),nbCouples(0),nbCouplesMax(0),oriente(o){}</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    ~<a class="code" href="class_relation.html">Relation</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_relations_manager.html">RelationsManager</a>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="class_relation.html#ae9c1a5709a34f4103fc82e35c22586fd">Relation</a>(<span class="keyword">const</span> <a class="code" href="class_relation.html">Relation</a>&amp; r);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_relation.html">Relation</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="class_relation.html">Relation</a>&amp; r);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_relation.html#aada545a51917037591b80640ba7bc792">addCouple_function</a>(<a class="code" href="class_note.html">Note</a>&amp; x, <a class="code" href="class_note.html">Note</a>&amp; y, QString label);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_relation.html#aab0ba1f02226624304cef8c5c52ee579">removeCouple_function</a>(<a class="code" href="class_note.html">Note</a>&amp; x, <a class="code" href="class_note.html">Note</a>&amp; y);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_vue_principale.html">VuePrincipale</a>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="class_relation.html#aae327a3e3ea72e99a60933ef082f5810">   56</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_relation.html#aae327a3e3ea72e99a60933ef082f5810">IsOriente</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> oriente;}</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="class_relation.html#a6f13798adcf5ad202bc1870c73a771ec">   60</a></span>&#160;    QString <a class="code" href="class_relation.html#a6f13798adcf5ad202bc1870c73a771ec">getTitre</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> titre;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="class_relation.html#ad70081c491ac168bc2c5a1afae81190b">   64</a></span>&#160;    QString <a class="code" href="class_relation.html#ad70081c491ac168bc2c5a1afae81190b">getDescription</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> description;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="class_relation.html#a2f1b599fe52f33a5caa3f76838bdc81b">   68</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_relation.html#a2f1b599fe52f33a5caa3f76838bdc81b">getNbCouples</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> nbCouples;}</div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="class_relation.html#a607d485c7ebd115fb6cfac335a4ecd9d">   73</a></span>&#160;    <a class="code" href="class_note.html">Note</a>&amp; <a class="code" href="class_relation.html#a607d485c7ebd115fb6cfac335a4ecd9d">getXCouple</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i)<span class="keyword"> const </span>{<span class="keywordflow">return</span> *tableau[1][i];}</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="class_relation.html#abadc8225cfeb86310a58bec83ba2d9d0">   78</a></span>&#160;    <a class="code" href="class_note.html">Note</a>&amp; <a class="code" href="class_relation.html#abadc8225cfeb86310a58bec83ba2d9d0">getYCouple</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i)<span class="keyword"> const </span>{<span class="keywordflow">return</span> *tableau[2][i];}</div>
+<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="class_relation.html#a94c62232f1bbd097dd8e722accd80032">   82</a></span>&#160;    <span class="keyword">const</span> QString <a class="code" href="class_relation.html#a94c62232f1bbd097dd8e722accd80032">getLabelCouple</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i)<span class="keyword"> const </span>{<span class="keywordflow">return</span> tableau_label[i];}</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_relation.html#a76525dab4934b348fa2965db522328dc">addCouple</a>(<a class="code" href="class_note.html">Note</a>&amp; x, <a class="code" href="class_note.html">Note</a>&amp; y, QString label);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_relation.html#a3eea7d0010a6f986e3232719a92532d3">removeCouple</a>(<a class="code" href="class_note.html">Note</a>&amp; x, <a class="code" href="class_note.html">Note</a>&amp; y);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_relation.html#a146f3e9af006e240932ec75358710213">findCouple</a>(<a class="code" href="class_note.html">Note</a>&amp; x, <a class="code" href="class_note.html">Note</a>&amp; y);</div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="line" href="class_relation.html#a122d5b07a1cef9f923c8ce01760c04fe">  109</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_relation.html#a122d5b07a1cef9f923c8ce01760c04fe">set_titre</a>(QString t){titre=t;}</div>
+<div class="line"><a name="l00114"></a><span class="lineno"><a class="line" href="class_relation.html#aa1b4491b12196cc8b28d1ea8d3f03f78">  114</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_relation.html#aa1b4491b12196cc8b28d1ea8d3f03f78">set_description</a>(QString d){description=d;}</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="comment">//void set_Oriente(bool o){oriente=o;}</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_relation.html#a673fb4a0fbc2e403ee1a612623286f61">set_label_couple</a>(<a class="code" href="class_note.html">Note</a>&amp; x, <a class="code" href="class_note.html">Note</a>&amp; y, QString l);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="class_relation_1_1_iterator.html">  125</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_relation_1_1_iterator.html">Iterator</a>{</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <a class="code" href="class_note.html">Note</a>*** notes;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> courant;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> taille;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_relation.html">Relation</a>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <a class="code" href="class_relation_1_1_iterator.html">Iterator</a>(<a class="code" href="class_note.html">Note</a>*** tab, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n):notes(tab),courant(0),taille(n){}</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <a class="code" href="class_note.html">Note</a>&amp; current_noteX()<span class="keyword"> const </span>{<span class="keywordflow">return</span> *notes[1][courant];}</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <a class="code" href="class_note.html">Note</a>&amp; current_noteY()<span class="keyword"> const </span>{<span class="keywordflow">return</span> *notes[2][courant];}</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordtype">void</span> next() {<span class="keywordflow">if</span> (courant&lt;taille) courant++; <span class="keywordflow">else</span> <span class="keywordflow">throw</span> <a class="code" href="class_notes_exception.html">NotesException</a>(<span class="stringliteral">&quot;Iterator de Relation is done&quot;</span>);}</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <span class="keywordtype">bool</span> isDone()<span class="keyword"> const </span>{<span class="keywordflow">return</span> courant==taille;}</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordtype">void</span> debut() {courant=0;}</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    };</div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="class_relation.html#ae30f6b7351f9ff6b3ed74422738a6ea2">  141</a></span>&#160;    <a class="code" href="class_relation_1_1_iterator.html">Iterator</a> <a class="code" href="class_relation.html#ae30f6b7351f9ff6b3ed74422738a6ea2">getIterator</a>() {<span class="keywordflow">return</span> <a class="code" href="class_relation_1_1_iterator.html">Iterator</a>(tableau, nbCouples);}</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;};</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="comment">/*========================================================= RelationsManager ==========================================================================================*/</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="class_relations_manager.html">  152</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_relations_manager.html">RelationsManager</a> {</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <a class="code" href="class_relation.html">Relation</a>** relations;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nbRelations;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> nbMaxRelations;</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    <span class="keyword">mutable</span> QString filename;</div>
+<div class="line"><a name="l00160"></a><span class="lineno"><a class="line" href="class_relations_manager.html#a7b9f5d9cd55fa4f51c2c8203f555008a">  160</a></span>&#160;    <a class="code" href="class_relations_manager.html#a7b9f5d9cd55fa4f51c2c8203f555008a">RelationsManager</a>():relations(0),nbRelations(0),nbMaxRelations(0),filename(<span class="stringliteral">&quot;&quot;</span>){}</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    ~<a class="code" href="class_relations_manager.html">RelationsManager</a>();</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <a class="code" href="class_relations_manager.html#a7b9f5d9cd55fa4f51c2c8203f555008a">RelationsManager</a> (<span class="keyword">const</span> <a class="code" href="class_relations_manager.html">RelationsManager</a>&amp; m);</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <a class="code" href="class_relations_manager.html">RelationsManager</a> operator=(<span class="keyword">const</span> <a class="code" href="class_relations_manager.html">RelationsManager</a>&amp; m);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00168"></a><span class="lineno"><a class="line" href="class_relations_manager.html#aad6d18cfe0018bc3c84cd67cc28e02e3">  168</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="class_relations_manager.html#aad6d18cfe0018bc3c84cd67cc28e02e3">getNbRelations</a>()<span class="keyword"> const </span>{<span class="keywordflow">return</span> nbRelations;}</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_relations_manager.html">RelationsManager</a>&amp; <a class="code" href="class_relations_manager.html#adde192ed5510fc9c4e79a345c42175bc">getInstance</a>();</div>
+<div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="class_relations_manager.html#af3f2992fb1dc52df403ab0213232329d">  178</a></span>&#160;    <a class="code" href="class_relation.html">Relation</a>&amp; <a class="code" href="class_relations_manager.html#af3f2992fb1dc52df403ab0213232329d">getIRelation</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i)<span class="keyword"> const </span>{<span class="keywordflow">return</span> *relations[i];}</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <a class="code" href="class_relation.html">Relation</a>&amp; <a class="code" href="class_relations_manager.html#a99ba92089cbce8ab93a1dd16380ead6c">createRelation</a>(<span class="keyword">const</span> QString&amp; titre, <span class="keyword">const</span> QString&amp; description, <span class="keywordtype">bool</span> isOriente);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_relations_manager.html#a48e772342fa842c1832802e6e5e4ee4a">addRelation</a>(<a class="code" href="class_relation.html">Relation</a>&amp; r);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_relations_manager.html#a5929bed08e90a52ec60f3a8cec09766d">deleteRelation</a>(<a class="code" href="class_relation.html">Relation</a>&amp; r);</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <a class="code" href="class_relation.html">Relation</a>&amp; <a class="code" href="class_relations_manager.html#a5d8c2e75d674da855d3b018e2a5ae342">getRelation</a>(<span class="keyword">const</span> QString&amp; titre);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_relations_manager.html#a6190c96cadd6b056cf94bfb75b5d56d1">load</a>();</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_relations_manager.html#a8bb101094b5941f53e6d7abe5784ad6e">save</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00215"></a><span class="lineno"><a class="line" href="class_relations_manager.html#a846d7b926b24c57bb3523b582f5a0ea3">  215</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_relations_manager.html#a846d7b926b24c57bb3523b582f5a0ea3">setFilename</a>(<span class="keyword">const</span> QString&amp; f) { filename=f; }</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
+<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="class_relations_manager_1_1_iterator.html">  217</a></span>&#160;    <span class="keyword">class </span><a class="code" href="class_relations_manager_1_1_iterator.html">Iterator</a>{</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        <a class="code" href="class_relation.html">Relation</a>** tab;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> courant;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> taille;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="class_relations_manager.html">RelationsManager</a>;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <a class="code" href="class_relations_manager_1_1_iterator.html">Iterator</a>(<a class="code" href="class_relation.html">Relation</a>** t, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> n):tab(t),courant(0),taille(n){}</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <a class="code" href="class_relation.html">Relation</a>&amp; current()<span class="keyword"> const </span>{<span class="keywordflow">return</span> *tab[courant];}</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="keywordtype">void</span> next() {<span class="keywordflow">if</span> (courant&lt;taille) courant++; <span class="keywordflow">else</span> <span class="keywordflow">throw</span> <a class="code" href="class_notes_exception.html">NotesException</a>(<span class="stringliteral">&quot;Iterator de RelationsManager is done&quot;</span>);}</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <span class="keywordtype">bool</span> isDone()<span class="keyword"> const </span>{<span class="keywordflow">return</span> courant==taille;}</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordtype">void</span> debut() {courant=0;}</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    };</div>
+<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="class_relations_manager.html#a89cf8af20310718e9608672489683779">  232</a></span>&#160;    <a class="code" href="class_relations_manager_1_1_iterator.html">Iterator</a> <a class="code" href="class_relations_manager.html#a89cf8af20310718e9608672489683779">getIterator</a>() {<span class="keywordflow">return</span> <a class="code" href="class_relations_manager_1_1_iterator.html">Iterator</a>(relations, nbRelations);}</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;};</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="preprocessor">#endif // RELATION_H</span></div>
+<div class="ttc" id="class_relations_manager_html_a8bb101094b5941f53e6d7abe5784ad6e"><div class="ttname"><a href="class_relations_manager.html#a8bb101094b5941f53e6d7abe5784ad6e">RelationsManager::save</a></div><div class="ttdeci">void save() const </div><div class="ttdoc">Permet d&#39;enregistrer les relations dans un fichier. </div><div class="ttdef"><b>Definition:</b> relation.cpp:283</div></div>
+<div class="ttc" id="class_relation_html_a607d485c7ebd115fb6cfac335a4ecd9d"><div class="ttname"><a href="class_relation.html#a607d485c7ebd115fb6cfac335a4ecd9d">Relation::getXCouple</a></div><div class="ttdeci">Note &amp; getXCouple(unsigned int i) const </div><div class="ttdoc">Retourne la 1ere note du couple d&#39;une relation. </div><div class="ttdef"><b>Definition:</b> relation.h:73</div></div>
+<div class="ttc" id="class_relation_html_a76525dab4934b348fa2965db522328dc"><div class="ttname"><a href="class_relation.html#a76525dab4934b348fa2965db522328dc">Relation::addCouple</a></div><div class="ttdeci">void addCouple(Note &amp;x, Note &amp;y, QString label)</div><div class="ttdoc">Ajoute un couple. </div><div class="ttdef"><b>Definition:</b> relation.cpp:62</div></div>
+<div class="ttc" id="class_relation_html_abadc8225cfeb86310a58bec83ba2d9d0"><div class="ttname"><a href="class_relation.html#abadc8225cfeb86310a58bec83ba2d9d0">Relation::getYCouple</a></div><div class="ttdeci">Note &amp; getYCouple(unsigned int i) const </div><div class="ttdoc">Retourne la 2eme note du couple d&#39;une relation. </div><div class="ttdef"><b>Definition:</b> relation.h:78</div></div>
+<div class="ttc" id="class_note_html"><div class="ttname"><a href="class_note.html">Note</a></div><div class="ttdoc">Classe abstraite représentant une note. </div><div class="ttdef"><b>Definition:</b> note.h:39</div></div>
+<div class="ttc" id="class_relations_manager_html_a7b9f5d9cd55fa4f51c2c8203f555008a"><div class="ttname"><a href="class_relations_manager.html#a7b9f5d9cd55fa4f51c2c8203f555008a">RelationsManager::RelationsManager</a></div><div class="ttdeci">RelationsManager()</div><div class="ttdoc">Constructeur en privé (DP Singleton) </div><div class="ttdef"><b>Definition:</b> relation.h:160</div></div>
+<div class="ttc" id="class_relation_html"><div class="ttname"><a href="class_relation.html">Relation</a></div><div class="ttdoc">Représente les relations entre notes. </div><div class="ttdef"><b>Definition:</b> relation.h:19</div></div>
+<div class="ttc" id="class_relation_html_aa1b4491b12196cc8b28d1ea8d3f03f78"><div class="ttname"><a href="class_relation.html#aa1b4491b12196cc8b28d1ea8d3f03f78">Relation::set_description</a></div><div class="ttdeci">void set_description(QString d)</div><div class="ttdoc">Modifie la description d&#39;une relation. </div><div class="ttdef"><b>Definition:</b> relation.h:114</div></div>
+<div class="ttc" id="class_relation_html_a94c62232f1bbd097dd8e722accd80032"><div class="ttname"><a href="class_relation.html#a94c62232f1bbd097dd8e722accd80032">Relation::getLabelCouple</a></div><div class="ttdeci">const QString getLabelCouple(unsigned int i) const </div><div class="ttdoc">Retourne le label de la relation. </div><div class="ttdef"><b>Definition:</b> relation.h:82</div></div>
+<div class="ttc" id="class_relations_manager_html_a5d8c2e75d674da855d3b018e2a5ae342"><div class="ttname"><a href="class_relations_manager.html#a5d8c2e75d674da855d3b018e2a5ae342">RelationsManager::getRelation</a></div><div class="ttdeci">Relation &amp; getRelation(const QString &amp;titre)</div><div class="ttdoc">Permet d&#39;obtenir une relation via son titre. </div><div class="ttdef"><b>Definition:</b> relation.cpp:145</div></div>
+<div class="ttc" id="class_vue_principale_html"><div class="ttname"><a href="class_vue_principale.html">VuePrincipale</a></div><div class="ttdoc">Représente la fenêtre principale de l&#39;application. </div><div class="ttdef"><b>Definition:</b> interface.h:56</div></div>
+<div class="ttc" id="class_relation_html_a673fb4a0fbc2e403ee1a612623286f61"><div class="ttname"><a href="class_relation.html#a673fb4a0fbc2e403ee1a612623286f61">Relation::set_label_couple</a></div><div class="ttdeci">void set_label_couple(Note &amp;x, Note &amp;y, QString l)</div><div class="ttdoc">Modifie le label d&#39;un couple. </div><div class="ttdef"><b>Definition:</b> relation.cpp:71</div></div>
+<div class="ttc" id="class_relations_manager_html"><div class="ttname"><a href="class_relations_manager.html">RelationsManager</a></div><div class="ttdoc">Permet la gestion de l&#39;ensemble des relations. </div><div class="ttdef"><b>Definition:</b> relation.h:152</div></div>
+<div class="ttc" id="class_relation_1_1_iterator_html"><div class="ttname"><a href="class_relation_1_1_iterator.html">Relation::Iterator</a></div><div class="ttdef"><b>Definition:</b> relation.h:125</div></div>
+<div class="ttc" id="class_notes_exception_html"><div class="ttname"><a href="class_notes_exception.html">NotesException</a></div><div class="ttdoc">Gestion des exceptions déclenchées par les classes Notes &amp; descendants &amp; NotesManager. </div><div class="ttdef"><b>Definition:</b> note.h:16</div></div>
+<div class="ttc" id="class_relation_html_ad70081c491ac168bc2c5a1afae81190b"><div class="ttname"><a href="class_relation.html#ad70081c491ac168bc2c5a1afae81190b">Relation::getDescription</a></div><div class="ttdeci">QString getDescription() const </div><div class="ttdoc">Retourne la description de la relation. </div><div class="ttdef"><b>Definition:</b> relation.h:64</div></div>
+<div class="ttc" id="class_relations_manager_html_adde192ed5510fc9c4e79a345c42175bc"><div class="ttname"><a href="class_relations_manager.html#adde192ed5510fc9c4e79a345c42175bc">RelationsManager::getInstance</a></div><div class="ttdeci">static RelationsManager &amp; getInstance()</div><div class="ttdoc">Retourne l&#39;unique objet RelationsManager (DP Singleton) </div><div class="ttdef"><b>Definition:</b> relation.cpp:111</div></div>
+<div class="ttc" id="class_relation_html_aada545a51917037591b80640ba7bc792"><div class="ttname"><a href="class_relation.html#aada545a51917037591b80640ba7bc792">Relation::addCouple_function</a></div><div class="ttdeci">void addCouple_function(Note &amp;x, Note &amp;y, QString label)</div><div class="ttdoc">Ajoute un couple à une relation existante. </div><div class="ttdef"><b>Definition:</b> relation.cpp:31</div></div>
+<div class="ttc" id="class_relations_manager_html_a846d7b926b24c57bb3523b582f5a0ea3"><div class="ttname"><a href="class_relations_manager.html#a846d7b926b24c57bb3523b582f5a0ea3">RelationsManager::setFilename</a></div><div class="ttdeci">void setFilename(const QString &amp;f)</div><div class="ttdoc">Modifie le fichier à ouvrir. </div><div class="ttdef"><b>Definition:</b> relation.h:215</div></div>
+<div class="ttc" id="class_relation_html_a146f3e9af006e240932ec75358710213"><div class="ttname"><a href="class_relation.html#a146f3e9af006e240932ec75358710213">Relation::findCouple</a></div><div class="ttdeci">bool findCouple(Note &amp;x, Note &amp;y)</div><div class="ttdoc">Vérifie si un couple existe. </div><div class="ttdef"><b>Definition:</b> relation.cpp:23</div></div>
+<div class="ttc" id="class_relations_manager_html_a99ba92089cbce8ab93a1dd16380ead6c"><div class="ttname"><a href="class_relations_manager.html#a99ba92089cbce8ab93a1dd16380ead6c">RelationsManager::createRelation</a></div><div class="ttdeci">Relation &amp; createRelation(const QString &amp;titre, const QString &amp;description, bool isOriente)</div><div class="ttdoc">Création d&#39;une nouvelle relation &amp; ajout au RelationsManager. </div><div class="ttdef"><b>Definition:</b> relation.cpp:137</div></div>
+<div class="ttc" id="class_relation_html_ae30f6b7351f9ff6b3ed74422738a6ea2"><div class="ttname"><a href="class_relation.html#ae30f6b7351f9ff6b3ed74422738a6ea2">Relation::getIterator</a></div><div class="ttdeci">Iterator getIterator()</div><div class="ttdoc">Permet d&#39;obtenir un iterateur d&#39;une relation (DP Iterator) </div><div class="ttdef"><b>Definition:</b> relation.h:141</div></div>
+<div class="ttc" id="class_relation_html_a2f1b599fe52f33a5caa3f76838bdc81b"><div class="ttname"><a href="class_relation.html#a2f1b599fe52f33a5caa3f76838bdc81b">Relation::getNbCouples</a></div><div class="ttdeci">unsigned int getNbCouples() const </div><div class="ttdoc">Retourne le nombre de couples de la relation. </div><div class="ttdef"><b>Definition:</b> relation.h:68</div></div>
+<div class="ttc" id="class_relations_manager_html_a48e772342fa842c1832802e6e5e4ee4a"><div class="ttname"><a href="class_relations_manager.html#a48e772342fa842c1832802e6e5e4ee4a">RelationsManager::addRelation</a></div><div class="ttdeci">void addRelation(Relation &amp;r)</div><div class="ttdoc">Ajout d&#39;une relation existante au RelationsManager. </div><div class="ttdef"><b>Definition:</b> relation.cpp:117</div></div>
+<div class="ttc" id="note_8h_html"><div class="ttname"><a href="note_8h.html">note.h</a></div><div class="ttdoc">Définit les classes Note &amp; ses descendant (articles, tâches, tâches avec deadline/priorité, fichier) et le NotesManager. </div></div>
+<div class="ttc" id="class_relation_html_a6f13798adcf5ad202bc1870c73a771ec"><div class="ttname"><a href="class_relation.html#a6f13798adcf5ad202bc1870c73a771ec">Relation::getTitre</a></div><div class="ttdeci">QString getTitre() const </div><div class="ttdoc">Retourne le titre de la relation. </div><div class="ttdef"><b>Definition:</b> relation.h:60</div></div>
+<div class="ttc" id="class_relations_manager_html_aad6d18cfe0018bc3c84cd67cc28e02e3"><div class="ttname"><a href="class_relations_manager.html#aad6d18cfe0018bc3c84cd67cc28e02e3">RelationsManager::getNbRelations</a></div><div class="ttdeci">unsigned int getNbRelations() const </div><div class="ttdoc">Retourne le nombre de relations du RelationsManager. </div><div class="ttdef"><b>Definition:</b> relation.h:168</div></div>
+<div class="ttc" id="class_relations_manager_html_af3f2992fb1dc52df403ab0213232329d"><div class="ttname"><a href="class_relations_manager.html#af3f2992fb1dc52df403ab0213232329d">RelationsManager::getIRelation</a></div><div class="ttdeci">Relation &amp; getIRelation(unsigned int i) const </div><div class="ttdoc">Retourne une relation selon son indice. </div><div class="ttdef"><b>Definition:</b> relation.h:178</div></div>
+<div class="ttc" id="class_relations_manager_html_a6190c96cadd6b056cf94bfb75b5d56d1"><div class="ttname"><a href="class_relations_manager.html#a6190c96cadd6b056cf94bfb75b5d56d1">RelationsManager::load</a></div><div class="ttdeci">void load()</div><div class="ttdoc">Permet de charger un fichier de relations. </div><div class="ttdef"><b>Definition:</b> relation.cpp:170</div></div>
+<div class="ttc" id="class_relations_manager_html_a5929bed08e90a52ec60f3a8cec09766d"><div class="ttname"><a href="class_relations_manager.html#a5929bed08e90a52ec60f3a8cec09766d">RelationsManager::deleteRelation</a></div><div class="ttdeci">void deleteRelation(Relation &amp;r)</div><div class="ttdoc">Supprime une relation. </div><div class="ttdef"><b>Definition:</b> relation.cpp:155</div></div>
+<div class="ttc" id="class_relation_html_a3eea7d0010a6f986e3232719a92532d3"><div class="ttname"><a href="class_relation.html#a3eea7d0010a6f986e3232719a92532d3">Relation::removeCouple</a></div><div class="ttdeci">void removeCouple(Note &amp;x, Note &amp;y)</div><div class="ttdoc">Enlève un couple. </div><div class="ttdef"><b>Definition:</b> relation.cpp:96</div></div>
+<div class="ttc" id="class_relation_html_ae9c1a5709a34f4103fc82e35c22586fd"><div class="ttname"><a href="class_relation.html#ae9c1a5709a34f4103fc82e35c22586fd">Relation::Relation</a></div><div class="ttdeci">Relation(QString t, QString d, bool o=true)</div><div class="ttdoc">Constructeur. </div><div class="ttdef"><b>Definition:</b> relation.h:33</div></div>
+<div class="ttc" id="class_relation_html_aab0ba1f02226624304cef8c5c52ee579"><div class="ttname"><a href="class_relation.html#aab0ba1f02226624304cef8c5c52ee579">Relation::removeCouple_function</a></div><div class="ttdeci">void removeCouple_function(Note &amp;x, Note &amp;y)</div><div class="ttdoc">Retire un couple. </div><div class="ttdef"><b>Definition:</b> relation.cpp:80</div></div>
+<div class="ttc" id="class_relations_manager_1_1_iterator_html"><div class="ttname"><a href="class_relations_manager_1_1_iterator.html">RelationsManager::Iterator</a></div><div class="ttdef"><b>Definition:</b> relation.h:217</div></div>
+<div class="ttc" id="class_relation_html_aae327a3e3ea72e99a60933ef082f5810"><div class="ttname"><a href="class_relation.html#aae327a3e3ea72e99a60933ef082f5810">Relation::IsOriente</a></div><div class="ttdeci">bool IsOriente() const </div><div class="ttdoc">Indique si la relation est orientée. </div><div class="ttdef"><b>Definition:</b> relation.h:56</div></div>
+<div class="ttc" id="class_relation_html_a122d5b07a1cef9f923c8ce01760c04fe"><div class="ttname"><a href="class_relation.html#a122d5b07a1cef9f923c8ce01760c04fe">Relation::set_titre</a></div><div class="ttdeci">void set_titre(QString t)</div><div class="ttdoc">Modifie le titre de la relation. </div><div class="ttdef"><b>Definition:</b> relation.h:109</div></div>
+<div class="ttc" id="class_relations_manager_html_a89cf8af20310718e9608672489683779"><div class="ttname"><a href="class_relations_manager.html#a89cf8af20310718e9608672489683779">RelationsManager::getIterator</a></div><div class="ttdeci">Iterator getIterator()</div><div class="ttdoc">Permet d&#39;obtenir un iterateur d&#39;un RelationsManager (DP Iterator) </div><div class="ttdef"><b>Definition:</b> relation.h:232</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré le Dimanche 11 Juin 2017 01:08:14 pour PluriNotes par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

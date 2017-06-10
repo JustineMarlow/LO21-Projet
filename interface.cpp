@@ -3,6 +3,14 @@
 #include<QGroupBox>
 #include<QFormLayout>
 
+/**
+ * \file      interface.cpp
+ * \brief     Définit les méthodes relatives à l'interface de l'application.
+ *
+ * \details    Définition des constructeurs des fenêtres principale & secondaire ainsi que toutes les méthodes qui y sont
+ * nécessaires, et l'ensemble des slots nécessaires au fonctionnement de l'application.
+ */
+
 //=============================FENÊTRE PRINCIPALE======================================
 
 VuePrincipale& VuePrincipale::getInstance(Note* n){

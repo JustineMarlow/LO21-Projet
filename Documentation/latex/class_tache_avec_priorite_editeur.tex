@@ -1,0 +1,81 @@
+\hypertarget{class_tache_avec_priorite_editeur}{\section{Référence de la classe Tache\-Avec\-Priorite\-Editeur}
+\label{class_tache_avec_priorite_editeur}\index{Tache\-Avec\-Priorite\-Editeur@{Tache\-Avec\-Priorite\-Editeur}}
+}
+
+
+Permet de visualiser et modifier les tâches avec priorité (interface).  
+
+
+
+
+{\ttfamily \#include $<$noteediteur.\-h$>$}
+
+Graphe d'héritage de Tache\-Avec\-Priorite\-Editeur\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_tache_avec_priorite_editeur}
+\end{center}
+\end{figure}
+\subsection*{Connecteurs publics}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_avec_priorite_editeur_a46fbeac1f204d539c7690fc1e523e53a}{void \hyperlink{class_tache_avec_priorite_editeur_a46fbeac1f204d539c7690fc1e523e53a}{extensionsave} ()}\label{class_tache_avec_priorite_editeur_a46fbeac1f204d539c7690fc1e523e53a}
+
+\begin{DoxyCompactList}\small\item\em Définit la sauvegarde selon la sous-\/classe de note (appelée par \hyperlink{class_note_editeur_a605b1bca885c25460cb7d8863d1f3d03}{save()}) \end{DoxyCompactList}\item 
+\hypertarget{class_tache_avec_priorite_editeur_a964d98a080a52565eea17d24db923b1e}{void \hyperlink{class_tache_avec_priorite_editeur_a964d98a080a52565eea17d24db923b1e}{extensionsetasactual} ()}\label{class_tache_avec_priorite_editeur_a964d98a080a52565eea17d24db923b1e}
+
+\begin{DoxyCompactList}\small\item\em Définit l'actualisation selon la sous-\/classe de la note (appelée par \hyperlink{class_note_editeur_a857f285628a0b7dcb6a69b18c977aa71}{set\-As\-Actual()}) \end{DoxyCompactList}\item 
+\hypertarget{class_tache_avec_priorite_editeur_a79a74f81dcdff4b9756a6f35acdc9f8d}{void \hyperlink{class_tache_avec_priorite_editeur_a79a74f81dcdff4b9756a6f35acdc9f8d}{create} ()}\label{class_tache_avec_priorite_editeur_a79a74f81dcdff4b9756a6f35acdc9f8d}
+
+\begin{DoxyCompactList}\small\item\em Création d'un nouvel objet \hyperlink{class_tache_avec_priorite}{Tache\-Avec\-Priorite} depuis le tache\-Avec\-Priorite\-Editeur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tache_avec_priorite_editeur_a5d207061600f11907082581cd020c82c}{Tache\-Avec\-Priorite\-Editeur} (\hyperlink{class_tache_avec_priorite}{Tache\-Avec\-Priorite} \&t, Q\-Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\hypertarget{class_tache_avec_priorite_editeur_ace0204057380e9e2b18c0ef596170b7c}{\hyperlink{class_tache_avec_priorite_editeur_ace0204057380e9e2b18c0ef596170b7c}{Tache\-Avec\-Priorite\-Editeur} (Q\-Widget $\ast$parent=0)}\label{class_tache_avec_priorite_editeur_ace0204057380e9e2b18c0ef596170b7c}
+
+\begin{DoxyCompactList}\small\item\em Surcharge de constructeur si on n'a pas de tâche à afficher. \end{DoxyCompactList}\item 
+\hypertarget{class_tache_avec_priorite_editeur_ac9c6bc28584818776a496c2b6b9f439f}{void \hyperlink{class_tache_avec_priorite_editeur_ac9c6bc28584818776a496c2b6b9f439f}{blockall} ()}\label{class_tache_avec_priorite_editeur_ac9c6bc28584818776a496c2b6b9f439f}
+
+\begin{DoxyCompactList}\small\item\em Permet d'interdire toute action à l'utilisateur (désactive tous les boutons) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_avec_priorite_editeur_a80548075d80a92aced5995df672c1b32}{Q\-Label $\ast$ {\bfseries priorite1}}\label{class_tache_avec_priorite_editeur_a80548075d80a92aced5995df672c1b32}
+
+\item 
+\hypertarget{class_tache_avec_priorite_editeur_a7019d322118bbbd47de8b7bec401779a}{Q\-Spin\-Box $\ast$ {\bfseries priorite}}\label{class_tache_avec_priorite_editeur_a7019d322118bbbd47de8b7bec401779a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Permet de visualiser et modifier les tâches avec priorité (interface). 
+
+Classe qui est par la suite utilisée pour réaliser l'ensemble de l'interface graphiue (\hyperlink{interface_8h}{interface.\-h}). 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_tache_avec_priorite_editeur_a5d207061600f11907082581cd020c82c}{\index{Tache\-Avec\-Priorite\-Editeur@{Tache\-Avec\-Priorite\-Editeur}!Tache\-Avec\-Priorite\-Editeur@{Tache\-Avec\-Priorite\-Editeur}}
+\index{Tache\-Avec\-Priorite\-Editeur@{Tache\-Avec\-Priorite\-Editeur}!TacheAvecPrioriteEditeur@{Tache\-Avec\-Priorite\-Editeur}}
+\subsubsection[{Tache\-Avec\-Priorite\-Editeur}]{\setlength{\rightskip}{0pt plus 5cm}Tache\-Avec\-Priorite\-Editeur\-::\-Tache\-Avec\-Priorite\-Editeur (
+\begin{DoxyParamCaption}
+\item[{{\bf Tache\-Avec\-Priorite} \&}]{t, }
+\item[{Q\-Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{class_tache_avec_priorite_editeur_a5d207061600f11907082581cd020c82c}
+
+
+Constructeur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t} & Tâche à afficher \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{noteediteur_8h}{noteediteur.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/noteediteur.\-cpp\end{DoxyCompactItemize}

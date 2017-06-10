@@ -6,6 +6,12 @@
 #include <typeinfo>
 #include <QDebug>
 
+/**
+ * \file      relation.cpp
+ * \brief     Définit les méthodes relatives aux classes Relation & RelationsManager.
+
+ */
+
 /*============================================================== Relation =============================================================================================*/
 //destructeur
 Relation::~Relation(){

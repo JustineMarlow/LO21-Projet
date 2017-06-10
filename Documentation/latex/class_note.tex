@@ -1,0 +1,253 @@
+\hypertarget{class_note}{\section{Référence de la classe Note}
+\label{class_note}\index{Note@{Note}}
+}
+
+
+Classe abstraite représentant une note.  
+
+
+
+
+{\ttfamily \#include $<$note.\-h$>$}
+
+Graphe d'héritage de Note\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_note}
+\end{center}
+\end{figure}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+Q\-String \hyperlink{class_note_a880a9b4330b29c7264e87a346d712ebc}{get\-Id} () const 
+\begin{DoxyCompactList}\small\item\em get\-Id \end{DoxyCompactList}\item 
+Q\-String \hyperlink{class_note_ad4e78b2146a88e8b5a253b9eeb496936}{get\-Titre} () const 
+\begin{DoxyCompactList}\small\item\em get\-Titre \end{DoxyCompactList}\item 
+Q\-Date \hyperlink{class_note_a23a61ddfcb6a5726cf43a40fb88d16aa}{get\-Creation} () const 
+\begin{DoxyCompactList}\small\item\em get\-Creation \end{DoxyCompactList}\item 
+Q\-Date \hyperlink{class_note_a3ff7b051ab009bf412b1c9ff99a62b27}{get\-Modification} () const 
+\begin{DoxyCompactList}\small\item\em get\-Modification \end{DoxyCompactList}\item 
+Note\-Etat \hyperlink{class_note_a55cd34f072d21f3b2f69133b2b6c5bf2}{get\-Etat} () const 
+\begin{DoxyCompactList}\small\item\em get\-Etat \end{DoxyCompactList}\item 
+bool \hyperlink{class_note_a55db384b5684c5d8dc6795424eda1d1a}{Is\-Last} () const 
+\begin{DoxyCompactList}\small\item\em Is\-Last. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_note_a5a9830e6d44f86962ea54ee94480aa17}{get\-Version} () const 
+\begin{DoxyCompactList}\small\item\em get\-Version \end{DoxyCompactList}\item 
+void \hyperlink{class_note_acba9b05c587ff6a660a9b5c46614acf3}{set\-Last} (const bool b)
+\begin{DoxyCompactList}\small\item\em permet de définir une version comme dernière ou pas. \end{DoxyCompactList}\item 
+void \hyperlink{class_note_af4f439239e2f2dcdc9fb0abdac2bd67a}{set\-Etat} (Note\-Etat e)
+\begin{DoxyCompactList}\small\item\em Permet de modifier l'état de la note. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres protégées}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_note_a1a696a0d5858ed217abc94a4c5640b7d}{Note} (Q\-String id, Q\-String t, Q\-Date date\-\_\-c=Q\-Date\-::current\-Date(), Q\-Date date\-\_\-m=Q\-Date\-::current\-Date(), bool last=true, unsigned int v=1, Note\-Etat e=active)
+\begin{DoxyCompactList}\small\item\em Constructeur d'une note. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_note_aacc7ebfda42d05b0dc5805ce9a9bcf73}{Q\-String {\bfseries identificateur}}\label{class_note_aacc7ebfda42d05b0dc5805ce9a9bcf73}
+
+\item 
+\hypertarget{class_note_a4f3aceb1ee03caa1f37a08880fe44f47}{Q\-String {\bfseries titre}}\label{class_note_a4f3aceb1ee03caa1f37a08880fe44f47}
+
+\item 
+\hypertarget{class_note_aa66b1aada95c18e3072dfcadb5137b20}{Q\-Date {\bfseries date\-\_\-creation}}\label{class_note_aa66b1aada95c18e3072dfcadb5137b20}
+
+\item 
+\hypertarget{class_note_a32dc337cdff9731eda7135426f87caf2}{Q\-Date {\bfseries date\-\_\-\-Lastmodification}}\label{class_note_a32dc337cdff9731eda7135426f87caf2}
+
+\item 
+\hypertarget{class_note_a081a30b2091a39a2c1a9da70a48df736}{bool {\bfseries is\-Last\-Version}}\label{class_note_a081a30b2091a39a2c1a9da70a48df736}
+
+\item 
+\hypertarget{class_note_a4d40f017d6f24cad4ae1f7c8046234df}{unsigned int {\bfseries version}}\label{class_note_a4d40f017d6f24cad4ae1f7c8046234df}
+
+\item 
+\hypertarget{class_note_ae81f84fc605e97173019e668744be3eb}{Note\-Etat {\bfseries etat}}\label{class_note_ae81f84fc605e97173019e668744be3eb}
+
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_note_a017a5144e8cfa6087305055ab968ef41}{class {\bfseries Notes\-Manager}}\label{class_note_a017a5144e8cfa6087305055ab968ef41}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Classe abstraite représentant une note. 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_note_a1a696a0d5858ed217abc94a4c5640b7d}{\index{Note@{Note}!Note@{Note}}
+\index{Note@{Note}!Note@{Note}}
+\subsubsection[{Note}]{\setlength{\rightskip}{0pt plus 5cm}Note\-::\-Note (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{id, }
+\item[{Q\-String}]{t, }
+\item[{Q\-Date}]{date\-\_\-c = {\ttfamily QDate\-:\-:currentDate()}, }
+\item[{Q\-Date}]{date\-\_\-m = {\ttfamily QDate\-:\-:currentDate()}, }
+\item[{bool}]{last = {\ttfamily true}, }
+\item[{unsigned int}]{v = {\ttfamily 1}, }
+\item[{Note\-Etat}]{e = {\ttfamily active}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_note_a1a696a0d5858ed217abc94a4c5640b7d}
+
+
+Constructeur d'une note. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id} & L'identificateur de la note \\
+\hline
+{\em t} & Le titre de la note \\
+\hline
+{\em date\-\_\-c} & La date de création \\
+\hline
+{\em date\-\_\-m} & La date de dernière modification \\
+\hline
+{\em last} & Indique si c'est la dernière version de la note ou pas \\
+\hline
+{\em v} & Version de la note \\
+\hline
+{\em e} & Etat de la note (active, archivée ou corbeille). \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_note_a23a61ddfcb6a5726cf43a40fb88d16aa}{\index{Note@{Note}!get\-Creation@{get\-Creation}}
+\index{get\-Creation@{get\-Creation}!Note@{Note}}
+\subsubsection[{get\-Creation}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Date Note\-::get\-Creation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_note_a23a61ddfcb6a5726cf43a40fb88d16aa}
+
+
+get\-Creation 
+
+\begin{DoxyReturn}{Renvoie}
+Retourne la date de création de la note 
+\end{DoxyReturn}
+\hypertarget{class_note_a55cd34f072d21f3b2f69133b2b6c5bf2}{\index{Note@{Note}!get\-Etat@{get\-Etat}}
+\index{get\-Etat@{get\-Etat}!Note@{Note}}
+\subsubsection[{get\-Etat}]{\setlength{\rightskip}{0pt plus 5cm}Note\-Etat Note\-::get\-Etat (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_note_a55cd34f072d21f3b2f69133b2b6c5bf2}
+
+
+get\-Etat 
+
+\begin{DoxyReturn}{Renvoie}
+Retourne l'état de la note (active, archivée ou corbeille) 
+\end{DoxyReturn}
+\hypertarget{class_note_a880a9b4330b29c7264e87a346d712ebc}{\index{Note@{Note}!get\-Id@{get\-Id}}
+\index{get\-Id@{get\-Id}!Note@{Note}}
+\subsubsection[{get\-Id}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Note\-::get\-Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_note_a880a9b4330b29c7264e87a346d712ebc}
+
+
+get\-Id 
+
+\begin{DoxyReturn}{Renvoie}
+Retourne l'id de la note 
+\end{DoxyReturn}
+\hypertarget{class_note_a3ff7b051ab009bf412b1c9ff99a62b27}{\index{Note@{Note}!get\-Modification@{get\-Modification}}
+\index{get\-Modification@{get\-Modification}!Note@{Note}}
+\subsubsection[{get\-Modification}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Date Note\-::get\-Modification (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_note_a3ff7b051ab009bf412b1c9ff99a62b27}
+
+
+get\-Modification 
+
+\begin{DoxyReturn}{Renvoie}
+Retourne la date de dernière modification de la note. 
+\end{DoxyReturn}
+\hypertarget{class_note_ad4e78b2146a88e8b5a253b9eeb496936}{\index{Note@{Note}!get\-Titre@{get\-Titre}}
+\index{get\-Titre@{get\-Titre}!Note@{Note}}
+\subsubsection[{get\-Titre}]{\setlength{\rightskip}{0pt plus 5cm}Q\-String Note\-::get\-Titre (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_note_ad4e78b2146a88e8b5a253b9eeb496936}
+
+
+get\-Titre 
+
+\begin{DoxyReturn}{Renvoie}
+Retourne le titre de la note 
+\end{DoxyReturn}
+\hypertarget{class_note_a5a9830e6d44f86962ea54ee94480aa17}{\index{Note@{Note}!get\-Version@{get\-Version}}
+\index{get\-Version@{get\-Version}!Note@{Note}}
+\subsubsection[{get\-Version}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Note\-::get\-Version (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_note_a5a9830e6d44f86962ea54ee94480aa17}
+
+
+get\-Version 
+
+\begin{DoxyReturn}{Renvoie}
+Retourne le numéro de la version 
+\end{DoxyReturn}
+\hypertarget{class_note_a55db384b5684c5d8dc6795424eda1d1a}{\index{Note@{Note}!Is\-Last@{Is\-Last}}
+\index{Is\-Last@{Is\-Last}!Note@{Note}}
+\subsubsection[{Is\-Last}]{\setlength{\rightskip}{0pt plus 5cm}bool Note\-::\-Is\-Last (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_note_a55db384b5684c5d8dc6795424eda1d1a}
+
+
+Is\-Last. 
+
+\begin{DoxyReturn}{Renvoie}
+True si c'est la dernière version, false sinon. 
+\end{DoxyReturn}
+\hypertarget{class_note_af4f439239e2f2dcdc9fb0abdac2bd67a}{\index{Note@{Note}!set\-Etat@{set\-Etat}}
+\index{set\-Etat@{set\-Etat}!Note@{Note}}
+\subsubsection[{set\-Etat}]{\setlength{\rightskip}{0pt plus 5cm}void Note\-::set\-Etat (
+\begin{DoxyParamCaption}
+\item[{Note\-Etat}]{e}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_note_af4f439239e2f2dcdc9fb0abdac2bd67a}
+
+
+Permet de modifier l'état de la note. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em e} & Nouvel état de la note (active, archivée ou corbeille). \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_note_acba9b05c587ff6a660a9b5c46614acf3}{\index{Note@{Note}!set\-Last@{set\-Last}}
+\index{set\-Last@{set\-Last}!Note@{Note}}
+\subsubsection[{set\-Last}]{\setlength{\rightskip}{0pt plus 5cm}void Note\-::set\-Last (
+\begin{DoxyParamCaption}
+\item[{const bool}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_note_acba9b05c587ff6a660a9b5c46614acf3}
+
+
+permet de définir une version comme dernière ou pas. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em b} & Vrai (si on veut définir la version comme dernière version) ou faux sinon. \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8h}{note.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8cpp}{note.\-cpp}\end{DoxyCompactItemize}

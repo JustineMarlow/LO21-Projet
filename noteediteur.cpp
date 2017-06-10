@@ -3,6 +3,12 @@
 #include <QDebug>
 #include <typeinfo>
 
+
+/**
+ * \file     notediteur.cpp
+ * \brief     Définit les méthodes relatives à noteEditeur et ses descendants.
+ */
+
 /*============================================================== NoteEditeur ==========================================================================================*/
 //NoteEditeur d'une note existante
 NoteEditeur::NoteEditeur(Note &n, QWidget* parent):QWidget(parent),note(&n)

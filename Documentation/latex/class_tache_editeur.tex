@@ -1,0 +1,102 @@
+\hypertarget{class_tache_editeur}{\section{Référence de la classe Tache\-Editeur}
+\label{class_tache_editeur}\index{Tache\-Editeur@{Tache\-Editeur}}
+}
+
+
+Permet de visualiser et modifier les tâches sans deadline ni priorité (interface).  
+
+
+
+
+{\ttfamily \#include $<$noteediteur.\-h$>$}
+
+Graphe d'héritage de Tache\-Editeur\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_tache_editeur}
+\end{center}
+\end{figure}
+\subsection*{Connecteurs publics}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_editeur_acfa771785cdea091ca5c03288c79c51a}{void \hyperlink{class_tache_editeur_acfa771785cdea091ca5c03288c79c51a}{extensionsave} ()}\label{class_tache_editeur_acfa771785cdea091ca5c03288c79c51a}
+
+\begin{DoxyCompactList}\small\item\em Définit la sauvegarde selon la sous-\/classe de note (appelée par \hyperlink{class_note_editeur_a605b1bca885c25460cb7d8863d1f3d03}{save()}) \end{DoxyCompactList}\item 
+\hypertarget{class_tache_editeur_aed4f893926b463e92086aa8553bd5d82}{void \hyperlink{class_tache_editeur_aed4f893926b463e92086aa8553bd5d82}{extensionsetasactual} ()}\label{class_tache_editeur_aed4f893926b463e92086aa8553bd5d82}
+
+\begin{DoxyCompactList}\small\item\em Définit l'actualisation selon la sous-\/classe de la note (appelée par \hyperlink{class_note_editeur_a857f285628a0b7dcb6a69b18c977aa71}{set\-As\-Actual()}) \end{DoxyCompactList}\item 
+\hypertarget{class_tache_editeur_a22a45dfa8b15b5b57076b01bf1a73640}{void \hyperlink{class_tache_editeur_a22a45dfa8b15b5b57076b01bf1a73640}{create} ()}\label{class_tache_editeur_a22a45dfa8b15b5b57076b01bf1a73640}
+
+\begin{DoxyCompactList}\small\item\em Création d'un nouvel objet tâche depuis le \hyperlink{class_tache_editeur}{Tache\-Editeur}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tache_editeur_a0a8293ff8440d43d354e87445518fe7b}{Tache\-Editeur} (\hyperlink{class_tache}{Tache} \&t, Q\-Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\hypertarget{class_tache_editeur_aaa74a2bfef09f536de419b3ac47d91e5}{\hyperlink{class_tache_editeur_aaa74a2bfef09f536de419b3ac47d91e5}{Tache\-Editeur} (Q\-Widget $\ast$parent=0)}\label{class_tache_editeur_aaa74a2bfef09f536de419b3ac47d91e5}
+
+\begin{DoxyCompactList}\small\item\em Surcharge de constructeur si on n'a pas de tâche à afficher. \end{DoxyCompactList}\item 
+\hypertarget{class_tache_editeur_ab46e82dc71f4093879dd08b9012f98c7}{Q\-Radio\-Button $\ast$ \hyperlink{class_tache_editeur_ab46e82dc71f4093879dd08b9012f98c7}{get\-Check\-\_\-attente} ()}\label{class_tache_editeur_ab46e82dc71f4093879dd08b9012f98c7}
+
+\begin{DoxyCompactList}\small\item\em Récupère le bouton radio \char`\"{}tâche en attente\char`\"{}. \end{DoxyCompactList}\item 
+\hypertarget{class_tache_editeur_a5a00a29449595fb0c38d5d8eee2500e5}{Q\-Radio\-Button $\ast$ \hyperlink{class_tache_editeur_a5a00a29449595fb0c38d5d8eee2500e5}{get\-Check\-\_\-cours} ()}\label{class_tache_editeur_a5a00a29449595fb0c38d5d8eee2500e5}
+
+\begin{DoxyCompactList}\small\item\em Récupère le bouton radio \char`\"{}tâche en cours\char`\"{}. \end{DoxyCompactList}\item 
+\hypertarget{class_tache_editeur_a898e7562d643a300fa85113baed41a5b}{Q\-Radio\-Button $\ast$ \hyperlink{class_tache_editeur_a898e7562d643a300fa85113baed41a5b}{get\-Check\-\_\-terminee} ()}\label{class_tache_editeur_a898e7562d643a300fa85113baed41a5b}
+
+\begin{DoxyCompactList}\small\item\em Récupère le bouton radio \char`\"{}tâche terminée\char`\"{}. \end{DoxyCompactList}\item 
+\hypertarget{class_tache_editeur_acfec99ee9c6b73686543e1c24a87fd65}{Q\-Text\-Edit $\ast$ \hyperlink{class_tache_editeur_acfec99ee9c6b73686543e1c24a87fd65}{get\-Text} ()}\label{class_tache_editeur_acfec99ee9c6b73686543e1c24a87fd65}
+
+\begin{DoxyCompactList}\small\item\em Récupère le contenu de la tâche. \end{DoxyCompactList}\item 
+\hypertarget{class_tache_editeur_a1e77083a97efcfb689268852d32fcdb4}{void \hyperlink{class_tache_editeur_a1e77083a97efcfb689268852d32fcdb4}{blockall} ()}\label{class_tache_editeur_a1e77083a97efcfb689268852d32fcdb4}
+
+\begin{DoxyCompactList}\small\item\em Permet d'interdire toute action à l'utilisateur (désactive tous les boutons) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_editeur_a9e01c2cf0f6512e5c0b879b600f69664}{Q\-Label $\ast$ {\bfseries text1}}\label{class_tache_editeur_a9e01c2cf0f6512e5c0b879b600f69664}
+
+\item 
+\hypertarget{class_tache_editeur_acdd7ae1e4b7476e8713ecb7a0d02b5cb}{Q\-Text\-Edit $\ast$ {\bfseries text}}\label{class_tache_editeur_acdd7ae1e4b7476e8713ecb7a0d02b5cb}
+
+\item 
+\hypertarget{class_tache_editeur_a010ba6dd713c2c7ad5df167bf439568a}{Q\-Radio\-Button $\ast$ {\bfseries check\-\_\-attente}}\label{class_tache_editeur_a010ba6dd713c2c7ad5df167bf439568a}
+
+\item 
+\hypertarget{class_tache_editeur_a3bbbd65e667e6e0cd7ddaea05d3961a8}{Q\-Radio\-Button $\ast$ {\bfseries check\-\_\-cours}}\label{class_tache_editeur_a3bbbd65e667e6e0cd7ddaea05d3961a8}
+
+\item 
+\hypertarget{class_tache_editeur_a6b4498fa419389c0c81c8d91f31e02a0}{Q\-Radio\-Button $\ast$ {\bfseries check\-\_\-terminee}}\label{class_tache_editeur_a6b4498fa419389c0c81c8d91f31e02a0}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Permet de visualiser et modifier les tâches sans deadline ni priorité (interface). 
+
+Classe qui est par la suite utilisée pour réaliser l'ensemble de l'interface graphiue (\hyperlink{interface_8h}{interface.\-h}). 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_tache_editeur_a0a8293ff8440d43d354e87445518fe7b}{\index{Tache\-Editeur@{Tache\-Editeur}!Tache\-Editeur@{Tache\-Editeur}}
+\index{Tache\-Editeur@{Tache\-Editeur}!TacheEditeur@{Tache\-Editeur}}
+\subsubsection[{Tache\-Editeur}]{\setlength{\rightskip}{0pt plus 5cm}Tache\-Editeur\-::\-Tache\-Editeur (
+\begin{DoxyParamCaption}
+\item[{{\bf Tache} \&}]{t, }
+\item[{Q\-Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{class_tache_editeur_a0a8293ff8440d43d354e87445518fe7b}
+
+
+Constructeur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t} & Tâche à afficher \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{noteediteur_8h}{noteediteur.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/noteediteur.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,81 @@
+\hypertarget{class_tache_avec_deadline_editeur}{\section{Référence de la classe Tache\-Avec\-Deadline\-Editeur}
+\label{class_tache_avec_deadline_editeur}\index{Tache\-Avec\-Deadline\-Editeur@{Tache\-Avec\-Deadline\-Editeur}}
+}
+
+
+Permet de visualiser et modifier les tâches avec deadline (interface).  
+
+
+
+
+{\ttfamily \#include $<$noteediteur.\-h$>$}
+
+Graphe d'héritage de Tache\-Avec\-Deadline\-Editeur\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_tache_avec_deadline_editeur}
+\end{center}
+\end{figure}
+\subsection*{Connecteurs publics}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_avec_deadline_editeur_adba63da747f669eb68f1933fb0c442b2}{void \hyperlink{class_tache_avec_deadline_editeur_adba63da747f669eb68f1933fb0c442b2}{extensionsave} ()}\label{class_tache_avec_deadline_editeur_adba63da747f669eb68f1933fb0c442b2}
+
+\begin{DoxyCompactList}\small\item\em Définit la sauvegarde selon la sous-\/classe de note (appelée par \hyperlink{class_note_editeur_a605b1bca885c25460cb7d8863d1f3d03}{save()}) \end{DoxyCompactList}\item 
+\hypertarget{class_tache_avec_deadline_editeur_a65604ab58431d7c791e6b39ea005a5ab}{void \hyperlink{class_tache_avec_deadline_editeur_a65604ab58431d7c791e6b39ea005a5ab}{extensionsetasactual} ()}\label{class_tache_avec_deadline_editeur_a65604ab58431d7c791e6b39ea005a5ab}
+
+\begin{DoxyCompactList}\small\item\em Définit l'actualisation selon la sous-\/classe de la note (appelée par \hyperlink{class_note_editeur_a857f285628a0b7dcb6a69b18c977aa71}{set\-As\-Actual()}) \end{DoxyCompactList}\item 
+\hypertarget{class_tache_avec_deadline_editeur_a4a72b30f20d2059f38ba72376e94437e}{void \hyperlink{class_tache_avec_deadline_editeur_a4a72b30f20d2059f38ba72376e94437e}{create} ()}\label{class_tache_avec_deadline_editeur_a4a72b30f20d2059f38ba72376e94437e}
+
+\begin{DoxyCompactList}\small\item\em Création d'un nouvel objet tache\-Avec\-Deadline depuis l'tache\-Avec\-Deadline\-Editeur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_tache_avec_deadline_editeur_aa56d0511ae2f2ca9ae20881df4852ed5}{Tache\-Avec\-Deadline\-Editeur} (\hyperlink{class_tache_avec_deadline}{Tache\-Avec\-Deadline} \&t, Q\-Widget $\ast$parent=0)
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\hypertarget{class_tache_avec_deadline_editeur_ab851241684748660a8eb640e176539e0}{\hyperlink{class_tache_avec_deadline_editeur_ab851241684748660a8eb640e176539e0}{Tache\-Avec\-Deadline\-Editeur} (Q\-Widget $\ast$parent=0)}\label{class_tache_avec_deadline_editeur_ab851241684748660a8eb640e176539e0}
+
+\begin{DoxyCompactList}\small\item\em Surcharge de constructeur si on n'a pas de tâche à afficher. \end{DoxyCompactList}\item 
+\hypertarget{class_tache_avec_deadline_editeur_a6846c1e2cb58616ee11906fec57374ad}{void \hyperlink{class_tache_avec_deadline_editeur_a6846c1e2cb58616ee11906fec57374ad}{blockall} ()}\label{class_tache_avec_deadline_editeur_a6846c1e2cb58616ee11906fec57374ad}
+
+\begin{DoxyCompactList}\small\item\em Permet d'interdire toute action à l'utilisateur (désactive tous les boutons) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs protégés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_tache_avec_deadline_editeur_a350f2f88b99289cef5d815a855364718}{Q\-Label $\ast$ {\bfseries deadline1}}\label{class_tache_avec_deadline_editeur_a350f2f88b99289cef5d815a855364718}
+
+\item 
+\hypertarget{class_tache_avec_deadline_editeur_ab5299170c8c8cd9fa705e1c6d28fc607}{Q\-Date\-Edit $\ast$ {\bfseries deadline}}\label{class_tache_avec_deadline_editeur_ab5299170c8c8cd9fa705e1c6d28fc607}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Permet de visualiser et modifier les tâches avec deadline (interface). 
+
+Classe qui est par la suite utilisée pour réaliser l'ensemble de l'interface graphiue (\hyperlink{interface_8h}{interface.\-h}). 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_tache_avec_deadline_editeur_aa56d0511ae2f2ca9ae20881df4852ed5}{\index{Tache\-Avec\-Deadline\-Editeur@{Tache\-Avec\-Deadline\-Editeur}!Tache\-Avec\-Deadline\-Editeur@{Tache\-Avec\-Deadline\-Editeur}}
+\index{Tache\-Avec\-Deadline\-Editeur@{Tache\-Avec\-Deadline\-Editeur}!TacheAvecDeadlineEditeur@{Tache\-Avec\-Deadline\-Editeur}}
+\subsubsection[{Tache\-Avec\-Deadline\-Editeur}]{\setlength{\rightskip}{0pt plus 5cm}Tache\-Avec\-Deadline\-Editeur\-::\-Tache\-Avec\-Deadline\-Editeur (
+\begin{DoxyParamCaption}
+\item[{{\bf Tache\-Avec\-Deadline} \&}]{t, }
+\item[{Q\-Widget $\ast$}]{parent = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{class_tache_avec_deadline_editeur_aa56d0511ae2f2ca9ae20881df4852ed5}
+
+
+Constructeur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t} & Tâche à afficher \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{noteediteur_8h}{noteediteur.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/noteediteur.\-cpp\end{DoxyCompactItemize}

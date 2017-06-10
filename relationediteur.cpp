@@ -1,6 +1,11 @@
 #include "relation.h"
 #include "relationediteur.h"
 #include <QDebug>
+/**
+ * \file      interface.cpp
+ * \brief     Définit les méthodes relatives au RelationEditeur.
+ */
+
 
 //RelationEdieur d'une relation existante
 RelationEditeur::RelationEditeur(Relation& r, QWidget* parent):QWidget(parent),relation(&r)

@@ -1,0 +1,547 @@
+\hypertarget{class_notes_manager}{\section{Référence de la classe Notes\-Manager}
+\label{class_notes_manager}\index{Notes\-Manager@{Notes\-Manager}}
+}
+
+
+Classe qui permet de gérer l'ensemble des notes.  
+
+
+
+
+{\ttfamily \#include $<$note.\-h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_notes_manager_1_1_iterator}{Iterator}
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_notes_manager_a02dce4b055576ccc567fee8db07191dd}{add\-Note} (\hyperlink{class_note}{Note} $\ast$n)
+\begin{DoxyCompactList}\small\item\em Ajoute une nouvelle note au \hyperlink{class_notes_manager}{Notes\-Manager}. \end{DoxyCompactList}\item 
+\hypertarget{class_notes_manager_ad4fb2de50633dd25b71024343341cd64}{void \hyperlink{class_notes_manager_ad4fb2de50633dd25b71024343341cd64}{load} ()}\label{class_notes_manager_ad4fb2de50633dd25b71024343341cd64}
+
+\begin{DoxyCompactList}\small\item\em Permet de charger un fichier de Notes. \end{DoxyCompactList}\item 
+\hypertarget{class_notes_manager_a96c34db9c22dcdde2dfd92286de037e0}{void \hyperlink{class_notes_manager_a96c34db9c22dcdde2dfd92286de037e0}{save} () const }\label{class_notes_manager_a96c34db9c22dcdde2dfd92286de037e0}
+
+\begin{DoxyCompactList}\small\item\em permet de sauvegarder les notes dans le fichier \end{DoxyCompactList}\item 
+void \hyperlink{class_notes_manager_ad91ac409c3c42399e702a0863d4274b1}{set\-Filename} (const Q\-String \&f)
+\begin{DoxyCompactList}\small\item\em Permet de modifier chemin du fichier à ouvrir. \end{DoxyCompactList}\item 
+void \hyperlink{class_notes_manager_a7a35eea20ba64e4b773384ecd322a9f0}{set\-Vidage} (bool b)
+\begin{DoxyCompactList}\small\item\em Permet de gérer le vidage automatique de la corbeille. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{class_notes_manager_aa91d616beba1cde35545beb5db52df10}{get\-Nb\-Notes} () const 
+\begin{DoxyCompactList}\small\item\em get\-Nb\-Notes \end{DoxyCompactList}\item 
+\hyperlink{class_note}{Note} \& \hyperlink{class_notes_manager_a9c401bfe7c91ab37a7c8c4db398e92ff}{get\-Note} (const Q\-String \&id)
+\begin{DoxyCompactList}\small\item\em Permet d'accéder à une note existante. \end{DoxyCompactList}\item 
+\hyperlink{class_note}{Note} \& \hyperlink{class_notes_manager_ae91fa3093de4757c8ddfcdafdd456d96}{get\-Version\-Note} (const Q\-String \&id, unsigned int v)
+\begin{DoxyCompactList}\small\item\em Permet d'accéder à une note existante dans une certaine version. \end{DoxyCompactList}\item 
+void \hyperlink{class_notes_manager_a7d21acc4089a57251fc1755f2a039356}{add\-Article} (const Q\-String \&id, const Q\-String \&ti, const Q\-String \&te, const Q\-Date date\-\_\-c, const Q\-Date date\-\_\-m, unsigned int v, bool last, Note\-Etat etat)
+\begin{DoxyCompactList}\small\item\em Permet la création d'un article, qui sera ajouté au manager. \end{DoxyCompactList}\item 
+void \hyperlink{class_notes_manager_a6fd74614ecebdd7ca8c62abce57ed09b}{add\-Tache} (const Q\-String \&id, const Q\-String \&t, const Q\-String \&text, const Q\-Date date\-\_\-c, const Q\-Date date\-\_\-m, unsigned int v, bool last, Note\-Etat etat, Tache\-Statut st)
+\begin{DoxyCompactList}\small\item\em Permet la création d'une tâche sans deadline ni priorité, qui sera ajouté au manager. \end{DoxyCompactList}\item 
+void \hyperlink{class_notes_manager_ad4826ba011a506bf26d2cfc10b5d6669}{add\-Tache\-Avec\-Priorite} (const Q\-String \&id, const Q\-String \&t, const Q\-String \&text, const Q\-Date date\-\_\-c, const Q\-Date date\-\_\-m, unsigned int v, bool last, Note\-Etat etat, Tache\-Statut st, unsigned int priorite)
+\begin{DoxyCompactList}\small\item\em Permet la création d'une tâche avec priorité, qui sera ajouté au manager. \end{DoxyCompactList}\item 
+void \hyperlink{class_notes_manager_add166f20b086988d3da1b09ca86bd40f}{add\-Tache\-Avec\-Deadline} (const Q\-String \&id, const Q\-String \&t, const Q\-String \&text, const Q\-Date date\-\_\-c, const Q\-Date date\-\_\-m, unsigned int v, bool last, Note\-Etat etat, Tache\-Statut st, const Q\-Date deadline)
+\begin{DoxyCompactList}\small\item\em Permet la création d'une tâche avec priorité, qui sera ajouté au manager. \end{DoxyCompactList}\item 
+void \hyperlink{class_notes_manager_aa0adc74c7a41690ad1a361a4f744c353}{add\-Fichier} (const Q\-String \&id, const Q\-String \&ti, const Q\-String \&descr, const Q\-Date date\-\_\-c, const Q\-Date date\-\_\-m, unsigned int v, bool last, Note\-Etat etat, const Q\-String \&filename, Fichier\-Type ty)
+\begin{DoxyCompactList}\small\item\em Permet la création d'un fichier, qui sera ajouté au manager. \end{DoxyCompactList}\item 
+void \hyperlink{class_notes_manager_a29d032aae2c5c2a95bbd11c8345f05e5}{delete\-Note} (\hyperlink{class_note}{Note} \&n)
+\begin{DoxyCompactList}\small\item\em Supprime une note. \end{DoxyCompactList}\item 
+void \hyperlink{class_notes_manager_a56476e587d2e904ce129483582113bb1}{restore\-Note} (\hyperlink{class_note}{Note} \&n)
+\begin{DoxyCompactList}\small\item\em méthode pour rendre active une note qui avait été archivée \end{DoxyCompactList}\item 
+\hypertarget{class_notes_manager_a624a4f618af06aaad53ed57dd2e924ad}{void \hyperlink{class_notes_manager_a624a4f618af06aaad53ed57dd2e924ad}{vider\-Corbeille} ()}\label{class_notes_manager_a624a4f618af06aaad53ed57dd2e924ad}
+
+\begin{DoxyCompactList}\small\item\em Vide la corbeille. \end{DoxyCompactList}\item 
+void \hyperlink{class_notes_manager_a93df3acfe88c13c3879b252912f9cde0}{check\-\_\-reference} (\hyperlink{class_note}{Note} \&n)
+\begin{DoxyCompactList}\small\item\em Vérifie si la note fait référence à d'autres note. \end{DoxyCompactList}\item 
+void \hyperlink{class_notes_manager_a998acbf3b81291c53d0f9158f18b06b3}{search\-\_\-reference} (\hyperlink{class_note}{Note} \&n, const Q\-String \&texte)
+\begin{DoxyCompactList}\small\item\em Méthode intermédiaire utilisée par \hyperlink{class_notes_manager_a93df3acfe88c13c3879b252912f9cde0}{check\-\_\-reference()} \end{DoxyCompactList}\item 
+\hyperlink{class_notes_manager_1_1_iterator}{Iterator} \hyperlink{class_notes_manager_a4907351a20cc85b1fe0327ac1b15c7da}{get\-Iterator} ()
+\begin{DoxyCompactList}\small\item\em Crée un itérateur de la classe \hyperlink{class_notes_manager}{Notes\-Manager} (D\-P \hyperlink{class_notes_manager_1_1_iterator}{Iterator}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques statiques}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_notes_manager}{Notes\-Manager} \& \hyperlink{class_notes_manager_a7311347da4088a6622955e46d53e7599}{get\-Instance} ()
+\begin{DoxyCompactList}\small\item\em Retourne l'unique objet de la classe \hyperlink{class_notes_manager}{Notes\-Manager}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_notes_manager_ae76158ef3dc4866af94c1e562e9a5213}{Notes\-Manager} ()
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\hyperlink{class_notes_manager_ae5d67a3b447560caf3fe3d5ed497d34f}{Notes\-Manager} (const \hyperlink{class_notes_manager}{Notes\-Manager} \&m)
+\begin{DoxyCompactList}\small\item\em Opérateur de recopie. \end{DoxyCompactList}\item 
+\hyperlink{class_notes_manager}{Notes\-Manager} \hyperlink{class_notes_manager_abb12b467d66f58b3e72729999d6dfd19}{operator=} (const \hyperlink{class_notes_manager}{Notes\-Manager} \&m)
+\begin{DoxyCompactList}\small\item\em Opérateur d'affectation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_notes_manager_a411bfaff16f1b54d5d58470ff2154531}{\hyperlink{class_note}{Note} $\ast$$\ast$ {\bfseries notes}}\label{class_notes_manager_a411bfaff16f1b54d5d58470ff2154531}
+
+\item 
+\hypertarget{class_notes_manager_a0a79a3dc550fd7ac83cef8c6840dedad}{unsigned int {\bfseries nb\-Notes}}\label{class_notes_manager_a0a79a3dc550fd7ac83cef8c6840dedad}
+
+\item 
+\hypertarget{class_notes_manager_a3d542b3a88228e4f0807ac9dcddf59c8}{unsigned int {\bfseries nb\-Max\-Notes}}\label{class_notes_manager_a3d542b3a88228e4f0807ac9dcddf59c8}
+
+\item 
+\hypertarget{class_notes_manager_a0c4a0db9862d63a15921b58def75c2d0}{Q\-String {\bfseries filename}}\label{class_notes_manager_a0c4a0db9862d63a15921b58def75c2d0}
+
+\item 
+\hypertarget{class_notes_manager_a26f936377d1ce00bc2b0aceca8b0569e}{bool {\bfseries is\-Loading}}\label{class_notes_manager_a26f936377d1ce00bc2b0aceca8b0569e}
+
+\item 
+\hypertarget{class_notes_manager_a68bfa57f8484d3a95d29b44dad6a3399}{bool {\bfseries vidage\-\_\-corbeille}}\label{class_notes_manager_a68bfa57f8484d3a95d29b44dad6a3399}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Classe qui permet de gérer l'ensemble des notes. 
+
+La classe stocke l'ensemble des notes, permet leur modification, suppression, ainsi que la création de nouvelles notes. Toute modification/suppression/création de note doit obligatoirement passer par le \hyperlink{class_notes_manager}{Notes\-Manager}. 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_notes_manager_ae76158ef3dc4866af94c1e562e9a5213}{\index{Notes\-Manager@{Notes\-Manager}!Notes\-Manager@{Notes\-Manager}}
+\index{Notes\-Manager@{Notes\-Manager}!NotesManager@{Notes\-Manager}}
+\subsubsection[{Notes\-Manager}]{\setlength{\rightskip}{0pt plus 5cm}Notes\-Manager\-::\-Notes\-Manager (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{class_notes_manager_ae76158ef3dc4866af94c1e562e9a5213}
+
+
+Constructeur. 
+
+En privé pour le D\-P singleton \hypertarget{class_notes_manager_ae5d67a3b447560caf3fe3d5ed497d34f}{\index{Notes\-Manager@{Notes\-Manager}!Notes\-Manager@{Notes\-Manager}}
+\index{Notes\-Manager@{Notes\-Manager}!NotesManager@{Notes\-Manager}}
+\subsubsection[{Notes\-Manager}]{\setlength{\rightskip}{0pt plus 5cm}Notes\-Manager\-::\-Notes\-Manager (
+\begin{DoxyParamCaption}
+\item[{const {\bf Notes\-Manager} \&}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{class_notes_manager_ae5d67a3b447560caf3fe3d5ed497d34f}
+
+
+Opérateur de recopie. 
+
+En privé pour le D\-P singleton 
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_notes_manager_a7d21acc4089a57251fc1755f2a039356}{\index{Notes\-Manager@{Notes\-Manager}!add\-Article@{add\-Article}}
+\index{add\-Article@{add\-Article}!NotesManager@{Notes\-Manager}}
+\subsubsection[{add\-Article}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\-Manager\-::add\-Article (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{id, }
+\item[{const Q\-String \&}]{ti, }
+\item[{const Q\-String \&}]{te, }
+\item[{const Q\-Date}]{date\-\_\-c, }
+\item[{const Q\-Date}]{date\-\_\-m, }
+\item[{unsigned int}]{v, }
+\item[{bool}]{last, }
+\item[{Note\-Etat}]{etat}
+\end{DoxyParamCaption}
+)}}\label{class_notes_manager_a7d21acc4089a57251fc1755f2a039356}
+
+
+Permet la création d'un article, qui sera ajouté au manager. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id} & L'identificateur \\
+\hline
+{\em ti} & Le titre \\
+\hline
+{\em te} & Le contenu \\
+\hline
+{\em date\-\_\-c} & Date de création \\
+\hline
+{\em date\-\_\-m} & Date de dernière modif \\
+\hline
+{\em v} & La version (forcément supérieure à toute version déjà existante du même article, et sans \char`\"{}trou\char`\"{} entre 2 version) \\
+\hline
+{\em last} & Indique si c'est la dernière version ou non. \\
+\hline
+{\em etat} & Etat de la note (active, archivee, corbeille). \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_notes_manager_aa0adc74c7a41690ad1a361a4f744c353}{\index{Notes\-Manager@{Notes\-Manager}!add\-Fichier@{add\-Fichier}}
+\index{add\-Fichier@{add\-Fichier}!NotesManager@{Notes\-Manager}}
+\subsubsection[{add\-Fichier}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\-Manager\-::add\-Fichier (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{id, }
+\item[{const Q\-String \&}]{ti, }
+\item[{const Q\-String \&}]{descr, }
+\item[{const Q\-Date}]{date\-\_\-c, }
+\item[{const Q\-Date}]{date\-\_\-m, }
+\item[{unsigned int}]{v, }
+\item[{bool}]{last, }
+\item[{Note\-Etat}]{etat, }
+\item[{const Q\-String \&}]{filename, }
+\item[{Fichier\-Type}]{ty}
+\end{DoxyParamCaption}
+)}}\label{class_notes_manager_aa0adc74c7a41690ad1a361a4f744c353}
+
+
+Permet la création d'un fichier, qui sera ajouté au manager. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id} & Identificateur \\
+\hline
+{\em ti} & Titre \\
+\hline
+{\em descr} & Description \\
+\hline
+{\em date\-\_\-c} & Date de création \\
+\hline
+{\em date\-\_\-m} & Date de dernière modification \\
+\hline
+{\em v} & Version (forcément supérieure à toute version déjà existante du même fichier, et sans \char`\"{}trou\char`\"{} entre 2 version) \\
+\hline
+{\em last} & Indique si c'est la dernière version ou non. \\
+\hline
+{\em etat} & Etat de la note (active, archivee, corbeille). \\
+\hline
+{\em filename} & Nom du fichier \\
+\hline
+{\em ty} & Type (image, audio, video) \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_notes_manager_a02dce4b055576ccc567fee8db07191dd}{\index{Notes\-Manager@{Notes\-Manager}!add\-Note@{add\-Note}}
+\index{add\-Note@{add\-Note}!NotesManager@{Notes\-Manager}}
+\subsubsection[{add\-Note}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\-Manager\-::add\-Note (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} $\ast$}]{n}
+\end{DoxyParamCaption}
+)}}\label{class_notes_manager_a02dce4b055576ccc567fee8db07191dd}
+
+
+Ajoute une nouvelle note au \hyperlink{class_notes_manager}{Notes\-Manager}. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em n} & La note à ajouter \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_notes_manager_a6fd74614ecebdd7ca8c62abce57ed09b}{\index{Notes\-Manager@{Notes\-Manager}!add\-Tache@{add\-Tache}}
+\index{add\-Tache@{add\-Tache}!NotesManager@{Notes\-Manager}}
+\subsubsection[{add\-Tache}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\-Manager\-::add\-Tache (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{id, }
+\item[{const Q\-String \&}]{t, }
+\item[{const Q\-String \&}]{text, }
+\item[{const Q\-Date}]{date\-\_\-c, }
+\item[{const Q\-Date}]{date\-\_\-m, }
+\item[{unsigned int}]{v, }
+\item[{bool}]{last, }
+\item[{Note\-Etat}]{etat, }
+\item[{Tache\-Statut}]{st}
+\end{DoxyParamCaption}
+)}}\label{class_notes_manager_a6fd74614ecebdd7ca8c62abce57ed09b}
+
+
+Permet la création d'une tâche sans deadline ni priorité, qui sera ajouté au manager. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id} & Identificateur \\
+\hline
+{\em t} & Titre \\
+\hline
+{\em text} & Contenu \\
+\hline
+{\em date\-\_\-c} & Date de création \\
+\hline
+{\em date\-\_\-m} & Date de dernière modification \\
+\hline
+{\em v} & La version (forcément supérieure à toute version déjà existante de la même tâche, et sans \char`\"{}trou\char`\"{} entre 2 version) \\
+\hline
+{\em last} & Indique si c'est la dernière version ou non. \\
+\hline
+{\em etat} & Etat de la note (active, archivee, corbeille). \\
+\hline
+{\em st} & Statut (Attente, cours, terminee) \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_notes_manager_add166f20b086988d3da1b09ca86bd40f}{\index{Notes\-Manager@{Notes\-Manager}!add\-Tache\-Avec\-Deadline@{add\-Tache\-Avec\-Deadline}}
+\index{add\-Tache\-Avec\-Deadline@{add\-Tache\-Avec\-Deadline}!NotesManager@{Notes\-Manager}}
+\subsubsection[{add\-Tache\-Avec\-Deadline}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\-Manager\-::add\-Tache\-Avec\-Deadline (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{id, }
+\item[{const Q\-String \&}]{t, }
+\item[{const Q\-String \&}]{text, }
+\item[{const Q\-Date}]{date\-\_\-c, }
+\item[{const Q\-Date}]{date\-\_\-m, }
+\item[{unsigned int}]{v, }
+\item[{bool}]{last, }
+\item[{Note\-Etat}]{etat, }
+\item[{Tache\-Statut}]{st, }
+\item[{const Q\-Date}]{deadline}
+\end{DoxyParamCaption}
+)}}\label{class_notes_manager_add166f20b086988d3da1b09ca86bd40f}
+
+
+Permet la création d'une tâche avec priorité, qui sera ajouté au manager. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id} & Identificateur \\
+\hline
+{\em t} & Titre \\
+\hline
+{\em text} & Contenu \\
+\hline
+{\em date\-\_\-c} & Date de création \\
+\hline
+{\em date\-\_\-m} & Date de dernière modification \\
+\hline
+{\em v} & La version (forcément supérieure à toute version déjà existante de la même tâche, et sans \char`\"{}trou\char`\"{} entre 2 version) \\
+\hline
+{\em last} & Indique si c'est la dernière version ou non. \\
+\hline
+{\em etat} & Etat de la note (active, archivee, corbeille). \\
+\hline
+{\em st} & Statut (Attente, cours, terminee) \\
+\hline
+{\em dead\-Line} & (date). \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_notes_manager_ad4826ba011a506bf26d2cfc10b5d6669}{\index{Notes\-Manager@{Notes\-Manager}!add\-Tache\-Avec\-Priorite@{add\-Tache\-Avec\-Priorite}}
+\index{add\-Tache\-Avec\-Priorite@{add\-Tache\-Avec\-Priorite}!NotesManager@{Notes\-Manager}}
+\subsubsection[{add\-Tache\-Avec\-Priorite}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\-Manager\-::add\-Tache\-Avec\-Priorite (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{id, }
+\item[{const Q\-String \&}]{t, }
+\item[{const Q\-String \&}]{text, }
+\item[{const Q\-Date}]{date\-\_\-c, }
+\item[{const Q\-Date}]{date\-\_\-m, }
+\item[{unsigned int}]{v, }
+\item[{bool}]{last, }
+\item[{Note\-Etat}]{etat, }
+\item[{Tache\-Statut}]{st, }
+\item[{unsigned int}]{priorite}
+\end{DoxyParamCaption}
+)}}\label{class_notes_manager_ad4826ba011a506bf26d2cfc10b5d6669}
+
+
+Permet la création d'une tâche avec priorité, qui sera ajouté au manager. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id} & Identificateur \\
+\hline
+{\em t} & Titre \\
+\hline
+{\em text} & Contenu \\
+\hline
+{\em date\-\_\-c} & Date de création \\
+\hline
+{\em date\-\_\-m} & Date de dernière modification \\
+\hline
+{\em v} & La version (forcément supérieure à toute version déjà existante de la même tâche, et sans \char`\"{}trou\char`\"{} entre 2 version) \\
+\hline
+{\em last} & Indique si c'est la dernière version ou non. \\
+\hline
+{\em etat} & Etat de la note (active, archivee, corbeille). \\
+\hline
+{\em st} & Statut (Attente, cours, terminee) \\
+\hline
+{\em priorite} & Priorité \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_notes_manager_a93df3acfe88c13c3879b252912f9cde0}{\index{Notes\-Manager@{Notes\-Manager}!check\-\_\-reference@{check\-\_\-reference}}
+\index{check\-\_\-reference@{check\-\_\-reference}!NotesManager@{Notes\-Manager}}
+\subsubsection[{check\-\_\-reference}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\-Manager\-::check\-\_\-reference (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} \&}]{n}
+\end{DoxyParamCaption}
+)}}\label{class_notes_manager_a93df3acfe88c13c3879b252912f9cde0}
+
+
+Vérifie si la note fait référence à d'autres note. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em La} & note à vérifier \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_notes_manager_a29d032aae2c5c2a95bbd11c8345f05e5}{\index{Notes\-Manager@{Notes\-Manager}!delete\-Note@{delete\-Note}}
+\index{delete\-Note@{delete\-Note}!NotesManager@{Notes\-Manager}}
+\subsubsection[{delete\-Note}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\-Manager\-::delete\-Note (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} \&}]{n}
+\end{DoxyParamCaption}
+)}}\label{class_notes_manager_a29d032aae2c5c2a95bbd11c8345f05e5}
+
+
+Supprime une note. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em n} & \hyperlink{class_note}{Note} à supprimer \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_notes_manager_a7311347da4088a6622955e46d53e7599}{\index{Notes\-Manager@{Notes\-Manager}!get\-Instance@{get\-Instance}}
+\index{get\-Instance@{get\-Instance}!NotesManager@{Notes\-Manager}}
+\subsubsection[{get\-Instance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Notes\-Manager} \& Notes\-Manager\-::get\-Instance (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_notes_manager_a7311347da4088a6622955e46d53e7599}
+
+
+Retourne l'unique objet de la classe \hyperlink{class_notes_manager}{Notes\-Manager}. 
+
+Crée un note manager s'il n'en existe pas encore, renvoie l'instance déjà existante sinon. (D\-P Singleton) \hypertarget{class_notes_manager_a4907351a20cc85b1fe0327ac1b15c7da}{\index{Notes\-Manager@{Notes\-Manager}!get\-Iterator@{get\-Iterator}}
+\index{get\-Iterator@{get\-Iterator}!NotesManager@{Notes\-Manager}}
+\subsubsection[{get\-Iterator}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Iterator} Notes\-Manager\-::get\-Iterator (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_notes_manager_a4907351a20cc85b1fe0327ac1b15c7da}
+
+
+Crée un itérateur de la classe \hyperlink{class_notes_manager}{Notes\-Manager} (D\-P \hyperlink{class_notes_manager_1_1_iterator}{Iterator}) 
+
+\begin{DoxyReturn}{Renvoie}
+Un iterateur 
+\end{DoxyReturn}
+\hypertarget{class_notes_manager_aa91d616beba1cde35545beb5db52df10}{\index{Notes\-Manager@{Notes\-Manager}!get\-Nb\-Notes@{get\-Nb\-Notes}}
+\index{get\-Nb\-Notes@{get\-Nb\-Notes}!NotesManager@{Notes\-Manager}}
+\subsubsection[{get\-Nb\-Notes}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int Notes\-Manager\-::get\-Nb\-Notes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_notes_manager_aa91d616beba1cde35545beb5db52df10}
+
+
+get\-Nb\-Notes 
+
+\begin{DoxyReturn}{Renvoie}
+Le nombre de notes stockées par le notes\-Manager. 
+\end{DoxyReturn}
+\hypertarget{class_notes_manager_a9c401bfe7c91ab37a7c8c4db398e92ff}{\index{Notes\-Manager@{Notes\-Manager}!get\-Note@{get\-Note}}
+\index{get\-Note@{get\-Note}!NotesManager@{Notes\-Manager}}
+\subsubsection[{get\-Note}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Note} \& Notes\-Manager\-::get\-Note (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{id}
+\end{DoxyParamCaption}
+)}}\label{class_notes_manager_a9c401bfe7c91ab37a7c8c4db398e92ff}
+
+
+Permet d'accéder à une note existante. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id} & L'id de la note à ouvrir \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Référence sur la dernière version de la note souhaitée 
+\end{DoxyReturn}
+\hypertarget{class_notes_manager_ae91fa3093de4757c8ddfcdafdd456d96}{\index{Notes\-Manager@{Notes\-Manager}!get\-Version\-Note@{get\-Version\-Note}}
+\index{get\-Version\-Note@{get\-Version\-Note}!NotesManager@{Notes\-Manager}}
+\subsubsection[{get\-Version\-Note}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Note} \& Notes\-Manager\-::get\-Version\-Note (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{id, }
+\item[{unsigned int}]{v}
+\end{DoxyParamCaption}
+)}}\label{class_notes_manager_ae91fa3093de4757c8ddfcdafdd456d96}
+
+
+Permet d'accéder à une note existante dans une certaine version. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em id} & L'id de la note à ouvrir \\
+\hline
+{\em v} & La version souhaitée \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Renvoie}
+Référence sur la version souhaitée de la note. 
+\end{DoxyReturn}
+\hypertarget{class_notes_manager_abb12b467d66f58b3e72729999d6dfd19}{\index{Notes\-Manager@{Notes\-Manager}!operator=@{operator=}}
+\index{operator=@{operator=}!NotesManager@{Notes\-Manager}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Notes\-Manager} Notes\-Manager\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Notes\-Manager} \&}]{m}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{class_notes_manager_abb12b467d66f58b3e72729999d6dfd19}
+
+
+Opérateur d'affectation. 
+
+En privé pour le D\-P singleton \hypertarget{class_notes_manager_a56476e587d2e904ce129483582113bb1}{\index{Notes\-Manager@{Notes\-Manager}!restore\-Note@{restore\-Note}}
+\index{restore\-Note@{restore\-Note}!NotesManager@{Notes\-Manager}}
+\subsubsection[{restore\-Note}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\-Manager\-::restore\-Note (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} \&}]{n}
+\end{DoxyParamCaption}
+)}}\label{class_notes_manager_a56476e587d2e904ce129483582113bb1}
+
+
+méthode pour rendre active une note qui avait été archivée 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em \hyperlink{class_note}{Note}} & à restaurer \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_notes_manager_a998acbf3b81291c53d0f9158f18b06b3}{\index{Notes\-Manager@{Notes\-Manager}!search\-\_\-reference@{search\-\_\-reference}}
+\index{search\-\_\-reference@{search\-\_\-reference}!NotesManager@{Notes\-Manager}}
+\subsubsection[{search\-\_\-reference}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\-Manager\-::search\-\_\-reference (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} \&}]{n, }
+\item[{const Q\-String \&}]{texte}
+\end{DoxyParamCaption}
+)}}\label{class_notes_manager_a998acbf3b81291c53d0f9158f18b06b3}
+
+
+Méthode intermédiaire utilisée par \hyperlink{class_notes_manager_a93df3acfe88c13c3879b252912f9cde0}{check\-\_\-reference()} 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em n} & La note à vérifier \\
+\hline
+{\em texte} & Selon le type de note (contenu ou description). \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_notes_manager_ad91ac409c3c42399e702a0863d4274b1}{\index{Notes\-Manager@{Notes\-Manager}!set\-Filename@{set\-Filename}}
+\index{set\-Filename@{set\-Filename}!NotesManager@{Notes\-Manager}}
+\subsubsection[{set\-Filename}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\-Manager\-::set\-Filename (
+\begin{DoxyParamCaption}
+\item[{const Q\-String \&}]{f}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_notes_manager_ad91ac409c3c42399e702a0863d4274b1}
+
+
+Permet de modifier chemin du fichier à ouvrir. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em Chemin} & du fichier à ouvrir \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_notes_manager_a7a35eea20ba64e4b773384ecd322a9f0}{\index{Notes\-Manager@{Notes\-Manager}!set\-Vidage@{set\-Vidage}}
+\index{set\-Vidage@{set\-Vidage}!NotesManager@{Notes\-Manager}}
+\subsubsection[{set\-Vidage}]{\setlength{\rightskip}{0pt plus 5cm}void Notes\-Manager\-::set\-Vidage (
+\begin{DoxyParamCaption}
+\item[{bool}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_notes_manager_a7a35eea20ba64e4b773384ecd322a9f0}
+
+
+Permet de gérer le vidage automatique de la corbeille. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em b} & true si l'on veut vider la corbeille automatiquement, false sinon \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8h}{note.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{note_8cpp}{note.\-cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,59 @@
+\hypertarget{note_8h}{\section{Référence du fichier /home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/note.h}
+\label{note_8h}\index{/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/note.\-h@{/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/note.\-h}}
+}
+
+
+Définit les classes \hyperlink{class_note}{Note} \& ses descendant (articles, tâches, tâches avec deadline/priorité, fichier) et le \hyperlink{class_notes_manager}{Notes\-Manager}.  
+
+
+{\ttfamily \#include $<$Q\-String$>$}\\*
+{\ttfamily \#include $<$Q\-Date$>$}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_notes_exception}{Notes\-Exception}
+\begin{DoxyCompactList}\small\item\em Gestion des exceptions déclenchées par les classes Notes \& descendants \& \hyperlink{class_notes_manager}{Notes\-Manager}. \end{DoxyCompactList}\item 
+class \hyperlink{class_note}{Note}
+\begin{DoxyCompactList}\small\item\em Classe abstraite représentant une note. \end{DoxyCompactList}\item 
+class \hyperlink{class_article}{Article}
+\begin{DoxyCompactList}\small\item\em Représente un article. \end{DoxyCompactList}\item 
+class \hyperlink{class_tache}{Tache}
+\begin{DoxyCompactList}\small\item\em Représente une tâche, sans deadline ni priorité. \end{DoxyCompactList}\item 
+class \hyperlink{class_tache_avec_priorite}{Tache\-Avec\-Priorite}
+\begin{DoxyCompactList}\small\item\em Représente une tâche avec priorité \end{DoxyCompactList}\item 
+class \hyperlink{class_tache_avec_deadline}{Tache\-Avec\-Deadline}
+\begin{DoxyCompactList}\small\item\em Représente une tâche avec deadline. \end{DoxyCompactList}\item 
+class \hyperlink{class_fichier}{Fichier}
+\begin{DoxyCompactList}\small\item\em Représente un fichier (image, audio ou vidéo). \end{DoxyCompactList}\item 
+class \hyperlink{class_notes_manager}{Notes\-Manager}
+\begin{DoxyCompactList}\small\item\em Classe qui permet de gérer l'ensemble des notes. \end{DoxyCompactList}\item 
+class \hyperlink{class_notes_manager_1_1_iterator}{Notes\-Manager\-::\-Iterator}
+\end{DoxyCompactItemize}
+\subsection*{Énumérations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries Note\-Etat} \{ {\bfseries active}, 
+{\bfseries archivee}, 
+{\bfseries corbeille}
+ \}
+\item 
+enum {\bfseries Tache\-Statut} \{ {\bfseries attente}, 
+{\bfseries cours}, 
+{\bfseries terminee}
+ \}
+\item 
+enum {\bfseries Fichier\-Type} \{ {\bfseries image}, 
+{\bfseries audio}, 
+{\bfseries video}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Fonctions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{note_8h_a1354f88163ef292129894fac39cd5cde}{bool \hyperlink{note_8h_a1354f88163ef292129894fac39cd5cde}{latin\-Compare} (const Q\-String \&qstr, const std\-::string \&str)}\label{note_8h_a1354f88163ef292129894fac39cd5cde}
+
+\begin{DoxyCompactList}\small\item\em méthode utile à \hyperlink{class_notes_manager_ad4fb2de50633dd25b71024343341cd64}{Notes\-Manager\-::load()} (dans notes.\-cpp) et à \hyperlink{class_relations_manager_a6190c96cadd6b056cf94bfb75b5d56d1}{Relations\-Manager\-::load()} (dans relations.\-cpp) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Définit les classes \hyperlink{class_note}{Note} \& ses descendant (articles, tâches, tâches avec deadline/priorité, fichier) et le \hyperlink{class_notes_manager}{Notes\-Manager}. 

@@ -1,0 +1,326 @@
+\hypertarget{class_relation}{\section{Référence de la classe Relation}
+\label{class_relation}\index{Relation@{Relation}}
+}
+
+
+Représente les relations entre notes.  
+
+
+
+
+{\ttfamily \#include $<$relation.\-h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class_relation_1_1_iterator}{Iterator}
+\end{DoxyCompactItemize}
+\subsection*{Fonctions membres publiques}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_relation_aae327a3e3ea72e99a60933ef082f5810}{bool \hyperlink{class_relation_aae327a3e3ea72e99a60933ef082f5810}{Is\-Oriente} () const }\label{class_relation_aae327a3e3ea72e99a60933ef082f5810}
+
+\begin{DoxyCompactList}\small\item\em Indique si la relation est orientée. \end{DoxyCompactList}\item 
+\hypertarget{class_relation_a6f13798adcf5ad202bc1870c73a771ec}{Q\-String \hyperlink{class_relation_a6f13798adcf5ad202bc1870c73a771ec}{get\-Titre} () const }\label{class_relation_a6f13798adcf5ad202bc1870c73a771ec}
+
+\begin{DoxyCompactList}\small\item\em Retourne le titre de la relation. \end{DoxyCompactList}\item 
+\hypertarget{class_relation_ad70081c491ac168bc2c5a1afae81190b}{Q\-String \hyperlink{class_relation_ad70081c491ac168bc2c5a1afae81190b}{get\-Description} () const }\label{class_relation_ad70081c491ac168bc2c5a1afae81190b}
+
+\begin{DoxyCompactList}\small\item\em Retourne la description de la relation. \end{DoxyCompactList}\item 
+\hypertarget{class_relation_a2f1b599fe52f33a5caa3f76838bdc81b}{unsigned int \hyperlink{class_relation_a2f1b599fe52f33a5caa3f76838bdc81b}{get\-Nb\-Couples} () const }\label{class_relation_a2f1b599fe52f33a5caa3f76838bdc81b}
+
+\begin{DoxyCompactList}\small\item\em Retourne le nombre de couples de la relation. \end{DoxyCompactList}\item 
+\hyperlink{class_note}{Note} \& \hyperlink{class_relation_a607d485c7ebd115fb6cfac335a4ecd9d}{get\-X\-Couple} (unsigned int i) const 
+\begin{DoxyCompactList}\small\item\em Retourne la 1ere note du couple d'une relation. \end{DoxyCompactList}\item 
+\hyperlink{class_note}{Note} \& \hyperlink{class_relation_abadc8225cfeb86310a58bec83ba2d9d0}{get\-Y\-Couple} (unsigned int i) const 
+\begin{DoxyCompactList}\small\item\em Retourne la 2eme note du couple d'une relation. \end{DoxyCompactList}\item 
+\hypertarget{class_relation_a94c62232f1bbd097dd8e722accd80032}{const Q\-String \hyperlink{class_relation_a94c62232f1bbd097dd8e722accd80032}{get\-Label\-Couple} (unsigned int i) const }\label{class_relation_a94c62232f1bbd097dd8e722accd80032}
+
+\begin{DoxyCompactList}\small\item\em Retourne le label de la relation. \end{DoxyCompactList}\item 
+void \hyperlink{class_relation_a76525dab4934b348fa2965db522328dc}{add\-Couple} (\hyperlink{class_note}{Note} \&x, \hyperlink{class_note}{Note} \&y, Q\-String label)
+\begin{DoxyCompactList}\small\item\em Ajoute un couple. \end{DoxyCompactList}\item 
+void \hyperlink{class_relation_a3eea7d0010a6f986e3232719a92532d3}{remove\-Couple} (\hyperlink{class_note}{Note} \&x, \hyperlink{class_note}{Note} \&y)
+\begin{DoxyCompactList}\small\item\em Enlève un couple. \end{DoxyCompactList}\item 
+bool \hyperlink{class_relation_a146f3e9af006e240932ec75358710213}{find\-Couple} (\hyperlink{class_note}{Note} \&x, \hyperlink{class_note}{Note} \&y)
+\begin{DoxyCompactList}\small\item\em Vérifie si un couple existe. \end{DoxyCompactList}\item 
+void \hyperlink{class_relation_a122d5b07a1cef9f923c8ce01760c04fe}{set\-\_\-titre} (Q\-String t)
+\begin{DoxyCompactList}\small\item\em Modifie le titre de la relation. \end{DoxyCompactList}\item 
+void \hyperlink{class_relation_aa1b4491b12196cc8b28d1ea8d3f03f78}{set\-\_\-description} (Q\-String d)
+\begin{DoxyCompactList}\small\item\em Modifie la description d'une relation. \end{DoxyCompactList}\item 
+void \hyperlink{class_relation_a673fb4a0fbc2e403ee1a612623286f61}{set\-\_\-label\-\_\-couple} (\hyperlink{class_note}{Note} \&x, \hyperlink{class_note}{Note} \&y, Q\-String l)
+\begin{DoxyCompactList}\small\item\em Modifie le label d'un couple. \end{DoxyCompactList}\item 
+\hypertarget{class_relation_ae30f6b7351f9ff6b3ed74422738a6ea2}{\hyperlink{class_relation_1_1_iterator}{Iterator} \hyperlink{class_relation_ae30f6b7351f9ff6b3ed74422738a6ea2}{get\-Iterator} ()}\label{class_relation_ae30f6b7351f9ff6b3ed74422738a6ea2}
+
+\begin{DoxyCompactList}\small\item\em Permet d'obtenir un iterateur d'une relation (D\-P \hyperlink{class_relation_1_1_iterator}{Iterator}) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Fonctions membres privées}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_relation_ae9c1a5709a34f4103fc82e35c22586fd}{Relation} (Q\-String t, Q\-String d, bool o=true)
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\hypertarget{class_relation_ae0acb9be133df505efbfe7c9db8a8821}{{\bfseries Relation} (const \hyperlink{class_relation}{Relation} \&r)}\label{class_relation_ae0acb9be133df505efbfe7c9db8a8821}
+
+\item 
+\hypertarget{class_relation_a18778458f8d147800e571c7ab03d36d7}{\hyperlink{class_relation}{Relation} \& {\bfseries operator=} (const \hyperlink{class_relation}{Relation} \&r)}\label{class_relation_a18778458f8d147800e571c7ab03d36d7}
+
+\item 
+void \hyperlink{class_relation_aada545a51917037591b80640ba7bc792}{add\-Couple\-\_\-function} (\hyperlink{class_note}{Note} \&x, \hyperlink{class_note}{Note} \&y, Q\-String label)
+\begin{DoxyCompactList}\small\item\em Ajoute un couple à une relation existante. \end{DoxyCompactList}\item 
+void \hyperlink{class_relation_aab0ba1f02226624304cef8c5c52ee579}{remove\-Couple\-\_\-function} (\hyperlink{class_note}{Note} \&x, \hyperlink{class_note}{Note} \&y)
+\begin{DoxyCompactList}\small\item\em Retire un couple. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Attributs privés}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_relation_a346e9b10df6757dee8dc13cb2f876357}{Q\-String {\bfseries titre}}\label{class_relation_a346e9b10df6757dee8dc13cb2f876357}
+
+\item 
+\hypertarget{class_relation_a1140829291bd04a86d0b840524692703}{Q\-String {\bfseries description}}\label{class_relation_a1140829291bd04a86d0b840524692703}
+
+\item 
+\hypertarget{class_relation_acb36aff9db6937210f52d6eadbb635c5}{\hyperlink{class_note}{Note} $\ast$$\ast$$\ast$ {\bfseries tableau}}\label{class_relation_acb36aff9db6937210f52d6eadbb635c5}
+
+\item 
+\hypertarget{class_relation_a2dffd4829aece8f3c2c91c07d8fa7052}{Q\-String $\ast$ {\bfseries tableau\-\_\-label}}\label{class_relation_a2dffd4829aece8f3c2c91c07d8fa7052}
+
+\item 
+\hypertarget{class_relation_a70298ba350d93fe1e6a5c12e4174f3bb}{unsigned int {\bfseries nb\-Couples}}\label{class_relation_a70298ba350d93fe1e6a5c12e4174f3bb}
+
+\item 
+\hypertarget{class_relation_a28e68283a2dbd4c7f25ec5dc7e14aa3c}{unsigned int {\bfseries nb\-Couples\-Max}}\label{class_relation_a28e68283a2dbd4c7f25ec5dc7e14aa3c}
+
+\item 
+\hypertarget{class_relation_afbc8d05781cdd560010fff14511d1776}{bool {\bfseries oriente}}\label{class_relation_afbc8d05781cdd560010fff14511d1776}
+
+\end{DoxyCompactItemize}
+\subsection*{Amis}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_relation_ac617894445bd4f12c905741b1b4f9f6a}{class {\bfseries Relations\-Manager}}\label{class_relation_ac617894445bd4f12c905741b1b4f9f6a}
+
+\item 
+\hypertarget{class_relation_a7c44822b658a328771753fe0aaa8b7ae}{class {\bfseries Vue\-Principale}}\label{class_relation_a7c44822b658a328771753fe0aaa8b7ae}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Représente les relations entre notes. 
+
+\subsection{Documentation des constructeurs et destructeur}
+\hypertarget{class_relation_ae9c1a5709a34f4103fc82e35c22586fd}{\index{Relation@{Relation}!Relation@{Relation}}
+\index{Relation@{Relation}!Relation@{Relation}}
+\subsubsection[{Relation}]{\setlength{\rightskip}{0pt plus 5cm}Relation\-::\-Relation (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{t, }
+\item[{Q\-String}]{d, }
+\item[{bool}]{o = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}}\label{class_relation_ae9c1a5709a34f4103fc82e35c22586fd}
+
+
+Constructeur. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t} & Titre \\
+\hline
+{\em d} & Description \\
+\hline
+{\em o} & True si la relation est orientée, false sinon. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Documentation des fonctions membres}
+\hypertarget{class_relation_a76525dab4934b348fa2965db522328dc}{\index{Relation@{Relation}!add\-Couple@{add\-Couple}}
+\index{add\-Couple@{add\-Couple}!Relation@{Relation}}
+\subsubsection[{add\-Couple}]{\setlength{\rightskip}{0pt plus 5cm}void Relation\-::add\-Couple (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} \&}]{x, }
+\item[{{\bf Note} \&}]{y, }
+\item[{Q\-String}]{label}
+\end{DoxyParamCaption}
+)}}\label{class_relation_a76525dab4934b348fa2965db522328dc}
+
+
+Ajoute un couple. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & 1ere note du couple \\
+\hline
+{\em y} & 2eme note du couple \\
+\hline
+{\em label} & \hyperlink{class_relation}{Relation} à laquelle ajouter le couple\\
+\hline
+\end{DoxyParams}
+méthode publique qui appelle la méthode privée \hyperlink{class_relation_aada545a51917037591b80640ba7bc792}{add\-Couple\-\_\-function()} en fonction du caractère orientée de la relation \hypertarget{class_relation_aada545a51917037591b80640ba7bc792}{\index{Relation@{Relation}!add\-Couple\-\_\-function@{add\-Couple\-\_\-function}}
+\index{add\-Couple\-\_\-function@{add\-Couple\-\_\-function}!Relation@{Relation}}
+\subsubsection[{add\-Couple\-\_\-function}]{\setlength{\rightskip}{0pt plus 5cm}void Relation\-::add\-Couple\-\_\-function (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} \&}]{x, }
+\item[{{\bf Note} \&}]{y, }
+\item[{Q\-String}]{label}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{class_relation_aada545a51917037591b80640ba7bc792}
+
+
+Ajoute un couple à une relation existante. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & 1ere note du couple \\
+\hline
+{\em y} & 2eme note du couple \\
+\hline
+{\em label} & Nom de la relation à laquelle ajouter le couple \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_relation_a146f3e9af006e240932ec75358710213}{\index{Relation@{Relation}!find\-Couple@{find\-Couple}}
+\index{find\-Couple@{find\-Couple}!Relation@{Relation}}
+\subsubsection[{find\-Couple}]{\setlength{\rightskip}{0pt plus 5cm}bool Relation\-::find\-Couple (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} \&}]{x, }
+\item[{{\bf Note} \&}]{y}
+\end{DoxyParamCaption}
+)}}\label{class_relation_a146f3e9af006e240932ec75358710213}
+
+
+Vérifie si un couple existe. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & 1ere note du couple \\
+\hline
+{\em y} & 2eme note du couple \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_relation_a607d485c7ebd115fb6cfac335a4ecd9d}{\index{Relation@{Relation}!get\-X\-Couple@{get\-X\-Couple}}
+\index{get\-X\-Couple@{get\-X\-Couple}!Relation@{Relation}}
+\subsubsection[{get\-X\-Couple}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Note}\& Relation\-::get\-X\-Couple (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_relation_a607d485c7ebd115fb6cfac335a4ecd9d}
+
+
+Retourne la 1ere note du couple d'une relation. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em i} & numéro de la relation \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_relation_abadc8225cfeb86310a58bec83ba2d9d0}{\index{Relation@{Relation}!get\-Y\-Couple@{get\-Y\-Couple}}
+\index{get\-Y\-Couple@{get\-Y\-Couple}!Relation@{Relation}}
+\subsubsection[{get\-Y\-Couple}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Note}\& Relation\-::get\-Y\-Couple (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{i}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_relation_abadc8225cfeb86310a58bec83ba2d9d0}
+
+
+Retourne la 2eme note du couple d'une relation. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em i} & numéro de la relation \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_relation_a3eea7d0010a6f986e3232719a92532d3}{\index{Relation@{Relation}!remove\-Couple@{remove\-Couple}}
+\index{remove\-Couple@{remove\-Couple}!Relation@{Relation}}
+\subsubsection[{remove\-Couple}]{\setlength{\rightskip}{0pt plus 5cm}void Relation\-::remove\-Couple (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} \&}]{x, }
+\item[{{\bf Note} \&}]{y}
+\end{DoxyParamCaption}
+)}}\label{class_relation_a3eea7d0010a6f986e3232719a92532d3}
+
+
+Enlève un couple. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & 1ere note du couple \\
+\hline
+{\em y} & 2eme note du couple\\
+\hline
+\end{DoxyParams}
+méthode publique qui appelle la méthode privée \hyperlink{class_relation_aab0ba1f02226624304cef8c5c52ee579}{remove\-Couple\-\_\-function()} en fonction du caractère orientée de la relation \hypertarget{class_relation_aab0ba1f02226624304cef8c5c52ee579}{\index{Relation@{Relation}!remove\-Couple\-\_\-function@{remove\-Couple\-\_\-function}}
+\index{remove\-Couple\-\_\-function@{remove\-Couple\-\_\-function}!Relation@{Relation}}
+\subsubsection[{remove\-Couple\-\_\-function}]{\setlength{\rightskip}{0pt plus 5cm}void Relation\-::remove\-Couple\-\_\-function (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} \&}]{x, }
+\item[{{\bf Note} \&}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}}\label{class_relation_aab0ba1f02226624304cef8c5c52ee579}
+
+
+Retire un couple. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & 1ere note du couple \\
+\hline
+{\em y} & 2eme note du couple \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_relation_aa1b4491b12196cc8b28d1ea8d3f03f78}{\index{Relation@{Relation}!set\-\_\-description@{set\-\_\-description}}
+\index{set\-\_\-description@{set\-\_\-description}!Relation@{Relation}}
+\subsubsection[{set\-\_\-description}]{\setlength{\rightskip}{0pt plus 5cm}void Relation\-::set\-\_\-description (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{d}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_relation_aa1b4491b12196cc8b28d1ea8d3f03f78}
+
+
+Modifie la description d'une relation. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em d} & nouvelle description \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_relation_a673fb4a0fbc2e403ee1a612623286f61}{\index{Relation@{Relation}!set\-\_\-label\-\_\-couple@{set\-\_\-label\-\_\-couple}}
+\index{set\-\_\-label\-\_\-couple@{set\-\_\-label\-\_\-couple}!Relation@{Relation}}
+\subsubsection[{set\-\_\-label\-\_\-couple}]{\setlength{\rightskip}{0pt plus 5cm}void Relation\-::set\-\_\-label\-\_\-couple (
+\begin{DoxyParamCaption}
+\item[{{\bf Note} \&}]{x, }
+\item[{{\bf Note} \&}]{y, }
+\item[{Q\-String}]{l}
+\end{DoxyParamCaption}
+)}}\label{class_relation_a673fb4a0fbc2e403ee1a612623286f61}
+
+
+Modifie le label d'un couple. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em x} & 1ere note du couple \\
+\hline
+{\em y} & 2eme note du couple \\
+\hline
+{\em l} & Nouveau label. \\
+\hline
+\end{DoxyParams}
+\hypertarget{class_relation_a122d5b07a1cef9f923c8ce01760c04fe}{\index{Relation@{Relation}!set\-\_\-titre@{set\-\_\-titre}}
+\index{set\-\_\-titre@{set\-\_\-titre}!Relation@{Relation}}
+\subsubsection[{set\-\_\-titre}]{\setlength{\rightskip}{0pt plus 5cm}void Relation\-::set\-\_\-titre (
+\begin{DoxyParamCaption}
+\item[{Q\-String}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_relation_a122d5b07a1cef9f923c8ce01760c04fe}
+
+
+Modifie le titre de la relation. 
+
+
+\begin{DoxyParams}{Paramètres}
+{\em t} & Nouveau titre \\
+\hline
+\end{DoxyParams}
+
+
+La documentation de cette classe a été générée à partir des fichiers suivants \-:\begin{DoxyCompactItemize}
+\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{relation_8h}{relation.\-h}\item 
+/home/camille/\-Documents/\-U\-T\-C/\-H\-U04/\-L\-O21/\-Projet/\-Projet/\hyperlink{relation_8cpp}{relation.\-cpp}\end{DoxyCompactItemize}
