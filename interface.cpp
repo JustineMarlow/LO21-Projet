@@ -15,19 +15,29 @@ VuePrincipale::VuePrincipale(Note* n) : note(n),marqueur(0){
 
     //menu
         QMenu *menuFichier = menuBar()->addMenu("&Fichier");
-           QMenu *nouveau = menuFichier->addMenu("&Nouvelle note");
-               QAction *actionArt=new QAction("Nouvel article", this);
+           QMenu *nouveau = menuFichier->addMenu("&Nouveau");
+               QAction *actionArt=new QAction("Nouvel &article", this);
                nouveau->addAction(actionArt);
-               QAction* actionTache=new QAction("Nouvelle &tâche", this);
-               nouveau->addAction(actionTache);
-               QAction* actionImage=new QAction("Nouvelle Image", this);
-               nouveau->addAction(actionImage);
-            actionSave=new QAction("&Enregistrer", this);
+               connect(actionArt, SIGNAL(triggered()), this, SLOT(creerArticle()));
+               QMenu* actionTache=nouveau->addMenu("Nouvelle &tâche");
+                    QAction* actionTacheSimple=new QAction("Tâche simple", this);
+                    actionTache->addAction(actionTacheSimple);
+                    connect(actionTacheSimple, SIGNAL(triggered()), this, SLOT(creerTache()));
+                    QAction* actionDeadline=new QAction("Tâche avec deadline", this);
+                    actionTache->addAction(actionDeadline);
+                    connect(actionDeadline, SIGNAL(triggered()), this, SLOT(creerTacheDeadline()));
+                    QAction* actionPrio=new QAction("Tâche avec priorité", this);
+                    actionTache->addAction(actionPrio);
+                    connect(actionPrio, SIGNAL(triggered()), this, SLOT(creerTachePriorite()));
+               QAction* actionFichier=new QAction("Nouveau &fichier", this);
+               nouveau->addAction(actionFichier);
+               connect(actionFichier, SIGNAL(triggered()), this, SLOT(creerFichier()));
+            /*actionSave=new QAction("&Enregistrer", this);
             menuFichier->addAction(actionSave);
             actionSave->setShortcut(QKeySequence("Ctrl+S"));
             actionSave->setDisabled(true);
             connect(actionSave, SIGNAL(triggered()), this, SLOT(interfaceSave()));
-            QObject::connect(noteEdit->getTitle(), SIGNAL(textChanged(QString)), this, SLOT(activerMenuSave(QString)));
+            QObject::connect(noteEdit->getTitle(), SIGNAL(textChanged(QString)), this, SLOT(activerMenuSave(QString)));*/
             QAction *actionQuitter = new QAction("&Quitter", this);
             actionQuitter->setShortcut(QKeySequence("Ctrl+Q"));
             connect(actionQuitter, SIGNAL(triggered()), qApp, SLOT(quit()));
@@ -58,9 +68,7 @@ VuePrincipale::VuePrincipale(Note* n) : note(n),marqueur(0){
             setWindowTitle("Pluri'notes");
 }
 
-void VuePrincipale::activerMenuSave(QString str){
-    actionSave->setDisabled(false);
-}
+
 
 void VuePrincipale::afficageArbo(){
     if(arboVisible){
@@ -88,6 +96,63 @@ void VuePrincipale::afficher_note(QTreeWidgetItem *item,int i){
     delete droite;
     affichage_central();
     affichage_droit();
+    layoutPrincipal->addWidget(centre);
+    layoutPrincipal->addWidget(droite);
+    zoneCentrale->setLayout(layoutPrincipal);
+}
+
+
+void VuePrincipale::creerArticle(){
+    qDebug()<<"Signal reçu";
+    marqueur=1;
+    note=0;
+    delete centre;
+    delete droite;
+    affichage_droit();
+    affichage_central();
+    layoutPrincipal->addWidget(centre);
+    layoutPrincipal->addWidget(droite);
+    zoneCentrale->setLayout(layoutPrincipal);
+}
+void VuePrincipale::creerTache(){
+    qDebug()<<"Signal reçu";
+    marqueur=2; note=0;
+    delete centre;
+    delete droite;
+    affichage_droit();
+    affichage_central();
+    layoutPrincipal->addWidget(centre);
+    layoutPrincipal->addWidget(droite);
+    zoneCentrale->setLayout(layoutPrincipal);
+}
+void VuePrincipale::creerTacheDeadline(){
+    qDebug()<<"Signal reçu";
+    marqueur=4; note=0;
+    delete centre;
+    delete droite;
+    affichage_droit();
+    affichage_central();
+    layoutPrincipal->addWidget(centre);
+    layoutPrincipal->addWidget(droite);
+    zoneCentrale->setLayout(layoutPrincipal);
+}
+void VuePrincipale::creerTachePriorite(){
+    qDebug()<<"Signal reçu";
+    marqueur=3; note=0;
+    delete centre;
+    delete droite;
+    affichage_droit();
+    affichage_central();
+    layoutPrincipal->addWidget(centre);
+    layoutPrincipal->addWidget(droite);
+    zoneCentrale->setLayout(layoutPrincipal);
+}
+void VuePrincipale::creerFichier(){
+    marqueur=5; note=0;
+    delete centre;
+    delete droite;
+    affichage_droit();
+    affichage_central();
     layoutPrincipal->addWidget(centre);
     layoutPrincipal->addWidget(droite);
     zoneCentrale->setLayout(layoutPrincipal);
@@ -441,3 +506,7 @@ void VueSecondaire::openRelation(QTreeWidgetItem* item, int i){
 editeur->addRow("", noteEdit);
 centre=new QGroupBox("Visualisation de la note", zoneCentrale);
 centre->setLayout(editeur);*/
+
+/*void VuePrincipale::activerMenuSave(QString str){
+    actionSave->setDisabled(false);
+}*/
