@@ -40,10 +40,11 @@ private:
 class VuePrincipale : public QMainWindow{
     Q_OBJECT
 public:
-    VuePrincipale(Note* n=0);
+    static VuePrincipale& getInstance(Note* n=0);
     void affichage_central();
     void affichage_droit();
     void affichage_gauche();
+    void creerMenu();
 
 private slots:
      void showRelations(); //bouton d'accès à la vue secondaire (gestion & visualisation des relations)
@@ -61,6 +62,8 @@ private slots:
      void creerTachePriorite();
 
 private:
+    static VuePrincipale* instance;
+    VuePrincipale(Note* n=0);
     unsigned int marqueur; //sert à identifier une demande de nouvelle note (1 pour Article, 2 pour Tache, 3 pour TacheAvecPriorite, 4 pour TacheAvecDeadline, 5 pour Fichier)
     QWidget* zoneCentrale;
     QHBoxLayout* layoutPrincipal;
@@ -69,7 +72,7 @@ private:
 
     //Menu
     QAction* actionSupp;
-
+    QMenu* menuFichier;
 
     //Partie gauche
     QGroupBox* gauche;
@@ -85,7 +88,6 @@ private:
     QGroupBox* droite;
     bool arboVisible;
     QPushButton* relation_details;
-
 protected:
      void closeEvent(QCloseEvent* event);
 
@@ -94,7 +96,7 @@ protected:
 class VueSecondaire : public QWidget{
     Q_OBJECT
 public :
-    VueSecondaire();
+    static VueSecondaire& getInstance();
     void affichage_central();
     void affichage_gauche();
 private slots:
@@ -102,7 +104,8 @@ private slots:
     void actualiser_fenetre();
 
 private :
-
+    VueSecondaire();
+    static VueSecondaire* instance;
     QHBoxLayout* layoutPrincipal;
     QVBoxLayout* principal;
 

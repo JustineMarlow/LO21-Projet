@@ -5,6 +5,10 @@
 
 //=============================FENÊTRE PRINCIPALE======================================
 
+VuePrincipale& VuePrincipale::getInstance(Note* n){
+    static VuePrincipale instance(n);
+    return instance;
+}
 
 VuePrincipale::VuePrincipale(Note* n) : note(n),marqueur(0){
     zoneCentrale=new QWidget;
@@ -12,9 +16,18 @@ VuePrincipale::VuePrincipale(Note* n) : note(n),marqueur(0){
     affichage_gauche();
     affichage_central();
     affichage_droit();
+    creerMenu();
+    //Définition du layout principal
+        layoutPrincipal = new QHBoxLayout;
+        layoutPrincipal->addWidget(gauche);
+        layoutPrincipal->addWidget(centre);
+        layoutPrincipal->addWidget(droite);
+        zoneCentrale->setLayout(layoutPrincipal);
+        setWindowTitle("Pluri'notes");
+}
 
-    //menu
-        QMenu *menuFichier = menuBar()->addMenu("&Fichier");
+void VuePrincipale::creerMenu(){
+        menuFichier = menuBar()->addMenu("&Fichier");
            QMenu *nouveau = menuFichier->addMenu("&Nouveau");
                QAction *actionArt=new QAction("Nouvel &article", this);
                nouveau->addAction(actionArt);
@@ -56,17 +69,6 @@ VuePrincipale::VuePrincipale(Note* n) : note(n),marqueur(0){
            actionSupp=new QAction("Supprimer automatiquement les notes archivées à la fermeture de l'application", this);
            menuCorbeille->addAction(actionSupp);
            actionSupp->setCheckable(true); //pour le slot : avec vérifier avec isChecked()
-           QAction* actionArchives=new QAction("Voir les notes &archivées", this);
-           menuCorbeille->addAction(actionArchives);
-
-       //Définition du layout principal
-            layoutPrincipal = new QHBoxLayout;
-            layoutPrincipal->addWidget(gauche);
-            layoutPrincipal->addWidget(centre);
-            layoutPrincipal->addWidget(droite);
-            zoneCentrale->setLayout(layoutPrincipal);
-            setWindowTitle("Pluri'notes");
-
 }
 
 void VuePrincipale::closeEvent(QCloseEvent* event){
@@ -101,8 +103,8 @@ void VuePrincipale::afficageArbo(){
 }
 
 void VuePrincipale::showRelations(){
-    VueSecondaire* fenetreRelations=new VueSecondaire();
-    fenetreRelations->show();
+    VueSecondaire& fenetreRelations=VueSecondaire::getInstance();
+    fenetreRelations.show();
 }
 
 void VuePrincipale::afficher_note(QTreeWidgetItem *item){
@@ -463,6 +465,11 @@ void VuePrincipale::actualiser_fenetre()
 
 //==========================================FENÊTRE SECONDAIRE (RELATIONS)========================================
 
+VueSecondaire& VueSecondaire::getInstance(){
+    static VueSecondaire instance;
+    return instance;
+}
+
 VueSecondaire::VueSecondaire():relation(0){
     layoutPrincipal=new QHBoxLayout;
     affichage_gauche();
@@ -470,6 +477,7 @@ VueSecondaire::VueSecondaire():relation(0){
     layoutPrincipal->addWidget(gauche);
     layoutPrincipal->addWidget(centre);
     setLayout(layoutPrincipal);
+
     setWindowTitle("Gestion des relations");
     resize(350, 450);
 
