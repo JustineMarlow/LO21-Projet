@@ -67,6 +67,9 @@ private:
     QPushButton* actualiser;
     QPushButton* arborescence;
 
+    //Menu
+    QAction* actionSupp;
+
 
     //Partie gauche
     QGroupBox* gauche;
@@ -82,6 +85,9 @@ private:
     QGroupBox* droite;
     bool arboVisible;
     QPushButton* relation_details;
+
+protected:
+     void closeEvent(QCloseEvent* event);
 
 };
 

@@ -140,7 +140,8 @@ class NotesManager
     unsigned int nbMaxNotes;
     mutable QString filename;
     bool isLoading;
-    NotesManager():notes(0),nbNotes(0),nbMaxNotes(0),filename(""),isLoading(false){}
+    bool vidage_corbeille;
+    NotesManager():notes(0),nbNotes(0),nbMaxNotes(0),filename(""),isLoading(false),vidage_corbeille(false){}
     ~NotesManager();
     NotesManager (const NotesManager& m);
     NotesManager operator=(const NotesManager& m);
@@ -150,6 +151,7 @@ public:
     void load();
     void save() const;
     void setFilename(const QString& f) { filename=f; }
+    void setVidage(bool b) {vidage_corbeille=b;}
     unsigned int getNbNotes() const {return nbNotes;}
     Note& getNote(const QString& id);
     Note& getVersionNote(const QString& id, unsigned int v);

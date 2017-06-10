@@ -53,7 +53,7 @@ VuePrincipale::VuePrincipale(Note* n) : note(n),marqueur(0){
            menuEdition->addAction(actionRetablir);
 
         QMenu *menuCorbeille = menuBar()->addMenu("&Corbeille");
-           QAction* actionSupp=new QAction("Supprimer automatiquement les notes archivées à la fermeture de l'application", this);
+           actionSupp=new QAction("Supprimer automatiquement les notes archivées à la fermeture de l'application", this);
            menuCorbeille->addAction(actionSupp);
            actionSupp->setCheckable(true); //pour le slot : avec vérifier avec isChecked()
            QAction* actionArchives=new QAction("Voir les notes &archivées", this);
@@ -66,6 +66,23 @@ VuePrincipale::VuePrincipale(Note* n) : note(n),marqueur(0){
             layoutPrincipal->addWidget(droite);
             zoneCentrale->setLayout(layoutPrincipal);
             setWindowTitle("Pluri'notes");
+
+}
+
+void VuePrincipale::closeEvent(QCloseEvent* event){
+    NotesManager& manager=NotesManager::getInstance();
+    if (actionSupp->isChecked())
+    {
+        manager.setVidage(true);
+        event->accept();
+    }
+    else
+    {
+        int ret = QMessageBox::question(this,"Vider la corbeille","Voulez-vous vider la corbeille ?",QMessageBox::Yes | QMessageBox::No);
+        if (ret == QMessageBox::Yes) manager.setVidage(true);
+                else manager.setVidage(false);
+        event->accept();
+    }
 }
 
 
@@ -351,7 +368,10 @@ void VuePrincipale::affichage_gauche(){
     notesActives->setHeaderLabels(QStringList("Actives"));
     QObject::connect(notesActives, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*)));
     QTreeWidget* taches=new QTreeWidget(this);
-    taches->setHeaderLabels(QStringList("Taches"));
+    QStringList header;
+    header<<"Taches"<<"";
+    taches->setHeaderLabels(header);
+    taches->setColumnCount(2);
     QObject::connect(taches, SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)), this, SLOT(afficher_note(QTreeWidgetItem*)));
     QTreeWidget* archives=new QTreeWidget(this);
     archives->setHeaderLabels(QStringList("Archives"));
@@ -379,7 +399,13 @@ void VuePrincipale::affichage_gauche(){
             if (iterator.current().getEtat()==active)
             {
                 if (typeid(iterator.current())==typeid(Tache) || typeid(iterator.current())==typeid(TacheAvecPriorite) || typeid(iterator.current())==typeid(TacheAvecDeadline))
+                {
+                    if (typeid(iterator.current())==typeid(TacheAvecPriorite))
+                        {TacheAvecPriorite& t=dynamic_cast<TacheAvecPriorite&>(iterator.current()); item[i]->setText(1, "(priorite : "+QString::number(t.getPriorite())+")");}
+                    if (typeid(iterator.current())==typeid(TacheAvecDeadline))
+                        {TacheAvecDeadline& t=dynamic_cast<TacheAvecDeadline&>(iterator.current()); item[i]->setText(1, "(deadline : "+t.getDeadline().QDate::toString(QString("dd/MM/yyyy"))+")");}
                     taches->addTopLevelItem(item[i]);
+                }
                 else notesActives->addTopLevelItem(item[i]);
             }
             else if (iterator.current().getEtat()==archivee)
@@ -495,14 +521,14 @@ void VueSecondaire::affichage_central()
         QFormLayout* editeur=new QFormLayout;
         relationEdit=new RelationEditeur;
         editeur->addRow("", relationEdit);
-        centre=new QGroupBox;
+        centre=new QGroupBox("Editeur d'une nouvelle relation");
         centre->setLayout(editeur);
     }
     else {
         QFormLayout* editeur=new QFormLayout;
         relationEdit=new RelationEditeur(*relation);
         editeur->addRow("", relationEdit);
-        centre=new QGroupBox;
+        centre=new QGroupBox("Editeur de la relation");
         centre->setLayout(editeur);
     }
 }

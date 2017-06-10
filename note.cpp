@@ -18,7 +18,7 @@ Fichier::~Fichier(){}
 /*============================================================= NotesManager ==========================================================================================*/
 //destructeur
 NotesManager::~NotesManager(){
-    //viderCorbeille();
+    if (vidage_corbeille) viderCorbeille();
     if (filename!="") save();
     delete[] notes;
 }

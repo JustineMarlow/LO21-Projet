@@ -47,7 +47,7 @@ Une superbe modif qui ne sert à rien.</text>
         <title>Un premier article</title>
         <creation>15/02/2015</creation>
         <modification>08/06/2017</modification>
-        <last>oui</last>
+        <last>non</last>
         <etat>Active</etat>
         <version>3</version>
     </article>
@@ -61,30 +61,6 @@ Une superbe modif qui ne sert à rien.</text>
         <last>non</last>
         <etat>Active</etat>
         <version>1</version>
-    </tache>
-    <tache>
-        <text>Qui arrive très vite</text>
-        <statut>Attente</statut>
-        <deadline>08/10/2017</deadline>
-        <id>id:T2</id>
-        <title>Une tache avec une deadline</title>
-        <creation>08/06/2017</creation>
-        <modification>08/06/2017</modification>
-        <last>non</last>
-        <etat>Active</etat>
-        <version>1</version>
-    </tache>
-    <tache>
-        <text>Qui arrive très vite</text>
-        <statut>Cours</statut>
-        <deadline>08/10/2017</deadline>
-        <id>id:T2</id>
-        <title>Une tache avec une deadline</title>
-        <creation>08/06/2017</creation>
-        <modification>08/06/2017</modification>
-        <last>oui</last>
-        <etat>Active</etat>
-        <version>2</version>
     </tache>
     <article>
         <text>Ceci est un deuxième article. Plein de surprises</text>
@@ -114,8 +90,43 @@ On va faire référence à ref{id:T2}.</text>
         <title>Une bien belle tâche</title>
         <creation>08/06/2017</creation>
         <modification>08/06/2017</modification>
-        <last>oui</last>
+        <last>non</last>
         <etat>Active</etat>
         <version>2</version>
+    </tache>
+    <article>
+        <text>Ceci est un premier article. Faisons référence à \ref{id:A2}.
+Une superbe modif qui ne sert à rien.
+Vraiment à rien</text>
+        <id>id:A1</id>
+        <title>Un premier article</title>
+        <creation>15/02/2015</creation>
+        <modification>10/06/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>4</version>
+    </article>
+    <tache>
+        <text>Créée depuis l'éditeur vierge, qui plus est.</text>
+        <statut>Attente</statut>
+        <id>id:T1</id>
+        <title>Une bien belle tâche</title>
+        <creation>08/06/2017</creation>
+        <modification>10/06/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>3</version>
+    </tache>
+    <tache>
+        <text>Avec une priorité</text>
+        <statut>Attente</statut>
+        <priorite>5</priorite>
+        <id>id:T3</id>
+        <title>une bien belle tâche</title>
+        <creation>10/06/2017</creation>
+        <modification>10/06/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>1</version>
     </tache>
 </notes>
