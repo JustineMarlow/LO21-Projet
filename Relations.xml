@@ -9,6 +9,11 @@
             <idY>id:A3</idY>
             <label>label</label>
         </couple>
+        <couple>
+            <idX>id:T1</idX>
+            <idY>id:T3</idY>
+            <label>label</label>
+        </couple>
     </relation>
     <relation>
         <titre>Meme sujet</titre>
@@ -23,6 +28,16 @@
             <idX>id:A3</idX>
             <idY>id:A2</idY>
             <label>cuisine</label>
+        </couple>
+        <couple>
+            <idX>id:T1</idX>
+            <idY>id:T3</idY>
+            <label>ménage</label>
+        </couple>
+        <couple>
+            <idX>id:T3</idX>
+            <idY>id:T1</idY>
+            <label>ménage</label>
         </couple>
         <couple>
             <idX>id:T1</idX>
