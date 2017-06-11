@@ -485,6 +485,14 @@ public:
      * @brief Vide la corbeille
      */
     void viderCorbeille();
+
+    /**
+     * @brief Vérifie pour chaque note archivée si une note active lui fait encore référence. Si non, la note
+     * est placée à la corbeille.
+     * @details appeler avant viderCorbeille
+     */
+    void nettoyer_archives();
+
     /**
      * @brief Vérifie si la note fait référence à d'autres note
      * @param La note à vérifier

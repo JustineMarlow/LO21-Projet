@@ -13,12 +13,14 @@
 
 //=============================FENÊTRE PRINCIPALE======================================
 
-VuePrincipale& VuePrincipale::getInstance(Note* n){
+
+
+/*VuePrincipale& VuePrincipale::getInstance(Note* n){
     static VuePrincipale instance(n);
     return instance;
-}
+}*/
 
-VuePrincipale::VuePrincipale(Note* n) : note(n),marqueur(0){
+VuePrincipale::VuePrincipale() : note(nullptr),marqueur(0){
     zoneCentrale=new QWidget;
     setCentralWidget(zoneCentrale);
     affichage_gauche();
@@ -35,49 +37,52 @@ VuePrincipale::VuePrincipale(Note* n) : note(n),marqueur(0){
 }
 
 void VuePrincipale::creerMenu(){
-        menuFichier = menuBar()->addMenu("&Fichier");
-           QMenu *nouveau = menuFichier->addMenu("&Nouveau");
-               QAction *actionArt=new QAction("Nouvel &article", this);
-               nouveau->addAction(actionArt);
-               connect(actionArt, SIGNAL(triggered()), this, SLOT(creerArticle()));
-               QMenu* actionTache=nouveau->addMenu("Nouvelle &tâche");
-                    QAction* actionTacheSimple=new QAction("Tâche simple", this);
-                    actionTache->addAction(actionTacheSimple);
-                    connect(actionTacheSimple, SIGNAL(triggered()), this, SLOT(creerTache()));
-                    QAction* actionDeadline=new QAction("Tâche avec deadline", this);
-                    actionTache->addAction(actionDeadline);
-                    connect(actionDeadline, SIGNAL(triggered()), this, SLOT(creerTacheDeadline()));
-                    QAction* actionPrio=new QAction("Tâche avec priorité", this);
-                    actionTache->addAction(actionPrio);
-                    connect(actionPrio, SIGNAL(triggered()), this, SLOT(creerTachePriorite()));
-               QAction* actionFichier=new QAction("Nouveau &fichier", this);
-               nouveau->addAction(actionFichier);
-               connect(actionFichier, SIGNAL(triggered()), this, SLOT(creerFichier()));
-            /*actionSave=new QAction("&Enregistrer", this);
-            menuFichier->addAction(actionSave);
-            actionSave->setShortcut(QKeySequence("Ctrl+S"));
-            actionSave->setDisabled(true);
-            connect(actionSave, SIGNAL(triggered()), this, SLOT(interfaceSave()));
-            QObject::connect(noteEdit->getTitle(), SIGNAL(textChanged(QString)), this, SLOT(activerMenuSave(QString)));*/
-            QAction *actionQuitter = new QAction("&Quitter", this);
-            actionQuitter->setShortcut(QKeySequence("Ctrl+Q"));
-            connect(actionQuitter, SIGNAL(triggered()), qApp, SLOT(quit()));
-            menuFichier->addAction(actionQuitter);
+    menuFichier = menuBar()->addMenu("&Fichier");
+       QMenu *nouveau = menuFichier->addMenu("&Nouveau");
+           QAction *actionArt=new QAction("Nouvel &article", this);
+           nouveau->addAction(actionArt);
+           connect(actionArt, SIGNAL(triggered()), this, SLOT(creerArticle()));
+           QMenu* actionTache=nouveau->addMenu("Nouvelle &tâche");
+                QAction* actionTacheSimple=new QAction("Tâche simple", this);
+                actionTache->addAction(actionTacheSimple);
+                connect(actionTacheSimple, SIGNAL(triggered()), this, SLOT(creerTache()));
+                QAction* actionDeadline=new QAction("Tâche avec deadline", this);
+                actionTache->addAction(actionDeadline);
+                connect(actionDeadline, SIGNAL(triggered()), this, SLOT(creerTacheDeadline()));
+                QAction* actionPrio=new QAction("Tâche avec priorité", this);
+                actionTache->addAction(actionPrio);
+                connect(actionPrio, SIGNAL(triggered()), this, SLOT(creerTachePriorite()));
+           QAction* actionFichier=new QAction("Nouveau &fichier", this);
+           nouveau->addAction(actionFichier);
+           connect(actionFichier, SIGNAL(triggered()), this, SLOT(creerFichier()));
+        /*actionSave=new QAction("&Enregistrer", this);
+        menuFichier->addAction(actionSave);
+        actionSave->setShortcut(QKeySequence("Ctrl+S"));
+        actionSave->setDisabled(true);
+        connect(actionSave, SIGNAL(triggered()), this, SLOT(interfaceSave()));
+        QObject::connect(noteEdit->getTitle(), SIGNAL(textChanged(QString)), this, SLOT(activerMenuSave(QString)));*/
+        QAction *actionQuitter = new QAction("&Quitter", this);
+        actionQuitter->setShortcut(QKeySequence("Ctrl+Q"));
+        connect(actionQuitter, SIGNAL(triggered()), qApp, SLOT(quit()));
+        menuFichier->addAction(actionQuitter);
 
 
-        QMenu *menuEdition = menuBar()->addMenu("&Edition");
-           QAction* actionAnnuler=new QAction("Annuler", this);
-           menuEdition->addAction(actionAnnuler);
-           actionAnnuler->setShortcut(QKeySequence("Ctrl+Z"));
-           QAction* actionRetablir=new QAction("Rétablir", this);
-           actionRetablir->setShortcut(QKeySequence("Ctrl+Y"));
-           menuEdition->addAction(actionRetablir);
+    QMenu *menuEdition = menuBar()->addMenu("&Edition");
+       QAction* actionAnnuler=new QAction("Annuler", this);
+       menuEdition->addAction(actionAnnuler);
+       actionAnnuler->setShortcut(QKeySequence("Ctrl+Z"));
+       QAction* actionRetablir=new QAction("Rétablir", this);
+       actionRetablir->setShortcut(QKeySequence("Ctrl+Y"));
+       menuEdition->addAction(actionRetablir);
 
-        QMenu *menuCorbeille = menuBar()->addMenu("&Corbeille");
-           actionSupp=new QAction("Supprimer automatiquement les notes archivées à la fermeture de l'application", this);
-           menuCorbeille->addAction(actionSupp);
-           actionSupp->setCheckable(true); //pour le slot : avec vérifier avec isChecked()
+    QMenu *menuCorbeille = menuBar()->addMenu("&Corbeille");
+       actionSupp=new QAction("Supprimer automatiquement les notes archivées à la fermeture de l'application", this);
+       menuCorbeille->addAction(actionSupp);
+       actionSupp->setCheckable(true); //pour le slot : avec vérifier avec isChecked()
+       QAction* actionArchives=new QAction("Voir les notes &archivées", this);
+       menuCorbeille->addAction(actionArchives);
 }
+
 
 void VuePrincipale::closeEvent(QCloseEvent* event){
     NotesManager& manager=NotesManager::getInstance();
@@ -111,7 +116,7 @@ void VuePrincipale::afficageArbo(){
 }
 
 void VuePrincipale::showRelations(){
-    VueSecondaire& fenetreRelations=VueSecondaire::getInstance();
+    VueSecondaire fenetreRelations;
     fenetreRelations.show();
 }
 
@@ -132,7 +137,7 @@ void VuePrincipale::afficher_note(QTreeWidgetItem *item){
 void VuePrincipale::creerArticle(){
     qDebug()<<"Signal reçu";
     marqueur=1;
-    note=0;
+    note=nullptr;
     delete centre;
     delete droite;
     affichage_droit();
@@ -143,7 +148,7 @@ void VuePrincipale::creerArticle(){
 }
 void VuePrincipale::creerTache(){
     qDebug()<<"Signal reçu";
-    marqueur=2; note=0;
+    marqueur=2; note=nullptr;
     delete centre;
     delete droite;
     affichage_droit();
@@ -154,7 +159,7 @@ void VuePrincipale::creerTache(){
 }
 void VuePrincipale::creerTacheDeadline(){
     qDebug()<<"Signal reçu";
-    marqueur=4; note=0;
+    marqueur=4; note=nullptr;
     delete centre;
     delete droite;
     affichage_droit();
@@ -165,7 +170,7 @@ void VuePrincipale::creerTacheDeadline(){
 }
 void VuePrincipale::creerTachePriorite(){
     qDebug()<<"Signal reçu";
-    marqueur=3; note=0;
+    marqueur=3; note=nullptr;
     delete centre;
     delete droite;
     affichage_droit();
@@ -175,7 +180,7 @@ void VuePrincipale::creerTachePriorite(){
     zoneCentrale->setLayout(layoutPrincipal);
 }
 void VuePrincipale::creerFichier(){
-    marqueur=5; note=0;
+    marqueur=5; note=nullptr;
     delete centre;
     delete droite;
     affichage_droit();
@@ -203,7 +208,7 @@ void VuePrincipale::afficher_version(QTreeWidgetItem *item){
 
 void VuePrincipale::affichage_central()
 {
-    if(note==0 && marqueur==0)
+    if(note==nullptr && marqueur==0)
     {
         centre=new QGroupBox("Nouvelle note", zoneCentrale);
         QVBoxLayout* button_layout=new QVBoxLayout;
@@ -278,7 +283,7 @@ void VuePrincipale::affichage_droit()
 {
           droite=new QGroupBox("Arborescence", zoneCentrale);
           QVBoxLayout* rightLayout=new QVBoxLayout;
-          if (note==0) {
+          if (note==nullptr) {
               QLabel* label=new QLabel(this); label->setText("Pas d'arborescence disponible.");
               rightLayout->addWidget(label);
           }
@@ -306,9 +311,11 @@ void VuePrincipale::affichage_droit()
                QTreeWidgetItem** item = new QTreeWidgetItem*[nb_items_relations];
                unsigned int i=0;
                RelationsManager::Iterator iterator_manager=RelationsManager::getInstance().getIterator();
+               iterator_manager.debut();
                while(!iterator_manager.isDone()){ //ici on examine chaque relation
                   qDebug()<<"entree dans la boucle";
                   Relation::Iterator iterator_relation= iterator_manager.current().getIterator();
+                  iterator_relation.debut();
                   while(!iterator_relation.isDone()) //ici on examine chaque couple de la relation
                   {
                       if(i>nb_items_relations-2) //il reste moins de 2 cases dans le tableau d'items, il faut l'agrandir
@@ -454,15 +461,13 @@ void VuePrincipale::new_note(int i)
 void VuePrincipale::actualiser_fenetre()
 {
     qDebug()<<"signal reçu\n";
-    note=0;
+    note=nullptr;
     delete gauche;
     delete centre;
     delete droite;
-    qDebug()<<"arrivee 1\n";
     affichage_gauche();
     affichage_central();
     affichage_droit();
-    qDebug()<<"arrivee 2\n";
     layoutPrincipal->addWidget(gauche);
     layoutPrincipal->addWidget(centre);
     layoutPrincipal->addWidget(droite);
@@ -473,12 +478,12 @@ void VuePrincipale::actualiser_fenetre()
 
 //==========================================FENÊTRE SECONDAIRE (RELATIONS)========================================
 
-VueSecondaire& VueSecondaire::getInstance(){
+/*VueSecondaire& VueSecondaire::getInstance(){
     static VueSecondaire instance;
     return instance;
-}
+}*/
 
-VueSecondaire::VueSecondaire():relation(0){
+VueSecondaire::VueSecondaire():relation(nullptr){
     layoutPrincipal=new QHBoxLayout;
     affichage_gauche();
     affichage_central();
@@ -532,7 +537,7 @@ void VueSecondaire::affichage_gauche(){
 
 void VueSecondaire::affichage_central()
 {
-    if(relation==0)
+    if(relation==nullptr)
     {
         QFormLayout* editeur=new QFormLayout;
         relationEdit=new RelationEditeur;
@@ -565,7 +570,7 @@ void VueSecondaire::openRelation(QTreeWidgetItem* item){
 void VueSecondaire::actualiser_fenetre()
 {
     qDebug()<<"signal reçu\n";
-    relation=0;
+    relation=nullptr;
     delete gauche;
     delete centre;
     affichage_gauche();

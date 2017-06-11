@@ -89,11 +89,11 @@ RelationEditeur::RelationEditeur(Relation& r, QWidget* parent):QWidget(parent),r
     layout-> addWidget(couple2);
 
     new_couple = new QHBoxLayout(this);
-    liste_x = new QListView();
-    model_x = new QStringListModel();
+    liste_x = new QListView(this);
+    model_x = new QStringListModel(this);
     QStringList list_x;
-    liste_y = new QListView();
-    model_y = new QStringListModel();
+    liste_y = new QListView(this);
+    model_y = new QStringListModel(this);
     QStringList list_y;
     for(NotesManager::Iterator iterator=NotesManager::getInstance().getIterator(); !iterator.isDone(); iterator.next())
         if (iterator.current().IsLast()) { list_x << iterator.current().getId(); list_y << iterator.current().getId(); }

@@ -56,18 +56,12 @@ private:
 class VuePrincipale : public QMainWindow{
     Q_OBJECT
 public:
-    /**
-     * \brief      Permet d'accéder au seul objet de la classe VuePrincipale (DP Singleton).
-     * \details    Crée une instance s'il n'en existe pas, retourne l'instance déjà existante sinon.
-     * \param    n       La note que l'on souhaite afficher (par défaut, on n'affiche aucune note).
-     * \return    Une référence sur la seule instance de la fenêtre.
-     */
-    static VuePrincipale& getInstance(Note* n=0);
-
+     VuePrincipale();
     /**
      * \brief      Permet la création & l'affichage de la partie centrale de la fenêtre.
      * \details Utilisée dans le constructeur.
      */
+
     void affichage_central();
 
     /**
@@ -151,14 +145,6 @@ private slots:
      void creerTachePriorite();
 
 private:
-    static VuePrincipale* instance;
-
-    /**
-     * \brief      Constructeur de la fenêtre.
-     * \details En privé pour le DP singleton.
-     * \param n Note à afficher (par défaut, on n'affiche aucune note).
-     */
-    VuePrincipale(Note* n=0);
     unsigned int marqueur; //sert à identifier une demande de nouvelle note (1 pour Article, 2 pour Tache, 3 pour TacheAvecPriorite, 4 pour TacheAvecDeadline, 5 pour Fichier)
     QWidget* zoneCentrale;
     QHBoxLayout* layoutPrincipal;
@@ -206,12 +192,7 @@ protected:
 class VueSecondaire : public QWidget{
     Q_OBJECT
 public :
-    /**
-     * \brief      Permet d'accéder au seul objet de la classe VueSecondaire (DP Singleton).
-     * \details    Crée une instance s'il n'en existe pas, retourne l'instance déjà existante sinon.
-     * \return    Une référence sur la seule instance de la fenêtre.
-     */
-    static VueSecondaire& getInstance();
+        VueSecondaire();
 
     /**
      * \brief      Permet la création & l'affichage de la partie centrale de la fenêtre.
@@ -237,8 +218,7 @@ private slots:
     void actualiser_fenetre();
 
 private :
-    VueSecondaire();
-    static VueSecondaire* instance;
+
     QHBoxLayout* layoutPrincipal;
     QVBoxLayout* principal;
 

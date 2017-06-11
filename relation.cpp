@@ -23,7 +23,7 @@ Relation::~Relation(){
 bool Relation::findCouple(Note& x, Note& y)
 {
     if (tableau==0) return false;
-    for (unsigned int i=0; i<nbCouples; i++) if (tableau[1][i]->getId()==x.getId() && tableau[2][i]->getId()==y.getId()) return true;
+    for (unsigned int i=0; i<nbCouples; i++) if (tableau[1][i]==&x && tableau[2][i]==&y) return true;
     return false;
 }
 
@@ -34,9 +34,13 @@ void Relation::addCouple_function(Note& x, Note& y, QString l){
     {
         if (nbCouples==nbCouplesMax) {
             //le tableau de couples et le tableau de labels nécessitent un agrandissement
-            Note*** newTableau= new Note**[nbCouplesMax+5];
+            Note*** newTableau= new Note**[2];
+            qDebug()<<"arrivee 1";
             QString* newLabel=new QString[nbCouplesMax+5];
-            for(unsigned int i=0; i<nbCouplesMax+5; i++) newTableau[i] = new Note*[i];
+            qDebug()<<"arrivee 2";
+            newTableau[1] = new Note*[nbCouplesMax+5];
+            newTableau[2] = new Note*[nbCouplesMax+5];
+            qDebug()<<"arrivee 3";
             for(unsigned int i=0; i<nbCouples; i++) {
                 newTableau[1][i]=tableau[1][i];
                 newTableau[2][i]=tableau[2][i];
