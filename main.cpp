@@ -33,8 +33,14 @@ int main(int argc, char *argv[])
     manager_relations.setFilename("/home/marlow/Bureau/Projet/Relations.xml");
     manager_relations.load();
 
+    /*
+    Relation& relation=manager_relations.getRelation("Anteriorite");
+    Tache& t1=dynamic_cast<Tache&>(manager_notes.getNote("id:T1"));
+    Tache& t2=dynamic_cast<Tache&>(manager_notes.getNote("id:T3"));
+    relation.addCouple(t1,t2,"label");
+    */
+
     VuePrincipale fenetre;
-    //VueSecondaire fenetre;
     fenetre.show();
     return app.exec();
     }

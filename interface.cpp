@@ -102,8 +102,8 @@ void VuePrincipale::afficageArbo(){
 }
 
 void VuePrincipale::showRelations(){
-    VueSecondaire& fenetreRelations=VueSecondaire::getInstance();
-    fenetreRelations.show();
+    VueSecondaire* fenetreRelations=new VueSecondaire();
+    fenetreRelations->show();
 }
 
 void VuePrincipale::afficher_note(QTreeWidgetItem *item){
@@ -451,11 +451,9 @@ void VuePrincipale::actualiser_fenetre()
     delete gauche;
     delete centre;
     delete droite;
-    qDebug()<<"arrivee 1\n";
     affichage_gauche();
     affichage_central();
     affichage_droit();
-    qDebug()<<"arrivee 2\n";
     layoutPrincipal->addWidget(gauche);
     layoutPrincipal->addWidget(centre);
     layoutPrincipal->addWidget(droite);
@@ -465,11 +463,6 @@ void VuePrincipale::actualiser_fenetre()
 
 
 //==========================================FENÊTRE SECONDAIRE (RELATIONS)========================================
-
-VueSecondaire& VueSecondaire::getInstance(){
-    static VueSecondaire instance;
-    return instance;
-}
 
 VueSecondaire::VueSecondaire():relation(nullptr){
     layoutPrincipal=new QHBoxLayout;

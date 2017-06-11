@@ -95,10 +95,8 @@ protected:
 
 class VueSecondaire : public QWidget{
     Q_OBJECT
-private:
-    VueSecondaire();
 public :
-    static VueSecondaire& getInstance();
+    VueSecondaire();
     void affichage_central();
     void affichage_gauche();
 private slots:
