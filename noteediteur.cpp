@@ -274,6 +274,10 @@ TacheEditeur::TacheEditeur(QWidget* parent):NoteEditeur(parent)
     check_attente = new QRadioButton("En attente",this);
     check_cours = new QRadioButton("En cours",this);
     check_terminee = new QRadioButton("Terminee",this);
+    check_attente->setChecked(true);
+    check_attente->setDisabled(true);
+    check_cours->setDisabled(true);
+    check_terminee->setDisabled(true);
     getLayout()->addWidget(text1);
     getLayout()->addWidget(text);
     getLayout()->addWidget(check_attente);

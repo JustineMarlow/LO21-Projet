@@ -100,6 +100,8 @@ void NotesManager::addNote(Note* n)
 void NotesManager::check_reference(Note& n)
 {
     qDebug()<<"check reference appelée \n";
+    if (n.getEtat()==active)
+    {
     search_reference(n, n.getTitre());
     if (typeid(n)==typeid(Article))
     {   Article& a=dynamic_cast<Article&>(n); search_reference(a, a.getTexte());
@@ -109,6 +111,7 @@ void NotesManager::check_reference(Note& n)
     }
     if (typeid(n)==typeid(Fichier))
     {   Fichier& f=dynamic_cast<Fichier&>(n); search_reference(f, f.getDescription());
+    }
     }
 }
 

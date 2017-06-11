@@ -114,8 +114,8 @@ void VuePrincipale::afficageArbo(){
 }
 
 void VuePrincipale::showRelations(){
-    VueSecondaire fenetreRelations;
-    fenetreRelations.show();
+    VueSecondaire* fenetreRelations= new VueSecondaire;
+    fenetreRelations->show();
 }
 
 void VuePrincipale::afficher_note(QTreeWidgetItem *item){
@@ -523,7 +523,7 @@ void VueSecondaire::affichage_gauche(){
 
     quitter=new QPushButton("Quitter", this);
     connect(quitter, SIGNAL(clicked()), this, SLOT(close()));
-    actualiser=new QPushButton("Actualiser", this);
+    actualiser=new QPushButton("Actualiser / Nouvelle relation", this);
     connect(actualiser, SIGNAL(clicked()), this, SLOT(actualiser_fenetre()));
     leftLayout->addWidget(quitter);
     leftLayout->addWidget(relations);

@@ -28,6 +28,7 @@ RelationEditeur::RelationEditeur(Relation& r, QWidget* parent):QWidget(parent),r
     if (r.getTitre()=="Reference")
     {
         //la relation n'est ni modifiable ni supprimable
+        couple1->setText("Visualisation des couples :");
         titre->setDisabled(true);
         description->setDisabled(true);
         bouton_delete->setDisabled(true);
@@ -85,6 +86,8 @@ RelationEditeur::RelationEditeur(Relation& r, QWidget* parent):QWidget(parent),r
         layout->addLayout(box[i]);
     }
 
+    if (relation->getTitre()!="Reference")
+    {
     couple2 = new QLabel("Ajout d'un nouveau couple :",this);
     layout-> addWidget(couple2);
 
@@ -109,6 +112,7 @@ RelationEditeur::RelationEditeur(Relation& r, QWidget* parent):QWidget(parent),r
     new_couple->addWidget(new_label);
     new_couple->addWidget(add_couple);
     layout->addLayout(new_couple);
+    }
 }
 
 //RelationEditeur d'une nouvelle relation
