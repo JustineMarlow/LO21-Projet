@@ -79,8 +79,6 @@ void VuePrincipale::creerMenu(){
        actionSupp=new QAction("Supprimer automatiquement les notes archivées à la fermeture de l'application", this);
        menuCorbeille->addAction(actionSupp);
        actionSupp->setCheckable(true); //pour le slot : avec vérifier avec isChecked()
-       QAction* actionArchives=new QAction("Voir les notes &archivées", this);
-       menuCorbeille->addAction(actionArchives);
 }
 
 
