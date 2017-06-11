@@ -9,9 +9,10 @@
 /*============================================================== Relation =============================================================================================*/
 //destructeur
 Relation::~Relation(){
-    for (unsigned int i=0; i<nbCouples; i++)
-        delete[] tableau[i];
-      delete[] tableau;
+    delete[] tableau[1];
+    delete[] tableau[2];
+    delete[] tableau;
+    delete[] tableau_label;
 }
 
 bool Relation::findCouple(Note& x, Note& y)

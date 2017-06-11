@@ -69,7 +69,7 @@
         <title>Un premier article</title>
         <creation>15/02/2015</creation>
         <modification>11/06/2017</modification>
-        <last>oui</last>
+        <last>non</last>
         <etat>Active</etat>
         <version>3</version>
     </article>
@@ -85,4 +85,14 @@
         <etat>Active</etat>
         <version>2</version>
     </tache>
+    <article>
+        <text>Ceci est un premier article. Faisons ref à \ref{id:A2}</text>
+        <id>id:A1</id>
+        <title>Un premier article</title>
+        <creation>15/02/2015</creation>
+        <modification>11/06/2017</modification>
+        <last>oui</last>
+        <etat>Active</etat>
+        <version>4</version>
+    </article>
 </notes>
