@@ -65,6 +65,7 @@ void Relation::addCouple_function(Note& x, Note& y, QString l){
 
 //méthode publique qui appelle la méthode privée en fonction du caractère orientée de la relation
 void Relation::addCouple(Note &x, Note &y, QString label){
+    if (&x==&y) throw NotesException("Une note ne peut pas etre en relation avec elle meme");
     qDebug()<<"add couple appelee sur "<<x.getId()<<" -> "<<y.getId()<<"\n";
     if (oriente) addCouple_function(x,y,label);
     else { addCouple_function(x,y,label);
