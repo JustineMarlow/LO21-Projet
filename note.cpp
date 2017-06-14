@@ -5,7 +5,6 @@
 #include <QtXml>
 #include <QMessageBox>
 #include <typeinfo>
-#include <QDebug>
 
 /**
  * \file      note.cpp
@@ -59,7 +58,6 @@ void NotesManager::addNote(Note* n)
         RelationsManager::Iterator iterator_manager=RelationsManager::getInstance().getIterator();
         iterator_manager.debut();
         while(!iterator_manager.isDone()){ //ici on examine chaque relation
-           qDebug()<<"entree dans la boucle";
            Relation::Iterator iterator_relation= iterator_manager.current().getIterator();
            iterator_relation.debut();
            if (iterator_manager.current().getTitre()=="Reference") //alors on enlève tous les couples tels que noteX.id=n.id
@@ -99,7 +97,6 @@ void NotesManager::addNote(Note* n)
 
 void NotesManager::check_reference(Note& n)
 {
-    qDebug()<<"check reference appelée \n";
     if (n.getEtat()==active)
     {
     search_reference(n, n.getTitre());
@@ -122,7 +119,7 @@ void NotesManager::search_reference(Note& n, const QString& texte)
     {
         for (unsigned int i=0; i<nbNotes ; i++)
         {
-            if (texte.contains("ref{"+notes[i]->getId()+"}")) {qDebug()<<"ref trouvee :"<<"ref{"+notes[i]->getId()+"}"<<"\n"; manager_relations.getRelation("Reference").addCouple(n,*notes[i],"");}
+            if (texte.contains("ref{"+notes[i]->getId()+"}")) manager_relations.getRelation("Reference").addCouple(n,*notes[i],"");
         }
     }
 }
@@ -228,12 +225,11 @@ void NotesManager::nettoyer_archives()
     for (unsigned int k=0; k<nbNotes; k++)
         if (notes[k]->getEtat()==archivee && notes[k]->IsLast())
         {
-            qDebug()<<"note archivee et last trouvee \n";
             unsigned int i=0;
             while(i<reference.getNbCouples() && reference.getYCouple(i).getId()!=notes[k]->getId())
                 i++;
             if(i>=reference.getNbCouples()) //la note n'apparait plus dans la relation reference -> on la place à la corbeille
-               { qDebug()<<"la note n'apparait plus \n";
+               {
                  notes[k]->setEtat(corbeille);
                  for(unsigned int v=1; v<notes[k]->getVersion(); v++) getVersionNote(notes[k]->getId(),v).setEtat(corbeille);
                }
@@ -250,7 +246,6 @@ void NotesManager::load() {
     }
     // QXmlStreamReader takes any QIODevice.
     QXmlStreamReader xml(&fin);
-    //qDebug()<<"debut fichier\n";
     // We'll parse the XML until we reach end of it.
     while(!xml.atEnd() && !xml.hasError()) {
         // Read next element.
@@ -261,7 +256,6 @@ void NotesManager::load() {
         if(token == QXmlStreamReader::StartElement) {
             if(xml.name() == "notes") continue;
                 if(xml.name() == "article") {
-                    qDebug()<<"nouvel article\n";
                     QString identificateur;
                     QString titre;
                     QString text;
@@ -279,64 +273,54 @@ void NotesManager::load() {
                             //identificateur
                             if(xml.name() == "id") {
                                 xml.readNext();
-                                identificateur=xml.text().toString();
-                                qDebug()<<"id="<<identificateur<<"\n";}
+                                identificateur=xml.text().toString();}
                             //titre
                             if(xml.name() == "title") {
                                 xml.readNext();
-                                titre=xml.text().toString();
-                                qDebug()<<"titre="<<titre<<"\n";}
+                                titre=xml.text().toString();}
                             //text
                             if(xml.name() == "text") {
                                 xml.readNext();
-                                text=xml.text().toString();
-                                qDebug()<<"text="<<text<<"\n";}
+                                text=xml.text().toString();}
                             //version
                             if(xml.name() == "version") {
                                 xml.readNext();
                                 QString version_lue=xml.text().toString();
                                 bool conversion;
                                 version = version_lue.toUInt(&conversion, 10);
-                                if (conversion==false) throw NotesException("Erreur dans conversion QString to Int (version)");
-                                qDebug()<<"version="<<version<<"\n";}
+                                if (conversion==false) throw NotesException("Erreur dans conversion QString to Int (version)");}
                             //date de creation
                             if(xml.name() == "creation") {
                                 xml.readNext();
                                 QString date_creation_lue=xml.text().toString();
-                                date_c = QDate::fromString(date_creation_lue,"dd/MM/yyyy");
-                                qDebug()<<"date_creation="<<date_c.QDate::toString(QString("dd/MM/yyyy"))<<"\n";}
+                                date_c = QDate::fromString(date_creation_lue,"dd/MM/yyyy");}
                             //date de modification
                             if(xml.name() == "modification") {
                                 xml.readNext();
                                 QString date_modification_lue=xml.text().toString();
-                                date_m = QDate::fromString(date_modification_lue,"dd/MM/yyyy");
-                                qDebug()<<"date_modification="<<date_m.QDate::toString(QString("dd/MM/yyyy"))<<"\n";}
+                                date_m = QDate::fromString(date_modification_lue,"dd/MM/yyyy");}
                             //etat
                             if(xml.name() == "etat") {
                                 xml.readNext();
                                 QString etat_lu=xml.text().toString();
-                                qDebug()<<"etat_lu="<<etat_lu<<"\n";
-                                if (latinCompare(etat_lu, "Active")) {etat=active; qDebug()<<"La note est active";}
-                                else {if (latinCompare(etat_lu, "Archivee")) {etat=archivee; qDebug()<<"La note est archivee";}
-                                      else {if (latinCompare(etat_lu, "Corbeille")) {etat=corbeille; qDebug()<<"La note est dans la corbeille";}
+                                if (latinCompare(etat_lu, "Active")) etat=active;
+                                else {if (latinCompare(etat_lu, "Archivee")) etat=archivee;
+                                      else {if (latinCompare(etat_lu, "Corbeille")) etat=corbeille;
                                             else throw NotesException("Erreur dans lecture etat xml");}}}
                             //last
                             if(xml.name() == "last") {
                                 xml.readNext();
                                 QString last_lu=xml.text().toString();
-                                qDebug()<<"last_lu="<<last_lu<<"\n";
-                                if (latinCompare(last_lu, "oui")) {isLast=true; qDebug()<<"last true";}
-                                else {if (latinCompare(last_lu, "non")) {isLast=false; qDebug()<<"last false";}}}
+                                if (latinCompare(last_lu, "oui")) isLast=true;
+                                else {if (latinCompare(last_lu, "non")) isLast=false;}}
                     }
                     // ...and next...
                     xml.readNext();
                 }
-                qDebug()<<"ajout article "<<identificateur<<"\n";
                 addArticle(identificateur,titre,text,date_c,date_m,version,isLast,etat);
             }
             else
             if(xml.name() == "tache") {
-                qDebug()<<"new tache\n";
                 QString identificateur;
                 QString titre;
                 QString text;
@@ -358,62 +342,53 @@ void NotesManager::load() {
                         //identificateur
                         if(xml.name() == "id") {
                             xml.readNext();
-                            identificateur=xml.text().toString();
-                            qDebug()<<"id="<<identificateur<<"\n";}
+                            identificateur=xml.text().toString();}
                         //titre
                         if(xml.name() == "title") {
                             xml.readNext();
-                            titre=xml.text().toString();
-                            qDebug()<<"titre="<<titre<<"\n";}
+                            titre=xml.text().toString();}
                         //text
                         if(xml.name() == "text") {
                             xml.readNext();
-                            text=xml.text().toString();
-                            qDebug()<<"text="<<text<<"\n";}
+                            text=xml.text().toString();}
                         //version
                         if(xml.name() == "version") {
                             xml.readNext();
                             QString version_lue=xml.text().toString();
                             bool conversion;
                             version = version_lue.toUInt(&conversion, 10);
-                            if (conversion==false) throw NotesException("Erreur dans conversion QString to Int (version)");
-                            qDebug()<<"version="<<version<<"\n";}
+                            if (conversion==false) throw NotesException("Erreur dans conversion QString to Int (version)");}
                         //date de creation
                         if(xml.name() == "creation") {
                             xml.readNext();
                             QString date_creation_lue=xml.text().toString();
-                            date_c = QDate::fromString(date_creation_lue,"dd/MM/yyyy");
-                            qDebug()<<"date_creation="<<date_c.QDate::toString(QString("dd/MM/yyyy"))<<"\n";}
+                            date_c = QDate::fromString(date_creation_lue,"dd/MM/yyyy");}
                         //date de modification
                         if(xml.name() == "modification") {
                             xml.readNext();
                             QString date_modification_lue=xml.text().toString();
-                            date_m = QDate::fromString(date_modification_lue,"dd/MM/yyyy");
-                            qDebug()<<"date_modification="<<date_m.QDate::toString(QString("dd/MM/yyyy"))<<"\n";}
+                            date_m = QDate::fromString(date_modification_lue,"dd/MM/yyyy");}
                         //etat
                         if(xml.name() == "etat") {
                             xml.readNext();
                             QString etat_lu=xml.text().toString();
-                            qDebug()<<"etat_lu="<<etat_lu<<"\n";
-                            if (latinCompare(etat_lu, "Active")) {etat=active; qDebug()<<"La note est active";}
-                            else {if (latinCompare(etat_lu, "Archivee")) {etat=archivee; qDebug()<<"La note est archivee";}
-                                  else {if (latinCompare(etat_lu, "Corbeille")) {etat=corbeille; qDebug()<<"La note est dans la corbeille";}
+                            if (latinCompare(etat_lu, "Active")) etat=active;
+                            else {if (latinCompare(etat_lu, "Archivee")) etat=archivee;
+                                  else {if (latinCompare(etat_lu, "Corbeille")) etat=corbeille;
                                         else throw NotesException("Erreur dans lecture etat xml");}}}
                         //last
                         if(xml.name() == "last") {
                             xml.readNext();
                             QString last_lu=xml.text().toString();
-                            qDebug()<<"last_lu="<<last_lu<<"\n";
-                            if (latinCompare(last_lu, "oui")) {isLast=true; qDebug()<<"last true";}
-                            else {if (latinCompare(last_lu, "non")) {isLast=false; qDebug()<<"last false";}}}
+                            if (latinCompare(last_lu, "oui")) isLast=true;
+                            else {if (latinCompare(last_lu, "non")) isLast=false;}}
                         //statut
                         if(xml.name() == "statut") {
                             xml.readNext();
                             QString statut_lu=xml.text().toString();
-                            qDebug()<<"statut_lu="<<statut_lu<<"\n";
-                            if (latinCompare(statut_lu, "Attente")) {statut=attente; qDebug()<<"La tache est en attente";}
-                            else {if (latinCompare(statut_lu, "Cours")) {statut=cours; qDebug()<<"La tache est en cours";}
-                                  else {if (latinCompare(statut_lu, "Terminee")) {statut=terminee; qDebug()<<"La tache est terminee";}
+                            if (latinCompare(statut_lu, "Attente")) statut=attente;
+                            else {if (latinCompare(statut_lu, "Cours")) statut=cours;
+                                  else {if (latinCompare(statut_lu, "Terminee")) statut=terminee;
                                         else throw NotesException("Erreur dans lecture statut (tache) xml");}}}
                         //priorite
                         if(xml.name() == "priorite") {
@@ -422,26 +397,23 @@ void NotesManager::load() {
                             QString priorite_lue=xml.text().toString();
                             bool conversion;
                             priorite = priorite_lue.toUInt(&conversion, 10);
-                            if (conversion==false) throw NotesException("Erreur dans conversion QString to Int (priorite)");
-                            qDebug()<<"priorite="<<priorite<<"\n";}
+                            if (conversion==false) throw NotesException("Erreur dans conversion QString to Int (priorite)");}
                         //deadline
                         if(xml.name() == "deadline") {
                             d_trouvee=true;
                             xml.readNext();
                             QString deadline_lue=xml.text().toString();
-                            deadline = QDate::fromString(deadline_lue,"dd/MM/yyyy");
-                            qDebug()<<"deadline="<<deadline.QDate::toString(QString("dd/MM/yyyy"))<<"\n";}
+                            deadline = QDate::fromString(deadline_lue,"dd/MM/yyyy");}
                     }
                     // ...and next...
                     xml.readNext();
                 }
-                if (!(p_trouvee || d_trouvee)) {qDebug()<<"ajout tache "<<identificateur<<"\n"; addTache(identificateur,titre,text,date_c,date_m,version,isLast,etat,statut);}
-                else if (p_trouvee && !(d_trouvee)) {qDebug()<<"ajout tache avec priorite "<<identificateur<<"\n"; addTacheAvecPriorite(identificateur,titre,text,date_c,date_m,version,isLast,etat,statut,priorite);}
-                     else if (d_trouvee && !(p_trouvee)) {qDebug()<<"ajout tache avec deadline "<<identificateur<<"\n"; addTacheAvecDeadline(identificateur,titre,text,date_c,date_m,version,isLast,etat,statut,deadline);}
+                if (!(p_trouvee || d_trouvee)) addTache(identificateur,titre,text,date_c,date_m,version,isLast,etat,statut);
+                else if (p_trouvee && !(d_trouvee)) addTacheAvecPriorite(identificateur,titre,text,date_c,date_m,version,isLast,etat,statut,priorite);
+                     else if (d_trouvee && !(p_trouvee)) addTacheAvecDeadline(identificateur,titre,text,date_c,date_m,version,isLast,etat,statut,deadline);
             }
             else
             if(xml.name() == "fichier") {
-                    qDebug()<<"new fichier\n";
                     QString identificateur;
                     QString titre;
                     QString description;
@@ -460,73 +432,62 @@ void NotesManager::load() {
                             //identificateur
                             if(xml.name() == "id") {
                                 xml.readNext();
-                                identificateur=xml.text().toString();
-                                qDebug()<<"id="<<identificateur<<"\n";}
+                                identificateur=xml.text().toString();}
                             //titre
                             if(xml.name() == "title") {
                                 xml.readNext();
-                                titre=xml.text().toString();
-                                qDebug()<<"titre="<<titre<<"\n";}
+                                titre=xml.text().toString();}
                             //description
                             if(xml.name() == "description") {
                                 xml.readNext();
-                                description=xml.text().toString();
-                                qDebug()<<"description="<<description<<"\n";}
+                                description=xml.text().toString();}
                             //version
                             if(xml.name() == "version") {
                                 xml.readNext();
                                 QString version_lue=xml.text().toString();
                                 bool conversion;
                                 version = version_lue.toUInt(&conversion, 10);
-                                if (conversion==false) throw NotesException("Erreur dans conversion QString to Int (version)");
-                                qDebug()<<"version="<<version<<"\n";}
+                                if (conversion==false) throw NotesException("Erreur dans conversion QString to Int (version)");}
                             //date de creation
                             if(xml.name() == "creation") {
                                 xml.readNext();
                                 QString date_creation_lue=xml.text().toString();
-                                date_c = QDate::fromString(date_creation_lue,"dd/MM/yyyy");
-                                qDebug()<<"date_creation="<<date_c.QDate::toString(QString("dd/MM/yyyy"))<<"\n";}
+                                date_c = QDate::fromString(date_creation_lue,"dd/MM/yyyy");}
                             //date de modification
                             if(xml.name() == "modification") {
                                 xml.readNext();
                                 QString date_modification_lue=xml.text().toString();
-                                date_m = QDate::fromString(date_modification_lue,"dd/MM/yyyy");
-                                qDebug()<<"date_modification="<<date_m.QDate::toString(QString("dd/MM/yyyy"))<<"\n";}
+                                date_m = QDate::fromString(date_modification_lue,"dd/MM/yyyy");}
                             //etat
                             if(xml.name() == "etat") {
                                 xml.readNext();
                                 QString etat_lu=xml.text().toString();
-                                qDebug()<<"etat_lu="<<etat_lu<<"\n";
-                                if (latinCompare(etat_lu, "Active")) {etat=active; qDebug()<<"La note est active";}
-                                else {if (latinCompare(etat_lu, "Archivee")) {etat=archivee; qDebug()<<"La note est archivee";}
-                                      else {if (latinCompare(etat_lu, "Corbeille")) {etat=corbeille; qDebug()<<"La note est dans la corbeille";}
+                                if (latinCompare(etat_lu, "Active")) etat=active;
+                                else {if (latinCompare(etat_lu, "Archivee")) etat=archivee;
+                                      else {if (latinCompare(etat_lu, "Corbeille")) etat=corbeille;
                                             else throw NotesException("Erreur dans lecture etat xml");}}}
                             //last
                             if(xml.name() == "last") {
                                 xml.readNext();
                                 QString last_lu=xml.text().toString();
-                                qDebug()<<"last_lu="<<last_lu<<"\n";
                                 if (latinCompare(last_lu, "oui")) {isLast=true; qDebug()<<"last true";}
                                 else {if (latinCompare(last_lu, "non")) {isLast=false; qDebug()<<"last false";}}}
                             //type
                             if(xml.name() == "type") {
                                 xml.readNext();
                                 QString type_lu=xml.text().toString();
-                                qDebug()<<"type_lu="<<type_lu<<"\n";
-                                if (latinCompare(type_lu, "Image")) {type=image; qDebug()<<"Le fichier est une image";}
-                                else  if (latinCompare(type_lu, "Audio")) {type=audio; qDebug()<<"Le fichier est un enregistrement audio";}
-                                      else  if (latinCompare(type_lu, "Video")) {type=video; qDebug()<<"Le fichier est un enregistrement video";}
+                                if (latinCompare(type_lu, "Image")) type=image;
+                                else  if (latinCompare(type_lu, "Audio")) type=audio;
+                                      else  if (latinCompare(type_lu, "Video")) type=video;
                                             else throw NotesException("Erreur dans lecture type (fichier) xml");}
                             //filename
                             if(xml.name() == "filename") {
                                 xml.readNext();
-                                filename_fichier=xml.text().toString();
-                                qDebug()<<"filename_fichier="<<filename_fichier<<"\n";}
+                                filename_fichier=xml.text().toString();;}
                         }
                         // ...and next...
                         xml.readNext();
                     }
-                    qDebug()<<"ajout fichier "<<identificateur<<"\n"; addFichier(identificateur,titre,description,date_c,date_m,version,isLast,etat,filename_fichier,type);
             }
         }
     }
@@ -534,11 +495,10 @@ void NotesManager::load() {
 if(xml.hasError()) throw NotesException("Erreur lecteur fichier notes, parser xml");
 // Removes any device() or data from the reader * and resets its internal state to the initial state.=
 xml.clear();
-qDebug()<<"fin load\n";
 isLoading=false;
 //important que toutes les notes aient été crées en mémoire afin de détecter les relations
 for(unsigned int i=0; i<nbNotes; i++)
-    if (notes[i]->IsLast()) {qDebug()<<"derniere version trouvee \n"; check_reference(*notes[i]);}
+    if (notes[i]->IsLast()) check_reference(*notes[i]);
 }
 
 //permet de sauvegarder les notes dans le fichier
@@ -552,13 +512,13 @@ void NotesManager::save() const {
     stream.writeStartElement("notes");
     for(unsigned int i=0; i<nbNotes; i++){
         if (typeid(*notes[i])==typeid(Article))
-        {   qDebug()<<i<<" : mise a jour article \n";
+        {
             Article& n=dynamic_cast<Article&>(*notes[i]);
             stream.writeStartElement("article");
             stream.writeTextElement("text",n.getTexte());
         }
         else if (typeid(*notes[i])==typeid(Tache))
-        {   qDebug()<<i<<" : mise a jour tache \n";
+        {
             Tache& n=dynamic_cast<Tache&>(*notes[i]); stream.writeStartElement("tache");
             stream.writeTextElement("text",n.getTexte());
             if (n.getStatut()==attente) stream.writeTextElement("statut","Attente");
@@ -566,7 +526,7 @@ void NotesManager::save() const {
             else stream.writeTextElement("statut","Terminee");
         }
         else if (typeid(*notes[i])==typeid(TacheAvecPriorite))
-        {   qDebug()<<i<<" : mise a jour tache avec priorite \n";
+        {
             TacheAvecPriorite& n=dynamic_cast<TacheAvecPriorite&>(*notes[i]); stream.writeStartElement("tache");
             stream.writeTextElement("text",n.getTexte());
             if (n.getStatut()==attente) stream.writeTextElement("statut","Attente");
@@ -575,7 +535,7 @@ void NotesManager::save() const {
             stream.writeTextElement("priorite",QString::number(n.getPriorite()));
         }
         else if (typeid(*notes[i])==typeid(TacheAvecDeadline))
-        {   qDebug()<<i<<" : mise a jour tache avec deadline \n";
+        {
             TacheAvecDeadline& n=dynamic_cast<TacheAvecDeadline&>(*notes[i]); stream.writeStartElement("tache");
             stream.writeTextElement("text",n.getTexte());
             if (n.getStatut()==attente) stream.writeTextElement("statut","Attente");
@@ -584,7 +544,7 @@ void NotesManager::save() const {
             stream.writeTextElement("deadline",n.getDeadline().QDate::toString(QString("dd/MM/yyyy")));
         }
         else if (typeid(*notes[i])==typeid(Fichier))
-        {   qDebug()<<i<<" : mise a jour fichier \n";
+        {
             Fichier& n=dynamic_cast<Fichier&>(*notes[i]); stream.writeStartElement("fichier");
             stream.writeTextElement("description",n.getDescription());
             if (n.getType()==image) stream.writeTextElement("type","Image");

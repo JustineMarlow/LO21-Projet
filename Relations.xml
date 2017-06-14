@@ -5,13 +5,13 @@
         <description>La note x est anterieure a la note y. Modif</description>
         <oriente>oui</oriente>
         <couple>
-            <idX>id:A2</idX>
-            <idY>id:A3</idY>
+            <idX>id:T1</idX>
+            <idY>id:T3</idY>
             <label>label</label>
         </couple>
         <couple>
-            <idX>id:T1</idX>
-            <idY>id:T3</idY>
+            <idX>id:A2</idX>
+            <idY>id:A3</idY>
             <label>label</label>
         </couple>
     </relation>
@@ -19,16 +19,6 @@
         <titre>Meme sujet</titre>
         <description>Les notes x et y portent sur le meme sujet.</description>
         <oriente>non</oriente>
-        <couple>
-            <idX>id:A2</idX>
-            <idY>id:A3</idY>
-            <label>cuisine</label>
-        </couple>
-        <couple>
-            <idX>id:A3</idX>
-            <idY>id:A2</idY>
-            <label>cuisine</label>
-        </couple>
         <couple>
             <idX>id:T1</idX>
             <idY>id:T3</idY>
@@ -48,6 +38,16 @@
             <idX>id:A1</idX>
             <idY>id:T1</idY>
             <label>histoire</label>
+        </couple>
+        <couple>
+            <idX>id:A3</idX>
+            <idY>id:A2</idY>
+            <label>cuisine</label>
+        </couple>
+        <couple>
+            <idX>id:A2</idX>
+            <idY>id:A3</idY>
+            <label>cuisine</label>
         </couple>
     </relation>
 </relations>

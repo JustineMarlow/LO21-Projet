@@ -37,7 +37,7 @@ VuePrincipale::VuePrincipale() : note(nullptr),marqueur(0){
 }
 
 void VuePrincipale::creerMenu(){
-    menuFichier = menuBar()->addMenu("&Fichier");
+    QMenu* menuFichier = menuBar()->addMenu("&Fichier");
        QMenu *nouveau = menuFichier->addMenu("&Nouveau");
            QAction *actionArt=new QAction("Nouvel &article", this);
            nouveau->addAction(actionArt);
@@ -55,7 +55,7 @@ void VuePrincipale::creerMenu(){
            QAction* actionFichier=new QAction("Nouveau &fichier", this);
            nouveau->addAction(actionFichier);
            connect(actionFichier, SIGNAL(triggered()), this, SLOT(creerFichier()));
-        /*actionSave=new QAction("&Enregistrer", this);
+        /*QAction* actionSave=new QAction("&Enregistrer", this);
         menuFichier->addAction(actionSave);
         actionSave->setShortcut(QKeySequence("Ctrl+S"));
         actionSave->setDisabled(true);
@@ -78,7 +78,7 @@ void VuePrincipale::creerMenu(){
     QMenu *menuCorbeille = menuBar()->addMenu("&Corbeille");
        actionSupp=new QAction("Supprimer automatiquement les notes archivées à la fermeture de l'application", this);
        menuCorbeille->addAction(actionSupp);
-       actionSupp->setCheckable(true); //pour le slot : avec vérifier avec isChecked()
+       actionSupp->setCheckable(true);
 }
 
 
@@ -119,7 +119,6 @@ void VuePrincipale::showRelations(){
 }
 
 void VuePrincipale::afficher_note(QTreeWidgetItem *item){
-    qDebug()<<"signal reçu";
     NotesManager& manager=NotesManager::getInstance();
     note = &manager.getNote(item->text(0));
     delete centre;
@@ -133,7 +132,6 @@ void VuePrincipale::afficher_note(QTreeWidgetItem *item){
 
 
 void VuePrincipale::creerArticle(){
-    qDebug()<<"Signal reçu";
     marqueur=1;
     note=nullptr;
     delete centre;
@@ -145,7 +143,6 @@ void VuePrincipale::creerArticle(){
     zoneCentrale->setLayout(layoutPrincipal);
 }
 void VuePrincipale::creerTache(){
-    qDebug()<<"Signal reçu";
     marqueur=2; note=nullptr;
     delete centre;
     delete droite;
@@ -156,7 +153,6 @@ void VuePrincipale::creerTache(){
     zoneCentrale->setLayout(layoutPrincipal);
 }
 void VuePrincipale::creerTacheDeadline(){
-    qDebug()<<"Signal reçu";
     marqueur=4; note=nullptr;
     delete centre;
     delete droite;
@@ -167,7 +163,6 @@ void VuePrincipale::creerTacheDeadline(){
     zoneCentrale->setLayout(layoutPrincipal);
 }
 void VuePrincipale::creerTachePriorite(){
-    qDebug()<<"Signal reçu";
     marqueur=3; note=nullptr;
     delete centre;
     delete droite;
@@ -258,7 +253,6 @@ void VuePrincipale::affichage_central()
         }
         else
         {
-            qDebug()<<"marqueur = "<<marqueur<<"\n";
             switch (marqueur)
         {
         case 1 : noteEdit=new ArticleEditeur; break;
@@ -311,14 +305,12 @@ void VuePrincipale::affichage_droit()
                RelationsManager::Iterator iterator_manager=RelationsManager::getInstance().getIterator();
                iterator_manager.debut();
                while(!iterator_manager.isDone()){ //ici on examine chaque relation
-                  qDebug()<<"entree dans la boucle";
                   Relation::Iterator iterator_relation= iterator_manager.current().getIterator();
                   iterator_relation.debut();
                   while(!iterator_relation.isDone()) //ici on examine chaque couple de la relation
                   {
                       if(i>nb_items_relations-2) //il reste moins de 2 cases dans le tableau d'items, il faut l'agrandir
                       {
-                          qDebug()<<"agrandissement tableau d'item\n";
                           QTreeWidgetItem** new_item = new QTreeWidgetItem*[nb_items_relations+10];
                           for (unsigned int k=0; k<nb_items_relations; k++)
                               new_item[k] = item[k];
@@ -333,7 +325,6 @@ void VuePrincipale::affichage_droit()
                           item[i]->setText(1,"("+iterator_manager.current().getTitre()+")");
                           arbreDescendants->addChild(item[i]);
                           i++;
-                          qDebug()<<"Descendant trouve\n";
                       }
                       if(&(iterator_relation.current_noteY())==note){
                            item[i] = new QTreeWidgetItem();
@@ -341,11 +332,9 @@ void VuePrincipale::affichage_droit()
                            item[i]->setText(1,"("+iterator_manager.current().getTitre()+")");
                            arbreAscendants->addChild(item[i]);
                            i++;
-                           qDebug()<<"Ascendant trouve\n";
                       }
                       iterator_relation.next();
                   }
-                  qDebug()<<"Ajout de la relation "<<iterator_manager.current().getTitre()<<" à l'arborescence\n";
                   iterator_manager.next();
                 }
                rightLayout->addWidget(liste_relations);
@@ -444,7 +433,6 @@ void VuePrincipale::affichage_gauche(){
 
 void VuePrincipale::new_note(int i)
 {
-    qDebug()<<"signal reçu avec i = "<<i<<" \n";
     marqueur=i;
     delete centre;
     delete droite;
@@ -458,7 +446,6 @@ void VuePrincipale::new_note(int i)
 
 void VuePrincipale::actualiser_fenetre()
 {
-    qDebug()<<"signal reçu\n";
     note=nullptr;
     delete gauche;
     delete centre;
@@ -553,7 +540,6 @@ void VueSecondaire::affichage_central()
 }
 
 void VueSecondaire::openRelation(QTreeWidgetItem* item){
-    qDebug()<<"Entree dans OpenRelation";
     RelationsManager& manager=RelationsManager::getInstance();
     RelationsManager::Iterator it=manager.getIterator();
     while(!it.isDone() && it.current().getTitre()!=item->text(0)) it.next();
@@ -567,7 +553,6 @@ void VueSecondaire::openRelation(QTreeWidgetItem* item){
 
 void VueSecondaire::actualiser_fenetre()
 {
-    qDebug()<<"signal reçu\n";
     relation=nullptr;
     delete gauche;
     delete centre;

@@ -1,6 +1,5 @@
 #include "relation.h"
 #include "relationediteur.h"
-#include <QDebug>
 /**
  * \file      interface.cpp
  * \brief     Définit les méthodes relatives au RelationEditeur.
@@ -75,7 +74,6 @@ RelationEditeur::RelationEditeur(Relation& r, QWidget* parent):QWidget(parent),r
             buttons_edit[i]= new QPushButton("Sauver le label", this);
             connect(buttons_edit[i], SIGNAL(clicked()), mapper_label, SLOT(map()));
             mapper_label->setMapping(buttons_edit[i],i);
-            qDebug()<<"arrivee ici";
             buttons_remove[i]= new QPushButton("Supprimer le couple", this);
             connect(buttons_remove[i], SIGNAL(clicked()), mapper_remove, SLOT(map()));
             mapper_remove->setMapping(buttons_remove[i],i);

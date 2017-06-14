@@ -1,6 +1,5 @@
 #include "note.h"
 #include "noteediteur.h"
-#include <QDebug>
 #include <typeinfo>
 
 
@@ -291,7 +290,6 @@ TacheEditeur::TacheEditeur(QWidget* parent):NoteEditeur(parent)
 
 void TacheEditeur::create()
 {
-    qDebug()<<"methode create appelee";
     //on créé un nouvel objet de type Tâche
     NotesManager &m=NotesManager::getInstance();
     TacheStatut st;
@@ -399,7 +397,6 @@ TacheAvecPrioriteEditeur::TacheAvecPrioriteEditeur(QWidget* parent):TacheEditeur
 
 void TacheAvecPrioriteEditeur::create()
 {
-    qDebug()<<"methode create avec priorite appelee";
     //on créé un nouvel objet de type TacheAvecPriorite
     NotesManager &m=NotesManager::getInstance();
     TacheStatut st;

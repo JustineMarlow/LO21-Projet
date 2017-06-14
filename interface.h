@@ -153,7 +153,6 @@ private:
 
     //Menu
     QAction* actionSupp;
-    QMenu* menuFichier;
 
     //Partie gauche
     QGroupBox* gauche;
@@ -162,8 +161,6 @@ private:
     QGroupBox* centre;
     Note* note;
     NoteEditeur* noteEdit;
-    QAction* actionSave;
-    bool saveActive;
 
     //Partie droite
     QGroupBox* droite;
@@ -172,7 +169,7 @@ private:
 protected:
 
     /**
-     * \brief      Permet de gérer le vidage automatique de la corbeille.
+     * \brief      Permet de proposer le vidage automatique de la corbeille.
      * \details Si l'option de vidage automatique est activée dans le menu, on ferme la fenetre et on vide la corbeille. Sinon,
      * on affiche une boîte de dialogue demandant à l'utilisateur s'il désire supprimer le contenu de la corbeille au moment de la
      * fermeture de l'application.
@@ -232,15 +229,5 @@ private :
     QPushButton* quitter;
     QPushButton* actualiser;
 };
-
-/*
-class ArbreRelations : public QTreeWidgetItem{
-    QString value;
-private :
-    QString getValue() const {return value;}
-    ArbreRelations(const QString& text, const QString& v="Undefined", int type=Type) :
-        QTreeWidgetItem(QStringList(text), type), value(v){}
-};
-*/
 
 #endif // INTERFACE_H
