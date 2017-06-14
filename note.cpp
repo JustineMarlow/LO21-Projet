@@ -106,10 +106,16 @@ void NotesManager::check_reference(Note& n)
     if (typeid(n)==typeid(Article))
     {   Article& a=dynamic_cast<Article&>(n); search_reference(a, a.getTexte());
     }
-    if (typeid(n)==typeid(Tache))
+    else if (typeid(n)==typeid(TacheAvecPriorite))
+    {   TacheAvecPriorite& t=dynamic_cast<TacheAvecPriorite&>(n); search_reference(t, t.getTexte());
+    }
+    else if (typeid(n)==typeid(TacheAvecDeadline))
+    {   TacheAvecDeadline& t=dynamic_cast<TacheAvecDeadline&>(n); search_reference(t, t.getTexte());
+    }
+    else if (typeid(n)==typeid(Tache))
     {   Tache& t=dynamic_cast<Tache&>(n); search_reference(t, t.getTexte());
     }
-    if (typeid(n)==typeid(Fichier))
+    else if (typeid(n)==typeid(Fichier))
     {   Fichier& f=dynamic_cast<Fichier&>(n); search_reference(f, f.getDescription());
     }
     }
@@ -122,7 +128,7 @@ void NotesManager::search_reference(Note& n, const QString& texte)
     {
         for (unsigned int i=0; i<nbNotes ; i++)
         {
-            if (texte.contains("ref{"+notes[i]->getId()+"}")) {qDebug()<<"ref trouvee :"<<"ref{"+notes[i]->getId()+"}"<<"\n"; manager_relations.getRelation("Reference").addCouple(n,*notes[i],"");}
+            if(notes[i]->IsLast()) if (texte.contains("ref{"+notes[i]->getId()+"}")) {qDebug()<<"ref trouvee :"<<"ref{"+notes[i]->getId()+"}"<<"\n"; manager_relations.getRelation("Reference").addCouple(n,*notes[i],"");}
         }
     }
 }

@@ -49,7 +49,7 @@
         <title>Une tâche avec priorité</title>
         <creation>10/06/2017</creation>
         <modification>10/06/2017</modification>
-        <last>non</last>
+        <last>oui</last>
         <etat>Active</etat>
         <version>1</version>
     </tache>
@@ -59,40 +59,20 @@
         <title>Un premier article</title>
         <creation>15/02/2015</creation>
         <modification>11/06/2017</modification>
-        <last>non</last>
+        <last>oui</last>
         <etat>Active</etat>
         <version>2</version>
-    </article>
-    <article>
-        <text>Ceci est un premier article.</text>
-        <id>id:A1</id>
-        <title>Un premier article</title>
-        <creation>15/02/2015</creation>
-        <modification>11/06/2017</modification>
-        <last>non</last>
-        <etat>Active</etat>
-        <version>3</version>
     </article>
     <tache>
-        <text>Faudra la faire. ref{id:T1}</text>
+        <text>rendre le projet de LO21</text>
         <statut>Attente</statut>
-        <priorite>5</priorite>
-        <id>id:T3</id>
-        <title>Une tâche avec priorité</title>
-        <creation>10/06/2017</creation>
-        <modification>11/06/2017</modification>
+        <deadline>15/06/2017</deadline>
+        <id>id:T2</id>
+        <title>une tache avec deadline</title>
+        <creation>14/06/2017</creation>
+        <modification>14/06/2017</modification>
         <last>oui</last>
         <etat>Active</etat>
-        <version>2</version>
+        <version>1</version>
     </tache>
-    <article>
-        <text>Ceci est un premier article. Faisons ref à \ref{id:A2}</text>
-        <id>id:A1</id>
-        <title>Un premier article</title>
-        <creation>15/02/2015</creation>
-        <modification>11/06/2017</modification>
-        <last>oui</last>
-        <etat>Active</etat>
-        <version>4</version>
-    </article>
 </notes>

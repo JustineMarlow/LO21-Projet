@@ -20,34 +20,14 @@
         <description>Les notes x et y portent sur le meme sujet.</description>
         <oriente>non</oriente>
         <couple>
-            <idX>id:A2</idX>
-            <idY>id:A3</idY>
-            <label>cuisine</label>
-        </couple>
-        <couple>
-            <idX>id:A3</idX>
-            <idY>id:A2</idY>
-            <label>cuisine</label>
-        </couple>
-        <couple>
             <idX>id:T1</idX>
             <idY>id:T3</idY>
-            <label>ménage</label>
+            <label>à faire</label>
         </couple>
         <couple>
             <idX>id:T3</idX>
             <idY>id:T1</idY>
-            <label>ménage</label>
-        </couple>
-        <couple>
-            <idX>id:T1</idX>
-            <idY>id:A1</idY>
-            <label>histoire</label>
-        </couple>
-        <couple>
-            <idX>id:A1</idX>
-            <idY>id:T1</idY>
-            <label>histoire</label>
+            <label>à faire</label>
         </couple>
     </relation>
 </relations>
