@@ -120,6 +120,8 @@ void VuePrincipale::showRelations(){
 
 void VuePrincipale::afficher_note(QTreeWidgetItem *item){
     qDebug()<<"signal reçu";
+    if (item->text(0)!= "Ascendants" && item->text(0)!= "Descendants")
+    {
     NotesManager& manager=NotesManager::getInstance();
     note = &manager.getNote(item->text(0));
     delete centre;
@@ -129,6 +131,7 @@ void VuePrincipale::afficher_note(QTreeWidgetItem *item){
     layoutPrincipal->addWidget(centre);
     layoutPrincipal->addWidget(droite);
     zoneCentrale->setLayout(layoutPrincipal);
+    }
 }
 
 
@@ -445,6 +448,7 @@ void VuePrincipale::affichage_gauche(){
 void VuePrincipale::new_note(int i)
 {
     qDebug()<<"signal reçu avec i = "<<i<<" \n";
+
     marqueur=i;
     delete centre;
     delete droite;

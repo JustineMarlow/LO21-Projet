@@ -188,7 +188,9 @@ void RelationEditeur::activerBouton(QString str)
 
 void RelationEditeur::add_new_couple()
 {
-   //on bloque toute nouvelle action
+   if (liste_x->selectionModel()->selectedIndexes().isEmpty() || liste_y->selectionModel()->selectedIndexes().isEmpty())
+        QMessageBox::information(this,"Selection incomplete","Veuillez selectionner deux notes a mettre en relation");
+   else {
    for (unsigned int k=0; k<relation->getNbCouples(); k++)
    {
         edit_label[k]->setDisabled(true);
@@ -213,6 +215,7 @@ void RelationEditeur::add_new_couple()
    Note& y = manager_notes.getNote(id_y);
    relation->addCouple(x,y,new_label->text());
    QMessageBox::information(this,"Ajout","Ajout du nouveau couple");
+   }
 
 }
 
