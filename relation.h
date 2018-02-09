@@ -6,7 +6,7 @@
 
 /**
  * \file      relation.h
- * \brief     Définit les classes Relation & RelationsManager
+ * \brief     Définit les classes Relation et RelationsManager
  */
 
 /*============================================================== Relation =============================================================================================*/
